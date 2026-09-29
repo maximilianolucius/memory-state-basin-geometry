@@ -162,3 +162,55 @@ V(u_0)E_alpha!left(
 ]
 
 No exact published local ellipsoidal basin certificate was found for the project's Caputo strong-Allee predator–prey vector field, and no published strict survival-entry/cold-start-extinction theorem was identified in the searched corpus.
+
+
+## ROUND-0005 verified additions — memory-tail resolvent survival
+
+35. Cong, N. D.; Doan, T. S.; Tuan, H. T. (2017). Perron-Type Theorem for Fractional Differential Systems. *Electronic Journal of Differential Equations* 2017(142), 1–12.  
+Role: published matrix variation-of-constants formula and stable-sector bounded-forcing estimates for linear Caputo systems. Theorem 2.1 gives the matrix Mittag–Leffler representation; Lemmas 2.2–2.3 provide the stable-kernel decay/bounded convolution estimates used in the resolvent audit.
+
+36. Gripenberg, G.; Londen, S.-O.; Staffans, O. J. (1990). *Volterra Integral and Functional Equations*. Encyclopedia of Mathematics and Its Applications, Vol. 34. Cambridge University Press. ISBN 9780521372893.  
+Role: general convolution-resolvent theory for linear and nonlinear Volterra equations, including forcing-function resolvents and asymptotic convolution results. Supports the abstract identity (v=h+R*h).
+
+37. Cong, N. D.; Tuan, H. T.; Trinh, H. (2020). On Asymptotic Properties of Solutions to Fractional Differential Equations. *Journal of Mathematical Analysis and Applications* 484(2), 123759. DOI 10.1016/j.jmaa.2019.123759.  
+Role: published asymptotic-behavior and Mittag–Leffler stability support for Caputo systems; useful for the long-time interpretation of the memory-tail argument.
+
+38. Salas, A. H.; Altamirano, G. C.; Martínez H., L. J. (2026). An Error-Certified Matrix Mittag–Leffler Perturbation Method for Weakly Nonlinear Fractional Systems. *Frontiers in Applied Mathematics and Statistics* 12, 1899674. DOI 10.3389/fams.2026.1899674.  
+Role: **current 2026 adjacent novelty pressure**. Uses exact matrix Mittag–Leffler propagators, nonlinear Volterra variation of constants, explicit truncation/residual-to-solution error estimates and independent numerical validation. It does not perform the project's cut-time inherited-memory basin classification or cold-start/continuation-state fate separation.
+
+### ROUND-0005 theorem-status consequence
+
+CANDIDATE-M1 is **VERIFIED**.
+
+For a Matignon-stable matrix
+[
+sigma(J)subset{lambda
+e0:|arglambda|>alphapi/2},
+]
+the kernel
+[
+Psi_J(t)=t^{alpha-1}E_{alpha,alpha}(Jt^alpha)
+]
+is (L^1(0,infty)): it is (O(t^{alpha-1})) at zero and (O(t^{-alpha-1})) at infinity.
+
+For the actual cut-time input,
+[
+h_T(t)	o p-E^*,
+]
+not zero. Nevertheless
+[
+int_0^inftyPsi_J(s),ds=-J^{-1},
+]
+so the linear resolvent response
+[
+v_T=h_T+(JPsi_J)*h_T
+]
+satisfies (v_T(t)	o0) by the standard (L^1)-convolution limit theorem.
+
+The Chief's condition
+[
+M_T+K_JC_rr^2<r
+]
+is sufficient for first-exit invariance and implies (K_JC_rr<1); the Cong et al. 2016 Lyapunov–Perron proof contains the same stable-kernel limsup split used to deduce (u(t)	o0).
+
+The remaining burden is computational: certify (M_T,K_J,C_r,r) for W1.
