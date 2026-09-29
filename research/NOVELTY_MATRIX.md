@@ -1,28 +1,24 @@
 # Novelty Matrix
 
-| Candidate contribution | Closest prior | Status after ROUND-0003 | Residual novelty requirement |
+| Candidate contribution | Closest prior | Status after TASK-0002 | Residual novelty requirement |
 |---|---|---|---|
-| Caputo memory-state enlargement | Doan–Kloeden 2021/2024 | Known | Background only |
-| Reachable present-state noninjectivity | Cong–Tuan 2017 | Known | Background only |
-| History/headpoint basin geometry | Huang 2014; Daza 2017; Szaksz 2024 | Known adjacent | Strict Caputo reachable-fiber theorem required |
+| Caputo memory-state enlargement | Doan–Kloeden 2021/2024 | Known | Background |
+| Reachable present-state noninjectivity | Cong–Tuan 2017 | Known | Background |
+| History/headpoint basin effects | hereditary/DDE prior incl. Szaksz 2024 | Known adjacent | Strict Caputo reachable-fiber theorem |
 | Exact ecological vector field | Ye et al. 2019 | Direct prior | No model novelty |
-| Fractional Double-Allee model | Mondal et al. 2025 | Known | No modeling novelty |
-| Fixed-sign Caputo derivative without monotonicity | Diethelm 2016 | Known general fact | Mechanism only |
-| Scalar/triangular fiber purity | Cong–Tuan; Doan–Kloeden | Completeness | Supporting contrast |
-| E1 basin-entry implication | semigroup/reachability logic | Structural reduction | Not novelty by itself |
-| X1 cold-start extinction strip | comparison + viability + scalar Allee prior | Proved supporting theorem | Not principal novelty |
-| E3 physical-to-continuation convergence | direct transfer-formula consequence | Proved supporting bridge | Not principal novelty |
-| Cold-start extinction vs continuation-state survival at same present value | closest: Szaksz et al. 2024 DDE headpoint analogue | STRICT CAPUTO RESIDUAL SURVIVES | Prove survival IVP + certified entry |
-| Arc of rigorous multibasin fibers | follows from E1 after rigorous interval entry | Potential strengthening | certify nondegenerate entry interval |
-| Open parameter family | E2 | Principal robustness target | persistent survival basin proof |
-| Published Double-Allee realization | Mondal equations verified, parameters partial | Open | exact regime + rigorous basin theorem |
+| Fractional Double-Allee modeling | Mondal et al. 2025 | Known | No modeling novelty |
+| Fixed-sign Caputo derivative without monotonicity | Diethelm 2016 | Known | Mechanism only |
+| X1 cold-start extinction strip | published comparison/viability ingredients | Proved supporting theorem | Not principal novelty |
+| E1/E2/E3/E4 structural results | semigroup/Volterra consequences | Supporting framework | Not principal novelty |
+| Validated finite-time threshold entry | TASK-0002 | Certified computation | Supports theorem, not novelty alone |
+| Explicit local Caputo survival basin L1 | fractional Lyapunov literature under audit | Candidate | ROUND-0004 must validate |
+| Same-present cold-start extinction vs continuation-state survival | no direct Caputo theorem found so far | Principal residual | rigorous survival witness |
+| Open family of such fibers | E2 | Future strengthening | persistent certified basin membership |
 
-## Defensible novelty hypothesis
+## Current novelty target
 
-The paper-worthy claim is not that memory exists, not that trajectories intersect, and not that Caputo derivatives behave unlike ordinary derivatives.
+The only principal novelty claim under consideration is:
 
-It is:
+> a rigorously reachable Caputo continuation state and the canonical cold start at the same present physical value belong to different asymptotic basins, with extinction versus survival interpretation.
 
-> in an autonomous continuous Caputo system, the canonical cold start at a physical state can be rigorously extinction-bound while a physically reachable continuation state with exactly the same present value is rigorously survival-bound.
-
-ROUND-0003 found no direct published Caputo theorem closing that statement.
+TASK-0002 has certified the entry event. Survival classification is the sole missing mathematical component.
