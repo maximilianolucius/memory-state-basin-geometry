@@ -110,3 +110,55 @@ Role: verified integer-order parent/fallback for the Mondal et al. 2025 Double-A
 Candidate X1 can be promoted from source-audit pending to **VERIFIED FROM PUBLISHED HYPOTHESES**, subject to the Chief writing the final proof with the exact positivity/comparison/continuation dependencies.
 
 The principal remaining proof gap is the survival side: prove that at least one standard physical IVP of the exact Caputo model converges to the coexistence equilibrium. Once that physical convergence is established, the Doan–Kloeden transfer formula directly implies convergence of the continuation state to the stationary equilibrium lift in compact-open topology.
+
+
+## ROUND-0004 verified additions — local survival Lyapunov theorem
+
+30. Águila-Camacho, N.; Duarte-Mermoud, M. A.; Gallegos, J. A. (2014). Lyapunov Functions for Fractional Order Systems. *Communications in Nonlinear Science and Numerical Simulation* 19(9), 2951–2957. DOI 10.1016/j.cnsns.2014.01.022.  
+Role: historical origin of the widely used quadratic Caputo inequality. **Do not use as the load-bearing theorem for a general Caputo solution**, because its lemma assumes differentiability of the trajectory.
+
+31. Ren, J.; Wu, C. (2019). Advances in Lyapunov Theory of Caputo Fractional-Order Systems. *Nonlinear Dynamics* 97, 2521–2531. DOI 10.1007/s11071-019-05145-9.  
+Role: **load-bearing source for CANDIDATE-L1**. Lemma 3.1 proves, along actual Caputo solutions under source-stated regularity hypotheses and for arbitrary positive-definite (P),
+[
+{}^CD^alpha(x^	op Px)
+le
+({}^CD^alpha x)^	op Px+x^	op P({}^CD^alpha x).
+]
+The autonomous polynomial project vector field satisfies the required local regularity/growth conditions.
+
+32. Wu, C. (2021). Advances in Analysis of Caputo Fractional-Order Nonautonomous Systems: From Stability to Global Uniform Asymptotic Stability. *Fractals* 29(4), 2150092. DOI 10.1142/S0218348X21500924.  
+Role: modern low-regularity Caputo Lyapunov theory; supports the current theorem landscape and avoids silently assuming differentiable trajectories.
+
+33. Wu, C. (2021). A Complete Result on the Lyapunov Stability of Caputo Fractional Order Nonautonomous Systems by the Comparison Method. *Nonlinear Dynamics* 105(3), 2473–2483. DOI 10.1007/s11071-021-06756-x.  
+Role: complete published comparison-method treatment of local/global Lyapunov stability. For L1, the project can use the sharper direct scalar comparison (D^alpha Vle-kappa V).
+
+34. Wei, Y.; Cao, J.; Chen, Y.; Wei, Y. (2022). The Proof of Lyapunov Asymptotic Stability Theorems for Caputo Fractional Order Systems. *Applied Mathematics Letters* 129, 107961. DOI 10.1016/j.aml.2022.107961.  
+Role: rigorous repair/confirmation of standard Caputo asymptotic-stability criteria after published criticism of earlier proofs. Use as current theorem-level support rather than relying solely on the older 2009 asymptotic argument.
+
+### ROUND-0004 theorem-status consequence
+
+CANDIDATE-L1 is **VERIFIED** from published hypotheses.
+
+The clean proof chain is:
+- Ren–Wu 2019, Lemma 3.1 for the quadratic derivative inequality;
+- exact Lyapunov matrix algebra (J^	op P+PJ=-I);
+- local nonlinear bound (|N(u)|le C_r|u|^2);
+- Wu 2020, Theorem 3.2 for scalar comparison with (V_0E_alpha(-kappa t^alpha));
+- Wu–Liu 2020 for continuation of the bounded standard solution;
+- project STRUCTURAL-E3 to lift physical convergence to the compact-open continuation-state basin.
+
+The Chief's conditions
+[
+2|P|C_r rlerac12,qquad
+V(u_0)<lambda_{min}(P)r^2
+]
+are sufficient and conservative. They give
+[
+V(u(t))
+le
+V(u_0)E_alpha!left(
+-rac{t^alpha}{2lambda_{max}(P)}
+ight)	o0.
+]
+
+No exact published local ellipsoidal basin certificate was found for the project's Caputo strong-Allee predator–prey vector field, and no published strict survival-entry/cold-start-extinction theorem was identified in the searched corpus.
