@@ -1,0 +1,101 @@
+{
+  "task": "TASK-0001",
+  "environment": {
+    "hostname": "aur007",
+    "platform": "Linux-6.8.0-139-generic-x86_64-with-glibc2.39",
+    "processor": "x86_64",
+    "cpu_count": 32,
+    "python": "3.12.3",
+    "python_executable": "/home/aureus/msbg/computations/../venv/bin/python",
+    "packages": {
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "mpmath": "1.3.0",
+      "sympy": "1.14.0",
+      "flint": "0.9.0",
+      "matplotlib": "3.11.2"
+    },
+    "numpy_blas": {
+      "name": "scipy-openblas",
+      "found": true,
+      "version": "0.3.34.106.0",
+      "detection method": "pkgconfig",
+      "include directory": "/opt/_internal/cpython-3.12.13/lib/python3.12/site-packages/scipy_openblas64/include",
+      "lib directory": "/opt/_internal/cpython-3.12.13/lib/python3.12/site-packages/scipy_openblas64/lib",
+      "openblas configuration": "OpenBLAS 0.3.34.106.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64",
+      "pc file directory": "/project/.openblas"
+    },
+    "utc": "2026-09-29T19:15:07Z",
+    "seed": 20260929,
+    "git_commit": null
+  },
+  "payload": {
+    "inputs": {
+      "theta": 0.3,
+      "a": 1.0,
+      "b": 1.0,
+      "m": 0.8,
+      "alpha": 0.85,
+      "p": [
+        2.4372,
+        2.012
+      ],
+      "T": 4.0,
+      "N": 4000,
+      "grade": 3.0,
+      "K": 64,
+      "r": 0.05,
+      "prec": 256,
+      "workers": 10,
+      "tag": "N4000p256"
+    },
+    "model_provenance": "PROJECT-CONSTRUCTED (Area-Nieto 2023 strong-Allee cubic + Lotka-Volterra predation); NOT a reproduction of a published parameterisation",
+    "certificate": {
+      "verdict": "CERTIFIED",
+      "best_cell": 3620,
+      "time_box": [
+        2.9648705000000004,
+        2.9673282538125
+      ],
+      "eta": 0.09152525086616164,
+      "state_box_x": [
+        0.19451229639841328,
+        0.20847474913383834
+      ],
+      "state_box_y_lower": 0.7694806030038651,
+      "U_at_best": 0.006967533136843321,
+      "n_certified_cells": 1277,
+      "longest_certified_time_interval": [
+        1.2618941916874997,
+        4.0
+      ],
+      "min_eta_on_longest_interval": 0.00019525611600534898
+    },
+    "bootstrap": {
+      "r": 0.05,
+      "max_U": 0.029948901504676474,
+      "max_kappa": 0.009526747408262872,
+      "passed": true
+    },
+    "timing_s": {
+      "collocation": 0.2374427318572998,
+      "cells": 349.92880630493164
+    },
+    "semantics": {
+      "arithmetic": "python-flint / Arb ball arithmetic at 256 bits for every transcendental and every enclosure; binary64 with explicit upward rounding (nextafter + Higham gamma_n factor) for the non-negative scalar recursion",
+      "untrusted_inputs": "mesh points and nodal phi values, taken as exact binary64 numbers",
+      "theorem": "a posteriori Volterra-Gronwall enclosure, msbg/validated.py docstring",
+      "norm": "max-norm on R^2, induced row-sum norm on 2x2 matrices",
+      "undecided_policy": "UNDECIDED whenever the bootstrap or the separation fails"
+    },
+    "evidence_class": "CERTIFIED COMPUTATION",
+    "wall_seconds": 353.155
+  },
+  "artifacts": [
+    {
+      "path": "/home/aureus/msbg/computations/data/t2_stageA_certify_N4000p256_arrays.npz",
+      "sha256": "5c1f396226786487f58c1228583b96b37626e9102ccdbf097dce2c6964f9267f",
+      "bytes": 435665
+    }
+  ]
+}
