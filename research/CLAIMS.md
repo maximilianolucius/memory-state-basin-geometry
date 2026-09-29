@@ -1,137 +1,70 @@
 # Claim Registry
 
-**Status:** PRINCIPAL THEOREM CLOSURE.
+**Status:** TARGET-A20 CLOSURE ATTEMPT.
 
-## Published prior
+## Proved / certified core
 
-### KNOWN-A01 — memory-state semidynamical representation
-status: PUBLISHED PRIOR / VERIFIED  
-source: Doan & Kloeden 2021.
-
-### KNOWN-A02 — reachable present-state noninjectivity in \(d\ge2\)
-status: PUBLISHED PRIOR.
-
-### KNOWN-A03 — scalar strict separation
-status: PUBLISHED PRIOR  
-source: Cong & Tuan 2017, Theorem 4.
-
-### KNOWN-A04 — scalar/triangular attractor classification
-status: PUBLISHED PRIOR  
-source: Doan & Kloeden 2022.
-
-### KNOWN-A05 — exact integer-order ecological vector field
-status: PUBLISHED PRIOR  
-source: Ye et al. 2019.  
-statement:
-the system
-\[
-\dot x=x(1-x)(x-\theta)-axy,\qquad
-\dot y=y(bx-m)
-\]
-is already published up to parameter renaming.
-
-### KNOWN-A06 — fixed-order Caputo derivative sign does not determine monotonicity
-status: PUBLISHED PRIOR  
-source: Diethelm 2016.  
-consequence:
-the bare sign-vs-monotonicity mechanism is not novelty.
-
-## Proved project results
-
-### COMPLETENESS-S1 — scalar equilibrium-partition fiber purity
-status: PROVED AS CONDITIONAL COMPLETENESS RESULT.
-
-### COROLLARY-S1A — scalar strong-Allee fiber purity
+### THEOREM-X1 — cold-start extinction strip
 status: PROVED FROM PUBLISHED HYPOTHESES.
 
 ### STRUCTURAL-E1 — basin-entry criterion
 status: PROVED.
 
-### STRUCTURAL-E1A — arc of multibasin fibers
-status: PROVED CONDITIONAL ON E1 HYPOTHESES.
-
 ### STRUCTURAL-E2 — open persistence criterion
 status: PROVED ABSTRACTLY.
 
-### STRUCTURAL-E3 — physical convergence implies continuation-state convergence
-status: PROVED.  
+### STRUCTURAL-E3 — physical convergence -> continuation-state convergence
+status: PROVED.
+
+### STRUCTURAL-E4 — tail anchoring / failure of global-sup convergence
+status: PROVED.
+
+### CERT-A2 — finite-time entry of TASK-0001 witness
+status: CERTIFIED COMPUTATION  
 statement:
-\[
-x(t;p)\to x^*,\quad g(x^*)=0
-\Longrightarrow
-T_t\iota(p)\to\iota(x^*)
-\]
-in compact-open topology.
+the exact binary64-parameter IVP is rigorously enclosed inside \(R_{\rm ext}\) on a nondegenerate time interval, with a representative certified margin about \(0.09848\).
 
-### THEOREM-X1 — cold-start extinction strip
-status: PROVED FROM PUBLISHED HYPOTHESES  
+publication caveat:
+recertify with exact rational parameters before manuscript.
+
+### CERT-A2B2 / CERT-A2B3 — near-equilibrium entry
+status: CERTIFIED COMPUTATION  
+role:
+proof-oriented candidate search; survival membership still open.
+
+## Principal candidate
+
+### CANDIDATE-L1 — explicit quadratic local survival basin
+status: OPEN / ROUND-0004 AUDIT ACTIVE  
 statement:
-for
-\[
-\theta<m/b,
-\]
-\[
-R_{\rm ext}=\{0<x<\theta,\ y\ge0\}
-\]
-satisfies
-\[
-\iota(R_{\rm ext})\subseteq\mathcal B(\iota(0,0)).
-\]
+for Hurwitz coexistence Jacobian \(J\), an explicit ellipsoidal local basin follows from a quadratic Caputo Lyapunov inequality plus a rigorous quadratic remainder bound.
 
-dependencies:
-Girejko–Mozyrska–Wyrwas 2011; Al-Refai 2012; Wu 2020; Doan–Kloeden 2022; Area–Nieto 2023; Wu–Liu 2020.
+file:
+\`research/LOCAL_SURVIVAL_BASIN.md\`.
 
-## Compute evidence
+## Principal target
 
-### CERT-B1 — Mittag-Leffler collapse root
-status: CERTIFIED COMPUTATION.
-
-### NUM-W1 — strong-Allee basin-entry witness
-status: NUMERICAL CORROBORATION / PRINCIPAL CONJECTURE GENERATOR  
-parameters:
-\[
-\theta=0.3,\ a=b=1,\ m=0.8,\ \alpha=0.85,
-\]
-\[
-p=(2.4372,2.012).
-\]
-limitation:
-survival convergence and finite-time interval certification remain open.
-
-## Principal targets
-
-### TARGET-A20 — physically reachable multibasin-fiber existence
-status: CONJECTURED / ONE BASIN HALF NOW PROVED
+### TARGET-A20 — physically reachable multibasin fiber
+status: CONJECTURED / ALL BUT SURVIVAL CLASSIFICATION CLOSED
 
 closed:
-- structural E1;
-- cold-start extinction X1;
-- continuation-state bridge E3.
+- extinction cold start: X1;
+- finite-time entry: certified;
+- structural lift: E1;
+- topology bridge: E3.
 
 remaining:
-1. prove one standard IVP converges physically to \(E^*\);
-2. certify or analytically prove finite-time entry into \(R_{\rm ext}\);
-3. final exact theorem-specific novelty audit.
+- rigorous survival-basin membership for one entering standard IVP.
 
-### TARGET-A21 — published Double-Allee realization
-status: OPEN / MODEL EQUATIONS VERIFIED  
-Mondal 2025:
-exact equations recovered; basin parameter table only partially recovered.
-
-### TARGET-A30 — open-family persistence
-status: OPEN  
-mechanism:
-E2 + persistent extinction/survival basin memberships.
-
-### TARGET-A50 — fractional-order dependence
-status: NUMERICALLY SUPPORTED / THEOREM OPEN.
+Preferred closure:
+CANDIDATE-L1 + TASK-0003 exact-rational witness.
 
 ## Novelty discipline
 
-Do not claim novelty for:
-- the ecological vector field;
-- the fixed-sign Caputo derivative phenomenon;
-- Double-Allee fractional modeling;
-- E1 as abstract logic.
+No novelty claimed for:
+- ecological vector field;
+- fixed-sign Caputo derivative phenomenon;
+- validated-integration lemma by itself;
+- abstract E1/E3/E4.
 
-The residual novelty is the rigorous Caputo reachable-fiber extinction/survival theorem.
+Residual novelty remains the rigorous extinction/survival split inside one physically reachable present-state fiber.
