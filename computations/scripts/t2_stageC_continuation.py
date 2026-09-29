@@ -44,12 +44,21 @@ from msbg.provenance import RunRecorder               # noqa: E402
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-def continuation_state(t_nodes, g_nodes, p, alpha, T_index, taus):
-    """C_T(tau) for T = t_nodes[T_index], exact PL product integration."""
+def continuation_state(t_nodes, g_nodes, p, alpha, T_index, taus, quadrature="pl"):
+    """C_T(tau) for T = t_nodes[T_index], exact product integration.
+
+    ``quadrature`` must match the solver that produced the nodes, otherwise
+    C_T(0) != x(T):  "pl" (piecewise linear g) for ``pece``, whose corrector is the
+    product trapezoid rule; "pc" (piecewise constant g, left value) for
+    ``pi_rect``.  The first version of this script used "pl" for both and the
+    ``pi_rect`` runs then violated C_T(0) = x(T) by 3.2e-2 at h = 0.02.
+    """
     tj = t_nodes[:T_index]
     tj1 = t_nodes[1:T_index + 1]
     phi = g_nodes[:T_index]
     m = (g_nodes[1:T_index + 1] - g_nodes[:T_index]) / (tj1 - tj)[:, None]
+    if quadrature == "pc":
+        m = np.zeros_like(m)
     T = t_nodes[T_index]
     out = np.empty((len(taus), 2))
     for i, tau in enumerate(taus):
@@ -81,7 +90,8 @@ def one(job):
         k = int(round(T / h))
         for R in Rs:
             taus = np.concatenate([[0.0], np.geomspace(max(R * 1e-4, h), R, n_tau)])
-            C = continuation_state(t, gv, np.asarray(p, float), alpha, k, taus)
+            C = continuation_state(t, gv, np.asarray(p, float), alpha, k, taus,
+                                   quadrature="pl" if method == "pece" else "pc")
             d = np.linalg.norm(C - E, axis=1, ord=np.inf)
             rows.append({"T": T, "R": R, "D": float(d.max()), "tau_argmax": float(taus[d.argmax()]),
                          "phys_dist": float(np.max(np.abs(x[k] - E))),
@@ -136,12 +146,16 @@ def main():
                 vals = [next(row["D"] for row in r["rows"] if row["T"] == T and row["R"] == R)
                         for r in mine]
                 spread = max(spread, max(vals) - min(vals))
+            c0 = max(next(row["C0_minus_xT"] for row in r["rows"] if row["T"] == T)
+                     for r in mine)
+            summary_c0 = c0
             print(f"{T:7.0f}{line[0]['phys_dist']:13.3e}" +
                   "".join(f"{next(r['D'] for r in line if r['R']==R):15.3e}" for R in Rs) +
                   f"{spread:20.2e}")
             summary.append({"label": c["label"], "T": T, "phys_dist": line[0]["phys_dist"],
                             **{f"D_R{int(R)}": next(r["D"] for r in line if r["R"] == R)
-                               for R in Rs}, "spread": spread})
+                               for R in Rs}, "spread": spread,
+                            "max_C0_minus_xT": summary_c0})
     rec.save_json("runs", res)
     rec.save_json("summary", summary)
     rec.add("evidence_class", "NUMERICAL CORROBORATION")
