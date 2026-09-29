@@ -1,46 +1,55 @@
 # Deep Web Search Backlog
 
-## Dispatch status
+## Completed
 
-**ROUND-0001 dispatched 2026-09-29:**  
-`research/coordination/chief-to-web/ROUND-0001_state-architecture-multibasin-killer_REQUEST.md`
+### ROUND-0001 — state architecture / multibasin killer audit
+status: COMPLETE / ASSIMILATED  
+verdict: NARROW, NOT KILLED.
 
-ROUND-0001 combines the highest-priority parts of W-A001, W-A003 and W-A005 and adds exact primary-source extraction for the Caputo state architecture and candidate transversal-persistence theorem.
+Covered:
+- W-A001 hereditary/Volterra subsumption;
+- W-A003 direct multibasin-fiber prior;
+- W-A005 observation/factor adjacent mathematics;
+- exact Doan–Kloeden architecture;
+- persistence-method novelty pressure.
 
-## W-A001 — Final hereditary/Volterra subsumption audit
-status: DISPATCHED / ROUND-0001  
-Search for any theorem in Volterra, hereditary, infinite-delay, minimal-state or factor-map theory that forces or characterizes basin membership along fibers of endpoint/present-state evaluation.
+## Active
 
-Priority: P0.
+### ROUND-0002 — scalar/triangular fiber-purity audit
+status: DISPATCHED 2026-09-29  
+request:
+\`research/coordination/chief-to-web/ROUND-0002_scalar-triangular-purity_REQUEST.md\`
 
-## W-A002 — Monotone/competitive basin-purity audit
-status: NEXT P0 ROUND after ROUND-0001 unless the return subsumes it  
-Determine whether published comparison/order-preserving theory implies basin purity for natural positive Caputo classes relevant to ecology.
+Covers:
+- exact scalar nonintersection hypotheses;
+- Proposition S1 prior/novelty;
+- rigorous scalar strong-Allee threshold instantiation;
+- triangular extension;
+- W-A002 monotone/comparison purity.
 
-Priority: P0.
+## Pending
 
-## W-A003 — Direct multibasin-fiber prior
-status: DISPATCHED / ROUND-0001  
-Search specifically for physically reachable same-present/different-history states with distinct omega limits or attractors in autonomous fractional/Volterra systems.
+### W-A004 — Double-Allee model audit
+priority: P1 / trigger on TASK-0001 baseline or candidate witness  
+Verify exact published model equations, multistability/basin claims and the cleanest natural application family.
 
-Priority: P0.
+### W-A006 — Minimal dimension / intersection restrictions
+priority: P1  
+Run only if ROUND-0002 or TASK-0001 makes dimension minimality theoremically relevant.
 
-## W-A004 — Double-Allee model audit
-status: P1  
-Verify the strongest published fractional Double-Allee multistability/basin papers at theorem level and identify the cleanest candidate application class.
-
-## W-A005 — Observation/factor-map adjacent mathematics
-status: PARTLY DISPATCHED / ROUND-0001  
-Search partial observation, noninjective factors, observable equivalence, basin projections and asymptotic-state identifiability for theorems that may subsume the project's language.
-
-## W-A006 — Minimal dimension / intersection restrictions
-status: P1  
-Map published dimension-dependent nonintersection/intersection theorems and restrictions under positivity/monotonicity.
-
-## W-A007 — Pre-manuscript novelty audit
+### W-A007 — Model-specific pre-manuscript novelty audit
 status: GATE / NOT YET ELIGIBLE  
-Once the Chief has a precise proved theorem statement, search it hostilely across direct and adjacent fields.
+Trigger only after a precise principal theorem statement and model/witness exist.
 
-## W-A008 — Pre-submission reference/current-prior audit
-status: FINAL GATE  
-Verify all published references and search for intervening publications that affect novelty.
+### W-A008 — Pre-submission current-prior/metadata audit
+status: FINAL GATE.
+
+## Search discipline
+
+Do not spend another round on the abstract phrase “memory-state basin geometry.”
+
+Future searches must be keyed to:
+- an exact theorem statement;
+- an exact model/sign class;
+- an exact collision map;
+- or a precise imported-theorem hypothesis.
