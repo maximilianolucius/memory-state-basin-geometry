@@ -5,7 +5,7 @@
 **Task:** `research/coordination/chief-to-compute/TASK-0001_validated-collision-search_REQUEST.md`
 **Date:** 2026-09-29
 **Branch:** `compute/task-0001`
-**Final commit SHA:** _see the bottom of this file_
+**Final commit SHA:** `767f2ce3e2` (§10.5)
 
 ---
 
@@ -934,9 +934,12 @@ Figures, each answering one theorem-level question:
 ### 10.5 Branch and commit
 
 ```
-branch: compute/task-0001
-final commit SHA: FINAL_SHA_PLACEHOLDER
+branch:  compute/task-0001
+commit:  767f2ce3e268309c5a2f1c7010c0979aa76bd4b7
 ```
+
+That commit carries every artifact this report cites. The only commit after it
+on the branch is the one that writes this SHA into this file.
 
 ---
 
