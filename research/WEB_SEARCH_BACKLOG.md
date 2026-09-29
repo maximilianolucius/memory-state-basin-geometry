@@ -2,22 +2,26 @@
 
 ## Completed
 
-ROUND-0001 through ROUND-0004 complete.
+ROUND-0001 through ROUND-0005 COMPLETE / ASSIMILATED.
 
-## Active
+ROUND-0005 closed:
+- resolvent identity;
+- stable matrix kernel integrability;
+- inherited-memory decay;
+- THEOREM-M1.
 
-### ROUND-0005 — memory-tail resolvent audit
-request:
-\`research/coordination/chief-to-web/ROUND-0005_memory-tail-resolvent_REQUEST.md\`
+## Current posture
 
-Audit:
-- exact Volterra resolvent identity;
-- \(L^1\) matrix Mittag-Leffler kernel;
-- inherited-memory input after a cut time;
-- CANDIDATE-M1;
-- direct prior.
+No active search.
 
 ## Next trigger
 
-If M1 survives and TASK-0004 certifies W1 survival:
-final theorem-specific novelty audit.
+Only after successful TASK-0004:
+
+**FINAL theorem-specific novelty audit**
+using the exact:
+- W1 rational parameter vector;
+- cut time \(T\);
+- certified \(M_T,K_J,C_r,r\);
+- TARGET-A20 statement;
+- 2025–2026 direct competitor sweep.
