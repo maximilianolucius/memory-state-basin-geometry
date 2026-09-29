@@ -1,35 +1,36 @@
 {
   "task": "TASK-0001",
   "environment": {
-    "hostname": "R11",
-    "platform": "Linux-5.15.0-191-generic-x86_64-with-glibc2.35",
+    "hostname": "aur007",
+    "platform": "Linux-6.8.0-139-generic-x86_64-with-glibc2.39",
     "processor": "x86_64",
     "cpu_count": 32,
-    "python": "3.14.3",
-    "python_executable": "/usr/local/bin/python3",
+    "python": "3.12.3",
+    "python_executable": "/home/aureus/msbg/computations/../venv/bin/python",
     "packages": {
-      "numpy": "2.4.4",
-      "scipy": "1.17.1",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
       "mpmath": "1.3.0",
       "sympy": "1.14.0",
       "flint": "0.9.0",
-      "matplotlib": "3.10.9"
+      "matplotlib": "3.11.2"
     },
     "numpy_blas": {
       "name": "scipy-openblas",
       "found": true,
-      "version": "0.3.31.188.0",
+      "version": "0.3.34.106.0",
       "detection method": "pkgconfig",
-      "include directory": "/opt/_internal/cpython-3.14.0/lib/python3.14/site-packages/scipy_openblas64/include",
-      "lib directory": "/opt/_internal/cpython-3.14.0/lib/python3.14/site-packages/scipy_openblas64/lib",
-      "openblas configuration": "OpenBLAS 0.3.31.188.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64",
+      "include directory": "/opt/_internal/cpython-3.12.13/lib/python3.12/site-packages/scipy_openblas64/include",
+      "lib directory": "/opt/_internal/cpython-3.12.13/lib/python3.12/site-packages/scipy_openblas64/lib",
+      "openblas configuration": "OpenBLAS 0.3.34.106.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64",
       "pc file directory": "/project/.openblas"
     },
-    "utc": "2026-09-29T17:22:54Z",
+    "utc": "2026-09-29T18:11:48Z",
     "seed": 20260929,
-    "git_commit": "1250c530f62216e12623af58d425703a8452ae6a",
+    "git_commit": "4b59519e163de70e485d64fc40c34425a48a83c3",
     "git_branch": "compute/task-0001",
-    "git_dirty": true
+    "git_dirty": true,
+    "git_source": "launcher environment (rsync'd tree, not a checkout)"
   },
   "payload": {
     "stage_c_as_specified": "HALTED",
@@ -750,7 +751,7 @@
           "0.95": true,
           "0.99": true
         },
-        "min_abs_arg": 1.892546881191539,
+        "min_abs_arg": 1.8925468811915387,
         "alpha_stability_bound": 1.2048327646991335
       },
       {
@@ -801,6 +802,196 @@
         "alpha_stability_bound": 0.0
       }
     ],
+    "C1_C2_witness_th0.3_a1_m0.8": [
+      {
+        "equilibrium_exact": [
+          "0",
+          "0"
+        ],
+        "equilibrium_float": [
+          0.0,
+          0.0
+        ],
+        "jacobian_exact": [
+          [
+            "-3/10",
+            "0"
+          ],
+          [
+            "0",
+            "-4/5"
+          ]
+        ],
+        "eigenvalues_exact": [
+          "-3/10",
+          "-4/5"
+        ],
+        "eigenvalues_float": [
+          [
+            -0.3,
+            0.0
+          ],
+          [
+            -0.8,
+            0.0
+          ]
+        ],
+        "trace_exact": "-11/10",
+        "det_exact": "6/25",
+        "stable_for_alpha": {
+          "0.3": true,
+          "0.5": true,
+          "0.7": true,
+          "0.8": true,
+          "0.9": true,
+          "0.95": true,
+          "0.99": true
+        },
+        "min_abs_arg": 3.141592653589793,
+        "alpha_stability_bound": 2.0
+      },
+      {
+        "equilibrium_exact": [
+          "3/10",
+          "0"
+        ],
+        "equilibrium_float": [
+          0.3,
+          0.0
+        ],
+        "jacobian_exact": [
+          [
+            "21/100",
+            "-3/10"
+          ],
+          [
+            "0",
+            "-1/2"
+          ]
+        ],
+        "eigenvalues_exact": [
+          "-1/2",
+          "21/100"
+        ],
+        "eigenvalues_float": [
+          [
+            -0.5,
+            0.0
+          ],
+          [
+            0.21,
+            0.0
+          ]
+        ],
+        "trace_exact": "-29/100",
+        "det_exact": "-21/200",
+        "stable_for_alpha": {
+          "0.3": false,
+          "0.5": false,
+          "0.7": false,
+          "0.8": false,
+          "0.9": false,
+          "0.95": false,
+          "0.99": false
+        },
+        "min_abs_arg": 0.0,
+        "alpha_stability_bound": 0.0
+      },
+      {
+        "equilibrium_exact": [
+          "4/5",
+          "1/10"
+        ],
+        "equilibrium_float": [
+          0.8,
+          0.1
+        ],
+        "jacobian_exact": [
+          [
+            "-6/25",
+            "-4/5"
+          ],
+          [
+            "1/10",
+            "0"
+          ]
+        ],
+        "eigenvalues_exact": [
+          "-3/25 - sqrt(41)*I/25",
+          "-3/25 + sqrt(41)*I/25"
+        ],
+        "eigenvalues_float": [
+          [
+            -0.12,
+            -0.25612496949731395
+          ],
+          [
+            -0.12,
+            0.25612496949731395
+          ]
+        ],
+        "trace_exact": "-6/25",
+        "det_exact": "2/25",
+        "stable_for_alpha": {
+          "0.3": true,
+          "0.5": true,
+          "0.7": true,
+          "0.8": true,
+          "0.9": true,
+          "0.95": true,
+          "0.99": true
+        },
+        "min_abs_arg": 2.008945357379067,
+        "alpha_stability_bound": 1.278934336113571
+      },
+      {
+        "equilibrium_exact": [
+          "1",
+          "0"
+        ],
+        "equilibrium_float": [
+          1.0,
+          0.0
+        ],
+        "jacobian_exact": [
+          [
+            "-7/10",
+            "-1"
+          ],
+          [
+            "0",
+            "1/5"
+          ]
+        ],
+        "eigenvalues_exact": [
+          "1/5",
+          "-7/10"
+        ],
+        "eigenvalues_float": [
+          [
+            0.2,
+            0.0
+          ],
+          [
+            -0.7,
+            0.0
+          ]
+        ],
+        "trace_exact": "-1/2",
+        "det_exact": "-7/50",
+        "stable_for_alpha": {
+          "0.3": false,
+          "0.5": false,
+          "0.7": false,
+          "0.8": false,
+          "0.9": false,
+          "0.95": false,
+          "0.99": false
+        },
+        "min_abs_arg": 0.0,
+        "alpha_stability_bound": 0.0
+      }
+    ],
     "C3_C4_C5_cross_solver": {
       "pi_rect": {
         "labels": [
@@ -812,28 +1003,28 @@
         ],
         "x_final": [
           [
-            0.00013098956699754416,
-            3.221769956535114e-05
+            0.0001309895669975858,
+            3.221769956460174e-05
           ],
           [
-            0.0006469567547794375,
-            0.0008059642666178313
+            0.0006469567547737753,
+            0.0008059642665863009
           ],
           [
-            0.7989682343776674,
-            0.06023559620360486
+            0.798968234377661,
+            0.060235596203606384
           ],
           [
-            0.7970686211232292,
-            0.06067676476265549
+            0.7970686211232041,
+            0.06067676476266348
           ],
           [
-            0.7998132708454362,
-            0.06030930006510268
+            0.7998132708454218,
+            0.060309300065103294
           ]
         ],
-        "min_x": 0.00013098956699754416,
-        "min_y": 3.221769956535114e-05,
+        "min_x": 0.0001309895669975858,
+        "min_y": 3.221769956460174e-05,
         "n_traj_negative": 0,
         "newton_failures": 0
       },
@@ -847,28 +1038,28 @@
         ],
         "x_final": [
           [
-            0.0001310055050838116,
-            3.22213682107525e-05
+            0.00013100550483634288,
+            3.2221375292032506e-05
           ],
           [
-            0.0006465819889186486,
-            0.000806062953350839
+            0.0006465822849626712,
+            0.0008060629900943361
           ],
           [
-            0.798967878410414,
-            0.06023569634105089
+            0.7989678784861374,
+            0.060235696328789
           ],
           [
-            0.7970752957939565,
-            0.06067319456246334
+            0.7970752961846457,
+            0.060673194488523374
           ],
           [
-            0.7998125007653525,
-            0.06030983569097079
+            0.7998125017444035,
+            0.060309835663143074
           ]
         ],
-        "min_x": 0.0001310055050838116,
-        "min_y": 3.22213682107525e-05,
+        "min_x": 0.00013100550483634288,
+        "min_y": 3.2221375292032506e-05,
         "n_traj_negative": 0,
         "newton_failures": 0
       },
@@ -882,28 +1073,28 @@
         ],
         "x_final": [
           [
-            0.0001310150271132663,
-            3.2223080093523996e-05
+            0.00013101502711326663,
+            3.222308009352456e-05
           ],
           [
-            0.0006470901470367763,
-            0.0008061004158688309
+            0.0006470901470367826,
+            0.0008061004158688458
           ],
           [
             0.7989677206421901,
-            0.06023573656200977
+            0.06023573656200981
           ],
           [
             0.7970642591392217,
-            0.06067868494893
+            0.060678684948930035
           ],
           [
-            0.7998128313250427,
-            0.06030941168972659
+            0.7998128313250428,
+            0.060309411689726554
           ]
         ],
-        "min_x": 0.0001310150271132663,
-        "min_y": 3.2223080093523996e-05,
+        "min_x": 0.00013101502711326663,
+        "min_y": 3.222308009352456e-05,
         "n_traj_negative": 0,
         "newton_failures": 0
       }
@@ -927,18 +1118,18 @@
     "provenance_single": "PROJECT-CONSTRUCTED (Area-Nieto 2023 strong-Allee cubic + Lotka-Volterra predation); NOT a reproduction of a published parameterisation",
     "provenance_double": "PROJECT-CONSTRUCTED (double-Allee functional form; no published parameterisation)",
     "evidence_class": "C1/C2 exact symbolic (CERTIFIED by exact rational arithmetic); C3-C6 NUMERICAL CORROBORATION. Stage C as specified is HALTED.",
-    "wall_seconds": 16.474
+    "wall_seconds": 17.366
   },
   "artifacts": [
     {
-      "path": "/home/maxim/PycharmProjects/VS/ResearchVS/memory-state-basin-geometry/computations/data/stage_c_C6_mesh_sensitivity.json",
-      "sha256": "f501302e2cab92cca9c19d28e72015d716ac6b2e34bb6ab0b138ddb54c71620b",
-      "bytes": 2356
+      "path": "/home/aureus/msbg/computations/data/stage_c_C6_mesh_sensitivity.json",
+      "sha256": "ea1d0ffd7b64afeae5e2deaae2103c9abf06cd4ef2f1da16b6eb320b60d2aad0",
+      "bytes": 2355
     },
     {
-      "path": "/home/maxim/PycharmProjects/VS/ResearchVS/memory-state-basin-geometry/computations/data/stage_c_C6_horizon_sensitivity.json",
-      "sha256": "5afe6f4895d199d3e10c7713842518c4b2b83d447a26c90dda9baf7d6b5a051e",
-      "bytes": 2819
+      "path": "/home/aureus/msbg/computations/data/stage_c_C6_horizon_sensitivity.json",
+      "sha256": "52b5fa7e0fac590463af802c3801f79d8816bef6f5727b09f3dfb33255a6a13a",
+      "bytes": 2825
     }
   ]
 }

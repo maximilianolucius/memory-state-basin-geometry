@@ -141,6 +141,8 @@ def main():
         "witness_th0.2_a2_m0.8": (0.2, 2.0, 1.0, 0.8),
         "witness_th0.3_a1_m0.75": (0.3, 1.0, 1.0, 0.75),
         "witness_th0.4_a1_m0.8": (0.4, 1.0, 1.0, 0.8),
+        # the Stage-D witness regime
+        "witness_th0.3_a1_m0.8": (0.3, 1.0, 1.0, 0.8),
     }.items():
         print(f"\nC1/C2 exact equilibria + Caputo sector test [{tag}]")
         eqs = c1_c2_symbolic(theta_v, a_v, b_v, m_v, alphas)

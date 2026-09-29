@@ -40,8 +40,12 @@ a theorem.
 ```
 model (PROJECT-CONSTRUCTED, prey term = published Area-Nieto 2023 cubic)
     ^C D^a x = x(1-x)(x - 3/10) - x y ,     ^C D^a y = y(x - 4/5) ,   a = 0.85
-    extinction (0,0) stable for every a in (0,1)   [exact: eigenvalues -3/10, -4/5]
-    coexistence E* = (4/5, 1/10) stable for a < 1.2048   [exact]
+    extinction (0,0)   eigenvalues -3/10, -4/5        -> stable for every a in (0,1)
+    Allee threshold (3/10, 0)   eigenvalues -1/2, 21/100   -> saddle
+    prey-only (1, 0)            eigenvalues 1/5, -7/10     -> saddle
+    coexistence E* = (4/5, 1/10)  eigenvalues (-3 +- i sqrt(41))/25
+                                                          -> Caputo-stable for a < 1.27893
+    (all four exact, from rational/radical arithmetic)
 
 constant initial history      p = (2.4372, 2.012)          -> converges to E*
 its orbit is inside {0 < x < 3/10} for   t in [1.26, 35.74]
@@ -316,18 +320,25 @@ such in `msbg/models.py`. A double-Allee variant
 is not an artefact of one functional form.
 
 **C1/C2 — exact equilibria and the Caputo sector test**, in exact rational and
-radical arithmetic (sympy), for the Stage-D regime `theta = 2/5, a = 1, b = 1, m = 4/5`:
+radical arithmetic (sympy), for the Stage-D witness regime
+`theta = 3/10, a = 1, b = 1, m = 4/5`:
 
 | equilibrium | eigenvalues (exact) | Caputo-stable for |
 |---|---|---|
-| `(0,0)` extinction | `-2/5, -4/5` | all `a in (0,1)` (bound 2.0) |
-| `(2/5, 0)` Allee threshold | `-2/5, +6/25` | never (saddle) |
-| `(4/5, 2/25)` coexistence | `-2/25 +/- 6i/25` | `a < 1.2048` |
-| `(1, 0)` prey-only | `+1/5, -3/5` | never (saddle) |
+| `(0,0)` extinction | `-3/10, -4/5` | all `a in (0,1)` (bound 2.0) |
+| `(3/10, 0)` Allee threshold | `-1/2, +21/100` | never (saddle) |
+| `(4/5, 1/10)` coexistence | `(-3 +/- i sqrt(41))/25` | `a < 1.27893` |
+| `(1, 0)` prey-only | `+1/5, -7/10` | never (saddle) |
 
 So the system is bistable between extinction and coexistence **for every
 `a in (0,1)`**, and this is certified by exact arithmetic, not by a numerical
-eigenvalue solve. The same table is produced for three other parameter sets.
+eigenvalue solve. `theta < m/b` also holds exactly, which is the hypothesis the
+extinction argument of §5.2 needs. The same table is produced for four other
+parameter sets in the same manifest.
+
+Declaring the symbolic unknowns `positive` silently drops every equilibrium on an
+axis, including the extinction state the whole task is about; they are declared
+real for exactly that reason.
 
 **C3–C5 — outcome classes and three-solver cross-check.** Five initial states
 spanning the extinction region, a predator-driven collapse, coexistence, the
@@ -383,9 +394,22 @@ T_{t*} iota(p) in B(A)                    (positive invariance of basins),
 iota(z) in B(0,0)                         (z in R_ext),
 ```
 
-so `F_z` is multibasin. Persistence under perturbation of the model needs only
-continuity of `(p, t, mu) -> x(t;p,mu)` plus openness of `R_ext` — **no
-transversality, no nonsingular minor, no implicit function theorem**.
+so `F_z` is multibasin.
+
+Persistence under a perturbation `mu` of the model splits into two halves, and
+they are not equally hard:
+
+* the **collision** half — "the orbit of `p` still enters `R_ext`" — persists
+  from continuity of `(p, t, mu) -> x(t;p,mu)` and openness of `R_ext` alone.
+  **No transversality, no nonsingular minor, no implicit function theorem.**
+* the **basin** half — "`iota(p)` is still in `B(A)`, and `iota(R_ext)` is still
+  in `B(0,0)`" — does *not* follow from continuity and is the binding
+  constraint. §5.8 measures exactly this: across 28 perturbations the collision
+  half never failed and the basin half failed 11 times.
+
+In CANDIDATE-M2's own terms (`research/STATE_ARCHITECTURE.md` §5), items 2, 3,
+4 and 6 of the nonstandard-burden list are not needed for existence or for
+persistence of a multibasin fibre; items 1 and 5 are.
 
 ### 5.2 The certified extinction region
 
@@ -409,8 +433,10 @@ test of its consequences.
 ```
 model   ^C D^a x = x(1-x)(x - 3/10) - x y ,   ^C D^a y = y(x - 4/5)
         theta = 0.3,  a = 1,  b = 1,  m = 0.8,  alpha = 0.85
-        extinction (0,0)  [eigs -3/10, -4/5, Caputo-stable for all a in (0,1)]
-        coexistence E* = (4/5, 1/10)  [eigs -1/20 +/- i sqrt(...)/..., stable for a < 1.2]
+        extinction (0,0)              eigs -3/10, -4/5      Caputo-stable for all a in (0,1)
+        Allee threshold (3/10, 0)     eigs -1/2, 21/100     saddle
+        prey-only (1, 0)              eigs 1/5, -7/10       saddle
+        coexistence E* = (4/5, 1/10)  eigs (-3 +- i sqrt 41)/25   Caputo-stable for a < 1.27893
 initial constant history   p = (2.4372, 2.012)
 ```
 
@@ -666,7 +692,7 @@ asymmetry is the whole construction.
 
 ---
 
-## 7. Stop conditions — none triggered
+## 7. Stop conditions — one triggered (Stage C)
 
 The task listed five stop conditions. Status of each:
 
@@ -674,9 +700,9 @@ The task listed five stop conditions. Status of each:
 |---|---|
 | the two solvers disagree beyond convergence expectations | **not triggered** — pairwise differences 1.9e-4 … 1.6e-3 at the finest mesh, consistent with the observed orders |
 | the published baseline cannot be faithfully reconstructed | **TRIGGERED for Stage C**, handled by halting Stage C and labelling the substitute (§4) |
-| collision candidates vanish under mesh/horizon refinement | **not triggered** — the witness margin *grows* under refinement and is stable across four meshes, five horizons and three solvers; but see the warning in §5 about the coarsest rung |
-| only boundary/ambiguous outcomes are found | **not triggered** — two clean outcome classes, all three solvers agreeing |
-| the candidate Jacobian is rank-deficient at all robust roots | **not triggered** — see §5 |
+| collision candidates vanish under mesh/horizon refinement | **not triggered** — the witness margin is stable across four meshes, five horizons and three solvers, and is reproduced to 3e-12 at 30 digits; but see §5.4 on the coarsest rung, where PECE flips the outcome |
+| only boundary/ambiguous outcomes are found | **not triggered** — two clean outcome classes, all three solvers agreeing on all five test labels; the search box of §5.6 had 0 ambiguous out of 2500 |
+| the candidate Jacobian is rank-deficient at all robust roots | **not triggered** — the embedded-age Jacobian has full row rank 2 (§5.5) |
 
 ---
 
