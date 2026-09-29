@@ -4,23 +4,27 @@
 
 ROUND-0001 — architecture / novelty killer.  
 ROUND-0002 — scalar/triangular purity.  
-ROUND-0003 — exact model / mechanism / extinction closure.
+ROUND-0003 — exact model / extinction closure.  
+ROUND-0004 — local-survival Lyapunov audit.
 
-## Active
+ROUND-0004 verdict:
+- quadratic Caputo inequality VERIFIED;
+- local Lyapunov implication VERIFIED;
+- THEOREM-L1 VERIFIED;
+- direct exact-model explicit basin-radius prior NOT FOUND;
+- strict survival-entry novelty killer NOT FOUND IN SEARCHED CORPUS.
 
-### ROUND-0004 — local-survival Lyapunov audit
-status: DISPATCHED  
-request:
-\`research/coordination/chief-to-web/ROUND-0004_local-survival-lyapunov_REQUEST.md\`
+## Current posture
 
-Audit:
-- quadratic Caputo derivative inequality;
-- local fractional Lyapunov theorem;
-- exact CANDIDATE-L1 constants/hypotheses;
-- direct prior for an explicit basin radius in this model;
-- strict survival-entry novelty killer.
+No active web-search round.
 
-## Next
+Wait for TASK-0003.
 
-If L1 survives and TASK-0003 finds a witness:
-run a final theorem-specific novelty audit before manuscript mode.
+## Next trigger
+
+If TASK-0003 produces a rigorous exact-rational witness, open final theorem-specific novelty audit using:
+- exact rational parameter vector;
+- exact L1 constants and ellipsoid;
+- certified entry interval;
+- exact TARGET-A20 statement;
+- 2025–2026 competitor sweep.
