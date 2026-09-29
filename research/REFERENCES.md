@@ -78,3 +78,35 @@ Diethelm & Ford (2012), DOI 10.1216/JIE-2012-24-1-25, should remain historical b
 ### ROUND-0002 scalar conclusion
 
 The exact reachable-fiber statement was not found as a published theorem, but the scalar ingredients are sufficiently established that Proposition S1 should be positioned as **STANDARD CONSEQUENCE / COMPLETENESS RESULT**, not principal novelty.
+
+
+## ROUND-0003 verified additions — exact model, memory mechanism, basin closure
+
+25. Ye, Y.; Liu, H.; Wei, Y.; Zhang, K.; Ma, M.; Ye, J. (2019). Dynamic Study of a Predator–Prey Model with Allee Effect and Holling Type-I Functional Response. *Advances in Difference Equations* 2019, 369. DOI 10.1186/s13662-019-2311-1.  
+Role: **direct integer-order prior for the exact project vector field**, up to parameter renaming. Establishes boundedness, equilibrium/stability and Hopf results for the strong-Allee ODE. The project must not claim the ecological vector field itself as new.
+
+26. Diethelm, K. (2016). Monotonicity of Functions and Sign Changes of Their Caputo Derivatives. *Fractional Calculus and Applied Analysis* 19(2), 561–566. DOI 10.1515/fca-2016-0029.  
+Role: load-bearing novelty boundary for the TASK-0001 recovery mechanism. Fixed sign of a Caputo derivative at one/few fixed orders does not imply monotonicity; the converse requires sign information for an interval of orders approaching one.
+
+27. Al-Refai, M. (2012). On the Fractional Derivatives at Extreme Points. *Electronic Journal of Qualitative Theory of Differential Equations* 2012(55), 1–5. DOI 10.14232/ejqtde.2012.1.55.  
+Role: Caputo extremum/first-contact support and warning against importing ordinary-derivative extremum intuition.
+
+28. Wu, C.; Liu, X. (2020). The Continuation of Solutions to Systems of Caputo Fractional Order Differential Equations. *Fractional Calculus and Applied Analysis* 23(2), 591–599. DOI 10.1515/fca-2020-0029.  
+Role: maximal continuation/blow-up alternative used to close global existence in the cold-start extinction strip once finite-horizon boundedness is established.
+
+29. Pal, D.; Mondal, R.; Kesh, D.; Mukherjee, D. (2025). Non-spatial Dynamics and Spatiotemporal Patterns Formation in a Predator–Prey Model with Double Allee and Dome-shaped Response Function. *Bulletin of Mathematical Biology* 87(2), article 35. DOI 10.1007/s11538-025-01411-7.  
+Role: verified integer-order parent/fallback for the Mondal et al. 2025 Double-Allee + group-defense model. It must not be confused with the fractional Chinese Journal of Physics paper when importing numerical parameter sets.
+
+### ROUND-0003 decisive source roles
+
+- **Mondal et al. 2025, DOI 10.1016/j.cjph.2025.09.020:** exact fractional Double-Allee/group-defense equations and theorem scope verified; accessible primary indexing did not expose the complete numerical parameter table needed for faithful reproduction of a particular basin figure.
+- **Ye et al. 2019:** exact integer-order prior for the project-constructed vector field.
+- **Wu 2020 + Girejko et al. 2011 + Wu–Liu 2020 + ROUND-0002 scalar Allee theorem:** sufficient published ingredients for Candidate X1.
+- **Doan–Kloeden 2024:** continuation-state attractor architecture, but not an off-the-shelf local trapping theorem for the TASK-0001 coexistence witness.
+- **Szaksz–Stepan–Habib 2024:** closest hereditary/headpoint analogue to the basin-entry mechanism; does not close the strict physically reachable Caputo residual.
+
+### ROUND-0003 theorem-status consequence
+
+Candidate X1 can be promoted from source-audit pending to **VERIFIED FROM PUBLISHED HYPOTHESES**, subject to the Chief writing the final proof with the exact positivity/comparison/continuation dependencies.
+
+The principal remaining proof gap is the survival side: prove that at least one standard physical IVP of the exact Caputo model converges to the coexistence equilibrium. Once that physical convergence is established, the Doan–Kloeden transfer formula directly implies convergence of the continuation state to the stationary equilibrium lift in compact-open topology.
