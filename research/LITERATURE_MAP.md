@@ -243,3 +243,82 @@ The principal residual is now highly specific:
 > prove one standard IVP of the exact Caputo strong-Allee predator–prey system converges to a survival/coexistence equilibrium, certify that its physical trajectory enters the verified cold-start extinction strip, and conclude via E1 that the corresponding present-state fiber is multibasin.
 
 The model equations, derivative-sign phenomenon, comparison machinery, and cold-start extinction half are not novelty.
+
+
+## ROUND-0004 — local-survival Lyapunov theorem closure
+
+### Source-safe quadratic Caputo inequality
+**Ren & Wu (2019)**, DOI 10.1007/s11071-019-05145-9, is the load-bearing source for the quadratic Lyapunov estimate along actual Caputo solutions:
+[
+{}^CD^alpha(x^	op Px)
+le
+({}^CD^alpha x)^	op Px+x^	op P({}^CD^alpha x),
+]
+for positive-definite (P), under the paper's solution-regularity/growth hypotheses.
+
+This supersedes **Águila-Camacho et al. (2014)**, DOI 10.1016/j.cnsns.2014.01.022, as the proof source because the older lemma assumes differentiability of the trajectory, while Caputo solutions need not be differentiable at the lower terminal.
+
+### Explicit local survival certificate
+For the project decomposition
+[
+{}^CD^alpha u=Ju+N(u),qquad
+J^	op P+PJ=-I,
+]
+the verified estimate is
+[
+{}^CD^alpha V
+le
+-|u|^2
++
+2|P|C_r|u|^3.
+]
+Thus
+[
+2|P|C_r rlerac12
+]
+implies on (|u|le r)
+[
+{}^CD^alpha V
+le
+-rac{1}{2lambda_{max}(P)}V.
+]
+
+Using **Wu (2020)**, Theorem 3.2, the scalar comparison solution yields
+[
+V(t)le V(0)E_alpha!left(
+-rac{t^alpha}{2lambda_{max}(P)}
+ight).
+]
+The strict initial condition
+[
+V(u_0)<lambda_{min}(P)r^2
+]
+therefore rules out a first exit from the radius-(r) ball and gives (u(t)	o0).
+
+**ROUND-0004 verdict: CANDIDATE-L1 VERIFIED.**
+
+### Modern asymptotic-stability references
+**Wu (2021)**, DOI 10.1007/s11071-021-06756-x, gives a complete comparison-method framework for Caputo Lyapunov stability.  
+**Wei et al. (2022)**, DOI 10.1016/j.aml.2022.107961, rigorously confirms standard Caputo asymptotic-stability sufficient conditions after criticism of older published proofs.
+
+The project need not rely on a generic fractional LaSalle argument: L1 already yields a direct Mittag–Leffler decay bound.
+
+### Direct-model prior search
+No published theorem was located giving the exact project Caputo strong-Allee predator–prey system an explicit quadratic ellipsoidal local basin radius.
+
+Fractional Allee predator–prey papers with Lyapunov coexistence results exist, including Ramesh et al. (2025), but they use different vector fields and do not subsume the exact L1 certificate.
+
+### Strict survival-entry residual
+No published result was identified that simultaneously proves:
+1. a standard Caputo initial state is in a survival/coexistence basin;
+2. that trajectory later enters a physical region below an Allee threshold;
+3. the canonical cold start from the reached physical state belongs to the extinction basin.
+
+Thus the strict physically reachable survival-entry/cold-start-extinction mechanism survives this targeted audit.
+
+### ROUND-0004 residual
+The literature gate is now reduced to computation/proof instantiation:
+
+> find one exact-rational standard initial point satisfying the verified L1 ellipsoidal survival certificate and rigorously certify that the same Caputo trajectory later enters the already-verified cold-start extinction strip.
+
+If TASK-0003 succeeds, the remaining principal theorem is no longer blocked by an imported-theorem uncertainty.
