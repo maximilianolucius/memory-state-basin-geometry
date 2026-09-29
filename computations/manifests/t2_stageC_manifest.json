@@ -1,0 +1,52 @@
+{
+  "task": "TASK-0001",
+  "environment": {
+    "hostname": "aur007",
+    "platform": "Linux-6.8.0-139-generic-x86_64-with-glibc2.39",
+    "processor": "x86_64",
+    "cpu_count": 32,
+    "python": "3.12.3",
+    "python_executable": "/home/aureus/msbg/computations/../venv/bin/python",
+    "packages": {
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "mpmath": "1.3.0",
+      "sympy": "1.14.0",
+      "flint": "0.9.0",
+      "matplotlib": "3.11.2"
+    },
+    "numpy_blas": {
+      "name": "scipy-openblas",
+      "found": true,
+      "version": "0.3.34.106.0",
+      "detection method": "pkgconfig",
+      "include directory": "/opt/_internal/cpython-3.12.13/lib/python3.12/site-packages/scipy_openblas64/include",
+      "lib directory": "/opt/_internal/cpython-3.12.13/lib/python3.12/site-packages/scipy_openblas64/lib",
+      "openblas configuration": "OpenBLAS 0.3.34.106.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64",
+      "pc file directory": "/project/.openblas"
+    },
+    "utc": "2026-09-29T20:27:35Z",
+    "seed": 20260929,
+    "git_commit": "957fb547039d7a86412e18a67c3291e9835a67e8",
+    "git_branch": "compute/task-0002",
+    "git_dirty": true,
+    "git_source": "launcher environment (rsync'd tree, not a checkout)"
+  },
+  "payload": {
+    "evidence_class": "NUMERICAL CORROBORATION",
+    "definition": "D(T,R) = sup_{tau in [0,R]} ||T_T iota(p)(tau) - E*||_inf",
+    "wall_seconds": 213.156
+  },
+  "artifacts": [
+    {
+      "path": "/home/aureus/msbg/computations/data/t2_stageC_runs.json",
+      "sha256": "0772e5b3c25cc2b4d12b4870ebe84313c43a10890b79d3f540fab9cf506caa93",
+      "bytes": 63784
+    },
+    {
+      "path": "/home/aureus/msbg/computations/data/t2_stageC_summary.json",
+      "sha256": "f8e4e793a42bebf4e51c68786fbd2f95d7ac8443ec23bac0f0d8ae5a6e4b4b21",
+      "bytes": 5747
+    }
+  ]
+}

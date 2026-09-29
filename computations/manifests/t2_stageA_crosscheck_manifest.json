@@ -1,0 +1,73 @@
+{
+  "task": "TASK-0001",
+  "environment": {
+    "hostname": "aur007",
+    "platform": "Linux-6.8.0-139-generic-x86_64-with-glibc2.39",
+    "processor": "x86_64",
+    "cpu_count": 32,
+    "python": "3.12.3",
+    "python_executable": "/home/aureus/msbg/computations/../venv/bin/python",
+    "packages": {
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "mpmath": "1.3.0",
+      "sympy": "1.14.0",
+      "flint": "0.9.0",
+      "matplotlib": "3.11.2"
+    },
+    "numpy_blas": {
+      "name": "scipy-openblas",
+      "found": true,
+      "version": "0.3.34.106.0",
+      "detection method": "pkgconfig",
+      "include directory": "/opt/_internal/cpython-3.12.13/lib/python3.12/site-packages/scipy_openblas64/include",
+      "lib directory": "/opt/_internal/cpython-3.12.13/lib/python3.12/site-packages/scipy_openblas64/lib",
+      "openblas configuration": "OpenBLAS 0.3.34.106.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64",
+      "pc file directory": "/project/.openblas"
+    },
+    "utc": "2026-09-29T19:17:07Z",
+    "seed": 20260929,
+    "git_commit": "23cbe30fa85c297385c9d617e0acf2fa7d928ed6",
+    "git_branch": "compute/task-0002",
+    "git_dirty": true,
+    "git_source": "launcher environment (rsync'd tree, not a checkout)"
+  },
+  "payload": {
+    "rows": [
+      {
+        "certificate": "N4000K32",
+        "points_checked": 60003,
+        "points_outside": 2278,
+        "worst_excess": 0.0013284149558665526
+      },
+      {
+        "certificate": "N4000",
+        "points_checked": 60003,
+        "points_outside": 2425,
+        "worst_excess": 0.0013340292826820033
+      },
+      {
+        "certificate": "N4000g25",
+        "points_checked": 60003,
+        "points_outside": 2208,
+        "worst_excess": 0.001286031994243153
+      },
+      {
+        "certificate": "N4000p256",
+        "points_checked": 60003,
+        "points_outside": 2425,
+        "worst_excess": 0.0013340292844934432
+      },
+      {
+        "certificate": "N8000",
+        "points_checked": 60003,
+        "points_outside": 6260,
+        "worst_excess": 0.0014244146788620071
+      }
+    ],
+    "all_inside": false,
+    "evidence_class": "consistency check, not part of the proof",
+    "wall_seconds": 0.014
+  },
+  "artifacts": []
+}
