@@ -2,40 +2,44 @@
 
 ## Completed
 
-### ROUND-0001 — state architecture / multibasin killer
-status: COMPLETE / ASSIMILATED.
+### ROUND-0001
+state architecture / multibasin killer — COMPLETE.
 
-### ROUND-0002 — scalar/triangular purity
-status: COMPLETE / ASSIMILATED.
+### ROUND-0002
+scalar/triangular purity — COMPLETE.
 
-## Active
+### ROUND-0003
+exact model / threshold recovery / basin closure — COMPLETE / ASSIMILATED.
 
-### ROUND-0003 — exact model / threshold recovery / basin closure
-status: DISPATCHED 2026-09-29  
-request:
-\`research/coordination/chief-to-web/ROUND-0003_exact-model-threshold-recovery-basin-closure_REQUEST.md\`
+Key outcomes:
+- Mondal fractional equations verified; exact basin parameter table partial;
+- exact project vector field has direct integer-order prior: Ye et al. 2019;
+- sign-vs-monotonicity is known general Caputo theory: Diethelm 2016;
+- X1 VERIFIED;
+- continuation-state closure reduces to physical convergence;
+- strict Caputo basin-entry residual survives against the searched literature.
 
-Priority questions:
-1. recover exact Mondal et al. 2025 Double-Allee equations and multistable parameters;
-2. exact prior audit of the project-constructed strong-Allee predator–prey vector field;
-3. audit sign of Caputo derivative versus local monotonicity and threshold-recovery prior;
-4. verify CANDIDATE-X1 positivity/comparison/global-continuation hypotheses;
-5. find continuation-state trapping/basin theorems for the survival side;
-6. hostile-search the exact basin-entry multibasin formulation.
+## Current posture
 
-## Triggered later
+**No active broad search round.**
 
-### W-A006 — minimal dimension
-Only after a rigorous positive theorem exists.
+Wait for:
+1. TASK-0002; or
+2. a concrete Chief survival-convergence theorem.
 
-### W-A007 — pre-manuscript model-specific novelty audit
-After exact theorem statement and proof/certification.
+## Next triggered search
 
-### W-A008 — pre-submission current-prior/metadata audit
-Final gate.
+### ROUND-0004 — exact survival theorem killer/audit
+Trigger only when an exact parameter box and proof mechanism exist.
 
-## Search discipline
+Search:
+- exact Lyapunov inequality;
+- exact trapping set;
+- exact physical convergence theorem;
+- 2025–2026 direct competitors;
+- final theorem statement verbatim/synonym search.
 
-No more generic searches.
+## Final gates
 
-All future rounds must bind to an exact model, exact theorem, or exact missing hypothesis.
+W-A007 pre-manuscript theorem-specific novelty audit.  
+W-A008 pre-submission current-prior/metadata audit.
