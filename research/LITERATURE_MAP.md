@@ -322,3 +322,92 @@ The literature gate is now reduced to computation/proof instantiation:
 > find one exact-rational standard initial point satisfying the verified L1 ellipsoidal survival certificate and rigorously certify that the same Caputo trajectory later enters the already-verified cold-start extinction strip.
 
 If TASK-0003 succeeds, the remaining principal theorem is no longer blocked by an imported-theorem uncertainty.
+
+
+## ROUND-0005 — memory-tail resolvent closure
+
+### Stable Mittag-Leffler kernel
+**Cong, Doan, Siegmund & Tuan (2016)**, DOI 10.14232/ejqtde.2016.1.39, Proposition 2.4 proves for stable scalar modes
+[
+|t^{alpha-1}E_{alpha,alpha}(lambda t^alpha)|
+=O(t^{-alpha-1}),
+qquad |arglambda|>alphapi/2.
+]
+The same paper uses the resulting finite convolution bound in its Lyapunov–Perron proof.
+
+For finite-dimensional (J) satisfying the Matignon sector condition, Jordan/matrix functional calculus gives
+[
+Psi_J(t)=t^{alpha-1}E_{alpha,alpha}(Jt^alpha)in L^1(0,infty).
+]
+
+### Matrix variation of constants / Volterra resolvent
+**Cong, Doan & Tuan (2017)** provides the published matrix Mittag–Leffler variation-of-constants formula for linear inhomogeneous Caputo systems.
+
+**Gripenberg, Londen & Staffans (1990)** supplies the general linear convolution-resolvent identity
+[
+v=h+R*h.
+]
+For the fractional kernel,
+[
+R_J=JPsi_J,
+]
+which yields the project formula
+[
+u=mathcal L_Jh+Psi_J*N(u).
+]
+
+### Inherited-memory forcing after a cut
+The exact split at a finite time (T) produces
+[
+h_T(t)=p-E^*+rac1{Gamma(alpha)}
+int_0^T(t-s)^{alpha-1}F(x(s)),ds.
+]
+For bounded prehistory,
+[
+h_T(t)	o p-E^*.
+]
+No restart is performed and no assumption (h_T	o0) is needed.
+
+Because
+[
+int_0^inftyPsi_J(s),ds=-J^{-1},
+]
+the resolvent cancels the constant tail:
+[
+v_T=mathcal L_Jh_T	o0.
+]
+
+### CANDIDATE-M1
+Under
+[
+M_T+K_JC_rr^2<r,
+]
+the first-exit argument is valid. The same inequality implies
+[
+K_JC_rr<1.
+]
+After the tail is kept inside the ball, the standard early/late convolution split gives
+[
+L:=limsup_{t	oinfty}|u(t)|
+le K_JC_rrL,
+]
+hence (L=0).
+
+**ROUND-0005 verdict: CANDIDATE-M1 VERIFIED.**
+
+### Current 2026 novelty pressure
+**Salas, Altamirano & Martínez (2026)**, DOI 10.3389/fams.2026.1899674, combines matrix Mittag–Leffler variation of constants with explicit residual-to-solution certification for weakly nonlinear Caputo systems. This materially closes any broad novelty claim based on “error-certified Mittag–Leffler propagation.”
+
+It does not address a cut-time inherited-memory survival classification or use that classification to prove opposite cold-start/continuation-state basin membership.
+
+### ROUND-0005 residual
+The remaining project burden is no longer theorem import. It is to certify, for the exact-rational W1 orbit, a late cut (T) and constants
+[
+M_T, K_J, C_r, r
+]
+satisfying
+[
+M_T+K_JC_rr^2<r.
+]
+
+If TASK-0004 succeeds, the memory-tail theorem supplies the missing survival classification needed by TARGET-A20.
