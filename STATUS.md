@@ -1,80 +1,93 @@
 # Status
 
-**Phase:** ACTIVE — MULTIDIMENSIONAL CONSTRUCTIVE FEASIBILITY
+**Phase:** ACTIVE — WITNESS FOUND; PRINCIPAL THEOREM CLOSURE
 
-## ROUND-0002 assimilated — 2026-09-29
+## TASK-0001 assimilated — 2026-09-29
 
-Chief verdict:
-**SCALAR BRANCH CLOSED AS NOVELTY; COMPLETENESS RESULT RETAINED.**
+Compute branch:
+\`compute/task-0001\`
 
-### Scalar result
+Verified HEAD:
+\`9e607dd2f83b249b0b47e76a3a9f1380f46fff5b\`
 
-\`COMPLETENESS-S1\` is now accepted as a proved conditional theorem:
+Merged:
+PR #1 -> main at \`26f53ee3eb39de7e6e884232ef65c13723b27b9b\`.
 
-> if scalar equilibrium solutions are barriers and each equilibrium-separated interval has one basin label, every physically reachable present-state fiber is basin-pure.
+## Main result
 
-Its novelty status is **STANDARD CONSEQUENCE**.
-
-### Rigorous Strong-Allee specialization
-
-For the Area–Nieto Caputo cubic
+A reproducible numerical witness now exists in the project-constructed strong-Allee Caputo predator–prey model:
 \[
-{}^C D^\alpha x=x(1-x)(x-\theta),
-\qquad 0<\theta<1,
-\]
-Doan–Kloeden 2022 gives the rigorous intervalwise asymptotics needed to obtain:
-\[
-0<x<\theta\Rightarrow\mathcal F_x\subseteq\mathcal B(0),
+{}^C D^\alpha x=x(1-x)(x-\theta)-axy,
 \]
 \[
-x>\theta\Rightarrow\mathcal F_x\subseteq\mathcal B(1),
+{}^C D^\alpha y=y(bx-m).
 \]
+
+At
 \[
-\mathcal F_\theta=\{\iota(\theta)\}.
+\theta=0.3,\quad a=b=1,\quad m=0.8,\quad \alpha=0.85,
 \]
-
-This demonstrates a clean scalar impossibility class for the target extinction/survival ambiguity.
-
-### Triangular/comparison outcome
-
-- triangular extension: USEFUL COMPLETENESS only, requiring a basin-determining scalar coordinate;
-- generic monotone/comparison purity: NOT PROMOTED; extra endpoint-determining structure is required.
-
-## Principal project target
-
-The novelty center is now entirely on the multidimensional constructive problem:
+the standard initial state
 \[
-\exists\phi,\psi\in\mathcal R_\alpha:
-\quad
-e_0(\phi)=e_0(\psi),\qquad
-\phi\in\mathcal B(A_1),\quad
-\psi\in\mathcal B(A_2),\quad A_1\neq A_2.
+p=(2.4372,2.012)
 \]
+has a numerically survival-bound orbit that enters deeply into
+\[
+R_{\rm ext}=\{0<x<\theta,\ y\ge0\},
+\]
+then recovers.
 
-Preferred realization:
-extinction versus survival/coexistence in a natural positive strong/Double-Allee Caputo model.
+The event survives fine-mesh, multi-solver, long-horizon and 30-digit checks.
 
-## Active delegated work
+## Structural simplification
 
-### Compute — TASK-0001
-This is now the critical path.
+The target multibasin fiber does **not** require two advanced trajectories to intersect.
 
-Required:
-- validated dual-solver infrastructure;
-- published intersection reproduction;
-- Double-Allee baseline;
-- inter-basin collision discovery/refinement;
-- nondegeneracy diagnostics;
-- certification where feasible.
+If a survival-basin orbit reaches
+\[
+z\in R_{\rm ext},
+\]
+then the two reachable states
+\[
+T_t\iota(p),\qquad \iota(z)
+\]
+already share present state \(z\).
 
-### Web Search
-ROUND-0001: COMPLETE / ASSIMILATED.  
-ROUND-0002: COMPLETE / ASSIMILATED.
+Thus the theorem reduces to:
+- cold start at \(z\) goes extinct;
+- continuation state carrying prehistory survives.
 
-No new broad web-search round is opened now.
+This is formalized in \`research/STRUCTURAL_THEOREMS.md\`.
 
-The next search must be triggered by the exact model/parameter regime or collision theorem returned by Compute TASK-0001.
+Transversality/IFT is retired from the principal existence/persistence theorem.
+
+## Evidence status
+
+### Strong
+- solver infrastructure: PASS;
+- Stage-B Mittag-Leffler zero: CERTIFIED COMPUTATION;
+- equilibrium spectra: exact/certified algebra;
+- nonlinear threshold entry: very strong NUMERICAL CORROBORATION.
+
+### Not yet proved
+- positive-cone/comparison hypotheses needed for the full extinction-strip theorem;
+- survival-basin membership of the witness;
+- nonlinear interval enclosure of the witness trajectory;
+- faithful published Double-Allee realization.
+
+Therefore:
+**TARGET-A20 = CONJECTURED, NOT PROVED.**
+
+## Active next gates
+
+### ROUND-0003 — Web Search
+Exact published Double-Allee model, exact-vector-field prior, Caputo threshold-recovery mechanism, extinction-strip theorem audit, and continuation-state basin/trapping theorem search.
+
+### TASK-0002 — Compute
+Validated finite-time entry certification and search for near-equilibrium witnesses that may be easier to place rigorously in a survival basin.
 
 ## Paper
 
-**NOT STARTED.** Manuscript mode remains blocked until the principal multidimensional target is proved/certified at defensible scope.
+**NOT STARTED.**
+
+The project now has a credible theorem mechanism, but manuscript mode remains blocked until survival basin membership and exact novelty/model provenance are closed.
