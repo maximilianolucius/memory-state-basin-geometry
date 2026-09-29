@@ -1,135 +1,321 @@
-# Local Survival Basin Program
+# Local Survival Basin Theorem
 
 **Owner:** Chief Researcher  
 **Date:** 2026-09-29  
-**Status:** CANDIDATE THEOREM / EXACT SOURCE AUDIT + COMPUTE SEARCH ACTIVE
+**Status:** PROVED FROM PUBLISHED HYPOTHESES
 
-## 1. Model and coexistence equilibrium
+## 1. Model
 
 Consider
 \[
-{}^C D^\alpha z=F(z),
+{}^CD^\alpha z=F(z),
 \qquad z=(x,y),
 \]
 with
 \[
 F_1=x(1-x)(x-\theta)-axy,
 \qquad
-F_2=y(bx-m).
+F_2=y(bx-m),
 \]
-
-For
+and coexistence equilibrium
 \[
 x^*=\frac mb,\qquad
-y^*=\frac{(1-x^*)(x^*-\theta)}a,
+y^*=\frac{(1-x^*)(x^*-\theta)}a.
 \]
-assume
+
+Assume
 \[
 \theta<x^*<1.
 \]
 
-Let \(u=z-E^*\) and
+Let
 \[
-J=DF(E^*).
+u=z-E^*.
 \]
 
-## 2. Candidate theorem L1 — explicit local survival basin
+## 2. Jacobian and Hurwitz condition
 
-Assume \(J\) is Hurwitz.
+At \(E^*\),
+\[
+J=
+\begin{pmatrix}
+x^*(1+\theta-2x^*) & -ax^*\\
+by^* & 0
+\end{pmatrix}.
+\]
 
-Let \(P=P^\top>0\) solve
+Since
+\[
+\det J=abx^*y^*>0,
+\]
+\(J\) is Hurwitz exactly when
+\[
+\operatorname{tr}J
+=
+x^*(1+\theta-2x^*)<0,
+\]
+i.e.
+\[
+\boxed{
+x^*>\frac{1+\theta}{2}.
+}
+\]
+
+This deliberately uses a stronger condition than Matignon stability.
+
+## 3. Exact Lyapunov matrix
+
+Write
+\[
+J=
+\begin{pmatrix}
+A&B\\C&0
+\end{pmatrix},
+\qquad
+A<0,\ B<0,\ C>0.
+\]
+
+Let
+\[
+P=
+\begin{pmatrix}
+p&q\\q&s
+\end{pmatrix}
+\]
+solve
 \[
 J^\top P+PJ=-I.
 \]
 
+The entries are explicitly
+\[
+q=-\frac1{2B},
+\]
+\[
+p=-\frac{1+2Cq}{2A},
+\]
+\[
+s=-\frac{Aq+Bp}{C}.
+\]
+
+For rational model parameters, \(A,B,C\) and hence \(P\) are rational.
+
+The classical Lyapunov matrix theorem guarantees
+\[
+P=P^\top>0
+\]
+because \(J\) is Hurwitz.
+
+Its spectral quantities can be certified exactly through the two eigenvalues
+\[
+\lambda_{\pm}(P)
+=
+\frac{\operatorname{tr}P
+\pm
+\sqrt{(\operatorname{tr}P)^2-4\det P}}2.
+\]
+
+Thus
+\[
+\|P\|_2=\lambda_{\max}(P).
+\]
+
+## 4. Exact nonlinear remainder
+
 Write
 \[
-F(E^*+u)=Ju+N(u).
+u=(\xi,\eta).
 \]
 
-For \(r>0\), let \(C_r\) satisfy
+The shifted system has
 \[
-\|N(u)\|_2\le C_r\|u\|_2^2
-\qquad
-(\|u\|_2\le r).
+F(E^*+u)=Ju+N(u),
 \]
-
-Assume the standard Caputo quadratic inequality
+with exact remainder
 \[
-{}^CD^\alpha(u^\top Pu)
-\le
-2u^\top P\,{}^CD^\alpha u
+N_1(\xi,\eta)
+=
+(1+\theta-3x^*)\xi^2
+-a\xi\eta
+-\xi^3,
 \]
-and the audited fractional Lyapunov theorem.
-
-Then inside \(\|u\|_2\le r\),
 \[
-{}^CD^\alpha V
-\le
--\|u\|_2^2
-+
-2\|P\|_2C_r\|u\|_2^3.
+N_2(\xi,\eta)
+=
+b\xi\eta.
 \]
 
 If
 \[
-2\|P\|_2C_r r\le\frac12,
+\|u\|_2\le r,
 \]
 then
 \[
+|\xi\eta|\le\frac12\|u\|_2^2,
+\qquad
+|\xi|^3\le r\|u\|_2^2.
+\]
+
+Therefore the explicit valid bound
+\[
+\boxed{
+C_r=
+\sqrt{
+\left(
+|1+\theta-3x^*|+\frac a2+r
+\right)^2
++
+\left(\frac b2\right)^2
+}
+}
+\]
+satisfies
+\[
+\|N(u)\|_2\le C_r\|u\|_2^2.
+\]
+
+This bound is conservative but algebraic and easy to certify.
+
+## 5. THEOREM L1 — explicit local survival basin
+
+Let \(r>0\) satisfy
+\[
+\boxed{
+2\lambda_{\max}(P)C_r r\le\frac12.
+}
+\]
+
+Define
+\[
+V(u)=u^\top Pu.
+\]
+
+Then every standard initial state \(u_0\) satisfying
+\[
+\boxed{
+V(u_0)<\lambda_{\min}(P)r^2
+}
+\]
+has a unique global solution and
+\[
+u(t)\to0.
+\]
+
+More explicitly,
+\[
+\boxed{
+V(u(t))
+\le
+V(u_0)
+E_\alpha\!\left(
+-\frac{t^\alpha}{2\lambda_{\max}(P)}
+\right).
+}
+\]
+
+Consequently,
+\[
+z(t)\to E^*,
+\]
+and by STRUCTURAL-E3,
+\[
+T_t\iota(z_0)\to\iota(E^*)
+\]
+in compact-open topology.
+
+Thus every such standard initial state lies rigorously in the survival/coexistence basin.
+
+## 6. Proof
+
+Ren & Wu (2019), Lemma 3.1, gives
+\[
 {}^CD^\alpha V
+\le
+2u^\top P\,{}^CD^\alpha u.
+\]
+
+Hence
+\[
+{}^CD^\alpha V
+\le
+2u^\top P(Ju+N(u)).
+\]
+
+Because
+\[
+J^\top P+PJ=-I,
+\]
+\[
+2u^\top PJu=-\|u\|_2^2.
+\]
+
+Also
+\[
+2u^\top PN(u)
+\le
+2\|P\|_2 C_r\|u\|_2^3.
+\]
+
+Inside \(\|u\|_2\le r\),
+\[
+{}^CD^\alpha V
+\le
+-\left(1-2\|P\|_2C_r r\right)\|u\|_2^2
 \le
 -\frac12\|u\|_2^2.
 \]
 
-Consequently every standard initial state satisfying
+Since
 \[
-V(u_0)<\lambda_{\min}(P)r^2
+V(u)\le\lambda_{\max}(P)\|u\|_2^2,
 \]
-should remain in the ball and converge to \(E^*\).
-
-### Status
-
-This is a **candidate theorem** until ROUND-0004 verifies:
-- the exact quadratic Caputo chain inequality;
-- the scalar comparison/stability step that keeps \(V\) below its initial value;
-- the asymptotic-convergence conclusion from the negative-definite fractional Lyapunov derivative;
-- regularity hypotheses.
-
-## 3. Why this route is attractive
-
-If Compute finds \(p\) satisfying the local certificate from time zero and also certifies
 \[
-x(t_*;p)<\theta,
+{}^CD^\alpha V
+\le
+-\frac1{2\lambda_{\max}(P)}V.
+\]
+
+Wu (2020), Theorem 3.2, gives comparison with
+\[
+w(t)=V(u_0)
+E_\alpha\!\left(
+-\frac{t^\alpha}{2\lambda_{\max}(P)}
+\right).
+\]
+
+If a first exit from \(\|u\|_2<r\) occurred, then before that time
+\[
+V(u(t))
+\le V(u_0)
+<
+\lambda_{\min}(P)r^2,
+\]
+whereas at first exit
+\[
+V(u)\ge\lambda_{\min}(P)r^2,
+\]
+a contradiction.
+
+Thus the ball is never exited.
+
+Boundedness and Wu & Liu (2020) give global continuation. The comparison bound tends to zero, hence \(u(t)\to0\). \(\square\)
+
+## 7. Evidence / novelty
+
+- theorem status: **PROVED FROM PUBLISHED HYPOTHESES**;
+- ROUND-0004 verdict: VERIFIED;
+- novelty: supporting basin certificate, not principal novelty;
+- direct exact-model explicit ellipsoidal prior: not found in ROUND-0004.
+
+## 8. TARGET-A20 closure criterion
+
+If an initial point satisfying L1 is rigorously certified to later enter
+\[
+R_{\rm ext}=\{0<x<\theta,\ y\ge0\},
 \]
 then:
-- L1 gives \(p\in\mathcal B(E^*)\);
-- X1 gives the cold start at the reached state is in the extinction basin;
-- E1 gives a rigorous multibasin present-state fiber.
+- L1 gives survival;
+- X1 gives extinction of the canonical cold start at the reached point;
+- E1 gives a rigorous multibasin reachable fiber.
 
-No long-time basin inference is needed.
-
-## 4. Search geometry
-
-Hurwitz stability of \(J\) is deliberately stronger than Caputo/Matignon stability.
-
-This excludes the weakly damped B2/B3 fractional-stabilization regime, but buys an explicit classical quadratic Lyapunov matrix.
-
-A useful search should emphasize:
-- \(\theta\) near one;
-- \(x^*>(1+\theta)/2\), so the coexistence Jacobian has negative trace;
-- exact rational parameters;
-- a threshold gap small enough that a locally stable trajectory can still undershoot \(x=\theta\).
-
-## 5. Certification burden
-
-For a candidate parameter set, certify:
-1. exact rational equilibrium;
-2. Hurwitz \(J\);
-3. rigorous \(P>0\);
-4. rigorous \(C_r\);
-5. the L1 inequalities;
-6. initial-point inclusion in the certified ellipsoid;
-7. finite-time entry into \(R_{\rm ext}\) using the TASK-0002 validated integrator.
-
-If all seven hold after ROUND-0004 validates the theorem, TARGET-A20 is closed.
+No long-time numerical classifier is required.
