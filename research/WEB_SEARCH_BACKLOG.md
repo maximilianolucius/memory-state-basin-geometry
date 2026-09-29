@@ -1,55 +1,53 @@
 # Deep Web Search Backlog
 
-## Completed
+## Completed / assimilated
 
 ### ROUND-0001 — state architecture / multibasin killer audit
-status: COMPLETE / ASSIMILATED  
 verdict: NARROW, NOT KILLED.
 
-Covered:
-- W-A001 hereditary/Volterra subsumption;
-- W-A003 direct multibasin-fiber prior;
-- W-A005 observation/factor adjacent mathematics;
-- exact Doan–Kloeden architecture;
-- persistence-method novelty pressure.
-
-## Active
-
 ### ROUND-0002 — scalar/triangular fiber-purity audit
-status: DISPATCHED 2026-09-29  
-request:
-\`research/coordination/chief-to-web/ROUND-0002_scalar-triangular-purity_REQUEST.md\`
+verdicts:
+- scalar nonintersection import: NEEDS EXACT HYPOTHESIS QUALIFICATION;
+- S1 novelty: STANDARD CONSEQUENCE;
+- rigorous scalar Strong-Allee instantiation: FOUND;
+- triangular extension: USEFUL COMPLETENESS;
+- monotone extension: EXTRA CONDITIONS REQUIRED.
 
-Covers:
-- exact scalar nonintersection hypotheses;
-- Proposition S1 prior/novelty;
-- rigorous scalar strong-Allee threshold instantiation;
-- triangular extension;
-- W-A002 monotone/comparison purity.
+## Current search posture
 
-## Pending
+**No new broad round is active.**
 
-### W-A004 — Double-Allee model audit
-priority: P1 / trigger on TASK-0001 baseline or candidate witness  
-Verify exact published model equations, multistability/basin claims and the cleanest natural application family.
+The scalar novelty branch is closed.
 
-### W-A006 — Minimal dimension / intersection restrictions
-priority: P1  
-Run only if ROUND-0002 or TASK-0001 makes dimension minimality theoremically relevant.
+The next high-value web-search round must be triggered by Compute TASK-0001 and should audit:
+- the exact Double-Allee equations;
+- the exact parameter regime;
+- the exact basin claims;
+- the exact collision/nondegeneracy theorem proposed by the Chief.
 
-### W-A007 — Model-specific pre-manuscript novelty audit
-status: GATE / NOT YET ELIGIBLE  
-Trigger only after a precise principal theorem statement and model/witness exist.
+## Pending triggered tasks
 
-### W-A008 — Pre-submission current-prior/metadata audit
-status: FINAL GATE.
+### W-A004 — exact Double-Allee model audit
+trigger:
+TASK-0001 returns a faithful model baseline or collision candidate.
+
+### W-A006 — minimal dimension / intersection restrictions
+trigger:
+a positive witness or theorem statement makes dimension minimality materially relevant.
+
+### W-A007 — model-specific pre-manuscript novelty audit
+trigger:
+precise principal theorem statement + proof/certification.
+
+### W-A008 — pre-submission current-prior/metadata audit
+trigger:
+submission package stage.
 
 ## Search discipline
 
-Do not spend another round on the abstract phrase “memory-state basin geometry.”
+Do not reopen:
+- generic scalar purity;
+- generic “memory-state basin geometry”;
+- generic monotonicity.
 
-Future searches must be keyed to:
-- an exact theorem statement;
-- an exact model/sign class;
-- an exact collision map;
-- or a precise imported-theorem hypothesis.
+Future searches must be theorem- or model-specific.
