@@ -1,18 +1,33 @@
 # Novelty Matrix
 
-| Candidate contribution | Closest prior | Already known? | Residual novelty requirement |
-|---|---|---:|---|
-| Caputo needs memory state | Doan & Kloeden 2021 | Yes | Background only |
-| Same current state, different reachable memory | Cong & Tuan 2017 | Yes | Background only |
-| History-space basin geometry | Huang et al. 2014 and hereditary systems | Yes | Must specialize to Caputo reachable fibers |
-| Fractional Double-Allee multistability/basins | Rahmi 2021; Mondal et al. 2025 | Yes | Basin-fiber theorem, not another basin plot |
-| Scalar Allee threshold changed by alpha | scalar separation/equilibrium algebra | Not viable | Reject |
-| General comparison/monotonicity | Wu 2023 | Yes | Use as impossibility machinery |
-| Reachable present-state fiber intersects two basins | no resolving published theorem identified in parent audit | Search-qualified frontier | Prove existence/nonexistence structurally |
-| Fiber topology/regularity under basin partition | adjacent hereditary/factor theory | Partially adjacent | Explicit Caputo reachable-state theorem |
-| Double-Allee extinction/survival multibasin fiber | application class exists, theorem not found | Search-qualified frontier | Preferred applied theorem |
+| Candidate contribution | Closest prior | Status after ROUND-0001 | Residual novelty requirement |
+|---|---|---|---|
+| Caputo memory-state enlargement | Doan & Kloeden 2021/2024 | Known | Background only |
+| Same current state, different reachable memory | Cong & Tuan 2017 + Doan–Kloeden lift | Known | Background only |
+| History-space basin geometry | Huang et al. 2014; Daza et al. 2017 | Known | Cannot support novelty |
+| Headpoint/projected basin construction | Szaksz et al. 2024 | Known adjacent prior | Exact reachable Caputo fiber theorem required |
+| Fractional projected trajectory/attractor overlap | Edelman 2011 | Known adjacent numerical prior | Broad “same projection, different future” language forbidden |
+| Fractional Double-Allee multistability/basins | Rahmi 2021; Mondal et al. 2025 | Known | Basin-fiber theorem, not another basin plot |
+| M1 collision-to-multibasin implication | semigroup definitions + basin invariance | Standard consequence | Use only as reduction |
+| Generic transversal/IFT persistence | standard IFT; Guo et al. 2016; Gomoyunov 2022; Majewski 2017 | Method substantially known | Prove Caputo-specific regularity + basin persistence in target family |
+| Scalar equilibrium-partition fiber purity | scalar nonintersection + basin partition | likely completeness result | Exact prior/hypothesis audit in ROUND-0002 |
+| Reachable present-state fiber intersects two basins | no resolving published theorem found in ROUND-0001 corpus | Search-qualified frontier | Prove/certify in natural autonomous continuous Caputo family |
+| Open-family multibasin fiber | no direct theorem found in ROUND-0001 corpus | Search-qualified frontier | Certified witness + nondegeneracy + rigorous persistence |
+| Double-Allee extinction/survival multibasin fiber | application class exists; strict fiber theorem not found | Preferred frontier | Direct theorem/certified realization |
+| Fiber topology/regularity beyond existence | hereditary/factor theory adjacent | Deferred | Only pursue after existence theorem survives |
 
 ## Required final positioning
-The submitted paper must explicitly acknowledge that memory-state enlargement, trajectory intersection, comparison principles, Double-Allee modeling and multistability are known.
 
-The new mathematics must be stated narrowly and theoremically.
+The paper may not claim novelty for:
+- memory-state enlargement;
+- non-Markovian physical state;
+- trajectory intersection;
+- history-space basins;
+- headpoint/projected basin calculations;
+- generic “memory changes future” statements;
+- M1;
+- generic IFT/transversality.
+
+The strongest viable novelty is the rigorous **physically reachable Caputo multibasin fiber itself**, preferably with extinction/survival meaning, together with an open-family theorem whose proof verifies the Caputo-specific regularity and basin hypotheses.
+
+ROUND-0001 verdict: **NARROW, NOT KILLED**.
