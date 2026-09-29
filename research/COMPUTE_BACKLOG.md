@@ -2,35 +2,25 @@
 
 ## Completed
 
-TASK-0001 — discovery infrastructure.  
-TASK-0002 — validated finite-time entry.
+TASK-0001 — discovery.  
+TASK-0002 — validated entry.  
+TASK-0003 — exact-rational L1 search / obstruction.
+
+Key TASK-0003 outcomes:
+- O1 proves L1-type physical invariant certificate cannot close target;
+- W1 exact-rational entry certified;
+- O2 excludes one global weighted-max certificate family.
 
 ## Active
 
-### TASK-0003 — exact-rational local-survival witness
-status: DISPATCHED / L1 NOW VERIFIED
+### TASK-0004 — memory-tail survival
+request:
+\`research/coordination/chief-to-compute/TASK-0004_memory-tail-survival_REQUEST.md\`
 
-Theoretical uncertainty is closed.
+First test feasibility numerically.
 
-Acceptance criterion:
-find one standard initial state with exact-rational model definition satisfying both:
-
-1. THEOREM-L1 local survival certificate;
-2. TASK-0002-style rigorous entry into
-\[
-R_{\rm ext}.
-\]
-
-If both are certified, TARGET-A20 is mathematically proved.
-
-Also required:
-publication-grade rational recertification of the original TASK-0001 witness.
-
-## If TASK-0003 returns negative
-
-Do not weaken the theorem standard.
-
-Next route:
-- improve the local basin certificate (optimize Lyapunov matrix \(Q\), not only \(Q=I\));
-- search weighted/nonquadratic Lyapunov functions;
-- only then consider infinite-horizon validated dynamics.
+Only if feasible:
+- extend rigorous history enclosure;
+- certify matrix kernel;
+- certify inherited linear response;
+- apply M1 after ROUND-0005 audit.
