@@ -5,7 +5,7 @@
 **Task:** `research/coordination/chief-to-compute/TASK-0003_exact-rational-local-survival_REQUEST.md`
 **Date:** 2026-09-29
 **Branch:** `compute/task-0003`
-**Final commit SHA:** see §9
+**Final commit SHA:** `6e2352733c` (§9)
 
 ---
 
@@ -351,7 +351,9 @@ scripts `t3_*`; tests `test_lyapunov_l1.py` (8).
 
 ```
 branch: compute/task-0003
-commit: FINAL_SHA
+commit: 6e2352733c73f146450079c519a0931196711fab
+
+That commit carries every artifact cited here; the only later commit writes this SHA.
 ```
 
 ---
