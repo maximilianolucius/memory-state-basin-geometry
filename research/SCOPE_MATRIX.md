@@ -2,17 +2,18 @@
 
 | Claim | Scope | Status |
 |---|---|---|
-| X1 | strong-Allee model, \(\theta<m/b\) | PROVED |
-| L1 | Hurwitz coexistence local physical basin | PROVED |
-| O1 | any forward-invariant physical survival set vs distinct cold-start extinction set | PROVED |
-| O2 | global diagonal weighted-max resolvent certificate, Hurwitz regime | PROVED |
-| W1 rational entry | exact rational benchmark | CERTIFIED |
-| M1 memory-tail criterion | stable linear resolvent + small nonlinear tail | OPEN / AUDIT ACTIVE |
-| TARGET-A20 | exact W1 or another target model | OPEN ON MEMORY-DEPENDENT SURVIVAL |
-| TARGET-A30 | open family | DEFERRED |
+| X1 | strong-Allee cold starts | PROVED |
+| L1 | local physical survival basin | PROVED but unusable for entering orbit by O1 |
+| O1 | forward-invariant physical survival certificates | PROVED |
+| O2 | declared global diagonal weighted-max certificate | PROVED in Hurwitz regime |
+| M1 | Matignon-stable linearization + quadratic local tail | PROVED |
+| W1 entry | exact rational benchmark | CERTIFIED |
+| W1 survival | exact rational benchmark | PENDING TASK-0004 |
+| TARGET-A20 | physically reachable fiber | PENDING TASK-0004 ONLY |
+| TARGET-A30 | open parameter family | DEFERRED |
 
-## Discipline
+## Topology / state discipline
 
-Do not describe O1 as saying survival is impossible.
+M1 classifies the actual inherited continuation state.
 
-It says a specific class of **present-state invariant certificates** cannot prove an orbit that enters a region whose cold starts have the opposite fate.
+It does not classify the cold start at \(x(T)\), and no restart at \(T\) is used.
