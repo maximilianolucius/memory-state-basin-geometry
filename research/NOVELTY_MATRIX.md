@@ -1,31 +1,32 @@
 # Novelty Matrix
 
-| Candidate contribution | Closest prior | Status after ROUND-0002 | Residual novelty requirement |
+| Candidate contribution | Closest prior | Status after TASK-0001 | Residual novelty requirement |
 |---|---|---|---|
 | Caputo memory-state enlargement | Doan & Kloeden 2021/2024 | Known | Background only |
 | Same current state, different reachable memory | Cong & Tuan 2017 + Doan–Kloeden lift | Known | Background only |
-| History-space basin geometry | Huang et al. 2014; Daza et al. 2017 | Known | Cannot support novelty |
-| Headpoint/projected basin construction | Szaksz et al. 2024 | Known adjacent prior | Exact reachable Caputo fiber theorem required |
-| Fractional projected trajectory/attractor overlap | Edelman 2011 | Known adjacent numerical prior | Broad “same projection, different future” language forbidden |
-| Fractional Double-Allee multistability/basins | Rahmi 2021; Mondal et al. 2025 | Known | Basin-fiber theorem, not another basin plot |
-| M1 collision-to-multibasin implication | semigroup definitions + basin invariance | Standard consequence | Use only as reduction |
-| Generic transversal/IFT persistence | standard IFT; Guo et al. 2016; Gomoyunov 2022; Majewski 2017 | Method substantially known | Prove Caputo-specific realization and basin persistence |
-| Scalar equilibrium-partition fiber purity | Cong–Tuan 2017; Doan–Kloeden 2022 | Standard consequence | Completeness only |
-| Scalar strong-Allee fiber purity | Area–Nieto 2023 model + Doan–Kloeden 2022 | Rigorous corollary / completeness | Use as scalar impossibility illustration |
-| Triangular basin-determining purity | Cong–Tuan 2017; Doan–Kloeden 2022 | Useful completeness | No principal novelty |
-| Generic monotone endpoint-fiber purity | Wu 2020/2023; Cheng–Wu 2026 | Unsupported without extra structure | Do not claim |
-| Reachable present-state fiber intersects two basins | no resolving published theorem found in hostile audits | Search-qualified frontier | Prove/certify in natural multidimensional autonomous Caputo family |
-| Open-family multibasin fiber | no direct theorem found in hostile audits | Search-qualified frontier | Certified witness + nondegeneracy + Caputo-specific persistence |
-| Double-Allee extinction/survival multibasin fiber | application class exists; strict fiber theorem not found | Preferred frontier | Direct theorem/certified realization |
-| Fiber topology/regularity beyond existence | hereditary/factor theory adjacent | Deferred | Pursue only after existence theorem survives |
+| History/headpoint basin geometry | Huang 2014; Daza 2017; Szaksz 2024 | Known adjacent prior | Cannot carry novelty |
+| Fractional projected trajectory/attractor overlap | Edelman 2011 | Known adjacent prior | Broad “same projection, different future” language forbidden |
+| Scalar/triangular fiber purity | Cong–Tuan 2017; Doan–Kloeden 2022 | Completeness | Supporting contrast only |
+| Generic comparison purity | Wu 2020/2023; Cheng–Wu 2026 | Unsupported without extra structure | Do not claim |
+| Generic collision-to-multibasin implication | semigroup definitions | Standard consequence | Use only as reduction |
+| Generic IFT/transversal collision persistence | standard IFT / Volterra sensitivity | Known method | No principal novelty |
+| Basin-entry criterion with cold start at reached state | immediate semigroup/reachability logic | Structural reduction | Novelty not claimed by itself |
+| Cold-start extinction strip in strong-Allee predator–prey class | scalar Allee comparison + system comparison | Candidate supporting theorem | Exact theorem audit required |
+| Caputo threshold recovery while \({}^CD^\alpha x<0\) on later interval | fractional monotonicity literature unknown at exact scope | ACTIVE KILLER SEARCH | ROUND-0003 decides novelty status of mechanism |
+| Physically reachable same-present extinction/survival fiber | no resolving published theorem found so far | PRINCIPAL SEARCH-QUALIFIED FRONTIER | Rigorous basin membership + certified/analytic entry |
+| One-parameter arc of such fibers | follows from open-set entry once basin hypotheses hold | Potential structural strengthening | Need rigorous witness interval |
+| Open parameter family | generic openness of entry; basin persistence is hard | Principal robustness target | Prove basin persistence on open family |
+| Published Double-Allee realization | Mondal/Rahmi/etc. model details not yet locally recovered | OPEN | Exact model reproduction + theorem |
+| Project-constructed strong-Allee witness | TASK-0001 | Strong numerical evidence only | Survival theorem + certification + exact prior audit |
 
-## Final positioning after ROUND-0002
+## Current novelty hypothesis
 
-Scalar and triangular purity may support the paper as contrast/completeness, but they do not carry the novelty.
+The likely paper-worthy center is no longer “trajectory collision.”
 
-The paper-worthy center remains:
+It is the following asymmetry:
 
-> rigorous existence of a physically reachable multibasin present-state fiber in a natural multidimensional autonomous continuous Caputo system, preferably extinction versus survival in a positive strong/Double-Allee model, together with persistence on an open family.
+> a physical sub-threshold state can be extinction-determining when used as a fresh standard Caputo initial condition, while a physically reachable continuation state with exactly the same present value can retain sufficient prehistory to recover to a survival/coexistence attractor.
 
-ROUND-0002 verdict:
-**scalar novelty closed; multidimensional principal target unchanged.**
+This is potentially specific enough to distinguish the work from generic memory/history basin literature.
+
+Its novelty remains unconfirmed pending ROUND-0003.
