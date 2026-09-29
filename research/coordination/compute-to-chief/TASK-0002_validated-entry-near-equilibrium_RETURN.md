@@ -5,7 +5,7 @@
 **Task:** `research/coordination/chief-to-compute/TASK-0002_validated-entry-near-equilibrium_REQUEST.md`
 **Date:** 2026-09-29
 **Branch:** `compute/task-0002`
-**Final commit SHA:** see §9
+**Final commit SHA:** `c2b766ee96` (§9)
 
 ---
 
@@ -505,7 +505,9 @@ New code: `msbg/validated.py`, `msbg/aposteriori.py`, `msbg/fastconv.py`; script
 
 ```
 branch: compute/task-0002
-commit: FINAL_SHA
+commit: c2b766ee96a6d3eeb86e0caecada8763797493a7
+
+That commit carries every artifact cited here; the only later commit writes this SHA.
 ```
 
 ---
