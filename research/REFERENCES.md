@@ -52,3 +52,29 @@ Role: especially close hereditary prior for headpoint-projected basin/integrity 
 ### ROUND-0001 publication-status note
 
 Khalighi et al. (2026), “Memory reshapes stability landscapes: resilience-resistance tradeoffs and critical transitions,” arXiv:2602.20365, was rechecked on 2026-09-29. The search located preprint/arXiv records but no verified peer-reviewed publication. Treat as **INTERNAL NOVELTY THREAT ONLY**, not final-manuscript citation support unless a published version is later verified.
+
+
+## ROUND-0002 verified additions — scalar/triangular purity
+
+20. Doan, T. S.; Kloeden, P. E. (2022). Attractors of Caputo Fractional Differential Equations with Triangular Vector Fields. *Fractional Calculus and Applied Analysis* 25(2), 720–734. DOI 10.1007/s13540-022-00030-6.  
+Role: principal rigorous asymptotic source for ROUND-0002. Under (C^1), dissipativity and simple-equilibrium hypotheses, scalar solutions converge to equilibrium with intervalwise asymptotic classification; also gives an attractor theorem for a special product-triangular class.
+
+21. Area, I.; Nieto, J. J. (2023). On the Fractional Allee Logistic Equation in the Caputo Sense. *Examples and Counterexamples* 4, 100121. DOI 10.1016/j.exco.2023.100121.  
+Role: clean published scalar Caputo strong-Allee cubic. Use the exact model together with Doan–Kloeden 2022 for the rigorous threshold/basin corollary; Area–Nieto itself is not the load-bearing global-basin theorem.
+
+22. Wu, C. (2023). Comparison Principles for Systems of Caputo Fractional Order Ordinary Differential Equations. *Chaos, Solitons & Fractals* 171, 113437. DOI 10.1016/j.chaos.2023.113437.  
+Role: system comparison for quasi-monotone/mixed-monotone Caputo systems. Does not imply endpoint-fiber basin purity without additional endpoint-determining structure.
+
+23. Kalra, P.; Malhotra, N. (2024). Modeling and Analysis of Fractional Order Logistic Equation Incorporating Additive Allee Effect. *Contemporary Mathematics* 5(1), 380–401. DOI 10.37256/cm.5120243183.  
+Role: published Caputo Allee context. Threshold extinction/survival evidence is substantially numerical and should not carry the rigorous S1 specialization.
+
+24. Cheng, T.; Wu, C. (2026). Analysis of Caputo Fractional Order Systems: The Complete System Comparison Principles. *Journal of Mathematical Analysis and Applications* 559(1), 130509. DOI 10.1016/j.jmaa.2026.130509.  
+Role: current published extension/completion of system comparison theory. Still an ordered-solution theorem, not an endpoint-history/basin-factor theorem.
+
+### ROUND-0002 source warning — Diethelm–Ford 2012
+
+Diethelm & Ford (2012), DOI 10.1216/JIE-2012-24-1-25, should remain historical background only for separation/nonintersection. Cong & Tuan (2017) explicitly identify the proof of Diethelm–Ford Theorem 3.1 as incomplete and consequently their Theorem 4.1 as incomplete. For load-bearing scalar separation use Cong–Tuan 2017, under its exact global Lipschitz hypothesis, or the stronger class-specific Doan–Kloeden 2022 theorem where applicable.
+
+### ROUND-0002 scalar conclusion
+
+The exact reachable-fiber statement was not found as a published theorem, but the scalar ingredients are sufficiently established that Proposition S1 should be positioned as **STANDARD CONSEQUENCE / COMPLETENESS RESULT**, not principal novelty.
