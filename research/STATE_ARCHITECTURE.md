@@ -2,175 +2,212 @@
 
 **Owner:** Chief Researcher  
 **Date:** 2026-09-29  
-**Status:** ACTIVE / PROVISIONAL PENDING PRIMARY-SOURCE HYPOTHESIS AUDIT
+**Status:** VERIFIED BASELINE / TARGET-MODEL ADMISSIBILITY STILL OPEN
 
 ## 1. Governing Caputo IVP
 
-Work initially with a commensurate autonomous Caputo system
-[
+Work initially with
+\[
 {}^C D_{0+}^{\alpha}x(t)=g(x(t);\theta),\qquad 0<\alpha<1,
-]
-on a physical domain (X_{\rm phys}\subseteq\mathbb R^d), with standard point initial data (x(0)=x_0).
+\]
+with standard point initial data \(x(0)=x_0\).
 
-The equivalent Volterra form is
-[
-x(t)=x_0+\frac1{\Gamma(\alpha)}
-\int_0^t (t-s)^{\alpha-1}g(x(s);\theta)\,ds.
-]
+For the globally Lipschitz baseline, Doan & Kloeden (2021) give the equivalent Volterra formulation and the semidynamical-system architecture used below.
 
-Exact regularity, existence, uniqueness, continuation and parameter-dependence hypotheses will be imported only after primary-source audit. No ODE semiflow assumption is permitted on (X_{\rm phys}).
+For the eventual ecological model, global Lipschitz need not be imposed artificially. Instead, the project must prove the admissibility/global-continuation conditions required for the generalized Volterra problem.
 
-## 2. Memory-state architecture
+No ODE semiflow is assumed on the physical state \(X_{\rm phys}\).
 
-Let (mathcal H_\alpha) denote the function/history state space on which the audited Caputo/Volterra continuation operator defines a semidynamical system (T_t). Let
-[
-\iota:X_{\rm phys}\to\mathcal H_\alpha
-]
-be the canonical embedding of a standard physical IVP and
-[
-e_0:\mathcal H_\alpha\to X_{\rm phys}
-]
-the present-state evaluation map.
+## 2. Verified memory-state architecture
 
-The physically reachable memory-state set is
-[
-\mathcal R_\alpha
+Adopt
+\[
+\mathfrak C=C(\mathbb R_+,\mathbb R^d)
+\]
+with the compact-open topology induced by
+\[
+\rho(f,h)=\sum_{n=1}^{\infty}2^{-n}
+\frac{\sup_{t\in[0,n]}\|f(t)-h(t)\|}
+{1+\sup_{t\in[0,n]}\|f(t)-h(t)\|}.
+\]
+
+Terminology discipline: treat this as a continuous-function state space with compact-open topology; do not rely on an unverified global Banach-norm structure.
+
+For the generalized Volterra equation, the continuation operator is
+\[
+(T_\tau f)(\theta)
 =
-\{T_t\iota(x_0):t\ge0,\ x_0\in X_{\rm phys}\}.
-]
+f(\tau+\theta)
++
+\int_0^\tau
+\frac{(\tau+\theta-s)^{\alpha-1}}{\Gamma(\alpha)}
+g(x_f(s))\,ds.
+\]
 
-For (x\in X_{\rm phys}), define the reachable present-state fiber
-[
+Under the audited Doan–Kloeden hypotheses,
+\[
+T_{\sigma+\tau}=T_\sigma T_\tau
+\]
+and each \(T_\tau\) is continuous.
+
+The canonical physical embedding and present-state evaluation are
+\[
+\iota(x_0)(t)\equiv x_0,\qquad e_0(f)=f(0),
+\]
+with
+\[
+x(t;x_0)=e_0(T_t\iota(x_0)).
+\]
+
+Define
+\[
+\mathcal R_\alpha=
+\{T_t\iota(x_0):t\ge0,\ x_0\in X_{\rm phys}\},
+\]
+and
+\[
 \mathcal F_x=e_0^{-1}(x)\cap\mathcal R_\alpha.
-]
+\]
 
 ### Closure policy
 
-The principal existence/nonexistence statements should be made on (mathcal R_\alpha), not on arbitrary ambient histories.
+Principal claims are to be made on \(\mathcal R_\alpha\), not on arbitrary ambient histories.
 
-The closure (overline{\mathcal R_\alpha}) may be introduced only when a theorem genuinely requires topological closure (for example, compactness, stable-manifold arguments, or attractor theory). Any theorem proved only on the closure must separately state whether its witnesses are actually reachable.
+The closure \(\overline{\mathcal R_\alpha}\) may be introduced only when genuinely required by compactness/attractor/stable-set arguments. A witness existing only in the closure does not establish physical reachability.
 
-## 3. Basin definition
+## 3. Basin definition and invariance
 
-Let (A\subset\mathcal H_\alpha) be an invariant asymptotic state/attractor for the memory-state semidynamical system. Define
-[
-\mathcal B(A)
-=
-\{\phi\in\mathcal H_\alpha:
-\operatorname{dist}(T_t\phi,A)\to0\text{ as }t\to\infty\},
-]
-subject to the exact topology/metric fixed by the source audit.
+For an invariant asymptotic state/attractor \(A\subset\mathfrak C\), define
+\[
+\mathcal B(A)=
+\{\phi\in\mathfrak C:
+\operatorname{dist}(T_t\phi,A)\to0
+\text{ as }t\to\infty\},
+\]
+with distance interpreted in the chosen compatible metric/topology.
 
-For a physical equilibrium (a\in X_{\rm phys}) with (g(a)=0), the associated memory-state equilibrium is expected to be the canonical stationary lift; this identification must be checked against the chosen representation.
+By the semigroup property, basins are positively invariant:
+\[
+\phi\in\mathcal B(A)
+\Longrightarrow
+T_r\phi\in\mathcal B(A),\qquad r\ge0.
+\]
 
-A reachable fiber is **basin-pure** relative to a specified attractor family if all of its basin-classified members belong to one basin. It is **multibasin** if it contains members of at least two distinct basins.
+A reachable fiber is **basin-pure** if all basin-classified members belong to one basin, and **multibasin** if it contains members of at least two distinct basins.
 
-## 4. Key reduction: inter-basin physical collision
+## 4. REDUCTION-M1 — inter-basin physical collision
 
-Define the present observation of a standard IVP at age (t):
-[
+Define
+\[
 P_{\alpha,\theta}(x_0,t)
 =
 e_0(T_t\iota(x_0))
 =
 x(t;x_0,\alpha,\theta).
-]
+\]
 
-### CANDIDATE STRUCTURAL LEMMA M1 — collision-to-multibasin lift
-
-Assume (iota(p)\in\mathcal B(A_1)) and (iota(q)\in\mathcal B(A_2)) with (A_1\neq A_2). If there exist (t,s\ge0) such that
-[
+If
+\[
+\iota(p)\in\mathcal B(A_1),\qquad
+\iota(q)\in\mathcal B(A_2),\qquad A_1\neq A_2,
+\]
+and there exist \(t,s\ge0\) such that
+\[
 P(p,t)=P(q,s)=x,
-]
+\]
 then
-[
-T_t\iota(p),\ T_s\iota(q)\in\mathcal F_x
-]
-and, by forward invariance of basins,
-[
+\[
+T_t\iota(p),T_s\iota(q)\in\mathcal F_x
+\]
+and positive invariance gives
+\[
 T_t\iota(p)\in\mathcal B(A_1),\qquad
 T_s\iota(q)\in\mathcal B(A_2).
-]
-Hence (mathcal F_x) is multibasin.
+\]
 
-**Evidence status:** analytic reduction / proof sketch complete, but not promoted until the exact semidynamical/basin hypotheses are audited.
+Hence \(\mathcal F_x\) is multibasin.
 
-**Importance:** this converts the constructive problem from an infinite-dimensional history search into a finite-dimensional search for a physical-state collision between trajectories whose lifted initial states have different asymptotic outcomes.
+**Status:** PROVED / STANDARD CONSEQUENCE.  
+**Novelty:** none claimed.  
+**Role:** finite-dimensional discovery reduction.
 
-## 5. Candidate robustness theorem
+ROUND-0001 explicitly determined that this implication is not theorem-level novelty.
+
+## 5. CANDIDATE-M2 — Caputo-specific persistence
 
 Let
-[
-H(p,q,t,s;\mu)
-=
-P_\mu(p,t)-P_\mu(q,s),
-]
-where (mu) collects model parameters and fractional order(s).
+\[
+H(p,q,t,s;\mu)=P_\mu(p,t)-P_\mu(q,s).
+\]
 
-### CANDIDATE STRUCTURAL THEOREM M2 — transversal collision persistence
+The generic parameterized implicit-function step is standard. A publishable persistence theorem must therefore verify the nonstandard burden in the actual Caputo setting.
 
-At a base point ((p_*,q_*,t_*,s_*;\mu_*)), suppose:
+At a candidate zero
+\[
+H(p_*,q_*,t_*,s_*;\mu_*)=0,
+\]
+the project will seek:
 
-1. (H=0);
-2. the two lifted initial states lie in distinct basins with robust trapping neighborhoods;
-3. a (d\times d) minor of the derivative of (H) with respect to selected free variables is nonsingular;
-4. the Caputo solution map has the differentiability/parameter-continuity required by the implicit-function theorem.
+1. robust trapping/basin membership of the two standard IVPs;
+2. a nonsingular \(d\times d\) derivative minor with respect to explicitly declared solved variables;
+3. \(C^1\) regularity in those solved variables;
+4. continuity of the relevant derivatives under model-parameter perturbation;
+5. correct fixed-lower-terminal memory treatment;
+6. additional order regularity if \(\alpha\) itself is varied.
 
-Then the inter-basin collision, and therefore a multibasin reachable fiber, persists for parameters (mu) in a neighborhood of (mu_*).
+If these are proved, the collision can potentially be promoted from one witness to an open parameter family.
 
-**Status:** OPEN / candidate theorem. Hypotheses 3–4 and the correct Banach/finite-dimensional formulation require source and proof audit.
+**Status:** OPEN / NARROWED.  
+**Novelty burden:** not the IFT mechanism itself, but the Caputo-specific realization and open-family reachable multibasin geometry.
 
-**Publication value if valid:** turns one certified collision into an open-family result and prevents benchmark-only novelty.
+## 6. Purity / impossibility track
 
-## 6. Purity/impossibility program
+The scalar theorem program is now separated into
+\`research/PURITY_THEOREMS.md\`.
 
-### P0 — one global basin
-If every reachable standard IVP converges to the same attractor, every reachable fiber is trivially basin-pure. This is completeness/background, not principal novelty.
+The key draft result is an equilibrium-partition purity theorem: scalar nonintersection against equilibrium solutions prevents crossing equilibrium separators; if basin outcome is constant on the resulting intervals, every reachable present-state fiber is pure.
 
-### P1 — scalar strong-Allee barrier
-Do **not** infer purity merely from same-time scalar nonintersection. Because (mathcal R_\alpha) contains states of different ages, equal present values can in principle arise at different times.
+The same logic may extend to triangular systems only when a closed scalar coordinate is basin-determining for the full system.
 
-Instead target a barrier theorem: under scalar comparison/separation hypotheses, an unstable Allee equilibrium (a_u) separates extinction and survival outcomes, and the sign of (x-a_u) cannot change along a standard IVP. Then basin label is determined by the current scalar state and every reachable present-state fiber away from the separator is pure.
+Order preservation alone is not assumed to imply fiber purity because equal endpoint does not imply ordered histories.
 
-**Status:** OPEN pending exact comparison theorem audit.
+## 7. Constructive positive target
 
-### P2 — triangular observable-determining coordinate
-For triangular systems, seek hypotheses under which one scalar coordinate obeys a closed threshold equation and determines the asymptotic basin of the full system. If that coordinate is a basin-complete observable, same-present fibers are pure.
+The preferred example remains a natural nontriangular positive strong/Double-Allee Caputo system with:
 
-**Status:** OPEN; general triangularity alone is not asserted to suffice.
+- extinction and survival/coexistence attractors;
+- standard physical IVPs rigorously placed in both basins;
+- an exact/certified inter-basin physical collision;
+- a nondegenerate collision Jacobian;
+- positivity and global continuation;
+- persistence beyond one benchmark.
 
-### P3 — monotone/comparison-dominated classes
-Do not claim that order preservation alone implies fiber purity: two histories with the same endpoint need not be ordered in memory state. Search for extra hypotheses that make basin membership a function of an order interval, threshold functional, or endpoint-determined invariant region.
+A numerical near-collision is only a conjecture generator.
 
-**Status:** OPEN / hostile literature audit required.
+## 8. Novelty boundary after ROUND-0001
 
-## 7. Constructive target
+Not new:
+- memory-state enlargement;
+- current-state non-Markovianity;
+- reachable trajectory intersection;
+- history-space basin geometry;
+- headpoint/projected basin calculations in hereditary systems;
+- overlapping projected attractors in fractional maps;
+- M1 as an abstract implication;
+- the generic implicit-function mechanism.
 
-The preferred positive example is a natural nontriangular fractional strong/Double-Allee model with:
+Search-qualified residual:
+\[
+\exists\phi,\psi\in\mathcal R_\alpha:
+\quad e_0(\phi)=e_0(\psi),\qquad
+\phi\in\mathcal B(A_1),\quad
+\psi\in\mathcal B(A_2),\quad A_1\neq A_2,
+\]
+for physically reachable states of an autonomous continuous Caputo system with \(0<\alpha<1\), preferably extinction versus survival in a natural positive model, plus an open-family structural result.
 
-- a rigorously identified extinction attractor;
-- a rigorously identified survival/coexistence attractor;
-- standard physical IVPs in both basins;
-- an inter-basin physical collision (P(p,t)=P(q,s));
-- a transversality condition suitable for M2;
-- positivity and global continuation proved independently of the collision search.
+## 9. Active gates
 
-A numerical near-collision is only a conjecture generator. Basin labels must ultimately be supported by analytic trapping, exact inequalities, or rigorous certification.
-
-## 8. Immediate gates
-
-Before promoting M1/M2/P1/P2/P3:
-
-1. verify the exact Doan–Kloeden state space, topology, continuation operator and canonical embedding;
-2. verify basin forward-invariance assumptions in that setting;
-3. hostile-search M1/M2 language and synonyms in Volterra/hereditary/factor/observation theory;
-4. verify scalar and monotone comparison hypotheses from primary published sources;
-5. independently reproduce the numerical infrastructure before any discovery claim.
-
-## 9. Current Chief assessment
-
-The most promising route is not “find two exotic histories.” It is:
-
-> find two ordinary standard physical IVPs in distinct robust basins whose physical trajectories collide, then lift that collision to the reachable memory state and prove persistence by transversality.
-
-This route is finite-dimensional at the discovery layer, physically reachable by construction, and has a plausible path from one example to an open-family theorem.
+- ROUND-0001: assimilated.
+- ROUND-0002: scalar/triangular purity audit dispatched.
+- TASK-0001: validated collision-search compute task outstanding.
+- manuscript mode: blocked.
