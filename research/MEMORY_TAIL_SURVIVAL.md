@@ -1,53 +1,26 @@
-# Memory-Tail Survival Program
+# Memory-Tail Survival Theorem
 
 **Owner:** Chief Researcher  
 **Date:** 2026-09-29  
-**Status:** CANDIDATE THEOREM M1 / WEB AUDIT + COMPUTE FEASIBILITY ACTIVE
+**Status:** PROVED FROM PUBLISHED RESOLVENT THEORY / COMPUTATIONAL INSTANTIATION PENDING
 
-## 1. Why a memory-tail theorem is necessary
-
-O1 proves that a forward-invariant physical-state survival region cannot contain a trajectory that later enters the cold-start extinction strip.
-
-Therefore survival must be certified from the continuation state itself.
-
-Choose a cut time \(T\) after the already-certified threshold excursion and after the physical orbit has returned near the coexistence equilibrium.
-
-## 2. Exact split of the Volterra equation
+## 1. Setup
 
 Let
 \[
-u(t)=x(t)-E^*,
+{}^CD^\alpha u=Ju+N(u),
 \qquad
-F(E^*+u)=Ju+N(u).
+0<\alpha<1,
 \]
-
-For \(t\ge T\),
+where \(J\) satisfies the Matignon sector condition
 \[
-u(t)
-=
-h_T(t)
-+
-\frac1{\Gamma(\alpha)}
-\int_T^t
-(t-s)^{\alpha-1}
-\left[Ju(s)+N(u(s))\right]\,ds,
+\sigma(J)
+\subset
+\left\{
+\lambda\ne0:
+|\arg\lambda|>\frac{\alpha\pi}{2}
+\right\}.
 \]
-where the inherited-memory input is
-\[
-\boxed{
-h_T(t)
-=
-p-E^*
-+
-\frac1{\Gamma(\alpha)}
-\int_0^T
-(t-s)^{\alpha-1}F(x(s))\,ds.
-}
-\]
-
-This is not a restart. The entire prehistory \([0,T]\) is retained in \(h_T\).
-
-## 3. Linear resolvent
 
 Define
 \[
@@ -56,28 +29,62 @@ Define
 t^{\alpha-1}E_{\alpha,\alpha}(Jt^\alpha).
 \]
 
-For the linear Volterra equation
+Published stable Mittag-Leffler estimates give
 \[
-v=h_T+I_T^\alpha[Jv],
+\Psi_J(t)=O(t^{-\alpha-1})
 \]
-let
+as \(t\to\infty\), while near zero
 \[
-v_T=\mathcal L_J h_T
-\]
-denote its exact solution.
-
-Equivalently, under the standard resolvent identity,
-\[
-v_T
+\Psi_J(t)
 =
-h_T+
-R_J*h_T,
-\qquad
-R_J(t)=J\Psi_J(t),
+\frac{t^{\alpha-1}}{\Gamma(\alpha)}I
++
+O(t^{2\alpha-1}).
 \]
-with convolution based at \(T\).
 
-The nonlinear tail then has the variation-of-constants form
+Hence, in every induced finite-dimensional norm,
+\[
+\boxed{
+K_J
+=
+\int_0^\infty
+\|\Psi_J(s)\|\,ds
+<\infty.
+}
+\]
+
+Also
+\[
+\boxed{
+\int_0^\infty\Psi_J(s)\,ds=-J^{-1}.
+}
+\]
+
+## 2. Exact memory split at time \(T\)
+
+For a standard trajectory generated from \(u_0=p-E^*\), the global variation-of-constants formula is
+\[
+u(t)
+=
+E_\alpha(Jt^\alpha)u_0
++
+\int_0^t
+\Psi_J(t-s)N(u(s))\,ds.
+\]
+
+For any \(T>0\) and \(t\ge T\), define the inherited linear-memory response
+\[
+\boxed{
+v_T(t)
+=
+E_\alpha(Jt^\alpha)u_0
++
+\int_0^T
+\Psi_J(t-s)N(u(s))\,ds.
+}
+\]
+
+Then exactly
 \[
 \boxed{
 u(t)
@@ -89,141 +96,194 @@ v_T(t)
 }
 \]
 
-ROUND-0005 must audit this identity and its hypotheses.
+This is the preferred computational form.
 
-## 4. CANDIDATE M1 — memory-tail survival criterion
-
-Fix a norm \(\|\cdot\|_w\).
-
-Assume:
-
-1. the linear kernel is integrable,
-   \[
-   K_J
-   :=
-   \int_0^\infty
-   \|\Psi_J(s)\|_w\,ds
-   <\infty;
-   \]
-
-2. on
-   \[
-   \|u\|_w\le r
-   \]
-   the nonlinear remainder obeys
-   \[
-   \|N(u)\|_w
-   \le
-   C_r\|u\|_w^2;
-   \]
-
-3. the inherited linear memory response satisfies
-   \[
-   M_T
-   :=
-   \sup_{t\ge T}
-   \|v_T(t)\|_w
-   <\infty,
-   \qquad
-   v_T(t)\to0;
-   \]
-
-4. the strict smallness condition holds:
-   \[
-   \boxed{
-   M_T+K_JC_r r^2<r.
-   }
-   \]
-
-Then the actual tail remains inside
+It is algebraically equivalent to splitting the original Volterra equation as
 \[
-\|u(t)\|_w<r
-\qquad(t\ge T)
+u(t)
+=
+h_T(t)
++
+I^\alpha_T[Ju+N(u)](t),
 \]
-and
+where
 \[
-u(t)\to0.
+h_T(t)
+=
+p-E^*
++
+\frac1{\Gamma(\alpha)}
+\int_0^T
+(t-s)^{\alpha-1}F(x(s))\,ds.
 \]
 
-### Proof draft
+The second formulation makes inherited history explicit; the first avoids cancellation in numerical certification.
 
-Suppose a first exit from the radius-\(r\) ball occurs.
+## 3. Decay of the inherited linear response
 
-Before that exit,
+For fixed finite \(T\),
+
 \[
-\|N(u(s))\|_w\le C_r r^2.
+E_\alpha(Jt^\alpha)u_0\to0.
 \]
 
-The variation-of-constants formula gives
+Also, on \([0,T]\), \(N(u(s))\) is bounded. Since for each fixed \(s\)
 \[
-\|u(t)\|_w
-\le
-M_T+
-K_JC_r r^2
-<r,
+\Psi_J(t-s)\to0
 \]
-contradicting first exit.
-
-Thus the tail remains inside the ball globally.
-
-For convergence, let
+and the history interval is finite,
 \[
-L=\limsup_{t\to\infty}\|u(t)\|_w.
-\]
-
-Since
-\[
-\|N(u)\|_w
-\le
-C_r r\,\|u\|_w
-\]
-inside the ball and \(\Psi_J\in L^1\), the standard limsup convolution estimate gives
-\[
-L
-\le
-K_JC_r r\,L.
-\]
-
-The strict invariance condition implies
-\[
-K_JC_r r<1.
-\]
-
-Hence
-\[
-L=0.
+\int_0^T
+\Psi_J(t-s)N(u(s))\,ds
+\to0.
 \]
 
 Therefore
 \[
-u(t)\to0.
+\boxed{
+v_T(t)\to0.
+}
 \]
 
-### Status
+Equivalently, in the \(h_T\) formulation, \(h_T(t)\to p-E^*\) and the resolvent identity
+\[
+\int_0^\infty\Psi_J=-J^{-1}
+\]
+cancels this constant tail.
 
-This proof is internally compelling but **not yet promoted**.
+## 4. THEOREM M1 — memory-tail survival criterion
 
-ROUND-0005 must verify:
-- the exact resolvent/variation-of-constants identity;
-- \(\Psi_J\in L^1\) under the declared matrix stability condition;
-- the limsup convolution lemma at the required regularity;
-- asymptotic conditions guaranteeing \(v_T(t)\to0\).
+Fix an induced norm.
 
-## 5. Why O1 and O2 do not apply
+Suppose that, for some \(r>0\),
+\[
+\|N(u)\|
+\le
+C_r\|u\|^2
+\qquad
+(\|u\|\le r).
+\]
 
-O1 does not apply because M1 does not declare the physical point \(x(T)\) to be a survival cold start. It certifies the inherited continuation state generated by the full history \([0,T]\).
+Define
+\[
+M_T
+=
+\sup_{t\ge T}
+\|v_T(t)\|.
+\]
 
-O2 does not apply because the large early excursion is contained inside \(h_T\) and the certified nonlinear radius is imposed only on the late tail after recovery.
+If
+\[
+\boxed{
+M_T+K_JC_rr^2<r,
+}
+\]
+then the full inherited-memory trajectory satisfies
+\[
+\|u(t)\|<r
+\qquad
+(t\ge T)
+\]
+and
+\[
+\boxed{
+u(t)\to0.
+}
+\]
 
-## 6. Computational target
+### Proof
 
-For the exact-rational W1 witness, search cut times \(T\) after recovery and certify:
-- \(M_T\);
-- \(K_J\);
-- \(C_r\);
-- a radius \(r\) satisfying
-  \[
-  M_T+K_JC_rr^2<r.
-  \]
+At \(t=T\),
+\[
+u(T)=v_T(T),
+\]
+hence
+\[
+\|u(T)\|\le M_T<r.
+\]
 
-If successful, M1 + the already-certified entry + X1 + E1 closes TARGET-A20.
+If \(t_e\) were the first exit time from the radius-\(r\) ball, then for \(T\le s\le t_e\),
+\[
+\|N(u(s))\|\le C_rr^2.
+\]
+
+Thus
+\[
+\|u(t_e)\|
+\le
+M_T+
+\int_T^{t_e}
+\|\Psi_J(t_e-s)\|C_rr^2\,ds
+\le
+M_T+K_JC_rr^2
+<r,
+\]
+contradiction.
+
+So the tail remains in the ball.
+
+Within the ball,
+\[
+\|N(u)\|\le C_rr\|u\|.
+\]
+
+Let
+\[
+L=\limsup_{t\to\infty}\|u(t)\|.
+\]
+
+The strict invariance inequality implies
+\[
+K_JC_rr<1.
+\]
+
+Split the nonlinear convolution at a large fixed time \(S\):
+the contribution from \([T,S]\) tends to zero because \(\Psi_J(t-s)\to0\);
+the remaining contribution is bounded asymptotically by
+\[
+K_JC_rr(L+\varepsilon).
+\]
+
+Since \(v_T(t)\to0\),
+\[
+L\le K_JC_rr(L+\varepsilon).
+\]
+
+Letting \(\varepsilon\downarrow0\),
+\[
+L\le K_JC_rrL.
+\]
+
+Hence \(L=0\). \(\square\)
+
+## 5. Computational sanity checks
+
+Any certified \(K_J\) must satisfy
+\[
+\boxed{
+K_J\ge\|J^{-1}\|
+}
+\]
+because
+\[
+\int_0^\infty\Psi_J=-J^{-1}.
+\]
+
+This is a mandatory validation check for TASK-0004.
+
+## 6. Relation to O1/O2
+
+O1 does not apply because M1 certifies a continuation state using its complete inherited history, not the cold start at \(x(T)\).
+
+O2 does not apply because the large early excursion is absorbed exactly into \(v_T\); the radius-\(r\) nonlinear estimate is imposed only after the late cut time.
+
+## 7. TARGET-A20 closure
+
+For exact-rational W1, if TASK-0004 certifies M1 at any finite \(T\), then survival is rigorous.
+
+Together with:
+- exact-rational certified entry;
+- X1 cold-start extinction;
+- E1 basin-entry geometry;
+
+this proves TARGET-A20.
