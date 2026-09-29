@@ -18,3 +18,37 @@ The full inherited bibliography is stored separately in bibliography/references.
 
 ## Submission rule
 The final manuscript may cite only formally published sources, as required by agent_directives_publishable_first_submission.md.
+
+
+## ROUND-0001 verified additions — state architecture, projected basins, persistence
+
+11. Diethelm, K. (2014). An Extension of the Well-Posedness Concept for Fractional Differential Equations of Caputo's Type. *Applicable Analysis* 93(10), 2126–2135. DOI 10.1080/00036811.2013.872776.  
+Role: continuous dependence on initial data, given function, derivative order, and starting-point perturbations.
+
+12. Liz, E.; Ruiz-Herrera, A. (2015). Delayed Population Models with Allee Effects and Exploitation. *Mathematical Biosciences and Engineering* 12(1), 83–97. DOI 10.3934/mbe.2015.12.83.  
+Role: rigorous hereditary-history basin estimates in an Allee population model; adjacent basin-purity/threat baseline.
+
+13. Guo, Y.; Ma, B.; Wu, R. (2016). On Sensitivity Analysis of Parameters for Fractional Differential Equations with Caputo Derivatives. *Electronic Journal of Qualitative Theory of Differential Equations* 2016(118), 1–17. DOI 10.14232/ejqtde.2016.1.118.  
+Role: finite-horizon parameter continuity and parameter sensitivity/differentiability for fixed fractional order.
+
+14. Daza, A.; Wagemakers, A.; Sanjuán, M. A. F. (2017). Wada Property in Systems with Delay. *Communications in Nonlinear Science and Numerical Simulation* 43, 220–226. DOI 10.1016/j.cnsns.2016.07.008.  
+Role: strong adjacent prior for multibasin geometry in infinite-dimensional history space.
+
+15. Majewski, M. (2017). Control System Defined by Some Integral Operator. *Opuscula Mathematica* 37(2), 313–325. DOI 10.7494/OpMath.2017.37.2.313.  
+Role: nonlinear Volterra solution-operator robustness and continuous differentiability via an implicit-function theorem.
+
+16. Edelman, M. (2011). Fractional Standard Map: Riemann–Liouville vs. Caputo. *Communications in Nonlinear Science and Numerical Simulation* 16(12), 4573–4580. DOI 10.1016/j.cnsns.2011.02.007.  
+Role: strongest adjacent threat found in ROUND-0001; numerical intersecting trajectories and overlapping projected attractors in fractional maps with memory.
+
+17. Gomoyunov, M. I. (2022). On Differentiability of Solutions of Fractional Differential Equations with Respect to Initial Data. *Fractional Calculus and Applied Analysis* 25(4), 1484–1506. DOI 10.1007/s13540-022-00072-w.  
+Role: differentiability of endpoint functionals for generalized Caputo history initial data.
+
+18. Doan, T. S.; Kloeden, P. E. (2024). Attractors of Caputo Semi-Dynamical Systems. *Fractional Calculus and Applied Analysis* 27(5), 2305–2316. DOI 10.1007/s13540-024-00324-x.  
+Role: confirms the Doan–Kloeden continuation-state semigroup as the attractor state space.
+
+19. Szaksz, B.; Stepan, G.; Habib, G. (2024). Dynamical Integrity Estimation in Time Delayed Systems: A Rapid Iterative Algorithm. *Journal of Sound and Vibration* 571, 118045. DOI 10.1016/j.jsv.2023.118045.  
+Role: especially close hereditary prior for headpoint-projected basin/integrity calculations; compares constrained history types with the same headpoint.
+
+### ROUND-0001 publication-status note
+
+Khalighi et al. (2026), “Memory reshapes stability landscapes: resilience-resistance tradeoffs and critical transitions,” arXiv:2602.20365, was rechecked on 2026-09-29. The search located preprint/arXiv records but no verified peer-reviewed publication. Treat as **INTERNAL NOVELTY THREAT ONLY**, not final-manuscript citation support unless a published version is later verified.
