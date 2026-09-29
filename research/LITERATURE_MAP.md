@@ -75,3 +75,34 @@ Not new:
 
 Search-qualified residual:
 fiberwise basin partition of the physically reachable Caputo memory state, with general existence/nonexistence theorems.
+
+
+## ROUND-0001 — newly verified adjacent pressure
+
+### Headpoint-projected basins in delay systems
+**Szaksz, Stepan & Habib (2024)**, DOI 10.1016/j.jsv.2023.118045.  
+They explicitly reduce DDE basin/integrity calculations to headpoints of constrained initial-history families and compare several history types with the same headpoint. This does not prove a same-headpoint/opposite-basin pair, but it closes broad novelty claims based only on endpoint/headpoint basin projection.
+
+### Infinite-dimensional history-space multibasin geometry
+**Daza, Wagemakers & Sanjuán (2017)**, DOI 10.1016/j.cnsns.2016.07.008.  
+Wada basin geometry is constructed in parameterized slices of the DDE history-function space. History-space multibasin geometry itself is therefore established adjacent prior.
+
+### Fractional projected-attractor overlap
+**Edelman (2011)**, DOI 10.1016/j.cnsns.2011.02.007.  
+Fractional standard maps with memory display numerical trajectory intersections and overlapping projected attractors. This is outside the target autonomous continuous Caputo (0<\alpha<1) class and is not a rigorous reachable-fiber theorem, but it prevents a broad novelty claim that projected-state coincidence with different memory/future is uniquely new here.
+
+### Persistence-method prior
+**Guo, Ma & Wu (2016)**, DOI 10.14232/ejqtde.2016.1.118; **Gomoyunov (2022)**, DOI 10.1007/s13540-022-00072-w; **Majewski (2017)**, DOI 10.7494/OpMath.2017.37.2.313.  
+Together these provide parameter sensitivity/differentiability for Caputo solutions, generalized-history endpoint differentiability, and Volterra implicit-function/sensitivity theory. They do not directly prove the project’s multibasin-fiber persistence theorem. The abstract IFT step should nevertheless be treated as standard; the Caputo-specific regularity and basin-trapping verification carry the burden.
+
+### ROUND-0001 residual
+The exact residual remains:
+[
+\exists\phi,\psi\in\mathcal R_\alpha:
+\quad e_0(\phi)=e_0(\psi),\qquad
+\phi\in\mathcal B(A_1),\quad
+\psi\in\mathcal B(A_2),\quad A_1\ne A_2,
+]
+for physically reachable states of an autonomous continuous Caputo system with (0<\alpha<1), ideally positive and Double-Allee, together with a structural/open-family theorem.
+
+**Search verdict:** broad novelty **NARROWED**; exact theorem program **not killed**.
