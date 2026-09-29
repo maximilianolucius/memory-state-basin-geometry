@@ -1,68 +1,80 @@
 # Status
 
-**Phase:** ACTIVE — constructive feasibility + purity closure
+**Phase:** ACTIVE — MULTIDIMENSIONAL CONSTRUCTIVE FEASIBILITY
 
-## ROUND-0001 assimilated — 2026-09-29
+## ROUND-0002 assimilated — 2026-09-29
 
-Chief verdict: **NARROW, NOT KILLED**.
+Chief verdict:
+**SCALAR BRANCH CLOSED AS NOVELTY; COMPLETENESS RESULT RETAINED.**
 
-Verified:
-- exact Doan–Kloeden continuation-state architecture;
-- compact-open state topology and canonical point-IVP embedding;
-- positive invariance needed for the collision reduction.
+### Scalar result
 
-Novelty removed:
-- M1 as a theorem claim;
-- generic implicit-function/transversality persistence;
-- broad “same present, different future because of memory” language;
-- broad headpoint/projected hereditary basin language.
+\`COMPLETENESS-S1\` is now accepted as a proved conditional theorem:
 
-Search-qualified residual retained:
+> if scalar equilibrium solutions are barriers and each equilibrium-separated interval has one basin label, every physically reachable present-state fiber is basin-pure.
+
+Its novelty status is **STANDARD CONSEQUENCE**.
+
+### Rigorous Strong-Allee specialization
+
+For the Area–Nieto Caputo cubic
+\[
+{}^C D^\alpha x=x(1-x)(x-\theta),
+\qquad 0<\theta<1,
+\]
+Doan–Kloeden 2022 gives the rigorous intervalwise asymptotics needed to obtain:
+\[
+0<x<\theta\Rightarrow\mathcal F_x\subseteq\mathcal B(0),
+\]
+\[
+x>\theta\Rightarrow\mathcal F_x\subseteq\mathcal B(1),
+\]
+\[
+\mathcal F_\theta=\{\iota(\theta)\}.
+\]
+
+This demonstrates a clean scalar impossibility class for the target extinction/survival ambiguity.
+
+### Triangular/comparison outcome
+
+- triangular extension: USEFUL COMPLETENESS only, requiring a basin-determining scalar coordinate;
+- generic monotone/comparison purity: NOT PROMOTED; extra endpoint-determining structure is required.
+
+## Principal project target
+
+The novelty center is now entirely on the multidimensional constructive problem:
 \[
 \exists\phi,\psi\in\mathcal R_\alpha:
 \quad
 e_0(\phi)=e_0(\psi),\qquad
 \phi\in\mathcal B(A_1),\quad
-\psi\in\mathcal B(A_2),\quad A_1\neq A_2,
+\psi\in\mathcal B(A_2),\quad A_1\neq A_2.
 \]
-for an autonomous continuous Caputo system with \(0<\alpha<1\), preferably extinction versus survival/coexistence in a natural positive strong/Double-Allee model.
 
-The target must then be generalized to an open parameter/order family with the Caputo-specific regularity and basin hypotheses explicitly proved.
-
-## Chief work completed after ROUND-0001
-
-- decision:
-  \`research/coordination/chief-decisions/ROUND-0001_state-architecture-multibasin-killer_DECISION.md\`
-- state architecture upgraded from provisional to verified baseline:
-  \`research/STATE_ARCHITECTURE.md\`
-- scalar equilibrium-partition purity theorem drafted:
-  \`research/PURITY_THEOREMS.md\`
-- ROUND-0002 dispatched for exact scalar/triangular/comparison audit.
+Preferred realization:
+extinction versus survival/coexistence in a natural positive strong/Double-Allee Caputo model.
 
 ## Active delegated work
 
 ### Compute — TASK-0001
-Outstanding:
-- two independent history-retaining solvers;
+This is now the critical path.
+
+Required:
+- validated dual-solver infrastructure;
 - published intersection reproduction;
 - Double-Allee baseline;
-- inter-basin collision search/refinement;
-- Jacobian/transversality diagnostics.
+- inter-basin collision discovery/refinement;
+- nondegeneracy diagnostics;
+- certification where feasible.
 
-### Web Search — ROUND-0002
-Active request:
-\`research/coordination/chief-to-web/ROUND-0002_scalar-triangular-purity_REQUEST.md\`
+### Web Search
+ROUND-0001: COMPLETE / ASSIMILATED.  
+ROUND-0002: COMPLETE / ASSIMILATED.
 
-Purpose:
-audit the exact scalar nonintersection hypotheses, the S1 purity theorem, strong-Allee instantiation, triangular extension, and whether monotone comparison can genuinely imply endpoint-fiber purity.
+No new broad web-search round is opened now.
 
-## Main scientific gate
-
-The project still needs at least one of:
-
-1. a rigorous/certified positive multibasin-fiber witness with a path to an open-family theorem; or
-2. a sufficiently broad and nontrivial impossibility theorem to replace the positive program.
+The next search must be triggered by the exact model/parameter regime or collision theorem returned by Compute TASK-0001.
 
 ## Paper
 
-**NOT STARTED.** Manuscript mode remains blocked.
+**NOT STARTED.** Manuscript mode remains blocked until the principal multidimensional target is proved/certified at defensible scope.
