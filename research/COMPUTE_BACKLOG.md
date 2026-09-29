@@ -4,23 +4,28 @@
 
 TASK-0001 — discovery.  
 TASK-0002 — validated entry.  
-TASK-0003 — exact-rational L1 search / obstruction.
-
-Key TASK-0003 outcomes:
-- O1 proves L1-type physical invariant certificate cannot close target;
-- W1 exact-rational entry certified;
-- O2 excludes one global weighted-max certificate family.
+TASK-0003 — rational recertification + physical-certificate obstruction.
 
 ## Active
 
-### TASK-0004 — memory-tail survival
-request:
-\`research/coordination/chief-to-compute/TASK-0004_memory-tail-survival_REQUEST.md\`
+### TASK-0004 — memory-tail survival certification
+status: SOLE PRINCIPAL GATE
 
-First test feasibility numerically.
+THEOREM-M1 is now VERIFIED.
 
-Only if feasible:
-- extend rigorous history enclosure;
-- certify matrix kernel;
-- certify inherited linear response;
-- apply M1 after ROUND-0005 audit.
+Required final certificate:
+\[
+M_T+K_JC_rr^2<r
+\]
+for exact-rational W1, with all quantities rigorously bounded.
+
+Preferred inherited-response formula:
+\[
+v_T(t)
+=
+E_\alpha(Jt^\alpha)u_0
++
+\int_0^T\Psi_J(t-s)N(u(s))\,ds.
+\]
+
+Do not use a cancellation-heavy \(h_T+(J\Psi_J)*h_T\) implementation as primary evidence.
