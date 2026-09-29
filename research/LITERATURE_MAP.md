@@ -106,3 +106,49 @@ The exact residual remains:
 for physically reachable states of an autonomous continuous Caputo system with (0<\alpha<1), ideally positive and Double-Allee, together with a structural/open-family theorem.
 
 **Search verdict:** broad novelty **NARROWED**; exact theorem program **not killed**.
+
+
+## ROUND-0002 — scalar/triangular purity closure
+
+### Scalar separation: rigorous load-bearing source
+**Cong & Tuan (2017)**, DOI 10.1216/JIE-2017-29-4-585.  
+Under continuity plus a global-in-state Lipschitz bound, scalar solutions preserve strict initial ordering on the full declared interval (J=[0,T]) or (J=[0,\infty)). Equilibrium solutions are therefore noncrossable barriers under these hypotheses.
+
+**Source correction:** Diethelm–Ford (2012) is not used as the load-bearing proof because Cong–Tuan explicitly explain why its backward-induction proof is incomplete.
+
+### Scalar attractor/basin partition
+**Doan & Kloeden (2022)**, DOI 10.1007/s13540-022-00030-6.  
+For (C^1) scalar autonomous Caputo equations satisfying dissipativity and simple-zero conditions, every solution converges to an equilibrium, and the equilibrium-separated intervals have a fixed asymptotic endpoint. This supplies the central published ingredient behind S1-H2.
+
+**ROUND-0002 consequence:** the project's scalar reachable-fiber purity proposition is best positioned as a **STANDARD CONSEQUENCE / COMPLETENESS RESULT**, not a principal novelty claim.
+
+### Rigorous strong-Allee instantiation
+**Area & Nieto (2023)**, DOI 10.1016/j.exco.2023.100121, supplies the published Caputo cubic
+[
+{}^C D^\alpha x=x(1-x)(x-\theta),qquad 0<\theta<1.
+]
+Its vector field satisfies the Doan–Kloeden dissipativity and simple-zero hypotheses. Therefore the published general theorem yields the rigorous split:
+[
+0<x_0<\theta\Rightarrow x(t)\to0,qquad
+x_0>\theta\Rightarrow x(t)\to1
+]
+on the positive physical domain (with (\theta) stationary). This is a clean scalar strong-Allee completeness example.
+
+**Kalra & Malhotra (2024)**, DOI 10.37256/cm.5120243183, is useful context but its threshold extinction/survival presentation is materially numerical and is not used as proof.
+
+### Triangular prior
+**Cong & Tuan (2017)** proves nonintersection/nonlocal-flow results for triangular Caputo systems under its Lipschitz structure.  
+**Doan & Kloeden (2022)** proves a global attractor theorem for a special product-triangular class. The broader Chief target — a closed scalar threshold coordinate whose current interval determines the full-system basin — remains a useful completeness corollary, but general triangularity alone is insufficient.
+
+### Monotone/comparison prior
+**Wu (2020)**, DOI 10.1142/S0218348X2050070X; **Wu (2023)**, DOI 10.1016/j.chaos.2023.113437; and **Cheng & Wu (2026)**, DOI 10.1016/j.jmaa.2026.130509, provide increasingly general scalar/system Caputo comparison principles.
+
+These theorems propagate order under appropriate hypotheses. They do **not** imply
+[
+e_0(\phi)=e_0(\psi)\Longrightarrow
+\omega(\phi)=\omega(\psi)
+]
+for reachable memory states. Endpoint-fiber purity therefore needs extra endpoint-determining structure; monotonicity alone is not enough.
+
+### ROUND-0002 residual
+The scalar route is closed as a novelty source. A meaningful triangular/monotone result would need a precise extra hypothesis making the asymptotic basin label factor through an endpoint coordinate/functional. Otherwise the main project value remains the multidimensional constructive multibasin-fiber program.
