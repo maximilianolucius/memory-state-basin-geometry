@@ -1,124 +1,175 @@
-# TASK-0004 — Memory-tail survival feasibility and certification
+# TASK-0004 — Memory-tail survival certification
 
 **From:** Chief Researcher  
 **To:** Compute Agent  
 **Date:** 2026-09-29  
-**Priority:** P0 / TARGET-A20 SURVIVAL CLOSURE
+**Priority:** P0 / SOLE PRINCIPAL GATE
 
-## Context
+## UPDATE AFTER ROUND-0005
 
-TASK-0003 proved that physical-state invariant basin certificates cannot close the target.
+**THEOREM-M1 IS VERIFIED.**
 
-Use the memory-dependent candidate theorem in:
+The governing statement is now
 \`research/MEMORY_TAIL_SURVIVAL.md\`.
 
-Until ROUND-0005 returns, label M1-dependent conclusions **CONDITIONAL**.
+No further theorem/literature qualifier is needed.
 
-## A — feasibility first
+## Exact-rational benchmark
 
-Use the exact-rational W1 model:
+Use
 \[
 \theta=3/10,\quad a=b=1,\quad m=4/5,\quad\alpha=17/20,
 \]
 \[
-p=(6093/2500,503/250).
+p=(6093/2500,503/250),
+\qquad
+E^*=(4/5,1/10).
 \]
 
-For cut times after recovery, e.g.
+The threshold entry for this exact benchmark is already CERTIFIED COMPUTATION.
+
+## A — preferred formula for the inherited linear response
+
+Do **not** compute \(v_T\) primarily through
 \[
-T\in\{50,100,200,500,1000\},
+h_T+(J\Psi_J)*h_T
 \]
-numerically estimate in several norms:
+because this contains a large asymptotic cancellation.
 
-1. the inherited input \(h_T\);
-2. the exact linear response \(v_T=\mathcal L_Jh_T\);
-3. 
-   \[
-   M_T=\sup_{t\ge T}\|v_T(t)\|;
-   \]
-4. 
-   \[
-   K_J=\int_0^\infty\|\Psi_J(s)\|\,ds;
-   \]
-5. best radius \(r\) for
-   \[
-   M_T+K_JC_rr^2<r.
-   \]
+Use the exact global variation-of-constants split:
+\[
+\boxed{
+v_T(t)
+=
+E_\alpha(Jt^\alpha)u_0
++
+\int_0^T
+\Psi_J(t-s)N(u(s))\,ds,
+\qquad t\ge T.
+}
+\]
 
-Use:
-- Euclidean norm;
-- diagonal weighted max norms;
-- if useful, a non-diagonal eigenvector/Lyapunov-adapted norm.
-
-This stage is NUMERICAL EXPLORATION only.
-
-Stop early if the inequality misses by orders of magnitude for every reasonable \(T\).
-
-## B — verify the resolvent numerically
-
-Cross-check:
+Then
 \[
 u(t)
 =
 v_T(t)
 +
-\int_T^t\Psi_J(t-s)N(u(s))\,ds
+\int_T^t
+\Psi_J(t-s)N(u(s))\,ds.
 \]
-against the existing full-history solvers.
 
-The identity should agree at mesh convergence order.
+This form retains the full prehistory and has both terms of \(v_T\) decay individually.
 
-## C — rigorous finite-history input
+## B — feasibility
 
-If Stage A is feasible, extend the TASK-0002 validated trajectory enclosure from \([0,4]\) to a useful cut time \(T\).
-
-Use graded/coarse-tail meshes or block acceleration while retaining rigorous defect bounds.
-
-From the certified history, build rigorous enclosures of \(h_T(t)\) needed by the linear response calculation.
-
-Do not restart the Caputo IVP at \(T\).
-
-## D — rigorous kernel and linear-response bounds
-
-Develop certified bounds for:
+For cut times after recovery, scan e.g.
 \[
-K_J
+T\in\{50,100,200,500,1000,2000\}
 \]
-and
+and several induced norms.
+
+Estimate:
 \[
-M_T.
+M_T=\sup_{t\ge T}\|v_T(t)\|,
 \]
-
-Allowed:
-- matrix diagonalization with interval eigenvector enclosures;
-- scalar Mittag-Leffler sector bounds;
-- direct Arb quadrature on a finite interval plus analytic asymptotic tail;
-- contour/asymptotic bounds justified by ROUND-0005 sources.
-
-All tail estimates must be rigorous.
-
-## E — certificate
-
-If ROUND-0005 validates M1 and the strict inequality
 \[
-M_T+K_JC_rr^2<r
+K_J=\int_0^\infty\|\Psi_J(s)\|\,ds,
 \]
-is rigorously separated, return:
-- exact \(T\);
-- norm;
-- \(M_T,K_J,C_r,r\);
-- numerical margins;
-- full provenance.
+and the best \(r\) satisfying
+\[
+\boxed{
+M_T+K_JC_rr^2<r.
+}
+\]
 
-Then survival of W1 is certified.
+Required sanity check:
+\[
+K_J\ge\|J^{-1}\|.
+\]
 
-Combined with the existing exact-rational threshold-entry certificate, X1 and E1, this would prove TARGET-A20.
+Search:
+- Euclidean norm;
+- diagonal weighted max norms;
+- non-diagonal/eigenvector-adapted or Lyapunov-adapted norms if beneficial.
 
-## Negative result
+If no norm and no \(T\) approach feasibility, stop and report quantitatively before expensive certification.
 
-If M1 is infeasible even after norm optimization, quantify the obstruction rather than extending horizon blindly.
+## C — numerical identity cross-check
+
+Verify at mesh convergence that
+\[
+u(t)-v_T(t)
+=
+\int_T^t\Psi_J(t-s)N(u(s))\,ds.
+\]
+
+Cross-check independently against the full-history solvers.
+
+## D — rigorous history enclosure
+
+If feasible, extend validated enclosure of W1 over \([0,T]\).
+
+The large early threshold excursion is allowed; it enters only through the certified finite-history integral in \(v_T\).
+
+Use graded/coarse-tail meshes or block structure as needed, but retain rigorous defect bounds.
+
+## E — rigorous \(K_J\)
+
+Certify
+\[
+K_J.
+\]
+
+Preferred strategy:
+- rigorous finite-interval matrix Mittag-Leffler evaluation/quadrature;
+- rigorous asymptotic tail
+  \[
+  \|\Psi_J(t)\|\le C_Jt^{-\alpha-1}
+  \]
+  after an explicit \(S\);
+- integrate the tail analytically.
+
+Check against
+\[
+K_J\ge\|J^{-1}\|.
+\]
+
+## F — rigorous \(M_T\)
+
+Using the certified history and
+\[
+v_T(t)
+=
+E_\alpha(Jt^\alpha)u_0
++
+\int_0^T\Psi_J(t-s)N(u(s))\,ds,
+\]
+certify the supremum on:
+- a finite post-cut interval \([T,T+H]\);
+- the infinite remainder via matrix Mittag-Leffler asymptotics.
+
+Avoid cancellation-dependent formulas.
+
+## G — final certificate
+
+Return exact/outward bounds for
+\[
+T,\quad M_T,\quad K_J,\quad C_r,\quad r
+\]
+with strict positive margin
+\[
+r-M_T-K_JC_rr^2>0.
+\]
+
+If achieved:
+**W1 survival is rigorously proved.**
+
+Then TARGET-A20 closes immediately from M1 + exact-rational entry + X1 + E1.
 
 ## Return
 
 Commit:
 \`research/coordination/compute-to-chief/TASK-0004_memory-tail-survival_RETURN.md\`.
+
+If infeasible, quantify which term prevents the inequality and by what factor.
