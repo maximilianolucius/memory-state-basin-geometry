@@ -2,32 +2,35 @@
 
 ## Completed
 
-### TASK-0001
-validated discovery infrastructure — COMPLETE / MERGED.
-
-### TASK-0002
-validated entry + near-equilibrium search — COMPLETE / MERGED.
-
-Key result:
-finite-time entry into \(R_{\rm ext}\) is now CERTIFIED COMPUTATION.
+TASK-0001 — discovery infrastructure.  
+TASK-0002 — validated finite-time entry.
 
 ## Active
 
 ### TASK-0003 — exact-rational local-survival witness
-status: DISPATCHED  
-request:
-\`research/coordination/chief-to-compute/TASK-0003_exact-rational-local-survival_REQUEST.md\`
+status: DISPATCHED / L1 NOW VERIFIED
 
-Goal:
-find a standard initial state simultaneously satisfying:
-- explicit L1 local survival-basin certificate from time zero;
-- rigorous validated entry into \(R_{\rm ext}\).
+Theoretical uncertainty is closed.
 
-Also:
-recertify the original witness using exact rational parameters.
+Acceptance criterion:
+find one standard initial state with exact-rational model definition satisfying both:
 
-## Later
+1. THEOREM-L1 local survival certificate;
+2. TASK-0002-style rigorous entry into
+\[
+R_{\rm ext}.
+\]
 
-If TASK-0003 fails:
-- develop infinite-horizon weighted a-posteriori survival certification;
-- do not substitute finite-horizon tail classification.
+If both are certified, TARGET-A20 is mathematically proved.
+
+Also required:
+publication-grade rational recertification of the original TASK-0001 witness.
+
+## If TASK-0003 returns negative
+
+Do not weaken the theorem standard.
+
+Next route:
+- improve the local basin certificate (optimize Lyapunov matrix \(Q\), not only \(Q=I\));
+- search weighted/nonquadratic Lyapunov functions;
+- only then consider infinite-horizon validated dynamics.
