@@ -25,9 +25,9 @@
       "openblas configuration": "OpenBLAS 0.3.34.106.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64",
       "pc file directory": "/project/.openblas"
     },
-    "utc": "2026-09-29T19:41:12Z",
+    "utc": "2026-09-29T20:27:35Z",
     "seed": 20260929,
-    "git_commit": "121a45a8eed73ae5c2fa77382e39726572f0afef",
+    "git_commit": "957fb547039d7a86412e18a67c3291e9835a67e8",
     "git_branch": "compute/task-0002",
     "git_dirty": true,
     "git_source": "launcher environment (rsync'd tree, not a checkout)"
@@ -35,18 +35,18 @@
   "payload": {
     "evidence_class": "NUMERICAL CORROBORATION",
     "definition": "D(T,R) = sup_{tau in [0,R]} ||T_T iota(p)(tau) - E*||_inf",
-    "wall_seconds": 568.683
+    "wall_seconds": 213.156
   },
   "artifacts": [
     {
       "path": "/home/aureus/msbg/computations/data/t2_stageC_runs.json",
-      "sha256": "6a59463455edd05cbe4f42a5cd3ce222d1f8a1e4c418a4578a279167f93c40e9",
-      "bytes": 21094
+      "sha256": "0772e5b3c25cc2b4d12b4870ebe84313c43a10890b79d3f540fab9cf506caa93",
+      "bytes": 63784
     },
     {
       "path": "/home/aureus/msbg/computations/data/t2_stageC_summary.json",
-      "sha256": "64a11d58a9c404958b7f7e2493219620512d86d42183f7f033a7da7672e77223",
-      "bytes": 1928
+      "sha256": "f8e4e793a42bebf4e51c68786fbd2f95d7ac8443ec23bac0f0d8ae5a6e4b4b21",
+      "bytes": 5747
     }
   ]
 }

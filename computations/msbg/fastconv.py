@@ -48,6 +48,13 @@ def solve_blocked(model, x0, alpha, h, n_steps, method="pece", block=256,
         raise ValueError("blocked solver implements pi_rect and pece")
     X0 = np.atleast_2d(np.asarray(x0, dtype=np.float64))
     M, d = X0.shape
+    if M * d < 64:
+        # Blocking trades per-step history reads for one Toeplitz GEMM per block.
+        # For tiny batches the history already fits in cache and the Toeplitz
+        # gather dominates: measured 19x slower than the reference at M = 1.
+        from .solvers import solve
+        return solve(model, X0, alpha, h, n_steps, method=method, store=store,
+                     store_stride=store_stride)
     N = int(n_steps)
     md = M * d
     G = np.empty((N + 1, md))

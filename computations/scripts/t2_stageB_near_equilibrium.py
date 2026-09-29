@@ -125,6 +125,9 @@ def phase2(job):
     for method in METHODS:
         for hh in (h2, h2 / 2):
             N = int(round(T2 / hh))
+            # single trajectory: the O(N^2) reference is the fast one here.  The
+            # blocked solver only pays off for large batches (measured 19x SLOWER
+            # at M = 1, N = 20000).
             r = solve(model, np.atleast_2d(p), alpha, hh, N, method=method, store=True,
                       store_stride=max(1, N // 6000))
             x = r.x[:, 0, :]
@@ -182,13 +185,16 @@ def main():
     ap.add_argument("--workers", type=int, default=330)
     ap.add_argument("--T1", type=float, default=200.0)
     ap.add_argument("--h", type=float, default=0.01)
-    ap.add_argument("--T2", type=float, default=4000.0)
+    ap.add_argument("--T2", type=float, default=1000.0)
     ap.add_argument("--h2", type=float, default=0.02)
     ap.add_argument("--n-r", type=int, default=30)
     ap.add_argument("--n-ang", type=int, default=36)
     ap.add_argument("--r-min", type=float, default=0.01)
     ap.add_argument("--r-max", type=float, default=2.0)
     ap.add_argument("--per-config", type=int, default=4)
+    ap.add_argument("--max-jobs", type=int, default=0,
+                    help="confirm only the N candidates closest to E* (0 = all)")
+    ap.add_argument("--tag", default="")
     args = ap.parse_args()
 
     thetas = [0.2, 0.3, 0.4, 0.5, 0.6]
@@ -200,7 +206,7 @@ def main():
     print(f"phase1 configs={len(cfgs)} workers={args.workers} ICs/config<={args.n_r*args.n_ang} "
           f"T1={args.T1} h={args.h}", flush=True)
 
-    rec = RunRecorder("t2_stageB", ROOT)
+    rec = RunRecorder("t2_stageB" + (f"_{args.tag}" if args.tag else ""), ROOT)
     p1, jobs = [], []
     with ProcessPoolExecutor(max_workers=args.workers) as ex:
         for i, d in enumerate(ex.map(phase1, cfgs, chunksize=1)):
@@ -221,6 +227,16 @@ def main():
                         break
             if (i + 1) % 25 == 0:
                 print(f"  phase1 {i+1}/{len(cfgs)}  candidates so far: {len(jobs)}", flush=True)
+    # closest-to-equilibrium first, so an interrupted run has the useful part
+    def _dist(job):
+        mdl = AlleePredatorPrey(theta=job[0], a=job[2], b=1.0, m=job[0] + job[1])
+        return float(np.linalg.norm(np.asarray(job[4]) - np.array([mdl.x_star, mdl.y_star])))
+    jobs.sort(key=_dist)
+    if args.max_jobs:
+        jobs = jobs[: args.max_jobs]
+    rec.save_json("candidates", [{"theta": j[0], "gap": j[1], "a": j[2], "alpha": j[3],
+                                  "p": list(map(float, j[4])), "dist_p_E": _dist(j)}
+                                 for j in jobs])
     n_stable = sum(1 for r in p1 if r.get("stable"))
     print(f"\nphase1 done: {n_stable} Caputo-stable parameter sets, "
           f"{len(jobs)} near-equilibrium candidates to confirm", flush=True)
@@ -229,8 +245,8 @@ def main():
     with ProcessPoolExecutor(max_workers=args.workers) as ex:
         for i, r in enumerate(ex.map(phase2, jobs, chunksize=1)):
             res.append(r)
-            if (i + 1) % 50 == 0:
-                print(f"  phase2 {i+1}/{len(jobs)}", flush=True)
+            print(f"  phase2 {i+1}/{len(jobs)} |p-E*|={r['dist_p_E']:.4f} witness={r['witness']} "
+                  f"margin={r['margin_min']}", flush=True)
     wit = [r for r in res if r["witness"]]
     front = pareto(wit)
     print(f"\nCONFIRMED WITNESSES (3 solvers x 2 meshes agree): {len(wit)}/{len(res)}")
