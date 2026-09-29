@@ -1,93 +1,92 @@
 # Status
 
-**Phase:** ACTIVE — WITNESS FOUND; PRINCIPAL THEOREM CLOSURE
+**Phase:** ACTIVE — EXTINCTION HALF PROVED; SURVIVAL CONVERGENCE + ENTRY CERTIFICATION REMAIN
 
-## TASK-0001 assimilated — 2026-09-29
+## ROUND-0003 assimilated — 2026-09-29
 
-Compute branch:
-\`compute/task-0001\`
+Chief verdict:
+**SURVIVES NARROWLY; X1 VERIFIED; STRICT CAPUTO RESIDUAL SURVIVES.**
 
-Verified HEAD:
-\`9e607dd2f83b249b0b47e76a3a9f1380f46fff5b\`
+## What is now rigorously closed
 
-Merged:
-PR #1 -> main at \`26f53ee3eb39de7e6e884232ef65c13723b27b9b\`.
-
-## Main result
-
-A reproducible numerical witness now exists in the project-constructed strong-Allee Caputo predator–prey model:
+### Cold-start extinction
+For
 \[
-{}^C D^\alpha x=x(1-x)(x-\theta)-axy,
+{}^CD^\alpha x=x(1-x)(x-\theta)-axy,\qquad
+{}^CD^\alpha y=y(bx-m),
 \]
+if
 \[
-{}^C D^\alpha y=y(bx-m).
+\theta<m/b,
 \]
-
-At
+then
 \[
-\theta=0.3,\quad a=b=1,\quad m=0.8,\quad \alpha=0.85,
+\iota(R_{\rm ext})\subseteq\mathcal B(\iota(0,0)),
+\qquad
+R_{\rm ext}=\{0<x<\theta,\ y\ge0\}.
 \]
-the standard initial state
+
+X1 is now **PROVED FROM PUBLISHED HYPOTHESES**.
+
+### Continuation-state bridge
+If a standard IVP satisfies
 \[
-p=(2.4372,2.012)
+x(t;p)\to E^*,
 \]
-has a numerically survival-bound orbit that enters deeply into
+then
 \[
-R_{\rm ext}=\{0<x<\theta,\ y\ge0\},
+T_t\iota(p)\to\iota(E^*)
 \]
-then recovers.
+in compact-open topology.
 
-The event survives fine-mesh, multi-solver, long-horizon and 30-digit checks.
+Thus physical convergence is sufficient for survival-basin membership in the continuation-state semigroup.
 
-## Structural simplification
+## Novelty boundary tightened
 
-The target multibasin fiber does **not** require two advanced trajectories to intersect.
+Not new:
+- the ecological vector field itself: Ye et al. 2019;
+- negative fixed-order Caputo derivative without monotonicity: Diethelm 2016;
+- fractional Double-Allee modeling/basin plots;
+- generic hereditary headpoint effects.
 
-If a survival-basin orbit reaches
+Still search-qualified:
+a physically reachable Caputo continuation state and the canonical cold start at the same present physical value belonging to rigorously distinct extinction/survival basins.
+
+Closest hereditary analogue:
+Szaksz–Stepan–Habib 2024.
+
+## Published Double-Allee baseline
+
+Mondal et al. 2025 equations are verified exactly.
+
+The complete fractional parameter table for a particular basin figure is still not recovered from the accessible primary record.
+
+## Single principal bottleneck
+
+Prove for at least one standard initial state \(p\):
 \[
-z\in R_{\rm ext},
+x(t;p)\to E^*,
 \]
-then the two reachable states
+and certify that
 \[
-T_t\iota(p),\qquad \iota(z)
+x(t_*;p)\in R_{\rm ext}
 \]
-already share present state \(z\).
+for some finite \(t_*>0\).
 
-Thus the theorem reduces to:
-- cold start at \(z\) goes extinct;
-- continuation state carrying prehistory survives.
+Then X1 + E3 + E1 close TARGET-A20.
 
-This is formalized in \`research/STRUCTURAL_THEOREMS.md\`.
-
-Transversality/IFT is retired from the principal existence/persistence theorem.
-
-## Evidence status
-
-### Strong
-- solver infrastructure: PASS;
-- Stage-B Mittag-Leffler zero: CERTIFIED COMPUTATION;
-- equilibrium spectra: exact/certified algebra;
-- nonlinear threshold entry: very strong NUMERICAL CORROBORATION.
-
-### Not yet proved
-- positive-cone/comparison hypotheses needed for the full extinction-strip theorem;
-- survival-basin membership of the witness;
-- nonlinear interval enclosure of the witness trajectory;
-- faithful published Double-Allee realization.
-
-Therefore:
-**TARGET-A20 = CONJECTURED, NOT PROVED.**
-
-## Active next gates
-
-### ROUND-0003 — Web Search
-Exact published Double-Allee model, exact-vector-field prior, Caputo threshold-recovery mechanism, extinction-strip theorem audit, and continuation-state basin/trapping theorem search.
+## Active work
 
 ### TASK-0002 — Compute
-Validated finite-time entry certification and search for near-equilibrium witnesses that may be easier to place rigorously in a survival basin.
+validated finite-time entry + theorem-friendly witness search + continuation-state diagnostics.
+
+### Web Search
+ROUND-0003 COMPLETE / ASSIMILATED.
+
+No new broad search is opened until TASK-0002 returns or the Chief has an exact survival-convergence theorem to audit.
 
 ## Paper
 
 **NOT STARTED.**
 
-The project now has a credible theorem mechanism, but manuscript mode remains blocked until survival basin membership and exact novelty/model provenance are closed.
+The principal theorem is now much closer, but TARGET-A20 remains CONJECTURED until survival convergence and finite-time entry are rigorous.
