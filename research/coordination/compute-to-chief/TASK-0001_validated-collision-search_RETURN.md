@@ -536,33 +536,48 @@ of a search box, with a projected Newton clipped to the box.
 > rejects iterates approaching `p`. The buggy output is not part of the record;
 > the fix is commit `63f7e87`.
 
-**Result: NEGATIVE.** Over a `50 x 50` grid of the box `(0, 1.6] x (0, 5]`
-(2242 extinction-labelled, 500 of them inside the certified region, 258
-coexistence, 0 ambiguous), at nine ages spanning the sub-threshold window,
-`0/9` ages produced a root. At every age the refined `q*` sat on the boundary
-`q_x = 1.6` of the search box with residual equal to the grid image gap, i.e.
-Newton wanted to leave the box and the box was the binding constraint. The
-diagnostic that matters is the distance from `x(t;p)` to the image of the
-extinction-labelled set under the time-`t` map:
+**Result: NEGATIVE, in two runs of increasing search range.**
 
-| `t` | 1.26 | 5.43 | 9.60 | 13.77 | 17.94 | 22.12 | 26.29 | 30.46 | 34.63 |
+| run | search box | grid | extinction-labelled | roots found | smallest image gap |
+|---|---|---|---|---|---|
+| narrow | `(0,1.6] x (0,5]` | 50 x 50 | 2242 (500 certified) | 0/9 | 2.46e-2 at `t = 26.29` |
+| wide | `(0,8] x (0,20]` | 64 x 64 | 2095 (192 certified) | 0/9 | **9.65e-3** at `t = 17.95` |
+
+The informative quantity is the **image gap**: the distance from `x(t;p)` to the
+image of the extinction-labelled grid under the time-`t` map. Widening the box
+by a factor of five in each direction cut the gap by 2.5x but did not close it:
+
+| `t` | 1.26 | 5.43 | 9.60 | 13.77 | 17.95 | 22.12 | 26.29 | 30.46 | 34.63 |
 |---|---|---|---|---|---|---|---|---|---|
-| image gap | 1.16e-1 | 7.78e-2 | 5.82e-2 | 4.29e-2 | 3.29e-2 | 2.66e-2 | **2.46e-2** | 2.63e-2 | 2.48e-2 |
+| gap, narrow box | 1.16e-1 | 7.78e-2 | 5.82e-2 | 4.29e-2 | 3.29e-2 | 2.66e-2 | 2.46e-2 | 2.63e-2 | 2.48e-2 |
+| gap, wide box | 4.09e-2 | 1.88e-2 | 1.14e-2 | 9.84e-3 | **9.65e-3** | 1.15e-2 | 1.54e-2 | 2.23e-2 | 2.96e-2 |
 
-The gap falls by a factor of five across the window but never reaches zero.
-WIDEBOX_PLACEHOLDER
+**Two limitations of this search, declared rather than glossed.**
+
+1. *The root-finder contributes nothing here.* `Phi_t` always has the trivial
+   root `q = p`, and in the wide-box run the projected Newton was pinned against
+   the guard sphere around `p` at **every** age — `distance_to_p = 1.000e-3`
+   exactly, nine times out of nine, with `q*` labelled COEXISTENCE. The guard
+   radius (`1e-3`) is too small to escape the trivial root's basin of
+   attraction. So the negative result rests entirely on the **grid image gap**,
+   which is computed without Newton, and not on the refinement.
+2. *Part of the wide box is excluded for numerical, not dynamical, reasons.*
+   1331 of 4096 grid points are DIVERGENT at the labelling step size
+   `h = 0.02`, because initial prey densities up to `x = 8` need a finer mesh
+   (§4, C6). Those points are not available as candidates. A correct wide-box
+   search needs a graded or adaptive mesh in the labelling phase.
 
 **Interpretation, stated carefully.** A negative search is not an impossibility
-theorem (PROTOCOL.md). What it does say is that the *strict* same-age form of
-`REDUCTION-M1` is much harder to realise here than the embedded-age form, and
-that is not surprising: the embedded-age condition is open (codimension 0),
+theorem (PROTOCOL.md), and this one is weaker than a clean negative because of
+the two limitations above. What it does establish is that the *strict* same-age
+form of `REDUCTION-M1` is much harder to realise here than the embedded-age
+form, which is unsurprising: the embedded-age condition is open (codimension 0),
 whereas the same-age condition asks a specific point to lie in the image of a
 set under a specific time-`t` map. The multibasin fibre does **not** need the
-same-age version — `T_{t}iota(p)` and `iota(z)` already sit in the same fibre
-with `z = x(t;p)`. The Chief should note that the Cong-Tuan same-age
-intersection phenomenon and the multibasin-fibre phenomenon are *different
-requirements*, and only the second is needed for TARGET-A20.
-
+same-age version — `T_t iota(p)` and `iota(z)` already sit in the same fibre with
+`z = x(t;p)`. The Chief should note that the Cong–Tuan same-age intersection
+phenomenon and the multibasin-fibre phenomenon are *different requirements*, and
+only the second is needed for TARGET-A20.
 
 ### 5.7 Falsification test of the certified extinction region
 
@@ -903,8 +918,11 @@ Figures, each answering one theorem-level question:
    by depth selects the orbits that go extinct, since those dip deepest. Fixed by
    restricting candidates to orbits that recover above `theta`.
 3. **The first same-age search converged to the trivial root.** Unconstrained
-   Newton left the box and returned `q* = p` with `|H| ~ 1e-15`. Fixed by a
-   projected Newton with an explicit guard against `p` (commit `63f7e87`).
+   Newton left the box and returned `q* = p` with `|H| ~ 1e-15`. A projected
+   Newton with a guard against `p` (commit `63f7e87`) stops the false positive,
+   but does **not** make the refinement useful: in the wide-box run it sits on
+   the guard sphere at every age. The same-age conclusion is therefore drawn
+   from the grid image gap and explicitly not from the root-finder (§5.6).
 4. **The first high-precision check used an inadmissible step.** At `h = 0.1`
    both mpmath and float64 go extinct and agree only with each other. Redone at
    `h = 0.01` in `stage_d_highprec.py`.

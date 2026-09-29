@@ -24,5 +24,5 @@ awaiting the Chief's promotion".
 | 14 | The embedded-age collision map is a submersion in `(p, t)` (singular values 0.244, 0.079) | NUMERICAL CORROBORATION | `manifests/stage_d_witness_manifest.json` (D5) |
 | 15 | Under 28 one-at-a-time parameter perturbations the collision is never lost; only basin membership fails (11 times) | NUMERICAL CORROBORATION | `data/stage_d_witness_D6_openness.json` |
 | 16 | Witnesses exist for `alpha in [0.65, 0.92]` and in both Allee families; none found at `alpha = 0.55` | NUMERICAL CORROBORATION / **negative search** | `data/stage_d_scan_v2_phase2_results.json` |
-| 17 | No same-age inter-basin collision was found for the witness pair | **negative search**, not an impossibility | `manifests/stage_d_sameage_manifest.json` |
+| 17 | No same-age inter-basin collision found in two searches; smallest image gap 9.65e-3. The projected Newton was pinned at the trivial root in every wide-box age, so this rests on the grid image gap alone | **negative search**, weakened by two declared limitations | `manifests/stage_d_sameage_manifest.json`, `..._narrowbox_manifest.json` |
 | 18 | No interval enclosure of any nonlinear trajectory exists | OPEN (C-A022 unfinished) | — |

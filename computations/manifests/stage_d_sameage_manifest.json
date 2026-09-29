@@ -10,8 +10,8 @@
     "packages": {
       "numpy": "2.5.3",
       "scipy": "1.18.1",
-      "mpmath": "1.4.1",
-      "sympy": null,
+      "mpmath": "1.3.0",
+      "sympy": "1.14.0",
       "flint": "0.9.0",
       "matplotlib": "3.11.2"
     },
@@ -25,7 +25,7 @@
       "openblas configuration": "OpenBLAS 0.3.34.106.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64",
       "pc file directory": "/project/.openblas"
     },
-    "utc": "2026-09-29T18:02:53Z",
+    "utc": "2026-09-29T18:18:50Z",
     "seed": 20260929,
     "git_commit": null
   },
@@ -50,37 +50,37 @@
     "search_box": {
       "x": [
         0.0001,
-        1.6
+        8.0
       ],
       "y": [
         0.0001,
-        5.0
+        20.0
       ]
     },
     "label_counts": {
-      "EXTINCTION": 2242,
-      "COEXISTENCE": 258,
-      "AMBIGUOUS": 0,
-      "DIVERGENT": 0,
-      "NEGATIVE": 0
+      "EXTINCTION": 2095,
+      "COEXISTENCE": 487,
+      "AMBIGUOUS": 134,
+      "DIVERGENT": 1331,
+      "NEGATIVE": 49
     },
     "n_ages_tested": 9,
     "n_same_age_inter_basin_collisions": 0,
     "n_with_certified_q": 0,
-    "min_image_gap": 0.024631112238748806,
+    "min_image_gap": 0.009646381172782595,
     "evidence_class": "NUMERICAL CORROBORATION (floating-point root of a square nonlinear system); a null result here is a negative search, not an impossibility theorem",
-    "wall_seconds": 444.459
+    "wall_seconds": 980.142
   },
   "artifacts": [
     {
       "path": "/home/aureus/msbg/computations/data/stage_d_sameage_roots.json",
-      "sha256": "249d52eb3ad05277ecb94c111f8fe906f01120c86d1ed28e30630f2ef740ce87",
-      "bytes": 5542
+      "sha256": "25a597d1bcc47b8a58682949fe7733ffed86287ad6aee8c2d2a976b2f4f62646",
+      "bytes": 5847
     },
     {
       "path": "/home/aureus/msbg/computations/data/stage_d_sameage_labelled_box.npz",
-      "sha256": "5ba5b794e481c1a13cb4d366b871d5a1242db0b908091496cbdabf0cf423ae36",
-      "bytes": 6962
+      "sha256": "0c2979b871f1663ad0f22076632caa12ca755fe0019f813a41b6ca178528b7b2",
+      "bytes": 10192
     }
   ]
 }
