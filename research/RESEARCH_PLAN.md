@@ -1,31 +1,36 @@
 # Research Plan
 
-## Phases 0–3
-Architecture, scalar completeness, constructive discovery, and structural reductions: COMPLETE ENOUGH.
+## Completed foundations
 
-## Phase 4 — model-specific theorem closure
-**FINAL CONSTRUCTIVE STEP ACTIVE.**
+- state architecture and prior audit;
+- scalar completeness;
+- positive numerical discovery;
+- X1 extinction theorem;
+- exact-rational validated threshold entry;
+- structural E1–E4;
+- L1 local survival theorem.
 
-Rigorous ingredients already closed:
-- X1 extinction strip;
-- L1 local survival basin;
-- E1 multibasin-fiber lift;
-- validated finite-time entry machinery.
+## New obstruction
 
-TASK-0003 now searches for one exact-rational initial state satisfying L1 from time zero and later entering the extinction strip.
+TASK-0003 O1 proves a forward-invariant physical-state survival certificate cannot produce the target threshold entry.
 
-Success implies:
-\[
-\text{L1 + certified entry + X1 + E1}
-\Longrightarrow
-\text{TARGET-A20 PROVED}.
-\]
+Therefore the principal survival proof must explicitly use memory.
 
-## Phase 5 — final theorem-specific novelty audit
-Trigger immediately after successful TASK-0003.
+## Active phase — memory-tail certification
 
-## Phase 6 — open-family robustness
-Use E2 to enlarge a successful witness to a certified parameter neighborhood.
+For a late cut time \(T\):
 
-## Phase 7 — manuscript
-Still blocked until TARGET-A20 and the final novelty audit pass.
+1. certify the full history on \([0,T]\);
+2. encode it as inherited Volterra input \(h_T\);
+3. solve/bound the stable linear response \(v_T\);
+4. control the nonlinear tail with the matrix Mittag-Leffler resolvent;
+5. prove convergence to \(E^*\) without restarting the system.
+
+ROUND-0005 audits the theorem.
+TASK-0004 tests and certifies the W1 witness.
+
+## Manuscript gate
+
+Still blocked until:
+- TARGET-A20 proved;
+- final theorem-specific novelty audit passes.
