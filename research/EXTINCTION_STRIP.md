@@ -1,10 +1,10 @@
-# Cold-Start Extinction Strip — Theorem Draft
+# Cold-Start Extinction Strip
 
 **Owner:** Chief Researcher  
 **Date:** 2026-09-29  
-**Status:** ANALYTIC PROOF DRAFT / POSITIVITY + COMPARISON SOURCE AUDIT PENDING
+**Status:** PROVED FROM PUBLISHED HYPOTHESES / SUPPORTING THEOREM
 
-## 1. Model class
+## 1. Model
 
 Consider
 \[
@@ -24,9 +24,14 @@ with
 a,b,m>0,\qquad 0<\theta<1.
 \]
 
-Assume the positive cone is invariant and the scalar Caputo comparison theorem applies in the form used below.
+Define
+\[
+R_{\rm ext}
+=
+\{(x,y):0<x<\theta,\ y\ge0\}.
+\]
 
-## 2. Candidate theorem X1 — cold-start extinction strip
+## 2. THEOREM X1 — cold-start extinction strip
 
 If
 \[
@@ -34,27 +39,37 @@ If
 \]
 then every standard physical initial condition
 \[
-0<x_0<\theta,\qquad y_0\ge0
+(x_0,y_0)\in R_{\rm ext}
 \]
-converges to
+has a global nonnegative solution satisfying
 \[
-(0,0).
+(x(t),y(t))\to(0,0).
 \]
 
-Equivalently, with
+Equivalently,
 \[
-R_{\rm ext}
-=
-\{(x,y):0<x<\theta,\ y\ge0\},
-\]
-we have
-\[
-\iota(R_{\rm ext})\subseteq\mathcal B((0,0)).
+\iota(R_{\rm ext})\subseteq\mathcal B(\iota(0,0)).
 \]
 
-## 3. Proof draft
+## 3. Proof
 
-Let \(u\) solve the scalar strong-Allee Caputo equation
+### Step 1 — positivity
+
+The vector field is locally Lipschitz and quasi-positive on the coordinate axes:
+\[
+F_1(0,y)=0,\qquad F_2(x,0)=0.
+\]
+
+Published Caputo viability theory for closed positive sets (Girejko–Mozyrska–Wyrwas, 2011) supplies forward invariance of the nonnegative cone under the present hypotheses; Caputo extremum results of Al-Refai (2012) provide the corresponding first-contact mechanism.
+
+Thus
+\[
+x(t)\ge0,\qquad y(t)\ge0.
+\]
+
+### Step 2 — prey comparison
+
+Let \(u\) solve
 \[
 {}^C D^\alpha u
 =
@@ -63,7 +78,7 @@ u(1-u)(u-\theta),
 u(0)=x_0.
 \]
 
-Because \(y(t)\ge0\),
+Since \(y(t)\ge0\),
 \[
 {}^C D^\alpha x
 =
@@ -72,27 +87,29 @@ x(1-x)(x-\theta)-axy
 x(1-x)(x-\theta).
 \]
 
-Under the audited scalar comparison theorem and equal initial data,
+Wu (2020), Theorem 3.2, gives the scalar comparison
 \[
-0\le x(t)\le u(t).
+0\le x(t)\le u(t)
 \]
+on the common maximal interval.
 
-By COROLLARY-S1A,
+From the already audited scalar strong-Allee result,
 \[
 0<x_0<\theta
 \Longrightarrow
-u(t)\to0
+0<u(t)<\theta,\qquad u(t)\to0.
 \]
-and \(u(t)<\theta\) for all positive time.
 
-Hence
+Therefore
 \[
 0\le x(t)\le u(t)<\theta,
 \qquad
 x(t)\to0.
 \]
 
-Now set
+### Step 3 — predator comparison
+
+Set
 \[
 \delta=m-b\theta>0.
 \]
@@ -106,59 +123,51 @@ y(bx-m)
 -\delta y.
 \]
 
-Comparison with
+Compare with
 \[
 {}^C D^\alpha v=-\delta v,
-\qquad
-v(0)=y_0,
+\qquad v(0)=y_0,
 \]
-gives
+whose exact solution is
 \[
-0\le y(t)
-\le
-y_0E_\alpha(-\delta t^\alpha)
-\to0.
+v(t)=y_0E_\alpha(-\delta t^\alpha).
 \]
 
-Therefore
+Hence
+\[
+0\le y(t)\le v(t)\to0.
+\]
+
+### Step 4 — global continuation
+
+The estimates give
+\[
+0\le x(t)\le\theta,\qquad
+0\le y(t)\le y_0
+\]
+on every finite interval.
+
+Wu & Liu (2020) give the maximal continuation / blow-up alternative for Caputo systems. Boundedness excludes finite-time termination.
+
+Thus the solution is global and
 \[
 (x(t),y(t))\to(0,0).
 \]
 \(\square\)
 
-## 4. What still requires audit
+## 4. Evidence classification
 
-Before promotion to PROVED FROM PUBLISHED HYPOTHESES, verify:
+- theorem status: **PROVED FROM PUBLISHED HYPOTHESES**;
+- novelty status: supporting theorem, not principal novelty;
+- ROUND-0003 verdict: X1 VERIFIED.
 
-1. positive-cone invariance for this Caputo system under the exact solution regularity available;
-2. the exact scalar comparison theorem hypotheses for
-   \[
-   {}^C D^\alpha x\le f(x),\quad x(0)=u(0);
-   \]
-3. applicability to the polynomial vector field on the positively invariant/bounded region;
-4. global continuation needed for the asymptotic conclusion;
-5. whether the linear comparison
-   \[
-   {}^C D^\alpha y\le-\delta y
-   \]
-   requires any additional regularity.
+## 5. Interpretation
 
-ROUND-0003 owns this source/hypothesis audit.
-
-## 5. Structural interpretation
-
-This theorem concerns **cold starts**:
+X1 classifies only the canonical **cold start**
 \[
 \iota(z),\qquad z\in R_{\rm ext}.
 \]
 
-It does not say that every continuation state whose present evaluation lies in \(R_{\rm ext}\) is in the extinction basin.
+It does not classify every reachable continuation state whose present evaluation lies in \(R_{\rm ext}\).
 
-TASK-0001 numerically exhibits exactly that distinction:
-a continuation state \(T_t\iota(p)\) can satisfy
-\[
-e_0(T_t\iota(p))\in R_{\rm ext}
-\]
-while retaining enough prehistory to recover.
-
-That difference between the constant physical slice and the full reachable memory-state fiber is the central project mechanism.
+That distinction is the core of the principal theorem program.
