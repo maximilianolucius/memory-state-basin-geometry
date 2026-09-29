@@ -1,17 +1,17 @@
-# State Architecture and Theorem Program
+# State Architecture and Current Theorem Program
 
 **Owner:** Chief Researcher  
 **Date:** 2026-09-29  
-**Status:** VERIFIED BASELINE / POSITIVE WITNESS FOUND NUMERICALLY / BASIN CLOSURE OPEN
+**Status:** VERIFIED ARCHITECTURE / EXTINCTION SIDE PROVED / SURVIVAL CONVERGENCE OPEN
 
-## 1. Governing architecture
+## 1. Continuation-state architecture
 
 For
 \[
 {}^C D_{0+}^{\alpha}x(t)=g(x(t);\mu),
 \qquad 0<\alpha<1,
 \]
-use the Doan–Kloeden continuation-state space
+use the Doan–Kloeden state space
 \[
 \mathfrak C=C(\mathbb R_+,\mathbb R^d)
 \]
@@ -19,44 +19,39 @@ with compact-open topology.
 
 The canonical physical embedding and present evaluation are
 \[
-\iota(x_0)(t)\equiv x_0,\qquad e_0(f)=f(0).
+\iota(x_0)(t)\equiv x_0,
+\qquad
+e_0(f)=f(0).
 \]
 
-The physically reachable set and present-state fiber are
+Define
 \[
-\mathcal R_\alpha=
+\mathcal R_\alpha
+=
 \{T_t\iota(x_0):t\ge0,\ x_0\in X_{\rm phys}\},
 \]
+and
 \[
 \mathcal F_z=e_0^{-1}(z)\cap\mathcal R_\alpha.
 \]
 
-Basins are positively invariant under the continuation semigroup.
+Principal statements remain restricted to physically reachable states.
 
-## 2. Old collision reduction
+## 2. Basin-entry architecture
 
-The general implication
-\[
-P(p,t)=P(q,s)=z,\quad
-\iota(p)\in\mathcal B(A_1),\quad
-\iota(q)\in\mathcal B(A_2)
-\]
-implies a multibasin \(\mathcal F_z\).
+The central criterion is no longer a two-advanced-orbit collision.
 
-This remains correct but is no longer the most efficient formulation.
-
-## 3. Principal reduction after TASK-0001 — basin entry
-
-Let \(U_-\subset X_{\rm phys}\) satisfy
+Let
 \[
 \iota(U_-)\subseteq\mathcal B(A_-).
 \]
 
-If a standard initial state \(p\) satisfies
+If
 \[
-\iota(p)\in\mathcal B(A_+),\qquad A_+\neq A_-,
+\iota(p)\in\mathcal B(A_+),
+\qquad A_+\neq A_-,
 \]
-and its orbit enters
+and
 \[
 z=P(p,t_*)\in U_-,
 \]
@@ -64,126 +59,125 @@ then
 \[
 T_{t_*}\iota(p),\ \iota(z)\in\mathcal F_z
 \]
-belong to different basins.
+have distinct asymptotic fates.
 
-This is THEOREM E1 in \`research/STRUCTURAL_THEOREMS.md\`.
+This is STRUCTURAL-E1.
 
-### Key consequence
+The second state is the canonical **cold start at the reached physical point**. Same-age collision, transversality and IFT are not required for existence.
 
-The second reachable state can be the **cold start at the reached physical state**:
+## 3. Open persistence
+
+STRUCTURAL-E2 shows that strict entry persists by continuity.
+
+The only difficult persistence hypotheses are basin membership:
+- persistence of the cold-start basin region;
+- persistence of the survival-basin initial state.
+
+## 4. Physical-to-memory-state bridge
+
+STRUCTURAL-E3 proves:
 \[
-s=0,\qquad q=z.
+x(t;p)\to x^*,\quad g(x^*)=0
+\Longrightarrow
+T_t\iota(p)\to\iota(x^*)
 \]
+in compact-open topology.
 
-Therefore:
-- no same-age collision is required;
-- no nonlinear root problem is required;
-- no transversality/IFT hypothesis is required for existence.
+Therefore a rigorous physical convergence theorem for a standard IVP is sufficient to classify its continuation-state basin.
 
-The scientific object is the mismatch between:
-1. the continuation state carrying prehistory;
-2. the canonical constant state with the same present physical value.
+A late physical near-hit is not enough; no restart argument is allowed.
 
-## 4. Open persistence
+## 5. Verified cold-start extinction region
 
-Entry into an open physical basin region is an open finite-horizon condition under continuous solution dependence.
-
-Hence parameter persistence of the **entry event** is easy.
-
-The hard part is persistence of:
-- \(\iota(U_-)\subseteq\mathcal B_\mu(A_-(\mu))\);
-- \(\iota(p)\in\mathcal B_\mu(A_+(\mu))\).
-
-This is THEOREM E2.
-
-The old CANDIDATE-M2 transversality program is demoted to a secondary geometry question.
-
-## 5. Cold-start extinction strip
-
-For the project-constructed strong-Allee predator–prey system
+For
 \[
 {}^C D^\alpha x=x(1-x)(x-\theta)-axy,
 \]
 \[
 {}^C D^\alpha y=y(bx-m),
 \]
-the candidate cold-start basin region is
+with
 \[
-R_{\rm ext}=\{0<x<\theta,\ y\ge0\}.
+a,b,m>0,\quad0<\theta<1,\quad\theta<m/b,
+\]
+THEOREM-X1 proves
+\[
+R_{\rm ext}=\{0<x<\theta,\ y\ge0\}
+\]
+satisfies
+\[
+\iota(R_{\rm ext})
+\subseteq
+\mathcal B(\iota(0,0)).
 \]
 
-Under positivity, the audited comparison principle and
-\[
-\theta<m/b,
-\]
-the proof in \`research/EXTINCTION_STRIP.md\` gives
-\[
-\iota(R_{\rm ext})\subseteq\mathcal B((0,0)).
-\]
-
-Status:
-**proof draft complete; source/hypothesis audit pending ROUND-0003.**
+This is now closed from published viability, comparison, scalar-Allee and continuation results.
 
 ## 6. TASK-0001 witness
 
 At
 \[
-\theta=0.3,\ a=b=1,\ m=0.8,\ \alpha=0.85,
+\theta=0.3,\quad a=b=1,\quad m=0.8,\quad\alpha=0.85,
 \]
 the standard initial state
 \[
 p=(2.4372,2.012)
 \]
-has a numerically survival-bound orbit that penetrates \(R_{\rm ext}\) by about \(0.103\) in prey coordinate and later recovers.
-
-Evidence:
-- three full-history solvers;
-- fine-mesh agreement;
-- horizon ladder;
-- 30-digit recomputation;
-- broad parameter/order scan.
-
-Classification:
-**NUMERICAL CORROBORATION**, not theorem.
-
-If the survival basin membership is proved and X1 is audited, E1 immediately promotes every reached state on the sub-threshold arc to a rigorous multibasin fiber.
-
-## 7. Caputo-specific mechanism
-
-For the model,
+has a strongly corroborated numerical orbit that enters \(R_{\rm ext}\) and later approaches
 \[
-0<x<\theta,\ y\ge0
+E^*=(0.8,0.1).
+\]
+
+Entry is numerically robust but not yet interval-certified.
+
+Physical convergence to \(E^*\) is not yet proved.
+
+Thus TARGET-A20 remains CONJECTURED.
+
+## 7. Novelty boundary after ROUND-0003
+
+Known:
+- ecological vector field at integer order: Ye et al. 2019;
+- fixed-sign Caputo derivative does not imply monotonicity at one order: Diethelm 2016;
+- fractional Double-Allee models and basin plots;
+- hereditary headpoint/history effects;
+- abstract E1 logic.
+
+Search-qualified residual:
+a rigorously established autonomous Caputo case in which
+\[
+\iota(z)\in\mathcal B(A_{\rm ext}),
+\]
+but another physically reachable continuation state
+\[
+\phi\in\mathcal F_z
+\]
+belongs to
+\[
+\mathcal B(A_{\rm surv}).
+\]
+
+## 8. Exact remaining gate
+
+For one standard IVP \(p\), prove:
+\[
+x(t;p)\to E^*
+\]
+and certify:
+\[
+x(t_*;p)\in R_{\rm ext}.
+\]
+
+Then:
+\[
+\text{X1 + E3 + E1}
 \Longrightarrow
-{}^C D^\alpha x<0.
+\text{TARGET-A20}.
 \]
 
-At integer order this makes \(x\) locally decreasing and prevents recovery across the threshold.
+## 9. Active work
 
-For \(0<\alpha<1\), a continuation state can carry prior contributions from the fixed lower terminal, and the sign of the Caputo derivative on a later subinterval does not determine local monotonicity.
-
-TASK-0001 exhibits:
-\[
-{}^C D^\alpha x<0
-\]
-while \(x(t)\) rises back through \(\theta\).
-
-The literature status of this mechanism is being audited in ROUND-0003.
-
-## 8. Current theorem bottleneck
-
-The principal remaining burden is **survival-side basin proof**.
-
-The project needs either:
-- a continuation-state trapping neighborhood for the coexistence equilibrium;
-- a Lyapunov/LaSalle basin certificate;
-- a published model with an already rigorous survival basin;
-- or another analytic argument placing a standard initial state in \(\mathcal B(A_{\rm surv})\).
-
-Finite-horizon convergence plots are not sufficient.
-
-## 9. Active tasks
-
-- TASK-0001: COMPLETE / MERGED.
-- ROUND-0003: exact model + mechanism + basin-closure audit.
-- TASK-0002: validated entry enclosure + near-equilibrium witness search.
+- ROUND-0003: COMPLETE / ASSIMILATED.
+- TASK-0002: ACTIVE.
+- next web round: WAIT FOR TASK-0002 OR EXACT SURVIVAL THEOREM.
 - manuscript: BLOCKED.
