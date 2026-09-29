@@ -1,54 +1,54 @@
 # Status
 
-**Phase:** ACTIVE — PHYSICAL-STATE CERTIFICATES OBSTRUCTED; MEMORY-TAIL SURVIVAL ACTIVE
+**Phase:** ACTIVE — MEMORY-TAIL THEOREM VERIFIED; TASK-0004 IS THE SOLE PRINCIPAL GATE
 
-## TASK-0003 assimilated — 2026-09-29
+## ROUND-0005 assimilated — 2026-09-29
 
-Branch:
-\`compute/task-0003\`
+Verdicts:
+- resolvent identity: VERIFIED;
+- matrix Mittag-Leffler kernel \(L^1\): VERIFIED;
+- inherited-memory linear response decay: VERIFIED;
+- THEOREM-M1: VERIFIED;
+- direct published equivalent target theorem: NOT FOUND IN SEARCHED CORPUS.
 
-Verified HEAD:
-\`64e5290ea0f7d128b7ed0945850b200a028a2583\`
+## Critical theorem
 
-Merged:
-PR #3 -> main at \`843c7f61d91da7bc0ebdf2e4d84449a201bd8af4\`.
-
-## Main theorem-level outcome
-
-O1 proves that no forward-invariant physical-state region whose cold starts are survival-bound can contain a trajectory that enters the cold-start extinction strip.
-
-Therefore THEOREM-L1 is valid but structurally incapable of closing TARGET-A20.
-
-This confirms that the desired basin distinction is genuinely a memory-state phenomenon.
-
-## Exact-rational entry
-
-The W1 threshold entry is now publication-grade with exact rational model parameters:
+For a late cut \(T\), define
 \[
-\theta=3/10,\quad
-m=4/5,\quad
-a=b=1,\quad
-\alpha=17/20.
+v_T(t)
+=
+E_\alpha(Jt^\alpha)u_0
++
+\int_0^T
+\Psi_J(t-s)N(u(s))\,ds.
 \]
 
-Entry into \(R_{\rm ext}\) remains CERTIFIED COMPUTATION.
+If
+\[
+M_T+K_JC_rr^2<r,
+\]
+then the full inherited-memory trajectory converges to \(E^*\).
 
-## Secondary obstruction
+This explicitly preserves memory and is not a fractional restart.
 
-O2 excludes the specific global diagonal weighted-max resolvent certificate used in TASK-0003 Stage E for every Hurwitz parameter set.
+## W1 status
 
-It does not exclude memory-tail certification after a finite excursion.
+Already rigorous:
+- exact rational model parameters;
+- exact rational initial point;
+- certified entry into \(R_{\rm ext}\);
+- cold-start extinction in \(R_{\rm ext}\).
 
-## New principal route
+Missing:
+- certified M1 tail inequality.
 
-Cut the already-certified trajectory at a late time \(T\), preserve its full prehistory as an inherited Volterra input, and certify the nonlinear tail around \(E^*\).
+## Current action
 
-Active:
-- ROUND-0005 — memory-tail resolvent theorem audit;
-- TASK-0004 — W1 feasibility/certification.
+TASK-0004 is active.
 
-## Paper
+No new web round until TASK-0004 returns.
 
-NOT STARTED.
-
-TARGET-A20 remains open only on survival classification, but the proof must now explicitly use memory.
+If TASK-0004 succeeds:
+1. TARGET-A20 becomes PROVED;
+2. run final theorem-specific novelty audit;
+3. only then unlock manuscript mode.
