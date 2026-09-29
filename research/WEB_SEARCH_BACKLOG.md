@@ -2,29 +2,22 @@
 
 ## Completed
 
-ROUND-0001 — architecture / novelty killer.  
-ROUND-0002 — scalar/triangular purity.  
-ROUND-0003 — exact model / extinction closure.  
-ROUND-0004 — local-survival Lyapunov audit.
+ROUND-0001 through ROUND-0004 complete.
 
-ROUND-0004 verdict:
-- quadratic Caputo inequality VERIFIED;
-- local Lyapunov implication VERIFIED;
-- THEOREM-L1 VERIFIED;
-- direct exact-model explicit basin-radius prior NOT FOUND;
-- strict survival-entry novelty killer NOT FOUND IN SEARCHED CORPUS.
+## Active
 
-## Current posture
+### ROUND-0005 — memory-tail resolvent audit
+request:
+\`research/coordination/chief-to-web/ROUND-0005_memory-tail-resolvent_REQUEST.md\`
 
-No active web-search round.
-
-Wait for TASK-0003.
+Audit:
+- exact Volterra resolvent identity;
+- \(L^1\) matrix Mittag-Leffler kernel;
+- inherited-memory input after a cut time;
+- CANDIDATE-M1;
+- direct prior.
 
 ## Next trigger
 
-If TASK-0003 produces a rigorous exact-rational witness, open final theorem-specific novelty audit using:
-- exact rational parameter vector;
-- exact L1 constants and ellipsoid;
-- certified entry interval;
-- exact TARGET-A20 statement;
-- 2025–2026 competitor sweep.
+If M1 survives and TASK-0004 certifies W1 survival:
+final theorem-specific novelty audit.
