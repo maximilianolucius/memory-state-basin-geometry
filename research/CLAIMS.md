@@ -1,9 +1,6 @@
 # Claim Registry
 
-**Status:** THEOREM CLOSURE — principal positive claim CONJECTURED WITH STRONG EVIDENCE.
-
-Promotion path:
-OPEN -> CONJECTURED -> PROVED/CERTIFIED -> MANUSCRIPT-ELIGIBLE.
+**Status:** PRINCIPAL THEOREM CLOSURE.
 
 ## Published prior
 
@@ -12,8 +9,7 @@ status: PUBLISHED PRIOR / VERIFIED
 source: Doan & Kloeden 2021.
 
 ### KNOWN-A02 — reachable present-state noninjectivity in \(d\ge2\)
-status: PUBLISHED PRIOR  
-source: Cong & Tuan 2017 + Doan–Kloeden 2021.
+status: PUBLISHED PRIOR.
 
 ### KNOWN-A03 — scalar strict separation
 status: PUBLISHED PRIOR  
@@ -23,166 +19,119 @@ source: Cong & Tuan 2017, Theorem 4.
 status: PUBLISHED PRIOR  
 source: Doan & Kloeden 2022.
 
-### KNOWN-A05 — adjacent hereditary/projected basin geometry
+### KNOWN-A05 — exact integer-order ecological vector field
 status: PUBLISHED PRIOR  
-sources: Huang et al. 2014; Daza et al. 2017; Szaksz et al. 2024.
+source: Ye et al. 2019.  
+statement:
+the system
+\[
+\dot x=x(1-x)(x-\theta)-axy,\qquad
+\dot y=y(bx-m)
+\]
+is already published up to parameter renaming.
 
-## Proved project reductions / completeness results
+### KNOWN-A06 — fixed-order Caputo derivative sign does not determine monotonicity
+status: PUBLISHED PRIOR  
+source: Diethelm 2016.  
+consequence:
+the bare sign-vs-monotonicity mechanism is not novelty.
+
+## Proved project results
 
 ### COMPLETENESS-S1 — scalar equilibrium-partition fiber purity
-status: PROVED AS CONDITIONAL THEOREM  
-class: COMPLETENESS RESULT.
+status: PROVED AS CONDITIONAL COMPLETENESS RESULT.
 
 ### COROLLARY-S1A — scalar strong-Allee fiber purity
-status: PROVED FROM PUBLISHED HYPOTHESES  
-class: COMPLETENESS / APPLICATION COROLLARY.
-
-### REDUCTION-M1 — general two-state collision lift
-status: PROVED / STANDARD CONSEQUENCE.
+status: PROVED FROM PUBLISHED HYPOTHESES.
 
 ### STRUCTURAL-E1 — basin-entry criterion
-status: PROVED  
-class: STRUCTURAL REDUCTION  
-statement:
-If
-\[
-\iota(U_-)\subseteq\mathcal B(A_-),
-\]
-\[
-\iota(p)\in\mathcal B(A_+),\quad A_+\neq A_-,
-\]
-and
-\[
-P(p,t_*)\in U_-,
-\]
-then the reachable fiber at
-\[
-z=P(p,t_*)
-\]
-is multibasin.
-
-proof:
-\`research/STRUCTURAL_THEOREMS.md\`.
-
-novelty:
-not claimed by itself.
+status: PROVED.
 
 ### STRUCTURAL-E1A — arc of multibasin fibers
-status: PROVED CONDITIONAL ON E1 HYPOTHESES  
-statement:
-Every time along a nondegenerate orbit interval lying inside \(U_-\) generates a multibasin present-state fiber.
+status: PROVED CONDITIONAL ON E1 HYPOTHESES.
 
 ### STRUCTURAL-E2 — open persistence criterion
-status: PROVED AS ABSTRACT TOPOLOGICAL CRITERION  
-burden:
-persistent basin membership, not transversality.
+status: PROVED ABSTRACTLY.
 
-## Model-specific supporting candidate
-
-### CANDIDATE-X1 — cold-start extinction strip
-status: PROOF DRAFT COMPLETE / SOURCE-HYPOTHESIS AUDIT PENDING  
-model:
+### STRUCTURAL-E3 — physical convergence implies continuation-state convergence
+status: PROVED.  
+statement:
 \[
-{}^C D^\alpha x=x(1-x)(x-\theta)-axy,
-\qquad
-{}^C D^\alpha y=y(bx-m).
+x(t;p)\to x^*,\quad g(x^*)=0
+\Longrightarrow
+T_t\iota(p)\to\iota(x^*)
 \]
+in compact-open topology.
 
-desired:
-if
+### THEOREM-X1 — cold-start extinction strip
+status: PROVED FROM PUBLISHED HYPOTHESES  
+statement:
+for
 \[
 \theta<m/b,
 \]
-then
 \[
 R_{\rm ext}=\{0<x<\theta,\ y\ge0\}
 \]
 satisfies
 \[
-\iota(R_{\rm ext})\subseteq\mathcal B((0,0)).
+\iota(R_{\rm ext})\subseteq\mathcal B(\iota(0,0)).
 \]
 
-proof:
-\`research/EXTINCTION_STRIP.md\`.
-
-gate:
-ROUND-0003 positivity/comparison/global-continuation audit.
+dependencies:
+Girejko–Mozyrska–Wyrwas 2011; Al-Refai 2012; Wu 2020; Doan–Kloeden 2022; Area–Nieto 2023; Wu–Liu 2020.
 
 ## Compute evidence
 
 ### CERT-B1 — Mittag-Leffler collapse root
-status: CERTIFIED COMPUTATION  
-result:
-unique nonreal zero of \(E_{1/2}\) enclosed by Arb/Krawczyk; associated real \(2\times2\) linear system satisfies \(E_{1/2}(A)=0\) exactly.
-
-role:
-infrastructure / noninjectivity validation, not principal novelty.
+status: CERTIFIED COMPUTATION.
 
 ### NUM-W1 — strong-Allee basin-entry witness
 status: NUMERICAL CORROBORATION / PRINCIPAL CONJECTURE GENERATOR  
-model:
-project-constructed positive nontriangular strong-Allee predator–prey system.
-
 parameters:
 \[
-\theta=0.3,\ a=b=1,\ m=0.8,\ \alpha=0.85.
+\theta=0.3,\ a=b=1,\ m=0.8,\ \alpha=0.85,
 \]
-
-initial state:
 \[
 p=(2.4372,2.012).
 \]
-
-observed:
-the orbit penetrates \(R_{\rm ext}\) with prey margin about \(0.103\) and numerically returns to the coexistence equilibrium.
-
-validation:
-three history-retaining solvers, mesh/horizon ladders, 30-digit recomputation, 219 mesh-reliable witnesses in broader scans.
-
 limitation:
-survival basin membership is not proved; nonlinear trajectory is not interval-certified.
-
-## Retired principal hypothesis
-
-### OLD CANDIDATE-M2 — transversal collision persistence
-status: RETIRED AS PRINCIPAL REQUIREMENT  
-reason:
-for embedded-age entry \(s=0\), collision equality is automatic and its persistence follows from continuity plus open entry. IFT/transversality matters only for stronger collision-manifold geometry.
+survival convergence and finite-time interval certification remain open.
 
 ## Principal targets
 
 ### TARGET-A20 — physically reachable multibasin-fiber existence
-status: CONJECTURED — STRONG NUMERICAL WITNESS, NOT PROVED  
-remaining proof burden:
-1. promote X1;
-2. prove survival basin membership for at least one standard initial state;
-3. certify or analytically prove entry into \(R_{\rm ext}\);
-4. run exact model-specific novelty audit.
+status: CONJECTURED / ONE BASIN HALF NOW PROVED
 
-### TARGET-A21 — Double-Allee extinction/survival realization
-status: OPEN  
-TASK-0001:
-28 numerical witnesses found in a project-constructed Double-Allee variant, but no published Double-Allee parameterization was reproduced.
+closed:
+- structural E1;
+- cold-start extinction X1;
+- continuation-state bridge E3.
 
-ROUND-0003:
-recover exact published model(s).
+remaining:
+1. prove one standard IVP converges physically to \(E^*\);
+2. certify or analytically prove finite-time entry into \(R_{\rm ext}\);
+3. final exact theorem-specific novelty audit.
+
+### TARGET-A21 — published Double-Allee realization
+status: OPEN / MODEL EQUATIONS VERIFIED  
+Mondal 2025:
+exact equations recovered; basin parameter table only partially recovered.
 
 ### TARGET-A30 — open-family persistence
-status: OPEN / REFACTORED  
-correct mechanism:
-STRUCTURAL-E2 + persistent extinction/survival basin membership.
-
-transversality:
-not required for basic persistence.
-
-### TARGET-A40 — fiber geometry beyond existence
-status: DEFERRED.
+status: OPEN  
+mechanism:
+E2 + persistent extinction/survival basin memberships.
 
 ### TARGET-A50 — fractional-order dependence
-status: NUMERICALLY SUPPORTED / THEOREM OPEN  
-TASK-0001:
-mesh-reliable witnesses observed for \(\alpha\in[0.65,0.92]\); no impossibility conclusion at smaller order.
+status: NUMERICALLY SUPPORTED / THEOREM OPEN.
 
-## Rule
+## Novelty discipline
 
-No principal TARGET claim enters manuscript title/abstract/conclusion until basin membership and model-specific novelty are rigorously closed.
+Do not claim novelty for:
+- the ecological vector field;
+- the fixed-sign Caputo derivative phenomenon;
+- Double-Allee fractional modeling;
+- E1 as abstract logic.
+
+The residual novelty is the rigorous Caputo reachable-fiber extinction/survival theorem.
