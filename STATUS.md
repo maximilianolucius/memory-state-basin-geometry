@@ -1,49 +1,68 @@
 # Status
 
-**Phase:** ACTIVE — theorem feasibility, falsification and novelty closure
+**Phase:** ACTIVE — constructive feasibility + purity closure
 
-The inherited gap-discovery work selected reachable memory-state basin geometry as the strongest surviving opportunity, but no new theorem is yet promoted.
+## ROUND-0001 assimilated — 2026-09-29
 
-## Chief initialization completed — 2026-09-29
+Chief verdict: **NARROW, NOT KILLED**.
 
-The Chief has:
-1. read the controlling publication directives and all mandatory project context;
-2. formalized a provisional state architecture in `research/STATE_ARCHITECTURE.md`;
-3. derived candidate structural lemma M1: an inter-basin physical collision of standard IVPs lifts to a multibasin reachable present-state fiber;
-4. formulated candidate theorem M2: transversal inter-basin collision plus robust basin trapping may imply persistence on an open parameter/order family;
-5. opened a purity track for scalar barrier, triangular observable-determining, and comparison-dominated subclasses;
-6. dispatched the first mandatory hostile literature audit and validated compute task.
+Verified:
+- exact Doan–Kloeden continuation-state architecture;
+- compact-open state topology and canonical point-IVP embedding;
+- positive invariance needed for the collision reduction.
+
+Novelty removed:
+- M1 as a theorem claim;
+- generic implicit-function/transversality persistence;
+- broad “same present, different future because of memory” language;
+- broad headpoint/projected hereditary basin language.
+
+Search-qualified residual retained:
+\[
+\exists\phi,\psi\in\mathcal R_\alpha:
+\quad
+e_0(\phi)=e_0(\psi),\qquad
+\phi\in\mathcal B(A_1),\quad
+\psi\in\mathcal B(A_2),\quad A_1\neq A_2,
+\]
+for an autonomous continuous Caputo system with \(0<\alpha<1\), preferably extinction versus survival/coexistence in a natural positive strong/Double-Allee model.
+
+The target must then be generalized to an open parameter/order family with the Caputo-specific regularity and basin hypotheses explicitly proved.
+
+## Chief work completed after ROUND-0001
+
+- decision:
+  \`research/coordination/chief-decisions/ROUND-0001_state-architecture-multibasin-killer_DECISION.md\`
+- state architecture upgraded from provisional to verified baseline:
+  \`research/STATE_ARCHITECTURE.md\`
+- scalar equilibrium-partition purity theorem drafted:
+  \`research/PURITY_THEOREMS.md\`
+- ROUND-0002 dispatched for exact scalar/triangular/comparison audit.
 
 ## Active delegated work
 
-### Deep Web Search
-`research/coordination/chief-to-web/ROUND-0001_state-architecture-multibasin-killer_REQUEST.md`
+### Compute — TASK-0001
+Outstanding:
+- two independent history-retaining solvers;
+- published intersection reproduction;
+- Double-Allee baseline;
+- inter-basin collision search/refinement;
+- Jacobian/transversality diagnostics.
 
-Gate questions:
-- exact Doan–Kloeden state architecture and hypotheses;
-- direct/adjacent prior for fiberwise basin organization;
-- prior/subsumption of M1/M2;
-- direct positive same-present/different-outcome examples.
+### Web Search — ROUND-0002
+Active request:
+\`research/coordination/chief-to-web/ROUND-0002_scalar-triangular-purity_REQUEST.md\`
 
-### Compute
-`research/coordination/chief-to-compute/TASK-0001_validated-collision-search_REQUEST.md`
+Purpose:
+audit the exact scalar nonintersection hypotheses, the S1 purity theorem, strong-Allee instantiation, triangular extension, and whether monotone comparison can genuinely imply endpoint-fiber purity.
 
-Stages:
-- two-solver validation;
-- published Caputo intersection reproduction;
-- published Double-Allee baseline;
-- inter-basin collision/root/transversality discovery.
+## Main scientific gate
 
-## Current gate
+The project still needs at least one of:
 
-Before manuscript drafting the Chief must still resolve:
-1. primary-source-verified state-space and reachability definitions;
-2. strongest hereditary/Volterra basin-fiber prior;
-3. at least one proved purity/impossibility result beyond a tautology;
-4. existence or nonexistence of multibasin fibers in a natural positive class;
-5. generality beyond one benchmark;
-6. independent compute reproduction/certification of every load-bearing numerical fact.
+1. a rigorous/certified positive multibasin-fiber witness with a path to an open-family theorem; or
+2. a sufficiently broad and nontrivial impossibility theorem to replace the positive program.
 
 ## Paper
 
-**NOT STARTED.** Manuscript prose remains blocked until at least one principal NEW THEOREM is proved/certified at defensible scope.
+**NOT STARTED.** Manuscript mode remains blocked.
