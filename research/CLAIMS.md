@@ -1,70 +1,66 @@
 # Claim Registry
 
-**Status:** TARGET-A20 CLOSURE ATTEMPT.
+**Status:** TARGET-A20 NOW REDUCED TO ONE CONSTRUCTIVE CERTIFICATE.
 
 ## Proved / certified core
 
 ### THEOREM-X1 — cold-start extinction strip
 status: PROVED FROM PUBLISHED HYPOTHESES.
 
-### STRUCTURAL-E1 — basin-entry criterion
+### THEOREM-L1 — explicit local survival basin
+status: PROVED FROM PUBLISHED HYPOTHESES.
+
+For Hurwitz coexistence Jacobian \(J\), let
+\[
+J^\top P+PJ=-I,\qquad P>0.
+\]
+If
+\[
+\|N(u)\|_2\le C_r\|u\|_2^2
+\]
+on \(\|u\|\le r\) and
+\[
+2\lambda_{\max}(P)C_r r\le1/2,
+\]
+then every initial state satisfying
+\[
+u_0^\top Pu_0<\lambda_{\min}(P)r^2
+\]
+converges to \(E^*\).
+
+Source chain:
+Ren & Wu 2019; Wu 2020; Wu & Liu 2020; project E3.
+
+### STRUCTURAL-E1 / E2 / E3 / E4
 status: PROVED.
 
-### STRUCTURAL-E2 — open persistence criterion
-status: PROVED ABSTRACTLY.
-
-### STRUCTURAL-E3 — physical convergence -> continuation-state convergence
-status: PROVED.
-
-### STRUCTURAL-E4 — tail anchoring / failure of global-sup convergence
-status: PROVED.
-
-### CERT-A2 — finite-time entry of TASK-0001 witness
+### CERT-A2
 status: CERTIFIED COMPUTATION  
-statement:
-the exact binary64-parameter IVP is rigorously enclosed inside \(R_{\rm ext}\) on a nondegenerate time interval, with a representative certified margin about \(0.09848\).
+finite-time entry of the original witness into \(R_{\rm ext}\).
 
-publication caveat:
-recertify with exact rational parameters before manuscript.
-
-### CERT-A2B2 / CERT-A2B3 — near-equilibrium entry
+### CERT-A2B2 / CERT-A2B3
 status: CERTIFIED COMPUTATION  
-role:
-proof-oriented candidate search; survival membership still open.
-
-## Principal candidate
-
-### CANDIDATE-L1 — explicit quadratic local survival basin
-status: OPEN / ROUND-0004 AUDIT ACTIVE  
-statement:
-for Hurwitz coexistence Jacobian \(J\), an explicit ellipsoidal local basin follows from a quadratic Caputo Lyapunov inequality plus a rigorous quadratic remainder bound.
-
-file:
-\`research/LOCAL_SURVIVAL_BASIN.md\`.
+near-equilibrium entry candidates; not L1-qualified because their equilibrium regime is not the intended Hurwitz local-basin regime.
 
 ## Principal target
 
 ### TARGET-A20 — physically reachable multibasin fiber
-status: CONJECTURED / ALL BUT SURVIVAL CLASSIFICATION CLOSED
+status: OPEN ONLY ON CONSTRUCTIVE WITNESS
 
-closed:
-- extinction cold start: X1;
-- finite-time entry: certified;
-- structural lift: E1;
-- topology bridge: E3.
+Everything theoretical is now available.
 
-remaining:
-- rigorous survival-basin membership for one entering standard IVP.
+It is sufficient to produce one exact-rational standard initial point \(p\) such that:
+1. \(p\) satisfies THEOREM-L1;
+2. its actual Caputo trajectory is certified to enter \(R_{\rm ext}\).
 
-Preferred closure:
-CANDIDATE-L1 + TASK-0003 exact-rational witness.
+Then TARGET-A20 is PROVED by L1 + X1 + E1.
 
-## Novelty discipline
+TASK-0003 owns this final constructive certificate.
 
-No novelty claimed for:
-- ecological vector field;
-- fixed-sign Caputo derivative phenomenon;
-- validated-integration lemma by itself;
-- abstract E1/E3/E4.
+## Novelty
 
-Residual novelty remains the rigorous extinction/survival split inside one physically reachable present-state fiber.
+ROUND-0004 found:
+- no direct exact-model L1 basin-radius theorem;
+- no strict survival-entry multibasin-fiber theorem in the searched corpus.
+
+Final novelty remains search-qualified until a successful exact witness is fixed and searched verbatim.
