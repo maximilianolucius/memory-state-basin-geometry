@@ -1,76 +1,59 @@
 # Research Plan
 
-## Phase 0 — Definitions and prior-art closure
-**Status:** COMPLETE ENOUGH FOR ACTIVE THEOREM WORK.
+## Phase 0 — definitions/prior architecture
+**COMPLETE ENOUGH.**
 
-The Doan–Kloeden continuation-state architecture, reachable set, present evaluation and basin language are fixed. Broad hereditary/factor-map novelty threats were audited in ROUND-0001.
+## Phase 1 — purity/impossibility
+**SCALAR COMPLETE.**
 
-## Phase 1 — Purity/impossibility theorems
-**Status:** SCALAR COMPLETE / TRIANGULAR SUPPORTING ONLY.
+Scalar strong-Allee cold-start behavior and fiber purity are rigorous supporting results.
 
-- scalar equilibrium-partition fiber purity: proved as completeness;
-- strong-Allee scalar corollary: rigorous from published ingredients;
-- general monotonicity alone: insufficient;
-- triangularity: only with basin-determining coordinate.
+## Phase 2 — constructive discovery
+**SUCCESSFUL.**
 
-## Phase 2 — Constructive multibasin search
-**Status:** SUCCESSFUL AS CONJECTURE GENERATION.
+TASK-0001 found a robust threshold-entry/recovery witness.
 
-TASK-0001 found a robust numerical witness in a project-constructed positive strong-Allee predator–prey family.
+## Phase 3 — structural theorem
+**MOSTLY COMPLETE.**
 
-The useful construction is not a same-age two-orbit collision.
+Proved:
+- E1 basin-entry criterion;
+- E1A arc criterion;
+- E2 open persistence criterion;
+- E3 physical convergence -> continuation-state convergence.
 
-It is:
+The old transversality program is secondary.
+
+## Phase 4 — model-specific theorem closure
+**ACTIVE / CRITICAL.**
+
+Closed:
+- X1 cold-start extinction strip.
+
+Open:
+1. physical convergence of one standard survival IVP to \(E^*\);
+2. rigorous finite-time entry of that same IVP into \(R_{\rm ext}\).
+
+Once both hold:
 \[
-\text{survival-basin continuation orbit}
-\longrightarrow
-\text{entry into a cold-start extinction region}.
+\text{X1 + E3 + E1} \Longrightarrow \text{TARGET-A20}.
 \]
 
-## Phase 3 — Structural reduction and theorem closure
-**Status:** ACTIVE / PRINCIPAL PHASE.
+## Phase 5 — published Double-Allee specialization
+**MODEL FORM RECOVERED / PARAMETER REGIME PARTIAL.**
 
-The abstract basin-entry theorem E1 is proved.
+Mondal 2025 exact equations are available.
+Do not claim exact basin-figure reproduction until its true fractional parameter table is recovered.
 
-Current theorem program:
+## Phase 6 — certification
+**ACTIVE THROUGH TASK-0002.**
 
-1. prove the cold-start extinction region;
-2. prove one survival/coexistence basin membership;
-3. certify finite-time entry;
-4. conclude TARGET-A20;
-5. prove basin persistence on an open parameter set;
-6. only then study finer fiber geometry.
-
-Transversality/IFT is secondary and not required for basic existence.
-
-## Phase 4 — Published Double-Allee specialization
-**Status:** BLOCKED ON ROUND-0003 MODEL RECOVERY.
-
-Recover exact published equations/parameters and test whether the basin-entry mechanism occurs in the published family.
-
-If not, decide whether the project-constructed strong-Allee model is mathematically sufficient for the paper or whether another published positive class is preferable.
-
-## Phase 5 — Fractional-order dependence
-**Status:** NUMERICAL PRE-EVIDENCE EXISTS.
-
-TASK-0001 found mesh-reliable witnesses for several orders in \([0.65,0.92]\).
-
-No theorem is claimed until basin persistence/order regularity is proved.
-
-## Phase 6 — Certification
-**Status:** ACTIVE THROUGH TASK-0002.
-
-Priority:
-- validated nonlinear finite-time entry;
-- rigorous survival-basin certificate;
+Priorities:
+- validated finite-time entry;
+- proof-friendly survival witness;
 - eventual parameter-box certification.
 
-## Phase 7 — Manuscript
+## Phase 7 — manuscript
 **BLOCKED.**
 
-Entry criteria for manuscript mode:
-- TARGET-A20 PROVED/CERTIFIED;
-- model-specific novelty audit PASS;
-- open-family scope or a comparably strong theorem;
-- published-model/application provenance resolved;
-- no principal claim rests only on finite-horizon classification.
+Unblock only after TARGET-A20 is rigorous and theorem-specific novelty audit passes.
