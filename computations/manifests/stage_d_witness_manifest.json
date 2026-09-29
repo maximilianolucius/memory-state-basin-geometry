@@ -1,0 +1,156 @@
+{
+  "task": "TASK-0001",
+  "environment": {
+    "hostname": "orion",
+    "platform": "Linux-7.0.0-34-generic-x86_64-with-glibc2.39",
+    "processor": "x86_64",
+    "cpu_count": 344,
+    "python": "3.12.3",
+    "python_executable": "/home/ecoventure/msbg/computations/../venv/bin/python",
+    "packages": {
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "mpmath": "1.4.1",
+      "sympy": null,
+      "flint": "0.9.0",
+      "matplotlib": "3.11.2"
+    },
+    "numpy_blas": {
+      "name": "scipy-openblas",
+      "found": true,
+      "version": "0.3.34.106.0",
+      "detection method": "pkgconfig",
+      "include directory": "/opt/_internal/cpython-3.12.13/lib/python3.12/site-packages/scipy_openblas64/include",
+      "lib directory": "/opt/_internal/cpython-3.12.13/lib/python3.12/site-packages/scipy_openblas64/lib",
+      "openblas configuration": "OpenBLAS 0.3.34.106.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64",
+      "pc file directory": "/project/.openblas"
+    },
+    "utc": "2026-09-29T17:41:35Z",
+    "seed": 20260929,
+    "git_commit": null
+  },
+  "payload": {
+    "model": {
+      "class": "AlleePredatorPrey",
+      "provenance": "PROJECT-CONSTRUCTED (Area-Nieto 2023 strong-Allee cubic + Lotka-Volterra predation); NOT a reproduction of a published parameterisation",
+      "theta": 0.3,
+      "a": 1.0,
+      "b": 1.0,
+      "m": 0.8,
+      "alpha": 0.85,
+      "E_star": [
+        0.8,
+        0.09999999999999998
+      ],
+      "theta_lt_xstar": true
+    },
+    "witness_p": [
+      2.4372,
+      2.012
+    ],
+    "D1_margin_min": 0.09891275270497929,
+    "D1_margin_max": 0.2979305505039684,
+    "D1_all_solvers_all_meshes_subthreshold": true,
+    "D2_linearised_decay_prediction": -0.85,
+    "D3_subthreshold_arc": {
+      "t_first": 1.26,
+      "t_last": 35.74,
+      "n_mesh_points": 1725,
+      "all_points_in_certified_extinction_region": true,
+      "x_range": [
+        0.19662623305501148,
+        0.2999525052229437
+      ],
+      "y_range": [
+        0.0361519945358999,
+        1.6985586287391496
+      ],
+      "z_deepest": [
+        0.19662623305501148,
+        0.5470481184349214
+      ],
+      "t_deepest": 3.9,
+      "positivity_min_x": 0.19662623305501148,
+      "positivity_min_y": 0.0320569703452922
+    },
+    "D4_high_precision": {
+      "dps": 30,
+      "N": 2000,
+      "T": 200.0,
+      "min_x_mp": 0.016151710303524646,
+      "t_min_mp": 200.0,
+      "min_x_float64_same_mesh": 0.01615171053618214,
+      "abs_diff": 2.3265749396483848e-10,
+      "margin_mp": 0.28384828969647535
+    },
+    "D5_embedded_age_jacobian": {
+      "columns": [
+        "p0",
+        "p1",
+        "t"
+      ],
+      "singular_values": [
+        0.24375313112725522,
+        0.07923083997419471
+      ],
+      "rank": 2,
+      "z": [
+        0.19662623305501148,
+        0.5470481184349214
+      ],
+      "t": 3.9,
+      "note": "H(p,z,t,0) = x(t;p) - z.  In the variables (z) the Jacobian is -I, so the witness is automatically transversal; the interesting content is the rank in (p,t), reported here."
+    },
+    "D6_persistence_fraction": 0.6071428571428571,
+    "D8_caputo_mechanism": {
+      "t_start": 3.9,
+      "t_end": 35.76,
+      "x_start": 0.19662623305501148,
+      "x_end": 0.3000333280490213,
+      "x_rise": 0.1034070949940098,
+      "max_g_x_on_window": -0.010835104583439331,
+      "caputo_derivative_strictly_negative_throughout": true,
+      "x_monotone_increasing_on_window": true,
+      "integer_order_counterpart": "for alpha = 1, g_x < 0 forces x to decrease, so no survival orbit can enter {x < theta}: the phenomenon is specific to 0 < alpha < 1"
+    },
+    "conclusion": {
+      "multibasin_fibre_witness": true,
+      "extinction_side": "CERTIFIED-CONDITIONAL (Wu 2020 scalar Caputo comparison + COROLLARY-S1A; requires positivity of the cone and theta < m/b)",
+      "survival_side": "NUMERICAL CORROBORATION only - no rigorous memory-state trapping region is established here",
+      "overall_evidence_class": "NUMERICAL CORROBORATION (conditional certification on one side)"
+    },
+    "wall_seconds": 855.593
+  },
+  "artifacts": [
+    {
+      "path": "/home/ecoventure/msbg/computations/data/stage_d_witness_D1_mesh_ladder.json",
+      "sha256": "e8a59f5394afb82af0f23bdcbe36d5eb9fe8c259019732e3db46e7af7faae40c",
+      "bytes": 6120
+    },
+    {
+      "path": "/home/ecoventure/msbg/computations/data/stage_d_witness_D2_horizon_ladder.json",
+      "sha256": "70c4426902366c04a772bf55e79ef7c4a9811177b377597ce6a8eea0980fe5d0",
+      "bytes": 1518
+    },
+    {
+      "path": "/home/ecoventure/msbg/computations/data/stage_d_witness_witness_orbit.npz",
+      "sha256": "a24c44234ca8f607e39b779963bc28155a1922a052c1e19552706f800399b3c4",
+      "bytes": 1365818
+    },
+    {
+      "path": "/home/ecoventure/msbg/computations/data/stage_d_witness_D6_openness.json",
+      "sha256": "e1dd963683b66f361a7d4b140c7c82c5940090544d7fba3e204733e9337d5c25",
+      "bytes": 7734
+    },
+    {
+      "path": "/home/ecoventure/msbg/computations/data/stage_d_witness_D7_collisions.json",
+      "sha256": "2825284c5e88124497cac71222dc22d251850ff1ca5210fbf42175ce44412cd3",
+      "bytes": 129
+    },
+    {
+      "path": "/home/ecoventure/msbg/computations/data/stage_d_witness_witness_mechanism.npz",
+      "sha256": "a4d4f7cd5adea8e15307930ee174af045fa59f1c0a8814e51a5d26031ffff011",
+      "bytes": 1882988
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "task": "TASK-0001",
+  "environment": {
+    "hostname": "aur007",
+    "platform": "Linux-6.8.0-139-generic-x86_64-with-glibc2.39",
+    "processor": "x86_64",
+    "cpu_count": 32,
+    "python": "3.12.3",
+    "python_executable": "/home/aureus/msbg/computations/../venv/bin/python",
+    "packages": {
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "mpmath": "1.4.1",
+      "sympy": null,
+      "flint": "0.9.0",
+      "matplotlib": "3.11.2"
+    },
+    "numpy_blas": {
+      "name": "scipy-openblas",
+      "found": true,
+      "version": "0.3.34.106.0",
+      "detection method": "pkgconfig",
+      "include directory": "/opt/_internal/cpython-3.12.13/lib/python3.12/site-packages/scipy_openblas64/include",
+      "lib directory": "/opt/_internal/cpython-3.12.13/lib/python3.12/site-packages/scipy_openblas64/lib",
+      "openblas configuration": "OpenBLAS 0.3.34.106.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64",
+      "pc file directory": "/project/.openblas"
+    },
+    "utc": "2026-09-29T17:55:14Z",
+    "seed": 20260929,
+    "git_commit": null
+  },
+  "payload": {
+    "parameters": {
+      "theta": 0.3,
+      "a": 1.0,
+      "b": 1.0,
+      "m": 0.8,
+      "alpha": 0.85,
+      "T": 800.0,
+      "h": 0.04,
+      "nx": 22,
+      "ny": 22,
+      "ymax": 5.0
+    },
+    "T1_positivity_min": 0.0,
+    "T2_label_counts": {
+      "EXTINCTION": 484,
+      "COEXISTENCE": 0,
+      "AMBIGUOUS": 0,
+      "DIVERGENT": 0,
+      "NEGATIVE": 0
+    },
+    "T2_all_extinction": true,
+    "T3_comparison_worst_excess": 4.385380947269368e-15,
+    "T3_n_violating_trajectories": 0,
+    "T4_u_stays_in_0_theta": true,
+    "T5_predator_bound_worst_excess": 0.0,
+    "T5_n_violating_trajectories": 0,
+    "evidence_class": "NUMERICAL FALSIFICATION TEST of a CERTIFIED-CONDITIONAL claim; passing does not prove the claim, failing would refute it",
+    "wall_seconds": 194.828
+  },
+  "artifacts": [
+    {
+      "path": "/home/aureus/msbg/computations/data/stage_d_certified_region_region_check.npz",
+      "sha256": "5d61fbb27232312b82244d037385e77d1f8fa63d3e65f92215e3a8a7b96bb7d1",
+      "bytes": 22319
+    }
+  ]
+}

@@ -1,0 +1,944 @@
+{
+  "task": "TASK-0001",
+  "environment": {
+    "hostname": "R11",
+    "platform": "Linux-5.15.0-191-generic-x86_64-with-glibc2.35",
+    "processor": "x86_64",
+    "cpu_count": 32,
+    "python": "3.14.3",
+    "python_executable": "/usr/local/bin/python3",
+    "packages": {
+      "numpy": "2.4.4",
+      "scipy": "1.17.1",
+      "mpmath": "1.3.0",
+      "sympy": "1.14.0",
+      "flint": "0.9.0",
+      "matplotlib": "3.10.9"
+    },
+    "numpy_blas": {
+      "name": "scipy-openblas",
+      "found": true,
+      "version": "0.3.31.188.0",
+      "detection method": "pkgconfig",
+      "include directory": "/opt/_internal/cpython-3.14.0/lib/python3.14/site-packages/scipy_openblas64/include",
+      "lib directory": "/opt/_internal/cpython-3.14.0/lib/python3.14/site-packages/scipy_openblas64/lib",
+      "openblas configuration": "OpenBLAS 0.3.31.188.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64",
+      "pc file directory": "/project/.openblas"
+    },
+    "utc": "2026-09-29T17:22:54Z",
+    "seed": 20260929,
+    "git_commit": "1250c530f62216e12623af58d425703a8452ae6a",
+    "git_branch": "compute/task-0001",
+    "git_dirty": true
+  },
+  "payload": {
+    "stage_c_as_specified": "HALTED",
+    "halt_reason": "Mondal et al. (2025) equations and parameters are not recoverable from this repository; task stop rule forbids guessing them.",
+    "missing_information": [
+      "Mondal et al. (2025) DOI 10.1016/j.cjph.2025.09.020: the state equations, including the explicit double-Allee factor and the group-defence functional response.",
+      "Mondal et al. (2025): the parameter values (and which figure/table they belong to) for the multistable regime whose basins the paper computes.",
+      "Mondal et al. (2025): the fractional orders used, commensurate and incommensurate, for that regime.",
+      "Mondal et al. (2025): the coordinates of the attractors reported in the multistable regime, so that a reproduction can be checked rather than asserted.",
+      "Fallback sources with the same gap: Rahmi et al. (2021) Fractal Fract. 5(3) 84; Pal & Saha (2015); Contreras Julio & Aguirre (2018) - equations/parameters not stored locally."
+    ],
+    "C1_C2_baseline_th0.2_a1_m0.7": [
+      {
+        "equilibrium_exact": [
+          "0",
+          "0"
+        ],
+        "equilibrium_float": [
+          0.0,
+          0.0
+        ],
+        "jacobian_exact": [
+          [
+            "-1/5",
+            "0"
+          ],
+          [
+            "0",
+            "-7/10"
+          ]
+        ],
+        "eigenvalues_exact": [
+          "-1/5",
+          "-7/10"
+        ],
+        "eigenvalues_float": [
+          [
+            -0.2,
+            0.0
+          ],
+          [
+            -0.7,
+            0.0
+          ]
+        ],
+        "trace_exact": "-9/10",
+        "det_exact": "7/50",
+        "stable_for_alpha": {
+          "0.3": true,
+          "0.5": true,
+          "0.7": true,
+          "0.8": true,
+          "0.9": true,
+          "0.95": true,
+          "0.99": true
+        },
+        "min_abs_arg": 3.141592653589793,
+        "alpha_stability_bound": 2.0
+      },
+      {
+        "equilibrium_exact": [
+          "1/5",
+          "0"
+        ],
+        "equilibrium_float": [
+          0.2,
+          0.0
+        ],
+        "jacobian_exact": [
+          [
+            "4/25",
+            "-1/5"
+          ],
+          [
+            "0",
+            "-1/2"
+          ]
+        ],
+        "eigenvalues_exact": [
+          "-1/2",
+          "4/25"
+        ],
+        "eigenvalues_float": [
+          [
+            -0.5,
+            0.0
+          ],
+          [
+            0.16,
+            0.0
+          ]
+        ],
+        "trace_exact": "-17/50",
+        "det_exact": "-2/25",
+        "stable_for_alpha": {
+          "0.3": false,
+          "0.5": false,
+          "0.7": false,
+          "0.8": false,
+          "0.9": false,
+          "0.95": false,
+          "0.99": false
+        },
+        "min_abs_arg": 0.0,
+        "alpha_stability_bound": 0.0
+      },
+      {
+        "equilibrium_exact": [
+          "7/10",
+          "3/20"
+        ],
+        "equilibrium_float": [
+          0.7,
+          0.15
+        ],
+        "jacobian_exact": [
+          [
+            "-7/50",
+            "-7/10"
+          ],
+          [
+            "3/20",
+            "0"
+          ]
+        ],
+        "eigenvalues_exact": [
+          "-7/100 - sqrt(1001)*I/100",
+          "-7/100 + sqrt(1001)*I/100"
+        ],
+        "eigenvalues_float": [
+          [
+            -0.07,
+            -0.3163858403911275
+          ],
+          [
+            -0.07,
+            0.3163858403911275
+          ]
+        ],
+        "trace_exact": "-7/50",
+        "det_exact": "21/200",
+        "stable_for_alpha": {
+          "0.3": true,
+          "0.5": true,
+          "0.7": true,
+          "0.8": true,
+          "0.9": true,
+          "0.95": true,
+          "0.99": true
+        },
+        "min_abs_arg": 1.7885375051569772,
+        "alpha_stability_bound": 1.1386183394039167
+      },
+      {
+        "equilibrium_exact": [
+          "1",
+          "0"
+        ],
+        "equilibrium_float": [
+          1.0,
+          0.0
+        ],
+        "jacobian_exact": [
+          [
+            "-4/5",
+            "-1"
+          ],
+          [
+            "0",
+            "3/10"
+          ]
+        ],
+        "eigenvalues_exact": [
+          "3/10",
+          "-4/5"
+        ],
+        "eigenvalues_float": [
+          [
+            0.3,
+            0.0
+          ],
+          [
+            -0.8,
+            0.0
+          ]
+        ],
+        "trace_exact": "-1/2",
+        "det_exact": "-6/25",
+        "stable_for_alpha": {
+          "0.3": false,
+          "0.5": false,
+          "0.7": false,
+          "0.8": false,
+          "0.9": false,
+          "0.95": false,
+          "0.99": false
+        },
+        "min_abs_arg": 0.0,
+        "alpha_stability_bound": 0.0
+      }
+    ],
+    "C1_C2_witness_th0.2_a2_m0.8": [
+      {
+        "equilibrium_exact": [
+          "0",
+          "0"
+        ],
+        "equilibrium_float": [
+          0.0,
+          0.0
+        ],
+        "jacobian_exact": [
+          [
+            "-1/5",
+            "0"
+          ],
+          [
+            "0",
+            "-4/5"
+          ]
+        ],
+        "eigenvalues_exact": [
+          "-1/5",
+          "-4/5"
+        ],
+        "eigenvalues_float": [
+          [
+            -0.2,
+            0.0
+          ],
+          [
+            -0.8,
+            0.0
+          ]
+        ],
+        "trace_exact": "-1",
+        "det_exact": "4/25",
+        "stable_for_alpha": {
+          "0.3": true,
+          "0.5": true,
+          "0.7": true,
+          "0.8": true,
+          "0.9": true,
+          "0.95": true,
+          "0.99": true
+        },
+        "min_abs_arg": 3.141592653589793,
+        "alpha_stability_bound": 2.0
+      },
+      {
+        "equilibrium_exact": [
+          "1/5",
+          "0"
+        ],
+        "equilibrium_float": [
+          0.2,
+          0.0
+        ],
+        "jacobian_exact": [
+          [
+            "4/25",
+            "-2/5"
+          ],
+          [
+            "0",
+            "-3/5"
+          ]
+        ],
+        "eigenvalues_exact": [
+          "-3/5",
+          "4/25"
+        ],
+        "eigenvalues_float": [
+          [
+            -0.6,
+            0.0
+          ],
+          [
+            0.16,
+            0.0
+          ]
+        ],
+        "trace_exact": "-11/25",
+        "det_exact": "-12/125",
+        "stable_for_alpha": {
+          "0.3": false,
+          "0.5": false,
+          "0.7": false,
+          "0.8": false,
+          "0.9": false,
+          "0.95": false,
+          "0.99": false
+        },
+        "min_abs_arg": 0.0,
+        "alpha_stability_bound": 0.0
+      },
+      {
+        "equilibrium_exact": [
+          "4/5",
+          "3/50"
+        ],
+        "equilibrium_float": [
+          0.8,
+          0.06
+        ],
+        "jacobian_exact": [
+          [
+            "-8/25",
+            "-8/5"
+          ],
+          [
+            "3/50",
+            "0"
+          ]
+        ],
+        "eigenvalues_exact": [
+          "-4/25 - 2*sqrt(11)*I/25",
+          "-4/25 + 2*sqrt(11)*I/25"
+        ],
+        "eigenvalues_float": [
+          [
+            -0.16,
+            -0.265329983228432
+          ],
+          [
+            -0.16,
+            0.265329983228432
+          ]
+        ],
+        "trace_exact": "-8/25",
+        "det_exact": "12/125",
+        "stable_for_alpha": {
+          "0.3": true,
+          "0.5": true,
+          "0.7": true,
+          "0.8": true,
+          "0.9": true,
+          "0.95": true,
+          "0.99": true
+        },
+        "min_abs_arg": 2.113435429044549,
+        "alpha_stability_bound": 1.3454547817519225
+      },
+      {
+        "equilibrium_exact": [
+          "1",
+          "0"
+        ],
+        "equilibrium_float": [
+          1.0,
+          0.0
+        ],
+        "jacobian_exact": [
+          [
+            "-4/5",
+            "-2"
+          ],
+          [
+            "0",
+            "1/5"
+          ]
+        ],
+        "eigenvalues_exact": [
+          "1/5",
+          "-4/5"
+        ],
+        "eigenvalues_float": [
+          [
+            0.2,
+            0.0
+          ],
+          [
+            -0.8,
+            0.0
+          ]
+        ],
+        "trace_exact": "-3/5",
+        "det_exact": "-4/25",
+        "stable_for_alpha": {
+          "0.3": false,
+          "0.5": false,
+          "0.7": false,
+          "0.8": false,
+          "0.9": false,
+          "0.95": false,
+          "0.99": false
+        },
+        "min_abs_arg": 0.0,
+        "alpha_stability_bound": 0.0
+      }
+    ],
+    "C1_C2_witness_th0.3_a1_m0.75": [
+      {
+        "equilibrium_exact": [
+          "0",
+          "0"
+        ],
+        "equilibrium_float": [
+          0.0,
+          0.0
+        ],
+        "jacobian_exact": [
+          [
+            "-3/10",
+            "0"
+          ],
+          [
+            "0",
+            "-3/4"
+          ]
+        ],
+        "eigenvalues_exact": [
+          "-3/10",
+          "-3/4"
+        ],
+        "eigenvalues_float": [
+          [
+            -0.3,
+            0.0
+          ],
+          [
+            -0.75,
+            0.0
+          ]
+        ],
+        "trace_exact": "-21/20",
+        "det_exact": "9/40",
+        "stable_for_alpha": {
+          "0.3": true,
+          "0.5": true,
+          "0.7": true,
+          "0.8": true,
+          "0.9": true,
+          "0.95": true,
+          "0.99": true
+        },
+        "min_abs_arg": 3.141592653589793,
+        "alpha_stability_bound": 2.0
+      },
+      {
+        "equilibrium_exact": [
+          "3/10",
+          "0"
+        ],
+        "equilibrium_float": [
+          0.3,
+          0.0
+        ],
+        "jacobian_exact": [
+          [
+            "21/100",
+            "-3/10"
+          ],
+          [
+            "0",
+            "-9/20"
+          ]
+        ],
+        "eigenvalues_exact": [
+          "-9/20",
+          "21/100"
+        ],
+        "eigenvalues_float": [
+          [
+            -0.45,
+            0.0
+          ],
+          [
+            0.21,
+            0.0
+          ]
+        ],
+        "trace_exact": "-6/25",
+        "det_exact": "-189/2000",
+        "stable_for_alpha": {
+          "0.3": false,
+          "0.5": false,
+          "0.7": false,
+          "0.8": false,
+          "0.9": false,
+          "0.95": false,
+          "0.99": false
+        },
+        "min_abs_arg": 0.0,
+        "alpha_stability_bound": 0.0
+      },
+      {
+        "equilibrium_exact": [
+          "3/4",
+          "9/80"
+        ],
+        "equilibrium_float": [
+          0.75,
+          0.1125
+        ],
+        "jacobian_exact": [
+          [
+            "-3/20",
+            "-3/4"
+          ],
+          [
+            "9/80",
+            "0"
+          ]
+        ],
+        "eigenvalues_exact": [
+          "-3/40 - 3*sqrt(14)*I/40",
+          "-3/40 + 3*sqrt(14)*I/40"
+        ],
+        "eigenvalues_float": [
+          [
+            -0.075,
+            -0.2806243040080456
+          ],
+          [
+            -0.075,
+            0.2806243040080456
+          ]
+        ],
+        "trace_exact": "-3/20",
+        "det_exact": "27/320",
+        "stable_for_alpha": {
+          "0.3": true,
+          "0.5": true,
+          "0.7": true,
+          "0.8": true,
+          "0.9": true,
+          "0.95": true,
+          "0.99": true
+        },
+        "min_abs_arg": 1.831953737697921,
+        "alpha_stability_bound": 1.1662579714811903
+      },
+      {
+        "equilibrium_exact": [
+          "1",
+          "0"
+        ],
+        "equilibrium_float": [
+          1.0,
+          0.0
+        ],
+        "jacobian_exact": [
+          [
+            "-7/10",
+            "-1"
+          ],
+          [
+            "0",
+            "1/4"
+          ]
+        ],
+        "eigenvalues_exact": [
+          "1/4",
+          "-7/10"
+        ],
+        "eigenvalues_float": [
+          [
+            0.25,
+            0.0
+          ],
+          [
+            -0.7,
+            0.0
+          ]
+        ],
+        "trace_exact": "-9/20",
+        "det_exact": "-7/40",
+        "stable_for_alpha": {
+          "0.3": false,
+          "0.5": false,
+          "0.7": false,
+          "0.8": false,
+          "0.9": false,
+          "0.95": false,
+          "0.99": false
+        },
+        "min_abs_arg": 0.0,
+        "alpha_stability_bound": 0.0
+      }
+    ],
+    "C1_C2_witness_th0.4_a1_m0.8": [
+      {
+        "equilibrium_exact": [
+          "0",
+          "0"
+        ],
+        "equilibrium_float": [
+          0.0,
+          0.0
+        ],
+        "jacobian_exact": [
+          [
+            "-2/5",
+            "0"
+          ],
+          [
+            "0",
+            "-4/5"
+          ]
+        ],
+        "eigenvalues_exact": [
+          "-2/5",
+          "-4/5"
+        ],
+        "eigenvalues_float": [
+          [
+            -0.4,
+            0.0
+          ],
+          [
+            -0.8,
+            0.0
+          ]
+        ],
+        "trace_exact": "-6/5",
+        "det_exact": "8/25",
+        "stable_for_alpha": {
+          "0.3": true,
+          "0.5": true,
+          "0.7": true,
+          "0.8": true,
+          "0.9": true,
+          "0.95": true,
+          "0.99": true
+        },
+        "min_abs_arg": 3.141592653589793,
+        "alpha_stability_bound": 2.0
+      },
+      {
+        "equilibrium_exact": [
+          "2/5",
+          "0"
+        ],
+        "equilibrium_float": [
+          0.4,
+          0.0
+        ],
+        "jacobian_exact": [
+          [
+            "6/25",
+            "-2/5"
+          ],
+          [
+            "0",
+            "-2/5"
+          ]
+        ],
+        "eigenvalues_exact": [
+          "-2/5",
+          "6/25"
+        ],
+        "eigenvalues_float": [
+          [
+            -0.4,
+            0.0
+          ],
+          [
+            0.24,
+            0.0
+          ]
+        ],
+        "trace_exact": "-4/25",
+        "det_exact": "-12/125",
+        "stable_for_alpha": {
+          "0.3": false,
+          "0.5": false,
+          "0.7": false,
+          "0.8": false,
+          "0.9": false,
+          "0.95": false,
+          "0.99": false
+        },
+        "min_abs_arg": 0.0,
+        "alpha_stability_bound": 0.0
+      },
+      {
+        "equilibrium_exact": [
+          "4/5",
+          "2/25"
+        ],
+        "equilibrium_float": [
+          0.8,
+          0.08
+        ],
+        "jacobian_exact": [
+          [
+            "-4/25",
+            "-4/5"
+          ],
+          [
+            "2/25",
+            "0"
+          ]
+        ],
+        "eigenvalues_exact": [
+          "-2/25 - 6*I/25",
+          "-2/25 + 6*I/25"
+        ],
+        "eigenvalues_float": [
+          [
+            -0.08,
+            -0.24
+          ],
+          [
+            -0.08,
+            0.24
+          ]
+        ],
+        "trace_exact": "-4/25",
+        "det_exact": "8/125",
+        "stable_for_alpha": {
+          "0.3": true,
+          "0.5": true,
+          "0.7": true,
+          "0.8": true,
+          "0.9": true,
+          "0.95": true,
+          "0.99": true
+        },
+        "min_abs_arg": 1.892546881191539,
+        "alpha_stability_bound": 1.2048327646991335
+      },
+      {
+        "equilibrium_exact": [
+          "1",
+          "0"
+        ],
+        "equilibrium_float": [
+          1.0,
+          0.0
+        ],
+        "jacobian_exact": [
+          [
+            "-3/5",
+            "-1"
+          ],
+          [
+            "0",
+            "1/5"
+          ]
+        ],
+        "eigenvalues_exact": [
+          "1/5",
+          "-3/5"
+        ],
+        "eigenvalues_float": [
+          [
+            0.2,
+            0.0
+          ],
+          [
+            -0.6,
+            0.0
+          ]
+        ],
+        "trace_exact": "-2/5",
+        "det_exact": "-3/25",
+        "stable_for_alpha": {
+          "0.3": false,
+          "0.5": false,
+          "0.7": false,
+          "0.8": false,
+          "0.9": false,
+          "0.95": false,
+          "0.99": false
+        },
+        "min_abs_arg": 0.0,
+        "alpha_stability_bound": 0.0
+      }
+    ],
+    "C3_C4_C5_cross_solver": {
+      "pi_rect": {
+        "labels": [
+          "EXTINCTION",
+          "EXTINCTION",
+          "COEXISTENCE",
+          "COEXISTENCE",
+          "COEXISTENCE"
+        ],
+        "x_final": [
+          [
+            0.00013098956699754416,
+            3.221769956535114e-05
+          ],
+          [
+            0.0006469567547794375,
+            0.0008059642666178313
+          ],
+          [
+            0.7989682343776674,
+            0.06023559620360486
+          ],
+          [
+            0.7970686211232292,
+            0.06067676476265549
+          ],
+          [
+            0.7998132708454362,
+            0.06030930006510268
+          ]
+        ],
+        "min_x": 0.00013098956699754416,
+        "min_y": 3.221769956535114e-05,
+        "n_traj_negative": 0,
+        "newton_failures": 0
+      },
+      "pece": {
+        "labels": [
+          "EXTINCTION",
+          "EXTINCTION",
+          "COEXISTENCE",
+          "COEXISTENCE",
+          "COEXISTENCE"
+        ],
+        "x_final": [
+          [
+            0.0001310055050838116,
+            3.22213682107525e-05
+          ],
+          [
+            0.0006465819889186486,
+            0.000806062953350839
+          ],
+          [
+            0.798967878410414,
+            0.06023569634105089
+          ],
+          [
+            0.7970752957939565,
+            0.06067319456246334
+          ],
+          [
+            0.7998125007653525,
+            0.06030983569097079
+          ]
+        ],
+        "min_x": 0.0001310055050838116,
+        "min_y": 3.22213682107525e-05,
+        "n_traj_negative": 0,
+        "newton_failures": 0
+      },
+      "l1": {
+        "labels": [
+          "EXTINCTION",
+          "EXTINCTION",
+          "COEXISTENCE",
+          "COEXISTENCE",
+          "COEXISTENCE"
+        ],
+        "x_final": [
+          [
+            0.0001310150271132663,
+            3.2223080093523996e-05
+          ],
+          [
+            0.0006470901470367763,
+            0.0008061004158688309
+          ],
+          [
+            0.7989677206421901,
+            0.06023573656200977
+          ],
+          [
+            0.7970642591392217,
+            0.06067868494893
+          ],
+          [
+            0.7998128313250427,
+            0.06030941168972659
+          ]
+        ],
+        "min_x": 0.0001310150271132663,
+        "min_y": 3.2223080093523996e-05,
+        "n_traj_negative": 0,
+        "newton_failures": 0
+      }
+    },
+    "C5_all_three_solvers_agree_on_labels": true,
+    "C6_labels_stable_for_T_ge_800": true,
+    "double_allee_variant": {
+      "equilibrium": [
+        0.8,
+        0.04615384615384615
+      ],
+      "labels": [
+        "EXTINCTION",
+        "EXTINCTION",
+        "COEXISTENCE",
+        "EXTINCTION",
+        "COEXISTENCE"
+      ],
+      "provenance": "PROJECT-CONSTRUCTED (double-Allee functional form; no published parameterisation)"
+    },
+    "provenance_single": "PROJECT-CONSTRUCTED (Area-Nieto 2023 strong-Allee cubic + Lotka-Volterra predation); NOT a reproduction of a published parameterisation",
+    "provenance_double": "PROJECT-CONSTRUCTED (double-Allee functional form; no published parameterisation)",
+    "evidence_class": "C1/C2 exact symbolic (CERTIFIED by exact rational arithmetic); C3-C6 NUMERICAL CORROBORATION. Stage C as specified is HALTED.",
+    "wall_seconds": 16.474
+  },
+  "artifacts": [
+    {
+      "path": "/home/maxim/PycharmProjects/VS/ResearchVS/memory-state-basin-geometry/computations/data/stage_c_C6_mesh_sensitivity.json",
+      "sha256": "f501302e2cab92cca9c19d28e72015d716ac6b2e34bb6ab0b138ddb54c71620b",
+      "bytes": 2356
+    },
+    {
+      "path": "/home/maxim/PycharmProjects/VS/ResearchVS/memory-state-basin-geometry/computations/data/stage_c_C6_horizon_sensitivity.json",
+      "sha256": "5afe6f4895d199d3e10c7713842518c4b2b83d447a26c90dda9baf7d6b5a051e",
+      "bytes": 2819
+    }
+  ]
+}

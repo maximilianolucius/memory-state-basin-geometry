@@ -1,0 +1,245 @@
+[
+  {
+    "t": 1.26,
+    "x_t_p": [
+      0.29983212083219524,
+      1.7025243575088607
+    ],
+    "image_gap_over_extinction_set": 0.11629639046788372,
+    "q_seed": [
+      1.6,
+      2.6531081632653066
+    ],
+    "q_star": [
+      1.6,
+      2.647095633844955
+    ],
+    "residual": 0.11628154470651055,
+    "q_star_label": "EXTINCTION",
+    "q_star_in_certified_region": false,
+    "distance_to_p": 1.0508331476161783,
+    "singular_values": [
+      0.5445351318562699,
+      0.10085657712526555
+    ],
+    "det": 0.05491994952347851,
+    "condition_number": 5.399103830184006,
+    "newton_steps": 2
+  },
+  {
+    "t": 5.43125,
+    "x_t_p": [
+      0.20200593249180798,
+      0.3438858259626745
+    ],
+    "image_gap_over_extinction_set": 0.07776940562827311,
+    "q_seed": [
+      1.6,
+      2.346991836734694
+    ],
+    "q_star": [
+      1.6,
+      2.346991836734694
+    ],
+    "residual": 0.07776940562827232,
+    "q_star_label": "EXTINCTION",
+    "q_star_in_certified_region": false,
+    "distance_to_p": 0.9017335364057851,
+    "singular_values": [
+      0.11065122966293765,
+      0.07386370798538303
+    ],
+    "det": 0.008173110116046775,
+    "condition_number": 1.4980459643974895,
+    "newton_steps": 1
+  },
+  {
+    "t": 9.6025,
+    "x_t_p": [
+      0.22462080023448872,
+      0.15211248199896432
+    ],
+    "image_gap_over_extinction_set": 0.05823791729723176,
+    "q_seed": [
+      1.6,
+      1.224565306122449
+    ],
+    "q_star": [
+      1.6,
+      1.224565306122449
+    ],
+    "residual": 0.058237917297232836,
+    "q_star_label": "EXTINCTION",
+    "q_star_in_certified_region": false,
+    "distance_to_p": 1.1493290377964145,
+    "singular_values": [
+      0.19482062617111912,
+      0.045227348189439534
+    ],
+    "det": 0.008811220294325834,
+    "condition_number": 4.30758454718796,
+    "newton_steps": 1
+  },
+  {
+    "t": 13.77375,
+    "x_t_p": [
+      0.24189814138161614,
+      0.09563025478975318
+    ],
+    "image_gap_over_extinction_set": 0.04286335300957233,
+    "q_seed": [
+      1.6,
+      1.122526530612245
+    ],
+    "q_star": [
+      1.6,
+      1.122526530612245
+    ],
+    "residual": 0.0428633530095757,
+    "q_star_label": "EXTINCTION",
+    "q_star_in_certified_region": false,
+    "distance_to_p": 1.2215019004261471,
+    "singular_values": [
+      0.30943053616160376,
+      0.029138710959446028
+    ],
+    "det": 0.009016406955239383,
+    "condition_number": 10.619225283927472,
+    "newton_steps": 1
+  },
+  {
+    "t": 17.945,
+    "x_t_p": [
+      0.2544981843969629,
+      0.07053028155460694
+    ],
+    "image_gap_over_extinction_set": 0.03288680021628774,
+    "q_seed": [
+      1.6,
+      1.0204877551020408
+    ],
+    "q_star": [
+      1.6,
+      1.050450857502591
+    ],
+    "residual": 0.03283639436316333,
+    "q_star_label": "EXTINCTION",
+    "q_star_in_certified_region": false,
+    "distance_to_p": 1.274943368717804,
+    "singular_values": [
+      0.5282409121829272,
+      0.021576660313950783
+    ],
+    "det": 0.01139767472610252,
+    "condition_number": 24.482051647324838,
+    "newton_steps": 2
+  },
+  {
+    "t": 22.11625,
+    "x_t_p": [
+      0.2647919826175915,
+      0.056523623881501006
+    ],
+    "image_gap_over_extinction_set": 0.026626309445919556,
+    "q_seed": [
+      1.6,
+      1.0204877551020408
+    ],
+    "q_star": [
+      1.6,
+      1.0204877551020408
+    ],
+    "residual": 0.02662630944591954,
+    "q_star_label": "EXTINCTION",
+    "q_star_in_certified_region": false,
+    "distance_to_p": 1.297690399048475,
+    "singular_values": [
+      0.9024385192523645,
+      0.01742635084540433
+    ],
+    "det": 0.015726210252898883,
+    "condition_number": 51.78585736384134,
+    "newton_steps": 1
+  },
+  {
+    "t": 26.2875,
+    "x_t_p": [
+      0.2745781246906245,
+      0.04762976111139161
+    ],
+    "image_gap_over_extinction_set": 0.024631112238748806,
+    "q_seed": [
+      1.6,
+      1.0204877551020408
+    ],
+    "q_star": [
+      1.6,
+      1.0204877551020408
+    ],
+    "residual": 0.024631112238748035,
+    "q_star_label": "EXTINCTION",
+    "q_star_in_certified_region": false,
+    "distance_to_p": 1.297690399048475,
+    "singular_values": [
+      1.4155355075682972,
+      0.014740026012112157
+    ],
+    "det": 0.02086503020262509,
+    "condition_number": 96.03344705125521,
+    "newton_steps": 1
+  },
+  {
+    "t": 30.45875,
+    "x_t_p": [
+      0.2855578480072509,
+      0.041563208807570584
+    ],
+    "image_gap_over_extinction_set": 0.02632355420811846,
+    "q_seed": [
+      1.1428857142857145,
+      0.7143714285714285
+    ],
+    "q_star": [
+      1.6,
+      1.0107035296219762
+    ],
+    "residual": 0.02037783114169043,
+    "q_star_label": "EXTINCTION",
+    "q_star_in_certified_region": false,
+    "distance_to_p": 1.3051813903023166,
+    "singular_values": [
+      2.5326303081898187,
+      0.012948619340389114
+    ],
+    "det": 0.03279406579068231,
+    "condition_number": 195.5907608072222,
+    "newton_steps": 16
+  },
+  {
+    "t": 34.63,
+    "x_t_p": [
+      0.29998024081489527,
+      0.03731565471514098
+    ],
+    "image_gap_over_extinction_set": 0.024830458951732904,
+    "q_seed": [
+      1.1428857142857145,
+      0.7143714285714285
+    ],
+    "q_star": [
+      1.6,
+      1.0091923522588475
+    ],
+    "residual": 0.01888468066217353,
+    "q_star_label": "COEXISTENCE",
+    "q_star_in_certified_region": false,
+    "distance_to_p": 1.3063410804105269,
+    "singular_values": [
+      4.442075128817268,
+      0.011634084839199218
+    ],
+    "det": 0.051679478910756915,
+    "condition_number": 381.815603909849,
+    "newton_steps": 25
+  }
+]

@@ -48,6 +48,14 @@ def environment() -> dict:
         env["numpy_blas"] = cfg.get("Build Dependencies", {}).get("blas", {})
     except Exception:
         pass
+    # Remote compute hosts receive an rsync of the tree, not a git checkout, so
+    # the launchers export MSBG_GIT_COMMIT/MSBG_GIT_BRANCH from the local repo.
+    if os.environ.get("MSBG_GIT_COMMIT"):
+        env["git_commit"] = os.environ["MSBG_GIT_COMMIT"]
+        env["git_branch"] = os.environ.get("MSBG_GIT_BRANCH")
+        env["git_dirty"] = os.environ.get("MSBG_GIT_DIRTY") == "1"
+        env["git_source"] = "launcher environment (rsync'd tree, not a checkout)"
+        return env
     try:
         env["git_commit"] = (
             subprocess.check_output(["git", "rev-parse", "HEAD"], stderr=subprocess.DEVNULL)
