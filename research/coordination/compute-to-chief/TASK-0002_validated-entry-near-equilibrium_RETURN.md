@@ -275,6 +275,17 @@ model `theta = 0.2, a = b = 1, m = 0.4, alpha = 0.75`, `E* = (0.4, 0.12)`:
 | B2 | (0.6786775656542838, 0.28089456754761033) | [30.975284, 30.987498] | [0.188301, 0.189011] | 0.053344 | **0.010989** | 1.586e-3 | [16.2518, 36.0] |
 | B3 | (0.8821027335047349, 0.39834214296601306) | [20.959035, 20.967143] | [0.177206, 0.177551] | 0.106298 | **0.022449** | 2.928e-4 | [8.9750, 23.0] |
 
+Mesh refinement to `N = 16000` reproduces both certificates with tighter bounds:
+
+| witness | N | time box | rigorous `x` box | `y >=` | `eta` | `max U` |
+|---|---|---|---|---|---|---|
+| B2 | 16000 | [32.868932, 32.875285] | [0.188366, 0.188670] | 0.049810 | 0.011330 | 3.850e-4 |
+| B3 | 16000 | [21.334168, 21.338270] | [0.177320, 0.177416] | 0.104254 | 0.022584 | 7.361e-5 |
+
+The enclosure radius falls by about 4x when `N` doubles (`1.586e-3 -> 3.850e-4`,
+`2.928e-4 -> 7.361e-5`), i.e. second order, as expected for a piecewise-linear
+`phi`.
+
 Evidence class: **CERTIFIED COMPUTATION**, same semantics as §2.
 
 These two are much easier to enclose than the TASK-0001 witness despite a time
