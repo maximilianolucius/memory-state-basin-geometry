@@ -152,3 +152,94 @@ for reachable memory states. Endpoint-fiber purity therefore needs extra endpoin
 
 ### ROUND-0002 residual
 The scalar route is closed as a novelty source. A meaningful triangular/monotone result would need a precise extra hypothesis making the asymptotic basin label factor through an endpoint coordinate/functional. Otherwise the main project value remains the multidimensional constructive multibasin-fiber program.
+
+
+## ROUND-0003 — exact-model and basin-entry theorem boundary
+
+### Exact project vector field is published at integer order
+**Ye et al. (2019)**, DOI 10.1186/s13662-019-2311-1, study
+[
+dot x=x(1-x)(x-eta)-alpha xy,qquad
+dot y=gamma xy-delta y,
+]
+which is exactly the project vector field after parameter renaming. Model-equation novelty is therefore closed.
+
+No exact published Caputo fractionalization of this same vector field was identified in ROUND-0003. The residual remains the reachable-memory basin theorem, not the ecology equations.
+
+### Exact fractional Double-Allee/group-defense baseline
+**Mondal et al. (2025)**, DOI 10.1016/j.cjph.2025.09.020, use
+[
+{}^CD^{alpha_1}x=
+xleft[
+rac{r}{x+a}left(1-rac{x}{k}ight)(x-m)
+-rac{qy}{eta+x^2}
+ight],
+]
+[
+{}^CD^{alpha_2}y=
+yleft[
+rac{px}{eta+x^2}-e
+ight].
+]
+The Double-Allee factor is ((x-m)/(x+a)) together with logistic saturation; group defense is represented by the simplified Monod–Haldane response (x/(eta+x^2)). Local stability is analytic; the strong-Allee basin-stability calculations are numerical.
+
+The accessible primary record did not expose the complete numerical table required to reproduce a specific basin figure exactly. **Pal et al. (2025)**, DOI 10.1007/s11538-025-01411-7, is the verified integer-order parent/fallback and must not be mistaken for the fractional parameter table.
+
+### Caputo derivative sign does not encode local monotonicity at one order
+**Diethelm (2016)**, DOI 10.1515/fca-2016-0029, proves that monotonicity implies the corresponding sign for all Caputo orders (0<alpha<1), while the converse requires sign information for an interval of orders approaching one. A single fixed-order sign condition is insufficient.
+
+Therefore the TASK-0001 observation
+[
+{}^CD^alpha x<0
+quad	ext{while}quad
+x(t)	ext{ later increases}
+]
+is a known general Caputo possibility, not by itself novel.
+
+The surviving application structure is sharper: a **cold-start extinction region** can coexist with a reachable continuation state that passes through the same physical region and subsequently recovers.
+
+### Cold-start extinction strip
+Using:
+- positive-cone viability / Caputo extremum theory;
+- **Wu (2020)** scalar comparison, DOI 10.1142/S0218348X2050070X;
+- the ROUND-0002 scalar strong-Allee result;
+- **Wu & Liu (2020)** continuation, DOI 10.1515/fca-2020-0029;
+
+the project theorem
+[
+0<x_0<	heta,quad y_0ge0,quad 	heta<m/b
+Longrightarrow
+(x(t),y(t))	o(0,0)
+]
+is source-supported.
+
+**ROUND-0003 verdict: X1 VERIFIED.**
+
+### Continuation-state basin closure
+Doan–Kloeden 2024 supplies the correct semigroup/attractor state space, but no off-the-shelf local trapping theorem was found that classifies the TASK-0001 witness from a late physical near-hit.
+
+For a standard IVP, however, if
+[
+x(t;p)	o x^*,qquad g(x^*)=0,
+]
+then the transfer formula gives
+[
+T_tiota(p)	oiota(x^*)
+]
+uniformly on every compact memory-age interval, hence in the compact-open topology. Thus the missing survival-side theorem is specifically a **physical convergence/basin proof for the selected standard IVP**, not a separate memory-state convergence theorem.
+
+### Closest hereditary novelty threat
+**Szaksz, Stepan & Habib (2024)**, DOI 10.1016/j.jsv.2023.118045, define headpoint-based basin quantities for constrained DDE histories and explicitly note trajectories whose initial headpoint lies outside the reduced BoA while the trajectory later enters and exits that BoA.
+
+This is a close conceptual analogue, but it does not prove the strict project statement involving:
+- autonomous continuous Caputo dynamics;
+- standard-IVP reachability;
+- a canonical cold start at the reached physical point;
+- rigorously distinct asymptotic basins.
+
+### ROUND-0003 residual
+The principal residual is now highly specific:
+
+> prove one standard IVP of the exact Caputo strong-Allee predator–prey system converges to a survival/coexistence equilibrium, certify that its physical trajectory enters the verified cold-start extinction strip, and conclude via E1 that the corresponding present-state fiber is multibasin.
+
+The model equations, derivative-sign phenomenon, comparison machinery, and cold-start extinction half are not novelty.
