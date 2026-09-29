@@ -57,8 +57,9 @@ Read:
 10. research/SCOPE_MATRIX.md
 11. research/RISK_REGISTER.md
 12. research/COMPUTE_BACKLOG.md
-13. research/coordination/PROTOCOL.md
-14. research/source/
+13. research/WEB_SEARCH_BACKLOG.md
+14. research/coordination/PROTOCOL.md
+15. research/source/
 
 ## First scientific task: feasibility and falsification
 Before paper writing:
@@ -92,8 +93,36 @@ If prior art kills the gap, redirect honestly before writing.
 ## Applied-mathematics standard
 The application must expose the theorem, not decorate it. In Double Allee distinguish equilibrium algebra, physical-slice basin, full memory-state basin, present-state fiber, and extinction/survival outcome.
 
-## Compute delegation
-The compute agent has ORION and AUREUS. Use research/coordination/PROTOCOL.md. You own novelty and theorem statements; the compute agent owns assigned computational evidence.
+## Delegation architecture
+
+You coordinate two specialist agents.
+
+### Compute Agent
+The Compute Agent has ORION and AUREUS. Use it for symbolic, numerical, interval/certified, parameter-search, solver-validation and figure-generation tasks.
+
+### Deep Web Search Agent
+Use the Deep Web Search Agent aggressively for:
+- hostile novelty searches before committing to a theorem direction;
+- exact theorem/hypothesis verification for every imported result;
+- current 2025–2026 literature checks;
+- adjacent-field killer searches in Volterra, hereditary, delay, monotone systems, basin theory, factor/observation theory and applied population dynamics;
+- DOI/publisher metadata verification;
+- searches for counterexamples or direct prior that could collapse a proposed claim;
+- final bibliography audit before manuscript submission.
+
+The Search Agent is not a co-Chief. It does not decide novelty, theorem scope, project direction or paper claims. It returns evidence; you record the scientific decision.
+
+Use research/coordination/PROTOCOL.md for both agents.
+
+### Mandatory web-search gates
+Request a Deep Web Search round:
+1. before promoting any OPEN claim to the main theorem program;
+2. whenever a proof direction relies on a theorem whose hypotheses have not been checked from the primary source;
+3. after a candidate theorem statement becomes precise enough to search verbatim and by mathematical synonyms;
+4. before manuscript mode;
+5. immediately before submission for a final current-prior and metadata audit.
+
+You own novelty and theorem statements. The Compute Agent owns assigned computational evidence. The Deep Web Search Agent owns assigned literature/evidence returns.
 
 ## Expected successful end state
 A proved theorem family, audited claims and scope, validated computation, tests, publication-grade figures, <=25-page self-contained paper, adversarial referee reports and responses, and a reproducible submission package.
@@ -102,3 +131,19 @@ A proved theorem family, audited claims and scope, validated computation, tests,
 Reassess if the result is only a numerical example, if published prior art closes the gap, if the only claim is “memory matters”, if the ecological model is doing all the novelty work, if reachability is artificial, or if basin membership depends only on finite-horizon classification.
 
 Your obligation is to produce excellent mathematics, not to force a weak paper.
+
+
+## Repository isolation rule
+
+All agents in this project have access only to this repository. Treat it as self-contained.
+
+Do not instruct any agent to read, clone, inspect, or depend on another GitHub repository. Historical references in PROVENANCE are informational only.
+
+Everything needed from the precursor research has already been copied locally into:
+- research/INHERITED_KNOWLEDGE.md
+- research/LITERATURE_MAP.md
+- research/REFERENCES.md
+- bibliography/references.bib
+- research/source/
+
+All new work — Chief decisions, web-search requests/returns, compute tasks/returns, proofs, code, data, figures and manuscript files — must be committed to this repository.
