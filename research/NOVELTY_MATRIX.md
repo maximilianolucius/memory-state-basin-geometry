@@ -1,24 +1,22 @@
 # Novelty Matrix
 
-| Candidate contribution | Closest prior | Status after ROUND-0004 | Residual novelty requirement |
-|---|---|---|---|
-| Caputo memory-state enlargement | Doan–Kloeden | Known | Background |
-| Reachable present-state noninjectivity | Cong–Tuan | Known | Background |
-| History/headpoint basin effects | hereditary/DDE literature | Known adjacent | Strict Caputo theorem |
-| Ecological vector field | Ye et al. 2019 | Direct prior | No model novelty |
-| Fractional Double-Allee modeling | Mondal et al. 2025 | Known | No modeling novelty |
-| Fixed-sign Caputo derivative phenomenon | Diethelm 2016 | Known | Mechanism only |
-| X1 cold-start extinction | comparison/viability literature | Proved support | Not principal novelty |
-| L1 explicit local survival ellipsoid | Ren–Wu/Wu machinery; no exact-model prior found | Proved support | Not principal novelty |
-| Validated threshold entry | project certified computation | Rigorous support | Not novelty alone |
-| Same-present cold-start extinction vs continuation-state survival | no direct theorem found in four hostile rounds | Principal residual | one exact certified L1-compatible witness |
-| Open family | E2 | Future strengthening | parameter-box certification |
+| Candidate | Status | Novelty role |
+|---|---|---|
+| memory-state architecture | known | background |
+| exact vector field | Ye 2019 prior | none |
+| sign-vs-monotonicity | known | mechanism only |
+| X1 extinction strip | proved support | supporting |
+| L1 local survival basin | proved support | supporting |
+| exact-rational threshold entry | certified | supporting |
+| O1 physical-certificate obstruction | proved project structural result | potentially useful conceptual result, not principal claim |
+| O2 global certificate obstruction | proved in narrow class | technical supporting result |
+| memory-tail survival M1 | open | proof vehicle |
+| same-present extinction vs survival reachable fiber | open | principal residual |
 
-## Principal residual
+## Refined novelty thesis
 
-The only central novelty under consideration is a rigorously proved Caputo reachable fiber containing:
-- the canonical cold start in the extinction basin;
-- a physically reachable continuation state in the survival basin;
-- the same present physical value.
+The computational obstruction strengthens the conceptual position:
 
-All supporting analytic ingredients are now source-closed.
+> the target cannot be proved by a present-state invariant survival region; the survival classification itself must retain memory.
+
+The final principal novelty remains the rigorous multibasin reachable fiber, not O1 or M1 in isolation.
