@@ -1,92 +1,61 @@
 # Status
 
-**Phase:** ACTIVE — EXTINCTION HALF PROVED; SURVIVAL CONVERGENCE + ENTRY CERTIFICATION REMAIN
+**Phase:** ACTIVE — ENTRY CERTIFIED; SURVIVAL CLASSIFICATION IS THE ONLY PRINCIPAL GAP
 
-## ROUND-0003 assimilated — 2026-09-29
+## TASK-0002 assimilated — 2026-09-29
 
-Chief verdict:
-**SURVIVES NARROWLY; X1 VERIFIED; STRICT CAPUTO RESIDUAL SURVIVES.**
+Branch:
+\`compute/task-0002\`
 
-## What is now rigorously closed
+Verified HEAD:
+\`ba05c6c82051bd0477708982d47282c880c49bf9\`
 
-### Cold-start extinction
-For
+Merged:
+PR #2 -> main at \`0771917f7691024b21c7f847e4458e6e1b4bef6b\`.
+
+## Major promotion
+
+The TASK-0001 threshold entry is now **CERTIFIED COMPUTATION**.
+
+The validated a-posteriori Volterra enclosure proves an actual solution enters
 \[
-{}^CD^\alpha x=x(1-x)(x-\theta)-axy,\qquad
-{}^CD^\alpha y=y(bx-m),
+R_{\rm ext}=\{0<x<\theta,\ y\ge0\}
 \]
-if
+with a large strict margin.
+
+Two nearer-to-\(E^*\) witnesses also have certified finite-time entry.
+
+## Exact topology result
+
+STRUCTURAL-E4 proves that every finite-time continuation state retains the original physical initial value in its far memory-age tail:
 \[
-\theta<m/b,
+(T_T\iota(p))(\tau)\to p
+\quad(\tau\to\infty).
 \]
-then
+
+Thus global unweighted sup-norm attraction to \(\iota(E^*)\) is impossible for \(p\ne E^*\).
+
+Compact-open topology is essential and remains the correct state topology.
+
+## Remaining principal gap
+
+Only:
 \[
-\iota(R_{\rm ext})\subseteq\mathcal B(\iota(0,0)),
-\qquad
-R_{\rm ext}=\{0<x<\theta,\ y\ge0\}.
+\boxed{\text{prove one entering standard IVP belongs to the survival basin}}
 \]
 
-X1 is now **PROVED FROM PUBLISHED HYPOTHESES**.
+is missing for TARGET-A20.
 
-### Continuation-state bridge
-If a standard IVP satisfies
-\[
-x(t;p)\to E^*,
-\]
-then
-\[
-T_t\iota(p)\to\iota(E^*)
-\]
-in compact-open topology.
+## New closure strategy
 
-Thus physical convergence is sufficient for survival-basin membership in the continuation-state semigroup.
+Rather than infer survival from a long tail simulation, seek an entering initial state that lies from time zero in an explicit local Lyapunov basin.
 
-## Novelty boundary tightened
-
-Not new:
-- the ecological vector field itself: Ye et al. 2019;
-- negative fixed-order Caputo derivative without monotonicity: Diethelm 2016;
-- fractional Double-Allee modeling/basin plots;
-- generic hereditary headpoint effects.
-
-Still search-qualified:
-a physically reachable Caputo continuation state and the canonical cold start at the same present physical value belonging to rigorously distinct extinction/survival basins.
-
-Closest hereditary analogue:
-Szaksz–Stepan–Habib 2024.
-
-## Published Double-Allee baseline
-
-Mondal et al. 2025 equations are verified exactly.
-
-The complete fractional parameter table for a particular basin figure is still not recovered from the accessible primary record.
-
-## Single principal bottleneck
-
-Prove for at least one standard initial state \(p\):
-\[
-x(t;p)\to E^*,
-\]
-and certify that
-\[
-x(t_*;p)\in R_{\rm ext}
-\]
-for some finite \(t_*>0\).
-
-Then X1 + E3 + E1 close TARGET-A20.
-
-## Active work
-
-### TASK-0002 — Compute
-validated finite-time entry + theorem-friendly witness search + continuation-state diagnostics.
-
-### Web Search
-ROUND-0003 COMPLETE / ASSIMILATED.
-
-No new broad search is opened until TASK-0002 returns or the Chief has an exact survival-convergence theorem to audit.
+Active:
+- ROUND-0004 — exact audit of CANDIDATE-L1;
+- TASK-0003 — search/certify an exact-rational L1-compatible witness.
 
 ## Paper
 
-**NOT STARTED.**
+NOT STARTED.
 
-The principal theorem is now much closer, but TARGET-A20 remains CONJECTURED until survival convergence and finite-time entry are rigorous.
+If ROUND-0004 validates L1 and TASK-0003 finds a witness satisfying it with certified entry, TARGET-A20 can be promoted without any long-time numerical basin classifier.
