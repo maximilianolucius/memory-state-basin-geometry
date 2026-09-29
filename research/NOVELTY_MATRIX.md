@@ -1,24 +1,24 @@
 # Novelty Matrix
 
-| Candidate contribution | Closest prior | Status after TASK-0002 | Residual novelty requirement |
+| Candidate contribution | Closest prior | Status after ROUND-0004 | Residual novelty requirement |
 |---|---|---|---|
-| Caputo memory-state enlargement | Doan–Kloeden 2021/2024 | Known | Background |
-| Reachable present-state noninjectivity | Cong–Tuan 2017 | Known | Background |
-| History/headpoint basin effects | hereditary/DDE prior incl. Szaksz 2024 | Known adjacent | Strict Caputo reachable-fiber theorem |
-| Exact ecological vector field | Ye et al. 2019 | Direct prior | No model novelty |
+| Caputo memory-state enlargement | Doan–Kloeden | Known | Background |
+| Reachable present-state noninjectivity | Cong–Tuan | Known | Background |
+| History/headpoint basin effects | hereditary/DDE literature | Known adjacent | Strict Caputo theorem |
+| Ecological vector field | Ye et al. 2019 | Direct prior | No model novelty |
 | Fractional Double-Allee modeling | Mondal et al. 2025 | Known | No modeling novelty |
-| Fixed-sign Caputo derivative without monotonicity | Diethelm 2016 | Known | Mechanism only |
-| X1 cold-start extinction strip | published comparison/viability ingredients | Proved supporting theorem | Not principal novelty |
-| E1/E2/E3/E4 structural results | semigroup/Volterra consequences | Supporting framework | Not principal novelty |
-| Validated finite-time threshold entry | TASK-0002 | Certified computation | Supports theorem, not novelty alone |
-| Explicit local Caputo survival basin L1 | fractional Lyapunov literature under audit | Candidate | ROUND-0004 must validate |
-| Same-present cold-start extinction vs continuation-state survival | no direct Caputo theorem found so far | Principal residual | rigorous survival witness |
-| Open family of such fibers | E2 | Future strengthening | persistent certified basin membership |
+| Fixed-sign Caputo derivative phenomenon | Diethelm 2016 | Known | Mechanism only |
+| X1 cold-start extinction | comparison/viability literature | Proved support | Not principal novelty |
+| L1 explicit local survival ellipsoid | Ren–Wu/Wu machinery; no exact-model prior found | Proved support | Not principal novelty |
+| Validated threshold entry | project certified computation | Rigorous support | Not novelty alone |
+| Same-present cold-start extinction vs continuation-state survival | no direct theorem found in four hostile rounds | Principal residual | one exact certified L1-compatible witness |
+| Open family | E2 | Future strengthening | parameter-box certification |
 
-## Current novelty target
+## Principal residual
 
-The only principal novelty claim under consideration is:
+The only central novelty under consideration is a rigorously proved Caputo reachable fiber containing:
+- the canonical cold start in the extinction basin;
+- a physically reachable continuation state in the survival basin;
+- the same present physical value.
 
-> a rigorously reachable Caputo continuation state and the canonical cold start at the same present physical value belong to different asymptotic basins, with extinction versus survival interpretation.
-
-TASK-0002 has certified the entry event. Survival classification is the sole missing mathematical component.
+All supporting analytic ingredients are now source-closed.
