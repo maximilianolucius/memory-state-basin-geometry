@@ -63,9 +63,37 @@ from dataclasses import dataclass
 import numpy as np
 
 __all__ = ["CellResult", "verify_cells", "row_weights_upper", "bound_recursion_rigorous",
-           "certify_entry"]
+           "certify_entry", "to_arb", "to_float"]
 
 _U = 2.0**-53          # unit roundoff of binary64
+
+
+def to_arb(v):
+    """Exact conversion of an input to an Arb ball.
+
+    * ``str`` such as ``"17/20"`` or ``"0.85"``: the exact RATIONAL it denotes;
+    * ``fmpq``: that rational;
+    * ``float``/``int``: that exact binary64 number (NOT the decimal it prints as).
+
+    TASK-0003 Stage D requires the formal parameters to be rationals, so the
+    string form is the one to use for parameters, alpha and the initial state.
+    """
+    from flint import arb, fmpq
+    if isinstance(v, str):
+        from .lyapunov_l1 import Q
+        q = Q(v)
+        return arb(q.p) / arb(q.q)
+    if isinstance(v, fmpq):
+        return arb(v.p) / arb(v.q)
+    return arb(float(v))
+
+
+def to_float(v):
+    """Nearest binary64 to an input (used only by the UNTRUSTED float stages)."""
+    if isinstance(v, str):
+        from fractions import Fraction
+        return float(Fraction(v))
+    return float(v)
 
 
 def _up(x):
@@ -122,14 +150,14 @@ def _init(tm, phi, theta, a, b, m, alpha, p, r_tube, prec, K=16, kind="allee"):
     _G["m"] = [((_G["phi"][k + 1][0] - _G["phi"][k][0]) / (_G["tm"][k + 1] - _G["tm"][k]),
                 (_G["phi"][k + 1][1] - _G["phi"][k][1]) / (_G["tm"][k + 1] - _G["tm"][k]))
                for k in range(N)]
-    A = arb(float(alpha)) if not isinstance(alpha, str) else arb(alpha)
+    A = to_arb(alpha)
     _G["a"] = A
     _G["G1"] = (A + 1).gamma()
     _G["G2"] = (A + 2).gamma()
     _G["Ga"] = A.gamma()
-    _G["p"] = (arb(float(p[0])), arb(float(p[1])))
-    _G["par"] = tuple(arb(float(v)) for v in (theta, a, b, m))
-    _G["r"] = arb(float(r_tube))
+    _G["p"] = (to_arb(p[0]), to_arb(p[1]))
+    _G["par"] = tuple(to_arb(v) for v in (theta, a, b, m))
+    _G["r"] = to_arb(r_tube)
 
 
 def _g(x, y):
@@ -327,7 +355,7 @@ def _winit(tm, alpha, prec):
     from flint import arb, ctx
     ctx.prec = prec
     _W["tm"] = [arb(float(v)) for v in tm]
-    _W["a"] = arb(float(alpha))
+    _W["a"] = to_arb(alpha)
 
 
 def _wrow(n):
@@ -357,7 +385,7 @@ def bound_recursion_rigorous(tm, alpha, R, L, Wrows, prec=128):
     """U_n and Delta_n with every operation rounded upward (all terms non-negative)."""
     from flint import arb, ctx
     ctx.prec = prec
-    A = arb(float(alpha))
+    A = to_arb(alpha)
     Ga_inv = _arb_upper_float(1 / A.gamma())
     N = len(tm) - 1
     U = np.zeros(N)

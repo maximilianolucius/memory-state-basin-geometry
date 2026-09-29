@@ -44,12 +44,15 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--theta", type=float, default=0.3)
-    ap.add_argument("--a", type=float, default=1.0)
-    ap.add_argument("--b", type=float, default=1.0)
-    ap.add_argument("--m", type=float, default=0.8)
-    ap.add_argument("--alpha", type=float, default=0.85)
-    ap.add_argument("--p", type=float, nargs=2, default=[2.4372, 2.012])
+    ap.add_argument("--theta", default="0.3")
+    ap.add_argument("--a", default="1.0")
+    ap.add_argument("--b", default="1.0")
+    ap.add_argument("--m", default="0.8")
+    ap.add_argument("--alpha", default="0.85")
+    ap.add_argument("--p", nargs=2, default=["2.4372", "2.012"])
+    ap.add_argument("--exact-rational", action="store_true",
+                    help="treat theta,a,b,m,alpha,p as the exact RATIONALS their strings "
+                         "denote ('17/20', '0.85'); otherwise as the nearest binary64")
     ap.add_argument("--T", type=float, default=4.0)
     ap.add_argument("--N", type=int, default=4000)
     ap.add_argument("--grade", type=float, default=3.0)
@@ -63,34 +66,47 @@ def main():
 
     stage = "t2_stageA_certify" + (f"_{args.tag}" if args.tag else "")
     rec = RunRecorder(stage, ROOT)
-    model = AlleePredatorPrey(theta=args.theta, a=args.a, b=args.b, m=args.m)
-    p = np.array(args.p, float)
+    from msbg.validated import to_float
+    fl = {k: to_float(getattr(args, k)) for k in ("theta", "a", "b", "m", "alpha")}
+    pf = [to_float(v) for v in args.p]
+    if args.exact_rational:
+        # trusted stages get the exact rationals; untrusted float stages get doubles
+        V = {k: str(getattr(args, k)) for k in ("theta", "a", "b", "m", "alpha")}
+        pV = [str(v) for v in args.p]
+    else:
+        V = dict(fl)
+        pV = list(pf)
+    model = AlleePredatorPrey(theta=fl["theta"], a=fl["a"], b=fl["b"], m=fl["m"])
+    p = np.array(pf, float)
+    theta_f = fl["theta"]
     rec.add("inputs", vars(args))
     rec.add("model_provenance", model.provenance)
 
     t0 = time.time()
     tm = graded_mesh(args.T, args.N, args.grade)
-    X, PHI, M = collocation(model, p, args.alpha, tm)
+    X, PHI, M = collocation(model, p, fl["alpha"], tm)
     t_col = time.time() - t0
     print(f"[1] untrusted collocation N={args.N} grade={args.grade}: {t_col:.1f}s", flush=True)
 
-    cells = verify_cells(tm, PHI, args.theta, args.a, args.b, args.m, args.alpha, p, args.r,
+    cells = verify_cells(tm, PHI, V["theta"], V["a"], V["b"], V["m"], V["alpha"], pV, args.r,
                          prec=args.prec, workers=args.workers, K=args.K)
     print(f"[2] rigorous cells (K={args.K}, prec={args.prec}): {cells.seconds:.1f}s  "
           f"R_max={cells.R.max():.3e}  L_max={cells.L.max():.3f}", flush=True)
 
     t1 = time.time()
-    W = row_weights_upper(tm, args.alpha, prec=args.prec, workers=args.workers)
+    W = row_weights_upper(tm, V["alpha"], prec=args.prec, workers=args.workers)
     print(f"[3] rigorous weights: {time.time()-t1:.1f}s", flush=True)
 
     t2 = time.time()
-    U, D, kap = bound_recursion_rigorous(tm, args.alpha, cells.R, cells.L, W, prec=args.prec)
+    U, D, kap = bound_recursion_rigorous(tm, V["alpha"], cells.R, cells.L, W, prec=args.prec)
     finite = bool(np.isfinite(U).all())
     boot = finite and float(np.max(U)) < args.r
     print(f"[4] rigorous recursion: {time.time()-t2:.1f}s  max kappa={np.max(kap):.3e}  "
           f"max U={np.max(U):.3e}  bootstrap (max U < r={args.r}): {boot}", flush=True)
 
-    cert = certify_entry(args.theta, cells, U, tm)
+    # threshold for the separation test: an UPPER-safe value, theta rounded DOWN
+    theta_sep = float(np.nextafter(theta_f, -np.inf))
+    cert = certify_entry(theta_sep, cells, U, tm)
     ok = np.flatnonzero(cert["certified"]) if boot else np.array([], dtype=int)
     if len(ok):
         k = int(ok[np.argmax(cert["eta"][ok])])
@@ -142,6 +158,10 @@ def main():
                       "rounding (nextafter + Higham gamma_n factor) for the non-negative "
                       "scalar recursion",
         "untrusted_inputs": "mesh points and nodal phi values, taken as exact binary64 numbers",
+        "parameter_semantics": ("EXACT RATIONALS as written: " + json.dumps({**V, "p": pV})
+                                if args.exact_rational else
+                                "nearest binary64 to the decimals written"),
+        "threshold_in_separation_test": "theta rounded down one ulp, so eta is a lower bound",
         "theorem": "a posteriori Volterra-Gronwall enclosure, msbg/validated.py docstring",
         "norm": "max-norm on R^2, induced row-sum norm on 2x2 matrices",
         "undecided_policy": "UNDECIDED whenever the bootstrap or the separation fails",
