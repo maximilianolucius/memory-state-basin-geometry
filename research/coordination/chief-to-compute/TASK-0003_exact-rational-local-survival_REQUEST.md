@@ -5,16 +5,25 @@
 **Date:** 2026-09-29  
 **Priority:** P0 / TARGET-A20 CLOSURE ATTEMPT
 
+## UPDATE AFTER ROUND-0004
+
+**THEOREM-L1 IS NOW VERIFIED.**
+
+The exact proof and explicit formulas are in
+\`research/LOCAL_SURVIVAL_BASIN.md\`.
+
+There is no longer any literature-condition qualifier on the local survival certificate.
+
+The task is now purely constructive/certificational.
+
 ## Goal
 
-Find a witness whose survival-basin membership can be certified **from time zero** by CANDIDATE-L1 in
-\`research/LOCAL_SURVIVAL_BASIN.md\`, and whose finite-time entry into
+Find a standard initial state whose survival-basin membership is certified **from time zero** by THEOREM-L1 and whose actual trajectory is rigorously certified to enter
 \[
-R_{\rm ext}=\{0<x<\theta,\ y\ge0\}
+R_{\rm ext}=\{0<x<\theta,\ y\ge0\}.
 \]
-is certified by the TASK-0002 validated integrator.
 
-This is a theorem-oriented search, not a deepest-dip search.
+If one candidate satisfies both, TARGET-A20 is proved.
 
 ## A — exact-rational parameter search
 
@@ -28,76 +37,107 @@ Search exact rational parameter sets for
 Prioritize:
 - \(0<\theta<1\);
 - \(\theta<x^*=m/b<1\);
-- \(x^*>(1+\theta)/2\) so \(J\) is Hurwitz;
-- \(\theta\) near one to reduce the threshold gap;
+- \(x^*>(1+\theta)/2\);
+- \(\theta\) near one;
 - rational \(\alpha,\theta,a,b,m\).
 
-Do not use binary64 approximations as the formal parameter definition.
+## B — use the explicit exact formulas
 
-## B — rigorous local basin certificate
+At coexistence,
+\[
+J=
+\begin{pmatrix}
+A&B\\C&0
+\end{pmatrix},
+\]
+with
+\[
+A=x^*(1+\theta-2x^*),\quad
+B=-ax^*,\quad
+C=by^*.
+\]
 
-For each candidate:
+For
+\[
+J^\top P+PJ=-I,
+\]
+use
+\[
+q=-\frac1{2B},
+\qquad
+p=-\frac{1+2Cq}{2A},
+\qquad
+s=-\frac{Aq+Bp}{C}.
+\]
 
-1. compute \(E^*\) exactly/rationally where possible;
-2. certify \(J\) Hurwitz;
-3. solve
-   \[
-   J^\top P+PJ=-I
-   \]
-   and rigorously enclose \(P\), \(\lambda_{\min}(P)\), \(\|P\|_2\);
-4. rigorously bound
-   \[
-   \|N(u)\|_2\le C_r\|u\|_2^2
-   \]
-   on a ball;
-5. maximize a certified radius \(r\) satisfying the current L1 sufficient inequality;
-6. search initial states \(p\) inside the resulting certified ellipsoid.
+For \(u=(\xi,\eta)\),
+\[
+N_1=(1+\theta-3x^*)\xi^2-a\xi\eta-\xi^3,
+\qquad
+N_2=b\xi\eta.
+\]
 
-Until ROUND-0004 returns, label this **L1-CONDITIONAL**, not proved survival.
+A valid explicit bound on \(\|u\|_2\le r\) is
+\[
+C_r=
+\sqrt{
+\left(
+|1+\theta-3x^*|+\frac a2+r
+\right)^2
++
+\left(\frac b2\right)^2
+}.
+\]
 
-## C — search inside the certified local basin
+Certify
+\[
+2\lambda_{\max}(P)C_r r\le\frac12
+\]
+and initial inclusion
+\[
+u_0^\top Pu_0<\lambda_{\min}(P)r^2.
+\]
 
-Among \(p\) satisfying the local-basin certificate, integrate with the validated numerical stack and find those whose trajectory crosses below \(x=\theta\).
+All quantities should be exact rational/algebraic or outward-certified.
+
+## C — search inside the certified ellipsoid
+
+Among L1-certified \(p\), search for later crossing below \(x=\theta\).
 
 Rank by:
-1. certified local-basin margin;
+1. L1 margin;
 2. threshold-entry margin;
-3. simplicity of rational parameter values;
+3. rational simplicity;
 4. robustness.
 
-If none exist, this is a valuable negative result; map how close trajectories approach the threshold.
+## D — rigorous exact-rational entry
 
-## D — rigorous entry with exact rational inputs
+For best candidates use TASK-0002 validated integration with exact Arb rational inputs.
 
-For the best candidates, rerun the TASK-0002 a-posteriori verifier with:
-- Arb rational parameters, not float conversions;
-- exact rational \(\alpha\);
-- exact rational \(p\) if feasible, otherwise an explicit small rational/interval box for \(p\).
-
-Certify a nondegenerate time interval with
+Certify a nondegenerate time interval:
 \[
 0<x<\theta,\qquad y>0.
 \]
 
 Also recertify the original TASK-0001 witness with exact rational
 \[
-\theta=3/10,\quad m=4/5,\quad a=b=1,\quad\alpha=17/20
+\theta=3/10,\quad m=4/5,\quad a=b=1,\quad\alpha=17/20.
 \]
-for archival publication-grade evidence.
 
-## E — optional direct survival certificate
+## E — if no witness exists under \(Q=I\)
 
-If the L1 search fails, investigate a rigorous infinite-horizon a-posteriori contraction in a weighted norm around \(E^*\), but do not replace a theorem with a long finite-horizon simulation.
+The Lyapunov equation can be generalized to
+\[
+J^\top P+PJ=-Q,\qquad Q>0.
+\]
+
+Before abandoning the local-basin route, optimize simple rational diagonal \(Q\) to enlarge the certified ellipsoid, with the theorem constants adjusted rigorously.
+
+Report negative results quantitatively.
 
 ## Return
 
 Commit:
-\`research/coordination/compute-to-chief/TASK-0003_exact-rational-local-survival_RETURN.md\`
+\`research/coordination/compute-to-chief/TASK-0003_exact-rational-local-survival_RETURN.md\`.
 
-Report:
-- exact parameter definitions;
-- L1 certificate constants;
-- whether any certified-local-basin trajectory enters \(R_{\rm ext}\);
-- validated entry boxes;
-- exact-rational recertification of the original witness;
-- negative results and limitations.
+A successful return must contain enough exact/certified data for the Chief to state TARGET-A20 as a theorem without any numerical basin classification.
