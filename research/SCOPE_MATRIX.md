@@ -2,23 +2,25 @@
 
 | Claim/object | Whole class | Extra assumptions | One model family | Benchmark only | Numerical only |
 |---|---:|---:|---:|---:|---:|
-| Doan–Kloeden memory-state semigroup |  | verified source hypotheses / admissibility |  |  |  |
-| reachable present-state noninjectivity |  | \(d\ge2\); published construction |  |  |  |
-| REDUCTION-M1 collision-to-multibasin | abstract semigroup consequence | distinct basins + physical collision |  |  |  |
-| COMPLETENESS-S1 scalar fiber purity | scalar class | equilibrium barriers + intervalwise basin classification | yes |  |  |
-| COROLLARY-S1A strong-Allee scalar purity |  | \(0<\theta<1\), published DK hypotheses | Area–Nieto cubic |  |  |
-| COMPLETENESS-P2 triangular purity |  | S1 coordinate + full basin determined by that coordinate | compatible triangular families |  |  |
-| generic monotone/comparison purity | no | extra endpoint-determining structure required | possible only after exact formulation |  |  |
-| TARGET-A20 multibasin-fiber existence |  | TBD structural hypotheses | preferred multidimensional family | witness insufficient alone | discovery only |
-| TARGET-A21 Double-Allee realization |  | positivity + rigorous basin membership | principal applied target | allowed as witness/corollary | corroboration only |
-| TARGET-A30 open-family persistence |  | nondegenerate collision + Caputo regularity + robust trapping | target | no | no |
-| fractional-order persistence |  | additional order regularity required | target | allowed | corroboration only |
-| empirical ecological claim | no | requires calibration/data | possible future | no | no |
+| Doan–Kloeden memory-state semigroup |  | source hypotheses / admissibility |  |  |  |
+| scalar fiber purity | scalar class | equilibrium barriers + interval basin partition | yes |  |  |
+| STRUCTURAL-E1 basin-entry criterion | abstract semidynamical setup | two basin memberships + entry |  |  |  |
+| STRUCTURAL-E1A arc of fibers | abstract setup | entry over nondegenerate time interval |  |  |  |
+| STRUCTURAL-E2 persistence | parameter family | continuous entry + persistent basin memberships |  |  |  |
+| CANDIDATE-X1 extinction strip |  | positivity + comparison + \(\theta<m/b\) | project strong-Allee family |  |  |
+| NUM-W1 witness entry |  | TASK-0001 parameters | project strong-Allee family | yes | yes |
+| survival/coexistence basin membership |  | local/global trapping theorem needed | project family / future published model | currently benchmark | currently numerical |
+| TARGET-A20 multibasin-fiber existence |  | X1 + survival proof + entry | preferred multidimensional family | current witness only | current evidence only |
+| TARGET-A21 published Double-Allee realization |  | exact published equations/params + basin proof | target |  |  |
+| TARGET-A30 open-family persistence |  | persistent basins + entry margin | target | no | robustness scan only |
+| fractional-order persistence |  | order-continuity + basin persistence | target |  | current atlas only |
+| same-age collision | no principal need | optional stronger geometry |  |  | negative search only |
+| empirical ecological claim | no | requires calibrated data | possible future | no | no |
 
-## Scope discipline after ROUND-0002
+## Discipline after TASK-0001
 
-- Scalar purity is proved only under explicit equilibrium-barrier and intervalwise-basin hypotheses.
-- The Area–Nieto strong-Allee corollary obtains its rigorous asymptotics from Doan–Kloeden 2022.
-- General triangularity does not imply fiber purity.
-- Monotonicity/order preservation alone does not imply endpoint-fiber purity.
-- A one-model positive witness does not by itself establish TARGET-A30.
+- Same-age collision is not required for TARGET-A20.
+- Entry of a continuation orbit into a cold-start basin region is sufficient.
+- The finite-horizon entry event is not the hard part; basin membership is.
+- The project-constructed model is a theorem-development vehicle until published-model provenance is closed.
+- Numerical convergence to \(E^*\) is not basin proof.
