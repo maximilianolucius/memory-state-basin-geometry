@@ -30,7 +30,8 @@ Before your first search round, read:
 12. research/RISK_REGISTER.md
 13. research/WEB_SEARCH_BACKLOG.md
 14. research/coordination/PROTOCOL.md
-15. research/source/
+15. research/SELF_CONTAINED_CONTEXT.md
+16. research/source/
 
 Treat these local files as the complete inherited context.
 
