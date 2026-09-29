@@ -2,24 +2,19 @@
 
 | Claim/object | Scope | Status |
 |---|---|---|
-| Doan–Kloeden state architecture | audited Caputo class | VERIFIED |
-| scalar fiber purity | scalar equilibrium-partition class | PROVED COMPLETENESS |
-| X1 cold-start extinction | project/Ye strong-Allee vector field, \(\theta<m/b\) | PROVED |
-| E1 basin-entry criterion | abstract reachable semidynamical setting | PROVED |
-| E2 open persistence | parameter families with persistent basin memberships | PROVED ABSTRACTLY |
-| E3 physical -> continuation convergence | standard IVPs converging to equilibria | PROVED |
-| E4 far-age tail anchoring | bounded standard orbits | PROVED |
-| TASK-0002 finite-time entry | selected exact binary64 IVPs | CERTIFIED COMPUTATION |
-| publication-grade entry | exact rational parameters | PENDING TASK-0003 |
-| CANDIDATE-L1 local survival basin | Hurwitz coexistence Jacobian + quadratic remainder bound | OPEN / AUDIT ACTIVE |
-| TARGET-A20 | one multidimensional Caputo family | ALL BUT SURVIVAL CLASSIFICATION CLOSED |
+| state architecture | audited autonomous Caputo class | VERIFIED |
+| scalar purity | scalar equilibrium-partition class | PROVED |
+| X1 extinction strip | strong-Allee project/Ye vector field, \(\theta<m/b\) | PROVED |
+| L1 local survival ellipsoid | Hurwitz coexistence equilibrium + explicit remainder bound | PROVED |
+| E1/E2/E3/E4 | stated abstract Caputo continuation setting | PROVED |
+| finite-time entry | selected IVPs | CERTIFIED COMPUTATION |
+| rational publication certificate | exact rational parameters | TASK-0003 |
+| TARGET-A20 | target 2D Caputo family | ONE CONSTRUCTIVE WITNESS MISSING |
 | TARGET-A30 | open parameter family | FUTURE |
-| published Mondal realization | exact equations known, basin table partial | OPEN |
+| Mondal realization | published fractional model | SECONDARY |
 
 ## Discipline
 
-A finite-time certificate proves entry, not survival.
+L1 is a local basin theorem, not a global coexistence theorem.
 
-A late physical near-hit does not justify restart.
-
-Global sup-norm attraction is structurally incompatible with E4; compact-open topology is the operative topology.
+TASK-0003 must certify initial inclusion in the L1 ellipsoid from time zero; a late entry into the ellipsoid is not an ODE-style restart.
