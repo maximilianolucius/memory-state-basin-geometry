@@ -1,55 +1,56 @@
 # Claim Registry
 
-**Status:** TARGET-A20 OPEN — SURVIVAL MUST BE MEMORY-DEPENDENT.
+**Status:** TARGET-A20 — ONE RIGOROUS NUMERICAL MEMORY-TAIL INEQUALITY REMAINS.
 
-## Proved / certified core
+## Closed analytic/certified components
 
 ### X1 — cold-start extinction strip
 PROVED.
 
-### L1 — explicit local physical survival basin
-PROVED, but O1 shows it cannot certify a trajectory that enters \(R_{\rm ext}\).
-
 ### E1 / E2 / E3 / E4
 PROVED.
 
-### O1 — forward-invariant physical survival-set obstruction
-status: PROVED.  
-consequence:
-the target cannot be closed by trapping an entering trajectory in a physical-state set whose cold starts all survive.
+### O1
+PROVED:
+a forward-invariant physical-state survival region cannot generate the target entry.
 
-### O2 — obstruction to the Stage-E global diagonal weighted-max certificate
-status: PROVED FOR HURWITZ \(J\) AND THE DECLARED CERTIFICATE CLASS.  
-not a general survival impossibility theorem.
+### O2
+PROVED for the declared global diagonal weighted-max certificate in the Hurwitz regime.
 
-### CERT-W1-RATIONAL — exact-rational threshold entry
-status: CERTIFIED COMPUTATION  
-parameters:
+### CERT-W1-RATIONAL
+CERTIFIED COMPUTATION:
+the exact-rational W1 trajectory enters \(R_{\rm ext}\).
+
+### THEOREM-M1 — memory-tail survival
+PROVED FROM PUBLISHED RESOLVENT THEORY.
+
+Let
 \[
-\theta=3/10,\ a=b=1,\ m=4/5,\ \alpha=17/20,
+v_T(t)
+=
+E_\alpha(Jt^\alpha)u_0+
+\int_0^T\Psi_J(t-s)N(u(s))\,ds.
 \]
+If
 \[
-p=(6093/2500,503/250).
+M_T=\sup_{t\ge T}\|v_T(t)\|,
+\quad
+K_J=\int_0^\infty\|\Psi_J(s)\|\,ds,
 \]
-
-The actual standard trajectory rigorously enters \(R_{\rm ext}\).
-
-## Active candidate
-
-### CANDIDATE-M1 — memory-tail resolvent survival
-status: OPEN / ROUND-0005 AUDIT + TASK-0004 FEASIBILITY
-
-Idea:
-split at a late time \(T\), retain the full prehistory in \(h_T\), and certify a small nonlinear tail through the stable matrix resolvent.
+and
+\[
+M_T+K_JC_rr^2<r,
+\]
+then the inherited continuation state converges to \(E^*\).
 
 ## TARGET-A20
 
-status: OPEN.
+status: OPEN ONLY ON COMPUTATIONAL INSTANTIATION OF M1.
 
-Closed:
-- extinction of the cold start;
-- exact-rational finite-time entry;
-- structural multibasin implication.
+TASK-0004 must certify one strict inequality
+\[
+M_T+K_JC_rr^2<r
+\]
+for exact-rational W1.
 
-Remaining:
-- rigorous survival classification of the same entering continuation orbit using memory-dependent information.
+If it succeeds, TARGET-A20 is PROVED.
