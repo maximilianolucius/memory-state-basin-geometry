@@ -2,25 +2,23 @@
 
 | Claim/object | Whole class | Extra assumptions | One model family | Benchmark only | Numerical only |
 |---|---:|---:|---:|---:|---:|
-| Doan–Kloeden memory-state semigroup |  | source hypotheses / admissibility |  |  |  |
-| scalar fiber purity | scalar class | equilibrium barriers + interval basin partition | yes |  |  |
-| STRUCTURAL-E1 basin-entry criterion | abstract semidynamical setup | two basin memberships + entry |  |  |  |
-| STRUCTURAL-E1A arc of fibers | abstract setup | entry over nondegenerate time interval |  |  |  |
-| STRUCTURAL-E2 persistence | parameter family | continuous entry + persistent basin memberships |  |  |  |
-| CANDIDATE-X1 extinction strip |  | positivity + comparison + \(\theta<m/b\) | project strong-Allee family |  |  |
-| NUM-W1 witness entry |  | TASK-0001 parameters | project strong-Allee family | yes | yes |
-| survival/coexistence basin membership |  | local/global trapping theorem needed | project family / future published model | currently benchmark | currently numerical |
-| TARGET-A20 multibasin-fiber existence |  | X1 + survival proof + entry | preferred multidimensional family | current witness only | current evidence only |
-| TARGET-A21 published Double-Allee realization |  | exact published equations/params + basin proof | target |  |  |
-| TARGET-A30 open-family persistence |  | persistent basins + entry margin | target | no | robustness scan only |
-| fractional-order persistence |  | order-continuity + basin persistence | target |  | current atlas only |
-| same-age collision | no principal need | optional stronger geometry |  |  | negative search only |
-| empirical ecological claim | no | requires calibrated data | possible future | no | no |
+| Doan–Kloeden memory-state semigroup |  | source hypotheses |  |  |  |
+| scalar fiber purity | scalar | equilibrium barriers + interval basins | yes |  |  |
+| E1 basin-entry criterion | abstract semidynamical setting | distinct basins + entry |  |  |  |
+| E2 persistence | parameter family | open basin membership + continuous entry |  |  |  |
+| E3 physical-to-continuation convergence | standard IVP | physical convergence to equilibrium |  |  |  |
+| X1 cold-start extinction strip |  | positivity/comparison + \(\theta<m/b\) | exact project/Ye vector field |  |  |
+| NUM-W1 finite-time entry |  | TASK-0001 parameters | project Caputo fractionalization | yes | yes |
+| survival physical convergence |  | theorem still needed | target model | current witness | currently numerical |
+| TARGET-A20 multibasin fiber |  | X1 + E3 + survival convergence + entry | target multidimensional family | current candidate | partial |
+| Mondal fractional Double-Allee realization |  | exact parameters/basin proof still needed | published family |  | published basin plots numerical |
+| TARGET-A30 open-family persistence |  | persistent survival/extinction basins | target | no | current robustness scan only |
+| same-age collision | no principal need | optional geometry |  |  | negative search only |
 
-## Discipline after TASK-0001
+## Discipline
 
-- Same-age collision is not required for TARGET-A20.
-- Entry of a continuation orbit into a cold-start basin region is sufficient.
-- The finite-horizon entry event is not the hard part; basin membership is.
-- The project-constructed model is a theorem-development vehicle until published-model provenance is closed.
-- Numerical convergence to \(E^*\) is not basin proof.
+- The exact ODE vector field is prior art.
+- The Caputo threshold sign mechanism is general prior.
+- X1 is rigorous supporting mathematics.
+- Survival convergence cannot be inferred from a late physical near-hit.
+- Once physical convergence is proved, E3 closes continuation-state basin membership.
