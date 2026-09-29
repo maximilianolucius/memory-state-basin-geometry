@@ -1,36 +1,39 @@
 # Research Plan
 
-## Completed foundations
+## Completed theorem architecture
 
-- state architecture and prior audit;
+Closed:
+- state architecture;
 - scalar completeness;
-- positive numerical discovery;
-- X1 extinction theorem;
-- exact-rational validated threshold entry;
-- structural E1–E4;
-- L1 local survival theorem.
+- X1 extinction;
+- exact-rational threshold entry;
+- E1–E4;
+- O1/O2 obstruction analysis;
+- M1 memory-tail survival criterion.
 
-## New obstruction
+## Sole active scientific gate
 
-TASK-0003 O1 proves a forward-invariant physical-state survival certificate cannot produce the target threshold entry.
+TASK-0004 must instantiate M1 rigorously for exact-rational W1:
 
-Therefore the principal survival proof must explicitly use memory.
+\[
+M_T+K_JC_rr^2<r.
+\]
 
-## Active phase — memory-tail certification
+No additional conceptual theorem is currently missing.
 
-For a late cut time \(T\):
+## If TASK-0004 succeeds
 
-1. certify the full history on \([0,T]\);
-2. encode it as inherited Volterra input \(h_T\);
-3. solve/bound the stable linear response \(v_T\);
-4. control the nonlinear tail with the matrix Mittag-Leffler resolvent;
-5. prove convergence to \(E^*\) without restarting the system.
+1. promote TARGET-A20 to PROVED;
+2. launch final theorem-specific hostile novelty audit;
+3. if novelty survives, begin manuscript construction;
+4. then seek E2/open-family strengthening.
 
-ROUND-0005 audits the theorem.
-TASK-0004 tests and certifies the W1 witness.
+## If TASK-0004 fails
 
-## Manuscript gate
+Use the quantified failure to choose among:
+- better adapted norms;
+- sharper local nonlinear remainder bounds;
+- a posteriori certification around the computed nonlinear tail;
+- alternative target witness/model.
 
-Still blocked until:
-- TARGET-A20 proved;
-- final theorem-specific novelty audit passes.
+Do not revert to physical-state restart arguments.
