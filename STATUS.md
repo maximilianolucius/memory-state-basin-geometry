@@ -1,61 +1,70 @@
 # Status
 
-**Phase:** ACTIVE — ENTRY CERTIFIED; SURVIVAL CLASSIFICATION IS THE ONLY PRINCIPAL GAP
+**Phase:** ACTIVE — THEORY CLOSED; ONE CONSTRUCTIVE CERTIFICATE REMAINS
 
-## TASK-0002 assimilated — 2026-09-29
+## ROUND-0004 assimilated — 2026-09-29
 
-Branch:
-\`compute/task-0002\`
+Verdict:
+**L1 VERIFIED.**
 
-Verified HEAD:
-\`ba05c6c82051bd0477708982d47282c880c49bf9\`
+## Survival theorem now rigorous
 
-Merged:
-PR #2 -> main at \`0771917f7691024b21c7f847e4458e6e1b4bef6b\`.
+THEOREM-L1 gives an explicit local survival basin around a Hurwitz coexistence equilibrium.
 
-## Major promotion
-
-The TASK-0001 threshold entry is now **CERTIFIED COMPUTATION**.
-
-The validated a-posteriori Volterra enclosure proves an actual solution enters
+With
 \[
-R_{\rm ext}=\{0<x<\theta,\ y\ge0\}
+J^\top P+PJ=-I
 \]
-with a large strict margin.
-
-Two nearer-to-\(E^*\) witnesses also have certified finite-time entry.
-
-## Exact topology result
-
-STRUCTURAL-E4 proves that every finite-time continuation state retains the original physical initial value in its far memory-age tail:
+and a rigorous quadratic remainder bound,
 \[
-(T_T\iota(p))(\tau)\to p
-\quad(\tau\to\infty).
+2\lambda_{\max}(P)C_r r\le1/2
+\]
+plus
+\[
+u_0^\top Pu_0<\lambda_{\min}(P)r^2
+\]
+implies
+\[
+z(t)\to E^*.
 \]
 
-Thus global unweighted sup-norm attraction to \(\iota(E^*)\) is impossible for \(p\ne E^*\).
+The proof uses:
+- Ren & Wu 2019;
+- Wu 2020;
+- Wu & Liu 2020;
+- STRUCTURAL-E3.
 
-Compact-open topology is essential and remains the correct state topology.
+## Theoretical pieces now closed
 
-## Remaining principal gap
+- X1: cold-start extinction — PROVED.
+- L1: local survival basin — PROVED.
+- E1: basin-entry to multibasin fiber — PROVED.
+- E3: physical convergence to continuation-state basin — PROVED.
+- validated finite-time entry machinery — AVAILABLE.
 
-Only:
+## Only remaining principal task
+
+Find one exact-rational \(p\) that:
+1. is inside the rigorous L1 survival ellipsoid from time zero;
+2. has a rigorously certified trajectory entering \(R_{\rm ext}\).
+
+That is TASK-0003.
+
+If such a point exists and is certified:
 \[
-\boxed{\text{prove one entering standard IVP belongs to the survival basin}}
+\boxed{\text{TARGET-A20 PROVED}.}
 \]
 
-is missing for TARGET-A20.
+## Search posture
 
-## New closure strategy
+ROUND-0004 COMPLETE.
 
-Rather than infer survival from a long tail simulation, seek an entering initial state that lies from time zero in an explicit local Lyapunov basin.
+No new web round until TASK-0003 returns.
 
-Active:
-- ROUND-0004 — exact audit of CANDIDATE-L1;
-- TASK-0003 — search/certify an exact-rational L1-compatible witness.
+A successful TASK-0003 will trigger the final theorem-specific novelty audit.
 
 ## Paper
 
 NOT STARTED.
 
-If ROUND-0004 validates L1 and TASK-0003 finds a witness satisfying it with certified entry, TARGET-A20 can be promoted without any long-time numerical basin classifier.
+The manuscript gate now depends on one constructive existence certificate rather than on any unresolved imported theorem.
