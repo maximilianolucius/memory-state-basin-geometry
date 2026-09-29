@@ -56,14 +56,14 @@ def fig1_witness_orbit(manifest):
     ax[0].text(theta / 2, ax[0].get_ylim()[1], "", ha="center")
     ax[0].plot(x[:, 0], x[:, 1], lw=0.8, color="C0", label="orbit of $p$")
     ax[0].plot(x[idx, 0], x[idx, 1], lw=2.0, color="C3",
-               label=r"inside $\{0\le x<\theta\}$")
+               label=r"inside $\{0\leq x<\theta\}$")
     ax[0].plot(*p, "ko", ms=5, label="$p$ (constant history)")
     ax[0].plot(E[0], E[1], "*", color="C2", ms=12, label="$E^*$ (coexistence)")
     ax[0].plot(0, 0, "s", color="C3", ms=6, label="extinction")
     ax[0].axvline(theta, color="C3", lw=0.8, ls="--")
     ax[0].set_xlabel("$x$ (prey)"); ax[0].set_ylabel("$y$ (predator)")
     ax[0].set_title(r"survival orbit enters the certified extinction region")
-    ax[0].legend(fontsize=7, loc="upper right")
+    ax[0].legend(fontsize=7, loc="center right", framealpha=0.9)
     ax[1].plot(t, x[:, 0], lw=0.9, color="C0", label="$x(t)$")
     ax[1].axhline(theta, color="C3", ls="--", lw=0.8, label=r"$\theta$")
     ax[1].axhline(E[0], color="C2", ls=":", lw=0.8, label="$x^*$")
@@ -83,22 +83,35 @@ def fig2_mechanism(manifest):
         return
     t, x, g, win = d["t"], d["x"], d["g_x"], d["window"]
     theta = manifest["payload"]["model"]["theta"]
-    pad = max(1, len(win) // 3)
-    lo = max(0, win[0] - pad); hi = min(len(t) - 1, win[-1] + pad)
+    pad = max(1, len(win) // 12)
+    lo = max(0, win[0] - pad)
+    hi = min(len(t) - 1, win[-1] + pad)
     sl = slice(lo, hi + 1)
-    fig, ax = plt.subplots(figsize=(5.4, 3.4))
-    ax.plot(t[sl], x[sl, 0], color="C0", lw=1.2, label="$x(t)$")
+    gw = g[win]
+    fig, ax = plt.subplots(figsize=(6.0, 3.6))
+    ax.plot(t[sl], x[sl, 0], color="C0", lw=1.4, label="$x(t)$")
     ax.axhline(theta, color="C3", ls="--", lw=0.8, label=r"$\theta$")
-    ax.axvspan(t[win[0]], t[win[-1]], color="C1", alpha=0.15)
-    ax.set_xlabel("$t$"); ax.set_ylabel("$x(t)$", color="C0")
+    ax.axvspan(t[win[0]], t[win[-1]], color="C1", alpha=0.13)
+    ax.set_xlabel("$t$")
+    ax.set_ylabel("$x(t)$", color="C0")
+    ax.tick_params(axis="y", labelcolor="C0")
+    ax.set_xlim(t[lo], t[hi])
     ax2 = ax.twinx()
-    ax2.plot(t[sl], g[sl], color="C4", lw=1.0, label=r"$^{C}\!D^{\alpha}x(t)$")
-    ax2.axhline(0.0, color="0.4", lw=0.6)
+    ax2.plot(t[sl], g[sl], color="C4", lw=1.2, label=r"$^{C}\!D^{\alpha}x(t)$")
+    ax2.axhline(0.0, color="0.35", lw=0.7)
+    lo_g = float(gw.min())
+    ax2.set_ylim(1.15 * lo_g, -0.10 * lo_g)
     ax2.set_ylabel(r"$^{C}\!D^{\alpha}x(t)=g_x(x,y)$", color="C4")
+    ax2.tick_params(axis="y", labelcolor="C4")
     ax2.grid(False)
-    ax.set_title("x increases while its Caputo derivative stays negative")
-    h1, l1 = ax.get_legend_handles_labels(); h2, l2 = ax2.get_legend_handles_labels()
-    ax.legend(h1 + h2, l1 + l2, fontsize=7, loc="lower right")
+    ax.set_title(r"$x$ rises through $\theta$ while $^{C}\!D^{\alpha}x<0$ throughout")
+    ax.annotate(
+        rf"$\max_t\,{{}}^{{C}}\!D^{{\alpha}}x = {gw.max():.3g}$",
+        xy=(0.42, 0.06), xycoords="axes fraction", fontsize=8, color="C4",
+    )
+    h1, l1 = ax.get_legend_handles_labels()
+    h2, l2 = ax2.get_legend_handles_labels()
+    ax.legend(h1 + h2, l1 + l2, fontsize=7, loc="upper left")
     fig.savefig(os.path.join(FIGS, "F2_caputo_mechanism.png"))
     plt.close(fig)
     print("  F2 written")
@@ -150,29 +163,60 @@ def fig4_stage_b():
 
 def fig5_alpha_dependence():
     res = _load("stage_d_scan_v2_phase2_results.json")
+    p1 = _load("stage_d_scan_v2_phase1_summary.json")
     if res is None:
         return
-    wit = [r for r in res if r.get("witness")]
-    if not wit:
-        print("  [skip] F5: no witnesses recorded")
+    rel = [
+        r for r in res
+        if r.get("witness")
+        and r.get("mesh_diff_minx") is not None
+        and r["mesh_diff_minx"] < 0.05 * r["margin"]
+    ]
+    if not rel:
+        print("  [skip] F5: no mesh-reliable witnesses recorded")
         return
-    fam = sorted({(r["family"], r["theta"], r["xstar"], r["a"]) for r in wit})
-    fig, ax = plt.subplots(figsize=(5.6, 3.4))
-    for k, (f, th, xs, a) in enumerate(fam):
-        pts = sorted([(r["alpha"], r["margin"]) for r in wit
-                      if (r["family"], r["theta"], r["xstar"], r["a"]) == (f, th, xs, a)])
-        best = {}
-        for al, mg in pts:
-            best[al] = max(best.get(al, -np.inf), mg)
-        ax.plot(sorted(best), [best[a_] for a_ in sorted(best)], "o-", ms=4,
-                label=rf"{f}, $\theta$={th}, $x^*$={xs}, $a$={a}")
-    ax.set_xlabel(r"fractional order $\alpha$")
-    ax.set_ylabel(r"$\theta-\min_t x(t)$  (depth inside the certified region)")
-    ax.set_title("persistence of the witness in the fractional order")
-    ax.legend(fontsize=6)
+    alphas = sorted({r["alpha"] for r in res})
+    data = [[r["margin"] for r in rel if r["alpha"] == a] for a in alphas]
+    counts = [len(d) for d in data]
+
+    # candidates that even reached the long-horizon test, per alpha
+    tried = [sum(1 for r in res if r["alpha"] == a) for a in alphas]
+    recovered = {}
+    for row in (p1 or []):
+        a = float(row["key"].rsplit("_al", 1)[1])
+        recovered[a] = recovered.get(a, 0) + row.get("n_recovered_candidates", 0)
+
+    fig, ax = plt.subplots(1, 2, figsize=(9.2, 3.5))
+    pos = np.arange(len(alphas))
+    nonempty = [i for i, d in enumerate(data) if d]
+    ax[0].boxplot([data[i] for i in nonempty], positions=pos[nonempty], widths=0.35,
+                  showfliers=False)
+    for i in nonempty:
+        ax[0].scatter(np.full(len(data[i]), pos[i]) + np.random.RandomState(0).uniform(
+            -0.11, 0.11, len(data[i])), data[i], s=6, alpha=0.45, color="C0", zorder=3)
+    ax[0].set_xticks(pos)
+    ax[0].set_xticklabels([f"{a:g}" for a in alphas])
+    ax[0].set_xlabel(r"fractional order $\alpha$")
+    ax[0].set_ylabel(r"$\theta-\min_t x(t)$")
+    ax[0].set_title("depth inside the certified extinction region")
+
+    w = 0.38
+    ax[1].bar(pos - w / 2, [recovered.get(a, 0) for a in alphas], w,
+              label=r"phase 1: recovered above $\theta$", color="C1")
+    ax[1].bar(pos + w / 2, counts, w, label="phase 2: mesh-reliable witnesses", color="C0")
+    ax[1].set_yscale("symlog", linthresh=1)
+    ax[1].set_xticks(pos)
+    ax[1].set_xticklabels([f"{a:g}" for a in alphas])
+    ax[1].set_xlabel(r"fractional order $\alpha$")
+    ax[1].set_ylabel("count (symlog)")
+    ax[1].set_title("witnesses found per order")
+    ax[1].legend(fontsize=7)
+    fig.suptitle("persistence of the multibasin witness in the fractional order", y=1.02,
+                 fontsize=10)
     fig.savefig(os.path.join(FIGS, "F5_alpha_dependence.png"))
     plt.close(fig)
-    print("  F5 written")
+    print(f"  F5 written (witness counts per alpha: "
+          f"{dict(zip([f'{a:g}' for a in alphas], counts))})")
 
 
 def main():
