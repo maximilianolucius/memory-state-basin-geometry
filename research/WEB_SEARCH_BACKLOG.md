@@ -1,53 +1,41 @@
 # Deep Web Search Backlog
 
-## Completed / assimilated
+## Completed
 
-### ROUND-0001 — state architecture / multibasin killer audit
-verdict: NARROW, NOT KILLED.
+### ROUND-0001 — state architecture / multibasin killer
+status: COMPLETE / ASSIMILATED.
 
-### ROUND-0002 — scalar/triangular fiber-purity audit
-verdicts:
-- scalar nonintersection import: NEEDS EXACT HYPOTHESIS QUALIFICATION;
-- S1 novelty: STANDARD CONSEQUENCE;
-- rigorous scalar Strong-Allee instantiation: FOUND;
-- triangular extension: USEFUL COMPLETENESS;
-- monotone extension: EXTRA CONDITIONS REQUIRED.
+### ROUND-0002 — scalar/triangular purity
+status: COMPLETE / ASSIMILATED.
 
-## Current search posture
+## Active
 
-**No new broad round is active.**
+### ROUND-0003 — exact model / threshold recovery / basin closure
+status: DISPATCHED 2026-09-29  
+request:
+\`research/coordination/chief-to-web/ROUND-0003_exact-model-threshold-recovery-basin-closure_REQUEST.md\`
 
-The scalar novelty branch is closed.
+Priority questions:
+1. recover exact Mondal et al. 2025 Double-Allee equations and multistable parameters;
+2. exact prior audit of the project-constructed strong-Allee predator–prey vector field;
+3. audit sign of Caputo derivative versus local monotonicity and threshold-recovery prior;
+4. verify CANDIDATE-X1 positivity/comparison/global-continuation hypotheses;
+5. find continuation-state trapping/basin theorems for the survival side;
+6. hostile-search the exact basin-entry multibasin formulation.
 
-The next high-value web-search round must be triggered by Compute TASK-0001 and should audit:
-- the exact Double-Allee equations;
-- the exact parameter regime;
-- the exact basin claims;
-- the exact collision/nondegeneracy theorem proposed by the Chief.
+## Triggered later
 
-## Pending triggered tasks
+### W-A006 — minimal dimension
+Only after a rigorous positive theorem exists.
 
-### W-A004 — exact Double-Allee model audit
-trigger:
-TASK-0001 returns a faithful model baseline or collision candidate.
-
-### W-A006 — minimal dimension / intersection restrictions
-trigger:
-a positive witness or theorem statement makes dimension minimality materially relevant.
-
-### W-A007 — model-specific pre-manuscript novelty audit
-trigger:
-precise principal theorem statement + proof/certification.
+### W-A007 — pre-manuscript model-specific novelty audit
+After exact theorem statement and proof/certification.
 
 ### W-A008 — pre-submission current-prior/metadata audit
-trigger:
-submission package stage.
+Final gate.
 
 ## Search discipline
 
-Do not reopen:
-- generic scalar purity;
-- generic “memory-state basin geometry”;
-- generic monotonicity.
+No more generic searches.
 
-Future searches must be theorem- or model-specific.
+All future rounds must bind to an exact model, exact theorem, or exact missing hypothesis.
