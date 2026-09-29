@@ -1,22 +1,25 @@
 # Novelty Matrix
 
-| Candidate | Status | Novelty role |
+| Candidate | Status after ROUND-0005 | Role |
 |---|---|---|
 | memory-state architecture | known | background |
-| exact vector field | Ye 2019 prior | none |
-| sign-vs-monotonicity | known | mechanism only |
-| X1 extinction strip | proved support | supporting |
-| L1 local survival basin | proved support | supporting |
+| ecological vector field | prior | none |
+| Caputo sign/monotonicity phenomenon | known | mechanism |
+| X1 | proved | supporting |
+| E1–E4 | proved | supporting structure |
+| O1 | proved | conceptual obstruction/support |
+| O2 | narrow proved obstruction | technical support |
+| M1 stable memory-tail criterion | proved from known resolvent machinery | proof vehicle, not principal novelty |
+| certified matrix Mittag-Leffler propagation | 2026 prior pressure | do not claim generically |
 | exact-rational threshold entry | certified | supporting |
-| O1 physical-certificate obstruction | proved project structural result | potentially useful conceptual result, not principal claim |
-| O2 global certificate obstruction | proved in narrow class | technical supporting result |
-| memory-tail survival M1 | open | proof vehicle |
-| same-present extinction vs survival reachable fiber | open | principal residual |
+| same-present cold-start extinction vs inherited-state survival | not found directly in five hostile rounds | principal residual |
 
-## Refined novelty thesis
+## Novelty discipline
 
-The computational obstruction strengthens the conceptual position:
+Do not claim novelty for:
+- memory surviving a cut time;
+- resolvent kernels;
+- Mittag-Leffler tail certification;
+- generic residual-to-solution error certification.
 
-> the target cannot be proved by a present-state invariant survival region; the survival classification itself must retain memory.
-
-The final principal novelty remains the rigorous multibasin reachable fiber, not O1 or M1 in isolation.
+The target novelty remains the rigorous basin split on one physically reachable Caputo present-state fiber.
