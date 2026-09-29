@@ -1,63 +1,76 @@
 # Research Plan
 
 ## Phase 0 — Definitions and prior-art closure
-- Fix the Caputo architecture and solution concept.
-- Fix the memory-state representation/topology.
-- Define \(\iota\), \(T_t\), \(\mathcal R_\alpha\), closure if needed, \(e_0\), basins and fiber purity.
-- Re-run hostile searches in hereditary, Volterra, infinite-delay, minimal-state, factor-map and output-equivalence theory.
-- Audit every imported theorem hypothesis.
+**Status:** COMPLETE ENOUGH FOR ACTIVE THEOREM WORK.
 
-Deliverable: a precise problem statement with no ambiguous use of history, state, basin or reachable.
+The Doan–Kloeden continuation-state architecture, reachable set, present evaluation and basin language are fixed. Broad hereditary/factor-map novelty threats were audited in ROUND-0001.
 
 ## Phase 1 — Purity/impossibility theorems
-Start with scalar, triangular, cooperative/quasi-monotone and single-global-attractor classes.
+**Status:** SCALAR COMPLETE / TRIANGULAR SUPPORTING ONLY.
 
-Target:
-\[
-\mathcal F_x\subseteq\mathcal B(A)
-\]
-for every nonempty reachable fiber under explicit hypotheses.
-
-A strong negative theorem can be a principal contribution.
+- scalar equilibrium-partition fiber purity: proved as completeness;
+- strong-Allee scalar corollary: rigorous from published ingredients;
+- general monotonicity alone: insufficient;
+- triangularity: only with basin-determining coordinate.
 
 ## Phase 2 — Constructive multibasin search
-Choose a natural positive nontriangular bistable class, preferably a published fractional Double-Allee predator-prey system.
+**Status:** SUCCESSFUL AS CONJECTURE GENERATION.
 
-Use computation to discover candidate geometry:
-- many physical IVPs;
-- physical-state collision/near-collision search;
-- conservative long-run basin labels;
-- high-precision refinement.
+TASK-0001 found a robust numerical witness in a project-constructed positive strong-Allee predator–prey family.
 
-Numerics generate conjectures only.
+The useful construction is not a same-age two-orbit collision.
 
-## Phase 3 — Structural reduction
-If a candidate is found, remove model-specific clutter.
+It is:
+\[
+\text{survival-basin continuation orbit}
+\longrightarrow
+\text{entry into a cold-start extinction region}.
+\]
 
-Ask:
-- minimal dimension;
-- sign/Jacobian structure;
-- transversality or dimension-count mechanism;
-- openness under perturbation;
-- relation to stable manifolds in memory state;
-- singularities/folds of the present-state projection restricted to basin boundaries.
+## Phase 3 — Structural reduction and theorem closure
+**Status:** ACTIVE / PRINCIPAL PHASE.
 
-Seek a theorem over an open family.
+The abstract basin-entry theorem E1 is proved.
 
-## Phase 4 — Double-Allee specialization
-Only after the structural theorem exists:
-- prove positivity/global continuation as needed;
-- establish relevant attractors/basins;
-- verify theorem hypotheses;
-- interpret extinction/survival.
+Current theorem program:
+
+1. prove the cold-start extinction region;
+2. prove one survival/coexistence basin membership;
+3. certify finite-time entry;
+4. conclude TARGET-A20;
+5. prove basin persistence on an open parameter set;
+6. only then study finer fiber geometry.
+
+Transversality/IFT is secondary and not required for basic existence.
+
+## Phase 4 — Published Double-Allee specialization
+**Status:** BLOCKED ON ROUND-0003 MODEL RECOVERY.
+
+Recover exact published equations/parameters and test whether the basin-entry mechanism occurs in the published family.
+
+If not, decide whether the project-constructed strong-Allee model is mathematically sufficient for the paper or whether another published positive class is preferable.
 
 ## Phase 5 — Fractional-order dependence
-Study persistence of purity/multibasin structure over alpha intervals and, if justified, incommensurate order vectors.
+**Status:** NUMERICAL PRE-EVIDENCE EXISTS.
 
-Equilibrium-root movement is not the novelty.
+TASK-0001 found mesh-reliable witnesses for several orders in \([0.65,0.92]\).
 
-## Phase 6 — Certification and figures
-Use exact/interval/validated computation for delicate constants, collision roots, transversality and parameter boxes.
+No theorem is claimed until basin persistence/order regularity is proved.
+
+## Phase 6 — Certification
+**Status:** ACTIVE THROUGH TASK-0002.
+
+Priority:
+- validated nonlinear finite-time entry;
+- rigorous survival-basin certificate;
+- eventual parameter-box certification.
 
 ## Phase 7 — Manuscript
-Only after principal claims are PROVED/CERTIFIED. Follow agent_directives_publishable_first_submission.md and the <=25-page hard ceiling.
+**BLOCKED.**
+
+Entry criteria for manuscript mode:
+- TARGET-A20 PROVED/CERTIFIED;
+- model-specific novelty audit PASS;
+- open-family scope or a comparably strong theorem;
+- published-model/application provenance resolved;
+- no principal claim rests only on finite-horizon classification.
