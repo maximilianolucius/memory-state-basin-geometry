@@ -14,3 +14,7 @@ venv/
 paper/build/
 computations/cache/
 computations/tmp/
+
+# compute agent scratch
+computations/**/__pycache__/
+computations/.pytest_cache/

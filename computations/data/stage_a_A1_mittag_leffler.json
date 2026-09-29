@@ -1,0 +1,294 @@
+[
+  {
+    "check": "taylor_vs_closed_form",
+    "alpha": 1.0,
+    "z": "-5.0",
+    "abs_diff": 0.0,
+    "value": "0.0067379469990854670966"
+  },
+  {
+    "check": "taylor_vs_closed_form",
+    "alpha": 1.0,
+    "z": "-1.0",
+    "abs_diff": 0.0,
+    "value": "0.3678794411714423216"
+  },
+  {
+    "check": "taylor_vs_closed_form",
+    "alpha": 1.0,
+    "z": "0.5",
+    "abs_diff": 0.0,
+    "value": "1.6487212707001281468"
+  },
+  {
+    "check": "taylor_vs_closed_form",
+    "alpha": 1.0,
+    "z": "3.0",
+    "abs_diff": 0.0,
+    "value": "20.085536923187667741"
+  },
+  {
+    "check": "taylor_vs_closed_form",
+    "alpha": 1.0,
+    "z": "(1+1j)",
+    "abs_diff": 0.0,
+    "value": "(1.4686939399158851571 + 2.2873552871788423912j)"
+  },
+  {
+    "check": "taylor_vs_closed_form",
+    "alpha": 0.5,
+    "z": "-8.0",
+    "abs_diff": 0.0,
+    "value": "0.069985166200880927723"
+  },
+  {
+    "check": "taylor_vs_closed_form",
+    "alpha": 0.5,
+    "z": "-2.0",
+    "abs_diff": 0.0,
+    "value": "0.25539567631050574387"
+  },
+  {
+    "check": "taylor_vs_closed_form",
+    "alpha": 0.5,
+    "z": "1.3",
+    "abs_diff": 0.0,
+    "value": "10.481318741176323378"
+  },
+  {
+    "check": "taylor_vs_closed_form",
+    "alpha": 0.5,
+    "z": "(1+1j)",
+    "abs_diff": 0.0,
+    "value": "(-1.1370378783511973665 + 2.0268137918541950181j)"
+  },
+  {
+    "check": "taylor_vs_closed_form",
+    "alpha": 0.5,
+    "z": "(1.35-1.99j)",
+    "abs_diff": 0.0,
+    "value": "(-0.0054268108273282259289 + 0.0015866680063963835906j)"
+  },
+  {
+    "check": "taylor_vs_closed_form",
+    "alpha": 2.0,
+    "z": "-3.0",
+    "abs_diff": 0.0,
+    "value": "-0.1605565385746906274"
+  },
+  {
+    "check": "taylor_vs_closed_form",
+    "alpha": 2.0,
+    "z": "1.7",
+    "abs_diff": 0.0,
+    "value": "1.977451386725797412"
+  },
+  {
+    "check": "taylor_vs_stieltjes",
+    "alpha": 0.3,
+    "z": "-0.5",
+    "abs_diff": 0.0,
+    "value": "0.63264900594359902246"
+  },
+  {
+    "check": "taylor_vs_stieltjes",
+    "alpha": 0.3,
+    "z": "-1.0",
+    "abs_diff": 0.0,
+    "value": "0.45659440832969067062"
+  },
+  {
+    "check": "taylor_vs_stieltjes",
+    "alpha": 0.3,
+    "z": "-2.5",
+    "abs_diff": 0.0,
+    "value": "0.24498312379478694455"
+  },
+  {
+    "check": "taylor_vs_stieltjes",
+    "alpha": 0.3,
+    "z": "-5.0",
+    "abs_diff": 0.0,
+    "value": "0.13708086902027063889"
+  },
+  {
+    "check": "taylor_vs_stieltjes",
+    "alpha": 0.5,
+    "z": "-0.5",
+    "abs_diff": 0.0,
+    "value": "0.61569034419292587487"
+  },
+  {
+    "check": "taylor_vs_stieltjes",
+    "alpha": 0.5,
+    "z": "-1.0",
+    "abs_diff": 0.0,
+    "value": "0.42758357615580700441"
+  },
+  {
+    "check": "taylor_vs_stieltjes",
+    "alpha": 0.5,
+    "z": "-2.5",
+    "abs_diff": 0.0,
+    "value": "0.21080636406114358065"
+  },
+  {
+    "check": "taylor_vs_stieltjes",
+    "alpha": 0.5,
+    "z": "-5.0",
+    "abs_diff": 0.0,
+    "value": "0.11070463773306862637"
+  },
+  {
+    "check": "taylor_vs_stieltjes",
+    "alpha": 0.5,
+    "z": "-12.5",
+    "abs_diff": 0.0,
+    "value": "0.044992099001027920845"
+  },
+  {
+    "check": "taylor_vs_stieltjes",
+    "alpha": 0.5,
+    "z": "-20.0",
+    "abs_diff": 0.0,
+    "value": "0.028174348741051319319"
+  },
+  {
+    "check": "taylor_vs_stieltjes",
+    "alpha": 0.6,
+    "z": "-0.5",
+    "abs_diff": 0.0,
+    "value": "0.60947582195620002162"
+  },
+  {
+    "check": "taylor_vs_stieltjes",
+    "alpha": 0.6,
+    "z": "-1.0",
+    "abs_diff": 0.0,
+    "value": "0.41332734094310630052"
+  },
+  {
+    "check": "taylor_vs_stieltjes",
+    "alpha": 0.6,
+    "z": "-2.5",
+    "abs_diff": 0.0,
+    "value": "0.19091670740116979593"
+  },
+  {
+    "check": "taylor_vs_stieltjes",
+    "alpha": 0.6,
+    "z": "-5.0",
+    "abs_diff": 0.0,
+    "value": "0.095117846438754620348"
+  },
+  {
+    "check": "taylor_vs_stieltjes",
+    "alpha": 0.6,
+    "z": "-12.5",
+    "abs_diff": 0.0,
+    "value": "0.037061069636568464177"
+  },
+  {
+    "check": "taylor_vs_stieltjes",
+    "alpha": 0.6,
+    "z": "-20.0",
+    "abs_diff": 0.0,
+    "value": "0.022946564273258376396"
+  },
+  {
+    "check": "taylor_vs_stieltjes",
+    "alpha": 0.8,
+    "z": "-0.5",
+    "abs_diff": 0.0,
+    "value": "0.60302371586280369995"
+  },
+  {
+    "check": "taylor_vs_stieltjes",
+    "alpha": 0.8,
+    "z": "-1.0",
+    "abs_diff": 0.0,
+    "value": "0.38694857861897684617"
+  },
+  {
+    "check": "taylor_vs_stieltjes",
+    "alpha": 0.8,
+    "z": "-2.5",
+    "abs_diff": 0.0,
+    "value": "0.14341738258439232538"
+  },
+  {
+    "check": "taylor_vs_stieltjes",
+    "alpha": 0.8,
+    "z": "-5.0",
+    "abs_diff": 0.0,
+    "value": "0.057595384762152244264"
+  },
+  {
+    "check": "taylor_vs_stieltjes",
+    "alpha": 0.8,
+    "z": "-12.5",
+    "abs_diff": 0.0,
+    "value": "0.019366860246465857673"
+  },
+  {
+    "check": "taylor_vs_stieltjes",
+    "alpha": 0.8,
+    "z": "-20.0",
+    "abs_diff": 0.0,
+    "value": "0.011617250451432777958"
+  },
+  {
+    "check": "stieltjes_vs_asymptote",
+    "alpha": 0.4,
+    "z": "-1000",
+    "ratio_to_asymptote": 0.9996753614
+  },
+  {
+    "check": "stieltjes_vs_asymptote",
+    "alpha": 0.4,
+    "z": "-100000",
+    "ratio_to_asymptote": 0.9999967561
+  },
+  {
+    "check": "stieltjes_vs_asymptote",
+    "alpha": 0.4,
+    "z": "-1e+07",
+    "ratio_to_asymptote": 0.9999999676
+  },
+  {
+    "check": "stieltjes_vs_asymptote",
+    "alpha": 0.6,
+    "z": "-1000",
+    "ratio_to_asymptote": 1.000380664
+  },
+  {
+    "check": "stieltjes_vs_asymptote",
+    "alpha": 0.6,
+    "z": "-100000",
+    "ratio_to_asymptote": 1.00000381
+  },
+  {
+    "check": "stieltjes_vs_asymptote",
+    "alpha": 0.6,
+    "z": "-1e+07",
+    "ratio_to_asymptote": 1.000000038
+  },
+  {
+    "check": "stieltjes_vs_asymptote",
+    "alpha": 0.85,
+    "z": "-1000",
+    "ratio_to_asymptote": 1.001458187
+  },
+  {
+    "check": "stieltjes_vs_asymptote",
+    "alpha": 0.85,
+    "z": "-100000",
+    "ratio_to_asymptote": 1.000014555
+  },
+  {
+    "check": "stieltjes_vs_asymptote",
+    "alpha": 0.85,
+    "z": "-1e+07",
+    "ratio_to_asymptote": 1.000000146
+  }
+]
