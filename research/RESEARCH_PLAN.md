@@ -1,39 +1,24 @@
 # Research Plan
 
-## Completed theorem architecture
+## Theory
 
-Closed:
-- state architecture;
-- scalar completeness;
-- X1 extinction;
-- exact-rational threshold entry;
-- E1–E4;
-- O1/O2 obstruction analysis;
-- M1 memory-tail survival criterion.
+The basin geometry, extinction theorem, memory-tail survival theorem, and structural obstructions are closed.
 
-## Sole active scientific gate
+## Current bottleneck
 
-TASK-0004 must instantiate M1 rigorously for exact-rational W1:
+M1 is feasible but a rigorous finite-history enclosure is not.
 
-\[
-M_T+K_JC_rr^2<r.
-\]
+The current verifier fails through cancellation loss, not because the candidate orbit is near a known instability.
 
-No additional conceptual theorem is currently missing.
+## Phase 4B — orbit-linearized validation
 
-## If TASK-0004 succeeds
+1. measure the discrete inverse of the time-dependent linearized Volterra operator;
+2. preserve matrix sign/rotation structure;
+3. choose the best witness by M1 margin versus true amplification;
+4. add high-order polynomial residuals only after the amplification gate;
+5. use Newton/radii or equivalent a-posteriori validation if supported;
+6. certify \(M_T\) directly if goal-oriented bounds are tighter.
 
-1. promote TARGET-A20 to PROVED;
-2. launch final theorem-specific hostile novelty audit;
-3. if novelty survives, begin manuscript construction;
-4. then seek E2/open-family strengthening.
+## Manuscript gate
 
-## If TASK-0004 fails
-
-Use the quantified failure to choose among:
-- better adapted norms;
-- sharper local nonlinear remainder bounds;
-- a posteriori certification around the computed nonlinear tail;
-- alternative target witness/model.
-
-Do not revert to physical-state restart arguments.
+Blocked until TARGET-A20 is rigorous and a final theorem-specific novelty audit passes.
