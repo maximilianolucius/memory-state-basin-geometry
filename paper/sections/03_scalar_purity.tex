@@ -1,0 +1,59 @@
+\section{A scalar purity contrast}
+\label{sec:scalar-purity}
+
+The multibasin-fiber mechanism is not automatic in fractional dynamics. In a broad scalar threshold class, the current scalar value still determines the basin label on the physically reachable state set.
+
+\begin{theorem}[Scalar equilibrium-partition fiber purity]
+\label{thm:scalar-purity}
+Consider the scalar autonomous Caputo equation
+\[
+  \CapD x=g(x).
+\]
+Assume that:
+\begin{enumerate}[label=(S\arabic*)]
+  \item equilibrium values are barriers for non-equilibrium standard trajectories;
+  \item every connected component of the physical domain between consecutive equilibrium values has one asymptotic basin label;
+  \item equilibrium lifts are stationary and no non-equilibrium standard trajectory reaches an equilibrium at positive time.
+\end{enumerate}
+Then every physically reachable present-state fiber is basin-pure.
+\end{theorem}
+
+\begin{proof}
+Let
+\[
+  \phi=T_t\iota(x_0)\in\Fiber{x}.
+\]
+If \(x\) lies in one of the open components between consecutive equilibrium values, the barrier property implies that \(x_0\) and \(x\) lie in the same component. By hypothesis, \(\iota(x_0)\) has the unique basin label assigned to that component, and basin positive invariance gives the same label to
+\[
+  T_t\iota(x_0)=\phi.
+\]
+Because \(\phi\) was arbitrary, the entire fiber is basin-pure.
+
+If \(x\) itself is an equilibrium value, finite-time nonattainment forces \(x_0=x\), and stationarity gives
+\[
+  \Fiber{x}=\{\iota(x)\}.
+\]
+\end{proof}
+
+For the scalar strong-Allee equation
+\begin{equation}
+  \CapD x=x(1-x)(x-\theta),
+  \qquad
+  0<\theta<1,
+  \label{eq:scalar-allee}
+\end{equation}
+published Caputo attractor and separation results
+\cite{AreaNieto2023AlleeCaputo,DoanKloeden2022Attractors,CongTuan2017}
+give the positive-domain classification
+\[
+  0<x<\theta
+  \Longrightarrow
+  \Fiber{x}\subset\Basin(\iota(0)),
+\]
+and
+\[
+  x>\theta
+  \Longrightarrow
+  \Fiber{x}\subset\Basin(\iota(1)).
+\]
+Thus the basin split proved later is not a generic consequence of fractional memory alone; it requires genuinely coupled multidimensional dynamics.
