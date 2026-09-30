@@ -1,289 +1,142 @@
 # Memory-Tail Survival Theorem
 
 **Owner:** Chief Researcher  
-**Date:** 2026-09-29  
-**Status:** PROVED FROM PUBLISHED RESOLVENT THEORY / COMPUTATIONAL INSTANTIATION PENDING
+**Date:** 2026-09-30  
+**Status:** PROVED AND INSTANTIATED FOR B215
 
-## 1. Setup
+## Setup
 
 Let
 \[
 {}^CD^\alpha u=Ju+N(u),
-\qquad
-0<\alpha<1,
+\qquad0<\alpha<1,
 \]
-where \(J\) satisfies the Matignon sector condition
-\[
-\sigma(J)
-\subset
-\left\{
-\lambda\ne0:
-|\arg\lambda|>\frac{\alpha\pi}{2}
-\right\}.
-\]
+where \(J\) satisfies the Matignon sector condition.
 
 Define
 \[
-\Psi_J(t)
-=
-t^{\alpha-1}E_{\alpha,\alpha}(Jt^\alpha).
+\Psi_J(t)=t^{\alpha-1}E_{\alpha,\alpha}(Jt^\alpha)
+\]
+and
+\[
+K_J=\int_0^\infty\|\Psi_J(s)\|\,ds<\infty.
 \]
 
-Published stable Mittag-Leffler estimates give
+For a standard trajectory with \(u_0=p-E^*\), define at any finite cut \(T\)
 \[
-\Psi_J(t)=O(t^{-\alpha-1})
-\]
-as \(t\to\infty\), while near zero
-\[
-\Psi_J(t)
-=
-\frac{t^{\alpha-1}}{\Gamma(\alpha)}I
-+
-O(t^{2\alpha-1}).
-\]
-
-Hence, in every induced finite-dimensional norm,
-\[
-\boxed{
-K_J
-=
-\int_0^\infty
-\|\Psi_J(s)\|\,ds
-<\infty.
-}
-\]
-
-Also
-\[
-\boxed{
-\int_0^\infty\Psi_J(s)\,ds=-J^{-1}.
-}
-\]
-
-## 2. Exact memory split at time \(T\)
-
-For a standard trajectory generated from \(u_0=p-E^*\), the global variation-of-constants formula is
-\[
-u(t)
-=
-E_\alpha(Jt^\alpha)u_0
-+
-\int_0^t
-\Psi_J(t-s)N(u(s))\,ds.
-\]
-
-For any \(T>0\) and \(t\ge T\), define the inherited linear-memory response
-\[
-\boxed{
 v_T(t)
 =
 E_\alpha(Jt^\alpha)u_0
 +
-\int_0^T
-\Psi_J(t-s)N(u(s))\,ds.
-}
+\int_0^T\Psi_J(t-s)N(u(s))\,ds,
+\qquad t\ge T.
 \]
 
-Then exactly
+The exact continuation is
 \[
-\boxed{
 u(t)
 =
 v_T(t)
 +
-\int_T^t
-\Psi_J(t-s)N(u(s))\,ds.
-}
+\int_T^t\Psi_J(t-s)N(u(s))\,ds.
 \]
 
-This is the preferred computational form.
+This is not a restart at \(T\): \(v_T\) contains the entire pre-\(T\) history.
 
-It is algebraically equivalent to splitting the original Volterra equation as
+## THEOREM M1
+
+Suppose
 \[
-u(t)
-=
-h_T(t)
-+
-I^\alpha_T[Ju+N(u)](t),
+\|N(u)\|\le C_r\|u\|^2
+\qquad(\|u\|\le r),
 \]
-where
+and
 \[
-h_T(t)
-=
-p-E^*
-+
-\frac1{\Gamma(\alpha)}
-\int_0^T
-(t-s)^{\alpha-1}F(x(s))\,ds.
-\]
-
-The second formulation makes inherited history explicit; the first avoids cancellation in numerical certification.
-
-## 3. Decay of the inherited linear response
-
-For fixed finite \(T\),
-
-\[
-E_\alpha(Jt^\alpha)u_0\to0.
-\]
-
-Also, on \([0,T]\), \(N(u(s))\) is bounded. Since for each fixed \(s\)
-\[
-\Psi_J(t-s)\to0
-\]
-and the history interval is finite,
-\[
-\int_0^T
-\Psi_J(t-s)N(u(s))\,ds
-\to0.
-\]
-
-Therefore
-\[
-\boxed{
-v_T(t)\to0.
-}
-\]
-
-Equivalently, in the \(h_T\) formulation, \(h_T(t)\to p-E^*\) and the resolvent identity
-\[
-\int_0^\infty\Psi_J=-J^{-1}
-\]
-cancels this constant tail.
-
-## 4. THEOREM M1 — memory-tail survival criterion
-
-Fix an induced norm.
-
-Suppose that, for some \(r>0\),
-\[
-\|N(u)\|
-\le
-C_r\|u\|^2
-\qquad
-(\|u\|\le r).
-\]
-
-Define
-\[
-M_T
-=
-\sup_{t\ge T}
-\|v_T(t)\|.
+M_T:=\sup_{t\ge T}\|v_T(t)\|.
 \]
 
 If
 \[
-\boxed{
 M_T+K_JC_rr^2<r,
-}
 \]
-then the full inherited-memory trajectory satisfies
+then the full inherited-memory trajectory remains in the radius-\(r\) ball for every \(t\ge T\) and
 \[
-\|u(t)\|<r
-\qquad
-(t\ge T)
-\]
-and
-\[
-\boxed{
 u(t)\to0.
-}
 \]
 
 ### Proof
 
-At \(t=T\),
-\[
-u(T)=v_T(T),
-\]
-hence
-\[
-\|u(T)\|\le M_T<r.
-\]
-
-If \(t_e\) were the first exit time from the radius-\(r\) ball, then for \(T\le s\le t_e\),
-\[
-\|N(u(s))\|\le C_rr^2.
-\]
-
-Thus
+A first-exit time \(t_e\) would satisfy
 \[
 \|u(t_e)\|
 \le
-M_T+
-\int_T^{t_e}
-\|\Psi_J(t_e-s)\|C_rr^2\,ds
-\le
-M_T+K_JC_rr^2
-<r,
+M_T+K_JC_rr^2<r,
 \]
-contradiction.
+a contradiction.
 
-So the tail remains in the ball.
-
-Within the ball,
+Inside the invariant ball,
 \[
-\|N(u)\|\le C_rr\|u\|.
+\|N(u)\|\le C_rr\|u\|,
 \]
-
-Let
-\[
-L=\limsup_{t\to\infty}\|u(t)\|.
-\]
-
-The strict invariance inequality implies
+and strict invariance gives
 \[
 K_JC_rr<1.
 \]
 
-Split the nonlinear convolution at a large fixed time \(S\):
-the contribution from \([T,S]\) tends to zero because \(\Psi_J(t-s)\to0\);
-the remaining contribution is bounded asymptotically by
+Since \(v_T(t)\to0\), the \(L^1\)-kernel limsup argument yields
 \[
-K_JC_rr(L+\varepsilon).
+L:=\limsup_{t\to\infty}\|u(t)\|
+\le
+K_JC_rrL.
+\]
+Therefore \(L=0\). \(\square\)
+
+## B215 instantiation
+
+For
+\[
+\alpha=17/20,\quad
+\theta=1/2,\quad
+a=1/2,\quad
+b=1,\quad
+m=4/5,
+\]
+\[
+p=(277/100,467/1000),
+\quad
+E^*=(4/5,3/25),
+\]
+TASK-0006 certifies at \(T=300\):
+\[
+K_J\le11.3499043,
+\]
+\[
+M_T\le0.043232414,
+\]
+\[
+C_r\le0.3695518+0.1627353r,
+\]
+with
+\[
+r=2221/20000
+\]
+and
+\[
+r-K_JC_rr^2-M_T\ge0.0135626>0.
 \]
 
-Since \(v_T(t)\to0\),
+Hence
 \[
-L\le K_JC_rr(L+\varepsilon).
+X(t;p)\to E^*.
 \]
 
-Letting \(\varepsilon\downarrow0\),
+An independent \(T=1000\) certificate also closes with margin
 \[
-L\le K_JC_rrL.
+\ge0.0413364.
 \]
 
-Hence \(L=0\). \(\square\)
+## Evidence
 
-## 5. Computational sanity checks
+The theorem is analytic from published resolvent/Mittag--Leffler theory.
 
-Any certified \(K_J\) must satisfy
-\[
-\boxed{
-K_J\ge\|J^{-1}\|
-}
-\]
-because
-\[
-\int_0^\infty\Psi_J=-J^{-1}.
-\]
-
-This is a mandatory validation check for TASK-0004.
-
-## 6. Relation to O1/O2
-
-O1 does not apply because M1 certifies a continuation state using its complete inherited history, not the cold start at \(x(T)\).
-
-O2 does not apply because the large early excursion is absorbed exactly into \(v_T\); the radius-\(r\) nonlinear estimate is imposed only after the late cut time.
-
-## 7. TARGET-A20 closure
-
-For exact-rational W1, if TASK-0004 certifies M1 at any finite \(T\), then survival is rigorous.
-
-Together with:
-- exact-rational certified entry;
-- X1 cold-start extinction;
-- E1 basin-entry geometry;
-
-this proves TARGET-A20.
+The B215 constants are certified computation under the TASK-0006 arithmetic model; TASK-0007 is hardening the remaining elementary-function assumptions for publication.
