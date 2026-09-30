@@ -5,7 +5,7 @@
 **Task:** `research/coordination/chief-to-compute/TASK-0005_orbit-linearized-history_REQUEST.md`
 **Date:** 2026-09-30
 **Branch:** `compute/task-0005`
-**Final commit SHA:** see §9
+**Final commit SHA:** `eb53c95b38` (§9)
 
 ---
 
@@ -242,7 +242,9 @@ New code: `msbg/orbit_linearized.py`; scripts `t5_*`; tests `test_orbit_lineariz
 
 ```
 branch: compute/task-0005
-commit: FINAL_SHA
+commit: eb53c95b38456a0ba2f0340fd8475bb5747c58d3
+
+That commit carries every artifact cited here; the only later commit writes this SHA.
 ```
 
 ---
