@@ -1,0 +1,54 @@
+name: Manuscript build
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'paper/**'
+      - 'bibliography/**'
+      - '.github/workflows/manuscript-build.yml'
+  pull_request:
+    paths:
+      - 'paper/**'
+      - 'bibliography/**'
+      - '.github/workflows/manuscript-build.yml'
+  workflow_dispatch:
+
+jobs:
+  latex:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install TeX
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            latexmk \
+            texlive-latex-base \
+            texlive-latex-extra \
+            texlive-fonts-recommended \
+            texlive-science
+
+      - name: Build manuscript
+        working-directory: paper
+        run: |
+          latexmk -pdf \
+            -interaction=nonstopmode \
+            -halt-on-error \
+            -file-line-error \
+            manuscript_core.tex
+
+      - name: Report page count
+        working-directory: paper
+        run: |
+          pdfinfo manuscript_core.pdf | grep '^Pages:' || true
+
+      - name: Upload manuscript PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: manuscript-core-pdf
+          path: paper/manuscript_core.pdf
+          if-no-files-found: error
