@@ -484,3 +484,82 @@ The recommended implementation sequence is:
 4. if uniform-state amplification remains too large, validate the goal functional (M_T) directly.
 
 No direct 2025–2026 published method was identified that already performs this exact Caputo long-excursion interval/radii-polynomial certification.
+
+
+## ROUND-0007 — final TARGET-A20 novelty boundary
+
+### Direct Caputo killer search
+**No formally published direct prior found in the searched corpus** for the exact conjunction
+[
+existsphi,psiinmathcal R_alpha:
+quad
+e_0(phi)=e_0(psi)=z,
+quad
+phiinmathcal B(A_+),
+quad
+psiinmathcal B(A_-),
+quad
+A_+
+e A_-,
+]
+where one state is a physically inherited continuation state of a standard autonomous Caputo IVP and the other is the canonical cold start at the identical present value.
+
+**Deshpande–Daftardar-Gejji–Vellaisamy (2019)**, DOI 10.1063/1.5052067, proves fractional trajectory intersections and therefore closes any broad novelty claim based merely on projected-state coincidence/noninjectivity.
+
+### Strongest hereditary/headpoint analogue
+**Szaksz–Stepan–Habib (2024)**, DOI 10.1016/j.jsv.2023.118045, explicitly:
+- states that convergence depends on the whole DDE initial function, not only its headpoint;
+- compares multiple histories with the same headpoint;
+- and notes that restarting from a constrained history at a point reached by a previous nonlinear trajectory produces a different trajectory.
+
+This is the closest conceptual prior found.
+
+It does **not** prove that the inherited and restarted histories at one common headpoint lie in two distinct basins. The project residual therefore survives.
+
+**Szaksz & Habib (2026)**, DOI 10.1016/j.ijnonlinmec.2026.105337, reinforces the current infinite-dimensional integrity/basin methodology but likewise does not close the same-headpoint/opposite-basin theorem.
+
+### 2025–2026 fractional ecological pressure
+Broad ecological ingredients are now heavily populated:
+
+- **Ramesh et al. (2025)**, DOI 10.1371/journal.pone.0305179 — Caputo memory + Double Allee + extinction/coexistence stability;
+- **Mondal et al. (2025)**, DOI 10.1007/s10867-025-09670-0 — Caputo double-Allee emergent states;
+- **Wang & Han (2025)**, DOI 10.1007/s12346-024-01212-8 — Caputo Allee/refuge with global stability;
+- **Mondal et al. (2025)**, DOI 10.1016/j.cjph.2025.09.020 — fractional Double Allee/group defense and basin stability;
+- **Saha et al. (2026)**, DOI 10.1007/s13540-026-00515-8 — explicit fractional ecological basins for extinction/predator extinction/coexistence;
+- **Pippal & Sati (2026)**, DOI 10.30538/oms2026.0339 — strong-Allee Caputo system with stable extinction and basin-restricted coexistence certificate;
+- **Baghel (2026)**, DOI 10.1016/j.chaos.2026.117880 — Caputo strong-Allee delayed age-structured predator–prey dynamics.
+
+Therefore the manuscript must not claim novelty for fractional ecological multistability, basin geometry, extinction/coexistence, or memory effects in isolation.
+
+No searched ecological source proves the inherited-continuation versus cold-start basin split at one identical present state.
+
+### Theorem-form novelty
+The principal novelty should be stated at the theorem level:
+
+> a physically reachable present-state fiber of an autonomous continuous-time Caputo system can intersect distinct asymptotic basins.
+
+The certified strong-Allee benchmark strengthens this by realizing the two basin labels as **coexistence versus extinction** and by producing a **nondegenerate physical-time interval** of reached multibasin fibers.
+
+The interval-of-fibers statement is best presented as a structural consequence of the certified excursion, not as an independent foundational novelty claim.
+
+### Numerical-method boundary
+The TASK-0006 CAP combines cellwise positive self-map bounds, Perron-weighted contraction, an orbit-linearized weakly singular Volterra inverse, and memory-tail Mittag–Leffler bounds.
+
+No exact published method duplicate was located, but every generic ingredient has substantial prior. Treat the CAP as enabling proof technology unless the manuscript explicitly develops a reusable numerical theorem.
+
+### Arithmetic/referee boundary
+**Tucker (2011)** represents the standard interval/validated-numerics expectation that all numerical error sources be enclosed.
+
+**Mrozek (1996)**, DOI 10.1006/jsco.1996.0061, shows that explicit rigorous floating-point error analysis can replace interval arithmetic in computer-assisted proofs.
+
+Thus the mixed Arb + bounded binary64 architecture is defensible **under its declared arithmetic model**. The weakest presentation point is the unverified few-ulp libm assumption. End-to-end Arb/MPFR hardening of load-bearing elementary-function calls is recommended but is not a novelty issue.
+
+### Final verdict
+[
+oxed{	ext{NOVELTY SURVIVES WITH CLAIM NARROWING}}
+]
+
+Narrow manuscript claim:
+> A concrete autonomous two-dimensional Caputo strong-Allee system admits a certified nondegenerate interval of reached present states whose physically reachable current-state fibers each contain an inherited continuation state converging to coexistence and a canonical cold start at the identical present value converging to extinction.
+
+Avoid “first” claims for generic memory, same-state/different-future behavior, fractional basin geometry, Allee multistability, trajectory intersections, or validated numerics.
