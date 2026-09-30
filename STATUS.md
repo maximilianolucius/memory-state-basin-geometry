@@ -1,54 +1,49 @@
 # Status
 
-**Phase:** TARGET-A20 PROVED — FINAL HOSTILE NOVELTY AUDIT ACTIVE
+**Phase:** MANUSCRIPT UNLOCKED — TARGET-A20 PROVED; FINAL NOVELTY AUDIT PASSED
 
-## TASK-0006 complete
+## Final novelty gate
 
-Branch:
-\`compute/task-0006\`
-
-HEAD:
-\`0e0905cf968fee852fc4c85ca42f88b8215dbc02\`
-
-Certificate code:
-\`c9bc2f80788e0834ecb74e69e89aab59e50c741d\`.
-
-Main was fast-forwarded to the TASK-0006 HEAD before Chief promotion commits.
-
-## Principal theorem
-
-B215 gives a certified autonomous Caputo trajectory that:
-- crosses deeply into a cold-start extinction region;
-- later converges to the coexistence equilibrium.
-
-Therefore every present state along the certified entry interval has:
-- an inherited reachable continuation state in the survival basin;
-- a canonical cold start in the extinction basin.
-
-Hence the corresponding reachable present-state fibers are multibasin.
+ROUND-0007 verdict:
 
 \[
-\boxed{\text{TARGET-A20 PROVED}}
+\boxed{\text{NOVELTY SURVIVES WITH CLAIM NARROWING}.}
 \]
 
-Evidence class:
-**computer-assisted theorem / certified computation under the declared arithmetic model**.
+No direct published theorem matching the same-present-value, physically reachable Caputo basin split was found in the targeted corpus.
 
-## Redundancy
+## Locked principal contribution
 
-Two complete independent cut-time certificates:
-- \(T=300\);
-- \(T=1000\).
+A physically reachable current-state fiber of an autonomous Caputo system intersects distinct asymptotic basins.
 
-## Current gate
+Certified B215 realization:
+- inherited continuation -> coexistence;
+- cold start at identical present value -> extinction.
 
-ROUND-0007:
-final theorem-specific hostile novelty audit.
+A nondegenerate reached time interval of such fibers is certified.
 
 ## Manuscript
 
-Still locked until ROUND-0007 returns favorably.
+\[
+\boxed{\text{UNLOCKED}}
+\]
 
-## Publication hardening
+Follow:
+- \`research/MANUSCRIPT_GATE.md\`;
+- \`paper/MANUSCRIPT_PLAN.md\`;
+- \`agent_directives_publishable_first_submission.md\`.
 
-End-to-end Arb conversion of the remaining binary64/libm layers is desirable for referee robustness but is not currently a logical blocker under the explicitly declared arithmetic model.
+Target 22–23 pages; hard maximum 25.
+
+## Active compute
+
+TASK-0007:
+publication arithmetic hardening of the primary \(T=300,N=12000\) certificate.
+
+This is a referee-robustness task, not a theorem/novelty gate.
+
+## Web search
+
+No further generic novelty round planned.
+
+Only reopen literature search if manuscript claims materially broaden beyond TARGET-A20.
