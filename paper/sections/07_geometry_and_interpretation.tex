@@ -1,0 +1,57 @@
+\section{Geometry and interpretation}
+\label{sec:geometry}
+
+Theorem~\ref{thm:principal} can be read as a geometric statement about the projection
+\[
+  e_0:\Reach\to X_{\mathrm{phys}}.
+\]
+At a certified reached value
+\[
+  z_*=X(t_*;p),
+  \qquad t_*\in I_*,
+\]
+the projection identifies two continuation states with the same present physical coordinates:
+\[
+  e_0(T_{t_*}\iota(p))
+  =
+  e_0(\iota(z_*))
+  =
+  z_*.
+\]
+Their basin labels nevertheless differ. The first state retains the entire nonlinear excursion from the original point initial condition and converges to coexistence; the second discards that history and, by \cref{thm:extinction-strip}, converges to extinction.
+
+This distinction is stronger than the observation that fractional trajectories may intersect after projection onto physical coordinates. Such intersections are already known in fractional systems \cite{DeshpandeDaftardarGejjiVellaisamy2019}. What matters here is that the two physically reachable continuation states above the same present value have different asymptotic basin membership.
+
+The closest conceptual analogue in hereditary dynamics occurs in dynamical-integrity methods for delay equations, where different histories sharing the same headpoint can evolve differently \cite{SzakszStepanHabib2024DynamicalIntegrity}. The present theorem adds a different ingredient: opposite asymptotic basin membership is proved for a physically reachable Caputo continuation state and the canonical cold start at exactly the same present value.
+
+\subsection{Why the cold-start extinction strip does not classify the inherited state}
+
+The set \(\Ext\) is a basin certificate only for the canonical embedding:
+\[
+  z\in\Ext
+  \Longrightarrow
+  \iota(z)\in\Basin(\iota(0,0)).
+\]
+It is not an invariant physical-state label for all continuation states above \(z\). Indeed, \cref{thm:principal} provides explicit states
+\[
+  T_{t_*}\iota(p)\in\Fiber{z_*}
+\]
+with \(z_*\in\Ext\) that lie instead in \(\Basin(\iota(\Eeq))\).
+
+This observation also explains why a survival proof based on trapping the trajectory inside a physical-state region whose every cold start survives cannot prove the present phenomenon. The relevant survival certificate must depend on inherited memory. The memory-tail quantity \(v_T\) in \eqref{eq:memory-response} does exactly that: it absorbs the entire pre-\(T\) excursion before a local quadratic tail estimate is imposed.
+
+\subsection{Why sign-aware validation matters}
+
+A scalar normwise a posteriori bound treats the nonlinear excursion through absolute values and loses the rotations and cancellations of the matrix linearization
+\[
+  A(t)=Dg(\widehat X(t)).
+\]
+For the present benchmark, this produces artificial amplification many orders of magnitude larger than the response of the actual orbit-linearized Volterra operator.
+
+The successful certificate therefore preserves the block-matrix signs in
+\[
+  L_h=I-AW
+\]
+and validates the inverse before applying nonnegative componentwise bounds to the remaining interpolation and nonlinear terms. This separation between a sign-aware linear inverse and a positive nonlinear enclosure is the practical reason the long excursion can be certified.
+
+These diagnostics motivate the proof architecture, but they are not themselves part of the logical content of \cref{thm:principal}. The theorem depends only on the final validated self-map, contraction, threshold entry, and memory-tail inequalities.
