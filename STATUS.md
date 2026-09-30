@@ -1,54 +1,49 @@
 # Status
 
-**Phase:** ACTIVE — MEMORY-TAIL THEOREM VERIFIED; TASK-0004 IS THE SOLE PRINCIPAL GATE
+**Phase:** ACTIVE — M1 FEASIBLE; VALIDATED-HISTORY METHOD IS THE BOTTLENECK
 
-## ROUND-0005 assimilated — 2026-09-29
+## TASK-0004 assimilated — 2026-09-30
 
-Verdicts:
-- resolvent identity: VERIFIED;
-- matrix Mittag-Leffler kernel \(L^1\): VERIFIED;
-- inherited-memory linear response decay: VERIFIED;
-- THEOREM-M1: VERIFIED;
-- direct published equivalent target theorem: NOT FOUND IN SEARCHED CORPUS.
+Branch:
+\`compute/task-0004\`
 
-## Critical theorem
+Verified HEAD:
+\`b57774734379640861f4cb48ae2620ee0abe4100\`
 
-For a late cut \(T\), define
+Merged:
+PR #4 -> main at \`37258073f91a177882d615381fd67e576fd59a86\`.
+
+## What TASK-0004 established
+
+For W1, the memory-tail theorem M1 is numerically feasible from late cut times.
+
+The adapted norm gives substantially better kernel constants than Euclidean norm.
+
+The failure is the finite-history validation:
+the current normwise a-posteriori recursion loses huge cancellation during the nonlinear excursion.
+
+No rigorous \(M_T\) was obtained.
+
+Therefore:
 \[
-v_T(t)
-=
-E_\alpha(Jt^\alpha)u_0
-+
-\int_0^T
-\Psi_J(t-s)N(u(s))\,ds.
+\boxed{\text{TARGET-A20 remains OPEN}.}
 \]
 
-If
-\[
-M_T+K_JC_rr^2<r,
-\]
-then the full inherited-memory trajectory converges to \(E^*\).
+## Methodological change
 
-This explicitly preserves memory and is not a fractional restart.
+Do not push the existing second-order verifier to vastly larger \(N\).
 
-## W1 status
+Next:
+- preserve the time-dependent matrix linearization along the orbit;
+- construct/approximate the inverse Volterra operator;
+- measure sign-aware amplification;
+- add higher-order polynomial residuals only if amplification is manageable.
 
-Already rigorous:
-- exact rational model parameters;
-- exact rational initial point;
-- certified entry into \(R_{\rm ext}\);
-- cold-start extinction in \(R_{\rm ext}\).
+## Active
 
-Missing:
-- certified M1 tail inequality.
+- ROUND-0006 — rigorous orbit-linearized Volterra validation audit.
+- TASK-0005 — sign-aware approximate-inverse feasibility/certification.
 
-## Current action
+## Paper
 
-TASK-0004 is active.
-
-No new web round until TASK-0004 returns.
-
-If TASK-0004 succeeds:
-1. TARGET-A20 becomes PROVED;
-2. run final theorem-specific novelty audit;
-3. only then unlock manuscript mode.
+NOT STARTED.
