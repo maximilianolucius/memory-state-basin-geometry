@@ -225,6 +225,13 @@ Positive invariance yields
 Finally, \eqref{eq:same-present} shows that the inherited continuation state and the canonical cold start lie in the same reachable present-state fiber. Applying \cref{prop:basin-entry} proves \eqref{eq:multibasin-conclusion}.
 \end{proof}
 
+\begin{figure}[t]
+  \centering
+  \resizebox{\textwidth}{!}{\input{figures/fig04_same_present_split}}
+  \caption{Concrete realization of the same-present basin split in B215.  The inherited state retains the pre-(t_*) Caputo memory and is certified to converge to coexistence; the canonical cold start at the identical present value discards that history and is certified to converge to extinction.  The dashed arrow denotes a new point-IVP restart, not the continuation of the inherited state.}
+  \label{fig:same-present-split}
+\end{figure}
+
 \begin{corollary}[A nondegenerate interval of certified basin splits]
 \label{cor:principal-interval}
 For every \(t\in I_*\), the reachable present-state fiber
