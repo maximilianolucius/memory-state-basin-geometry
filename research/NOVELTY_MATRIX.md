@@ -1,17 +1,17 @@
 # Novelty Matrix
 
-| Candidate | Status | Role |
+| Item | Status | Role |
 |---|---|---|
-| state architecture / generic memory | prior | background |
-| ecological vector field | prior | none |
-| X1, L1, M1 | proved supporting machinery | support |
-| O1 | proved structural obstruction | conceptually relevant |
-| Theorem R / validated numerics | supporting method | do not claim principal novelty |
-| orbit-linearized validated history | method under development | proof vehicle only |
-| same-present reachable extinction/survival fiber | OPEN | principal novelty target |
+| generic Caputo memory | prior | background |
+| exact ecological vector field | prior | none |
+| X1/M1/E1 | proved support | theorem chain |
+| interval / certified fractional numerics | prior exists | do not claim generically |
+| Banach radii-polynomial CAP | prior exists | proof technology |
+| orbit-linearized weakly singular CAP | no direct implementation prior found in ROUND-0006 | enabling method; novelty claim deferred |
+| B215 same-present extinction/survival fiber | OPEN | principal target |
 
-## Discipline
+## Principal novelty
 
-Even if TASK-0005 produces a new validated-numerics technique, the paper should not overclaim numerical-method novelty unless separately audited.
+Still only the rigorous reachable-fiber basin split.
 
-The target scientific claim remains the memory-state basin geometry.
+Do not elevate the numerical method to principal novelty unless separately justified after the scientific theorem closes.
