@@ -1,0 +1,215 @@
+\section{Certified same-present basin splitting}
+\label{sec:principal-theorem}
+
+We now fix the exact rational benchmark
+\begin{equation}
+  \alpha=\frac{17}{20},
+  \qquad
+  \theta=\frac12,
+  \qquad
+  a=\frac12,
+  \qquad
+  b=1,
+  \qquad
+  m=\frac45,
+  \label{eq:B215-parameters}
+\end{equation}
+with standard initial point
+\begin{equation}
+  p=
+  \left(
+  \frac{277}{100},
+  \frac{467}{1000}
+  \right).
+  \label{eq:B215-p}
+\end{equation}
+The coexistence equilibrium is
+\begin{equation}
+  \Eeq=
+  \left(
+  \frac45,\frac3{25}
+  \right).
+  \label{eq:B215-E}
+\end{equation}
+At \(\Eeq\),
+\begin{equation}
+  J=
+  \begin{pmatrix}
+    -\frac2{25} & -\frac25\\[1mm]
+    \frac3{25} & 0
+  \end{pmatrix},
+  \label{eq:B215-J}
+\end{equation}
+with eigenvalues
+\[
+  \lambda_\pm
+  =
+  \frac{-1\pm i\sqrt{29}}{25}.
+\]
+Thus the Matignon sector condition holds for \(\alpha=17/20\).
+
+Writing
+\[
+  U=(\xi,\eta)=X-\Eeq,
+\]
+the nonlinear remainder in \eqref{eq:linearized-system} is
+\begin{equation}
+  N_1(\xi,\eta)
+  =
+  -\frac9{10}\xi^2
+  -\frac12\xi\eta
+  -\xi^3,
+  \qquad
+  N_2(\xi,\eta)=\xi\eta.
+  \label{eq:B215-remainder}
+\end{equation}
+
+\begin{proposition}[Certified finite excursion]
+\label{prop:certified-entry}
+Under the arithmetic model stated in \cref{sec:cap}, the exact solution of \eqref{eq:model}--\eqref{eq:B215-p} is uniquely enclosed on \([0,300]\), with physical-state error at most
+\[
+  2.2193\times10^{-4}.
+\]
+Moreover,
+\begin{equation}
+  0<x(t)<\frac12,
+  \qquad
+  y(t)>0
+  \qquad
+  \text{for every }
+  t\in I_*,
+  \label{eq:entry-whole-interval}
+\end{equation}
+where
+\begin{equation}
+  I_*=
+  [5.8576774143,\ 13.7275388580].
+  \label{eq:Istar}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+This is the finite-history certificate established in \cref{sec:cap}; see in particular \cref{tab:certificate-summary}.
+\end{proof}
+
+\begin{proposition}[Certified survival of the same standard orbit]
+\label{prop:certified-survival}
+For the same exact standard IVP, the memory-tail quantities at \(T=300\) satisfy
+\[
+  K_J\le11.3499043,
+  \qquad
+  M_T\le0.043232414,
+\]
+and
+\[
+  C_r\le0.3695518+0.1627353\,r.
+\]
+At
+\[
+  r=\frac{2221}{20000},
+\]
+one has
+\begin{equation}
+  r-K_JC_rr^2-M_T
+  \ge
+  0.0135626>0,
+  \label{eq:B215-M1-margin}
+\end{equation}
+with
+\[
+  K_JC_rr\le0.48857<1.
+\]
+Consequently,
+\[
+  X(t;p)\to\Eeq.
+\]
+\end{proposition}
+
+\begin{proof}
+The bounds are certified in \cref{sec:cap}. Inequality \eqref{eq:B215-M1-margin} is exactly the hypothesis of \cref{thm:memory-tail}.
+\end{proof}
+
+\begin{theorem}[Multibasin reachable present-state fibers]
+\label{thm:principal}
+For the exact Caputo system \eqref{eq:model} with parameters \eqref{eq:B215-parameters} and initial point \eqref{eq:B215-p}, fix any
+\[
+  t_*\in I_*,
+\]
+and define
+\[
+  z_*=X(t_*;p).
+\]
+Then
+\begin{equation}
+  \Fiber{z_*}\cap\Basin(\iota(0,0))
+  \neq\varnothing,
+  \qquad
+  \Fiber{z_*}\cap\Basin(\iota(\Eeq))
+  \neq\varnothing.
+  \label{eq:multibasin-conclusion}
+\end{equation}
+More precisely,
+\[
+  \iota(z_*)\in\Basin(\iota(0,0)),
+\]
+whereas
+\[
+  T_{t_*}\iota(p)\in\Basin(\iota(\Eeq)),
+\]
+although
+\begin{equation}
+  e_0(\iota(z_*))
+  =
+  e_0(T_{t_*}\iota(p))
+  =
+  z_*.
+  \label{eq:same-present}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+By \cref{prop:certified-entry},
+\[
+  z_*\in\Ext.
+\]
+Hence \cref{thm:extinction-strip} gives
+\[
+  \iota(z_*)\in\Basin(\iota(0,0)).
+\]
+
+By \cref{prop:certified-survival},
+\[
+  X(t;p)\to\Eeq.
+\]
+Then \cref{prop:physical-to-continuation} implies
+\[
+  T_t\iota(p)\to\iota(\Eeq),
+\]
+so
+\[
+  \iota(p)\in\Basin(\iota(\Eeq)).
+\]
+Positive invariance yields
+\[
+  T_{t_*}\iota(p)\in\Basin(\iota(\Eeq)).
+\]
+Finally, \eqref{eq:same-present} shows that the inherited continuation state and the canonical cold start lie in the same reachable present-state fiber. Applying \cref{prop:basin-entry} proves \eqref{eq:multibasin-conclusion}.
+\end{proof}
+
+\begin{corollary}[A nondegenerate interval of certified basin splits]
+\label{cor:principal-interval}
+For every \(t\in I_*\), the reachable present-state fiber
+\[
+  \Fiber{X(t;p)}
+\]
+is multibasin.
+\end{corollary}
+
+\begin{remark}[Scope of the conclusion]
+\label{rem:scope-principal}
+\Cref{cor:principal-interval} is indexed by a nondegenerate interval of physical time. We do not require, and do not currently claim, that
+\[
+  t\mapsto X(t;p)
+\]
+is injective on \(I_*\). Thus the theorem does not rely on a topological arc of distinct physical states.
+\end{remark}
