@@ -1,35 +1,32 @@
 \begin{tikzpicture}[
-  node distance=8mm and 16mm,
-  box/.style={draw,rounded corners,align=center,minimum width=35mm,minimum height=11mm,font=\footnotesize},
-  state/.style={draw,circle,inner sep=2.1pt},
+  node distance=9mm and 18mm,
+  box/.style={draw,rounded corners,align=center,minimum width=32mm,minimum height=10mm,font=\small},
   arr/.style={->,thick},
   darr/.style={->,thick,dashed}
 ]
-  \node[box] (p) {standard initial state\\\(p=(277/100,467/1000)\)};
-  \node[box,right=27mm of p] (z) {same present value\\\(z_*=X(t_*;p)\)\\\(t_*\in I_*\)};
+  \node[box] (p) {\(p=(277/100,467/1000)\)};
+  \node[box,right=25mm of p] (z)
+    {reached present\\\(z_*=X(t_*;p)\), \(t_*\in I_*\)};
 
-  \draw[arr] (p) -- node[above] {original Caputo history} (z);
+  \draw[arr] (p) -- node[above,font=\footnotesize] {original orbit} (z);
 
-  \node[box,above right=16mm and 24mm of z] (inh) {inherited continuation state\\\(T_{t_*}\iota(p)\)};
-  \node[box,below right=16mm and 24mm of z] (cold) {canonical cold start\\\(\iota(z_*)\)};
+  \node[box,above right=14mm and 24mm of z] (inh)
+    {inherited state\\\(T_{t_*}\iota(p)\)};
+  \node[box,below right=14mm and 24mm of z] (cold)
+    {cold start\\\(\iota(z_*)\)};
 
-  \draw[arr] (z) -- node[above left,align=center] {retain\\pre-\(t_*\) memory} (inh);
-  \draw[darr] (z) -- node[below left,align=center] {discard history\\and restart} (cold);
+  \draw[arr] (z) -- node[above left,font=\footnotesize] {retain memory} (inh);
+  \draw[darr] (z) -- node[below left,font=\footnotesize] {restart} (cold);
 
-  \node[state,right=24mm of inh] (E) {};
-  \node[anchor=west,align=left] at ([xshift=3mm]E.east)
-    {\(\iota(E^*)\)\\coexistence};
+  \node[box,right=24mm of inh] (E)
+    {coexistence\\\(\iota(E^*)\)};
+  \node[box,right=24mm of cold] (O)
+    {extinction\\\(\iota(0,0)\)};
 
-  \node[state,right=24mm of cold] (O) {};
-  \node[anchor=west,align=left] at ([xshift=3mm]O.east)
-    {\(\iota(0,0)\)\\extinction};
+  \draw[arr] (inh) -- node[above,font=\footnotesize] {M1 + E3} (E);
+  \draw[arr] (cold) -- node[below,font=\footnotesize] {X1} (O);
 
-  \draw[arr] (inh) -- node[above] {M1 + E3} (E);
-  \draw[arr] (cold) -- node[below] {X1} (O);
-
-  \node[align=center,font=\footnotesize] at ($(inh)!0.5!(cold)+(0,-0.1)$)
-    {\(e_0(T_{t_*}\iota(p))=e_0(\iota(z_*))=z_*\)};
-
-  \node[draw,rounded corners,align=center,font=\footnotesize,below=9mm of z] (strip)
-    {\(z_*\in R_{\rm ext}\) certified\\for every \(t_*\in I_*\)};
+  \node[draw,rounded corners,fill=white,align=center,font=\footnotesize]
+    at ($(inh)!0.5!(cold)$)
+    {\(e_0(T_{t_*}\iota(p))\)\\\(=e_0(\iota(z_*))=z_*\)};
 \end{tikzpicture}
