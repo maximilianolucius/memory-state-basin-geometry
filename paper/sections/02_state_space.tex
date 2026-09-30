@@ -10,9 +10,34 @@ A point value \(X(t)\in\mathbb{R}^d\) is not, by itself, a Markov state for a Ca
 on a physical state domain \(X_{\mathrm{phys}}\subset\mathbb{R}^d\). Following the continuation-state construction of Doan and Kloeden
 \cite{DoanKloeden2021Semidynamical,DoanKloeden2024Attractors}, let
 \[
-  \Cspace=C(\mathbb{R}_+,\mathbb{R}^d)
+  \Cspace=C(\mathbb{R}_+,\mathbb{R}^d).
 \]
-carry the compact-open topology, and let \(T_t\) denote the induced semidynamical system.
+For
+\[
+  \|f-h\|_n
+  :=
+  \sup_{0\le\tau\le n}\|f(\tau)-h(\tau)\|,
+\]
+we use the compatible compact-open metric
+\begin{equation}
+  \rho_{\Cspace}(f,h)
+  =
+  \sum_{n=1}^{\infty}
+  2^{-n}
+  \frac{\|f-h\|_n}{1+\|f-h\|_n}.
+  \label{eq:compact-open-metric}
+\end{equation}
+Let \(T_t\) denote the induced semidynamical system.  For an invariant compact set \(A\subset\Cspace\), its basin is
+\begin{equation}
+  \Basin(A)
+  :=
+  \left\{
+  f\in\Cspace:
+  \operatorname{dist}_{\rho_{\Cspace}}(T_tf,A)\to0
+  \text{ as }t\to\infty
+  \right\}.
+  \label{eq:basin-definition}
+\end{equation}
 
 For a point initial value \(z\in X_{\mathrm{phys}}\), define the canonical cold-start state
 \[
