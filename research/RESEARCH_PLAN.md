@@ -6,38 +6,31 @@ TARGET-A20 is proved.
 
 ## Novelty
 
-Final hostile audit passed with claim narrowing.
-
-The principal claim is locked to the same-present-value physically reachable Caputo basin split.
+Final hostile novelty audit survives with claim narrowing. The principal claim remains the same-present physically reachable Caputo basin split.
 
 ## Current phase
 
-MANUSCRIPT CONSTRUCTION + PUBLICATION HARDENING.
+MANUSCRIPT FINALIZATION.
 
-### Manuscript track
+### Completed
 
-Completed:
-- theorem/proof skeleton;
-- Sections 1--8 in modular LaTeX;
-- related-work positioning;
-- certificate table;
-- scientific figure specifications;
-- provisional title/abstract;
-- referee-facing evidence map.
+- theorem/proof chain closed;
+- final theorem-specific novelty audit completed;
+- TASK-0007 publication arithmetic hardening completed and promoted;
+- principal certificate now has end-to-end verified elementary-function enclosures;
+- manuscript Sections 1--9 assembled;
+- core theorem-level figures and evidence tables integrated;
+- bibliography audit passed with formally published sources only;
+- Referee Passes 1 and 2 passed after fixes.
 
-Next:
-1. generate theorem-level figures;
-2. integrate figures and compact related-work/evidence tables;
-3. run page-budget compression;
-4. incorporate TASK-0007 arithmetic wording;
-5. freeze final title and abstract.
+### Immediate next steps
 
-### Arithmetic-hardening track
-
-TASK-0007 removes the main referee vulnerability in the load-bearing libm layer of the primary (T=300) certificate.
+1. finish post-TASK-0007 manuscript CI and page-count check;
+2. run Referee Pass 3 against hardened arithmetic and final manuscript wording;
+3. generate/refresh data-dependent numerical figures from the hardened certificate artifacts;
+4. freeze title, abstract, and journal-template formatting;
+5. prepare first-submission package.
 
 ## Optional future strengthening
 
-A parameter-open persistence theorem may be developed later, but it is not part of the locked principal claim and must receive a new novelty audit before being foregrounded.
-
-Do not delay the current manuscript merely to pursue TARGET-A30.
+A parameter-open persistence theorem may be developed later, but it is not part of the locked first-submission contribution and must not delay the manuscript.
