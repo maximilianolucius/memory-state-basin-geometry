@@ -133,7 +133,7 @@ def test_cap_vectors_identity_case():
     Rn, Dn, *_ = rigorous_inverse(Wm, Wr, Am, np.zeros_like(Am))
     phi = np.zeros((N1, 2))
     xbox = dict(theta=0.5, a=0.5, b=1.0, x_lo=0.4, x_hi=2.8)
-    geo = Geometry(tm, ALPHA, phi, 1.0, 1.0, xbox)
+    geo = Geometry(tm, "17/20", phi, 1.0, 1.0, xbox, workers=2)
     rho = 1e-6 * np.ones(N1)
     v = cap_vectors(geo, Rn, Dn, rho, 1e-6 * np.ones(N), np.zeros(N), np.zeros(N), np.zeros(N),
                     np.ones(N), np.ones(N), 0.0, 1.0)
@@ -153,7 +153,7 @@ def test_mean_kernel_blocks_bound_true_product():
     w = np.zeros((N1, N))
     for n in range(1, N1):
         w[n, :n] = cell_weights(tm, tm[n], ALPHA)[:n]
-    Qn, DQn = mean_kernel_blocks(R4, delta, Am, w)
+    Qn, DQn = mean_kernel_blocks(R4, delta, Am, np.zeros_like(Am), w, w)
     Abig = np.zeros((2 * N1, 2 * N1))
     for n in range(N1):
         Abig[2 * n:2 * n + 2, 2 * n:2 * n + 2] = Am[n]
@@ -185,7 +185,7 @@ def test_bubble_component_is_sharper_and_consistent():
     Am = rng.normal(size=(N1, 2, 2)) * 0.4
     Rn, Dn, *_ = rigorous_inverse(Wm, Wr, Am, np.zeros_like(Am))
     phi = rng.normal(size=(N1, 2))
-    geo = Geometry(tm, ALPHA, phi, 1.0, 1.0, dict(theta=0.5, a=0.5, b=1.0, x_lo=0.4, x_hi=2.8))
+    geo = Geometry(tm, "17/20", phi, 1.0, 1.0, dict(theta=0.5, a=0.5, b=1.0, x_lo=0.4, x_hi=2.8), workers=2)
     normA = np.linalg.norm(Am, axis=(1, 2))[:-1] + 0.1
     args = (geo, Rn, Dn, 1e-6 * np.ones(N1), 1e-6 * np.ones(N), np.zeros(N), normA, 0.01 * np.ones(N))
     om, th = np.ones(N), 0.3 * np.ones(N)
@@ -273,7 +273,7 @@ def test_cellwise_bounds_dominate_explicit_functions(seed):
     Rn, Dn, normE, delta, R4 = rigorous_inverse(Wm, Wr, Am, np.zeros_like(Am))
     geo = Geometry(tm, a, np.zeros((N + 1, 2)), 1.0, 1.0, dict(theta=0.5, a=0.5, b=1.0, x_lo=0.4, x_hi=2.8))
     geo.EA = EAt * 1.05 + 1e-6
-    geo.Qn, geo.DQn = mean_kernel_blocks(R4, delta, Am, geo.w)
+    geo.Qn, geo.DQn = mean_kernel_blocks(R4, delta, Am, np.zeros_like(Am), geo.w, geo.w_lo)
     v = cap_vectors(geo, Rn, Dn, np.zeros(N + 1), np.zeros(N), np.zeros(N), normA, oscA, omega, theta,
                     0.0, 1.0, beta=beta)
     tol = 1 + 1e-9

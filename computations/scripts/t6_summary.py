@@ -66,7 +66,7 @@ out["crosscheck_vs_independent_mesh"] = {"Nref": a.Nref, "rows": rows,
 Q = np.load(os.path.join(ROOT, "data", f"t6_stageD_{a.tag}_contraction_weights.npz"))
 q0 = [Q["q_sup"], Q["q_osc"], Q["q_bub"]]
 xbox = dict(theta=fl["theta"], a=fl["a"], b=fl["b"], x_lo=float(B["x_lo"].min()), x_hi=float(B["x_hi"].max()))
-geo = Geometry(tm, al, PHI, float(st.normS), float(st.normSi), xbox, B["diam"])
+geo = Geometry(tm, st.str["alpha"], PHI, float(st.normS), float(st.normSi), xbox, B["diam"])
 geo.Qn, geo.DQn = B["Qn"], B["DQn"]
 nSi2 = float(up(float(st.normSi) * np.sqrt(2.0)))
 C2 = np.load(os.path.join(ROOT, "data", f"t6_stageD_{a.tag}_certificate_weights.npz"))

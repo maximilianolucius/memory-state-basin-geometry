@@ -19,7 +19,7 @@ import numpy as np
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from msbg.aposteriori import collocation, graded_mesh                      # noqa: E402
 from msbg.cap import (Geometry, cap_constants, cap_vectors, iterate_bounds, mean_kernel_blocks,   # noqa: E402
-                      lipschitz_A, lipschitz_A_cells, nodal_data, power_iteration, rigorous_hat_weights,
+                      lipschitz_A_cells, nodal_data, power_iteration, rigorous_hat_weights,
                       rigorous_inverse, up)
 from msbg.models import AlleePredatorPrey                                  # noqa: E402
 from msbg.provenance import RunRecorder                                    # noqa: E402
@@ -116,19 +116,17 @@ def main():
     # Lipschitz constant of A on the tube |e|_S <= rmax * Omega_max: Omega_max <= T^a/Gamma(a+1)
     from math import gamma
     tube_phys = args.tube
-    D2g = lipschitz_A(st, cells.x_lo, cells.x_hi, cells.y_lo, cells.y_hi, tube_phys)
     D2 = lipschitz_A_cells(st, cells.x_lo, cells.x_hi, tube_phys)
-    log(f"D2 per cell (adapted, tube {tube_phys:.3g}): max {D2.max():.4g}, at T {D2[-1]:.4g}; "
-        f"global norm-product constant was {D2g:.4g}")
+    log(f"D2 per cell (adapted, Arb, tube {tube_phys:.3g}): max {D2.max():.4g}, at T {D2[-1]:.4g}")
 
     xbox = dict(theta=fl["theta"], a=fl["a"], b=fl["b"], x_lo=float(cells.x_lo.min()),
                 x_hi=float(cells.x_hi.max()))
     diam = up(np.sqrt((cells.x_hi - cells.x_lo) ** 2 + (cells.y_hi - cells.y_lo) ** 2))
-    geo = Geometry(tm, al, PHI, float(st.normS), float(st.normSi), xbox, diam)
-    log(f"geometry: c_alpha={geo.c_alpha:.4f} c_loc={geo.c_loc:.4f} c_prev in "
+    geo = Geometry(tm, strs["alpha"], PHI, float(st.normS), float(st.normSi), xbox, diam, workers=args.workers)
+    log(f"geometry (Arb tables): c_alpha={geo.c_alpha:.4f} c_loc={geo.c_loc:.4f} c_prev in "
         f"[{geo.c_prev.min():.4f},{geo.c_prev.max():.4f}] D2p={geo.D2p:.3g} "
-        f"EA max(n>=1) {np.nanmax(geo.EA[1:]):.3e} (green {np.max(geo.EA_green[1:]):.3e}) O1 max {np.max(geo.O1[1:]):.3e}")
-    geo.Qn, geo.DQn = mean_kernel_blocks(R4, delta, Am, geo.w)
+        f"EA max(n>=1) {np.nanmax(geo.EA[1:]):.3e} O1 max {np.max(geo.O1[1:]):.3e}")
+    geo.Qn, geo.DQn = mean_kernel_blocks(R4, delta, Am, Ar, geo.w, geo.w_lo)
     del R4
     log(f"mean-kernel blocks Q: row-sum max {geo.Qn.sum(1).max():.4g}, at T {geo.Qn[-1].sum():.4g}; "
         f"rem row-sum max {geo.rem.sum(1).max():.4g}; (compare ||R|| ||A|| w row-sum "
