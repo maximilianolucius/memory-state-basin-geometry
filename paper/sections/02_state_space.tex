@@ -45,6 +45,13 @@ If \(\Fiber{z}\) intersects two distinct asymptotic basins in \(\Cspace\), we ca
 
 The definition separates two distinct notions: a present physical value \(z\), and the continuation state that carries the inherited Caputo memory. The central theorem of this paper concerns basin membership inside a single fiber \(\Fiber{z}\), not trajectory intersection by itself.
 
+\begin{figure}[t]
+  \centering
+  \resizebox{\textwidth}{!}{\input{figures/fig01_fiber_geometry}}
+  \caption{Geometry of a multibasin reachable present-state fiber.  The inherited continuation state and the canonical cold start have the identical present evaluation \(z\), but lie in different basins in the continuation-state space.  The diagram is schematic; the existence of this configuration is proved in \cref{thm:principal}.}
+  \label{fig:fiber-geometry}
+\end{figure}
+
 \begin{proposition}[Physical convergence lifts to continuation-state convergence]
 \label{prop:physical-to-continuation}
 Let \(X(\cdot;p)\) be the standard point-IVP solution of \eqref{eq:caputo-general}. If
