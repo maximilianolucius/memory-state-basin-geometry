@@ -1,0 +1,82 @@
+{
+  "task": "TASK-0001",
+  "environment": {
+    "hostname": "aur007",
+    "platform": "Linux-6.8.0-139-generic-x86_64-with-glibc2.39",
+    "processor": "x86_64",
+    "cpu_count": 32,
+    "python": "3.12.3",
+    "python_executable": "/home/aureus/msbg/computations/../venv/bin/python",
+    "packages": {
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "mpmath": "1.3.0",
+      "sympy": "1.14.0",
+      "flint": "0.9.0",
+      "matplotlib": "3.11.2"
+    },
+    "numpy_blas": {
+      "name": "scipy-openblas",
+      "found": true,
+      "version": "0.3.34.106.0",
+      "detection method": "pkgconfig",
+      "include directory": "/opt/_internal/cpython-3.12.13/lib/python3.12/site-packages/scipy_openblas64/include",
+      "lib directory": "/opt/_internal/cpython-3.12.13/lib/python3.12/site-packages/scipy_openblas64/lib",
+      "openblas configuration": "OpenBLAS 0.3.34.106.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64",
+      "pc file directory": "/project/.openblas"
+    },
+    "utc": "2026-09-29T23:51:53Z",
+    "seed": 20260929,
+    "git_commit": "9b8c4598aae496ce6bed1c2e625c13bc31c94ce6",
+    "git_branch": "compute/task-0004",
+    "git_dirty": true,
+    "git_source": "launcher environment (rsync'd tree, not a checkout)"
+  },
+  "payload": {
+    "K_bounds_by_rho0": {
+      "200.0": {
+        "K_upper": 5.806521966289032,
+        "finite_part_upper": 5.7901635838495755,
+        "finite_part_midpoint_sum": 5.783348800487926,
+        "tail_upper": 0.016358382433649343,
+        "rho0": 200.0,
+        "n_cells": 29958,
+        "B": 0.22247400109763105,
+        "B1": 0.5846744983406836,
+        "Bphi": 0.2617341189383895,
+        "c": 0.7122291624969033,
+        "phi": 2.008945357379067,
+        "abs_lambda": 0.282842712474619,
+        "K_lower_exact_identity": 3.5355339059327378
+      },
+      "400.0": {
+        "K_upper": 5.803468787799052,
+        "finite_part_upper": 5.795289596576424,
+        "finite_part_midpoint_sum": 5.78845327007641,
+        "tail_upper": 0.008179191216824672,
+        "rho0": 400.0,
+        "n_cells": 30305,
+        "B": 0.22247400109763105,
+        "B1": 0.5846744983406836,
+        "Bphi": 0.2617341189383895,
+        "c": 0.7122291624969033,
+        "phi": 2.008945357379067,
+        "abs_lambda": 0.282842712474619,
+        "K_lower_exact_identity": 3.5355339059327378
+      }
+    },
+    "K_upper": 5.803468787799052,
+    "C_r": {
+      "C0": 1.0780881922692072,
+      "c3": 0.7067617688545205
+    },
+    "M_star_lower": 0.03807800747825244,
+    "r_star": "745/10000",
+    "K_C_r_upper_at_r_star": 0.48888580566104106,
+    "lambda": "(-3 + i sqrt(41))/25",
+    "norm": "|u|_S = |S^{-1} u|_2, S = [[-4/5, 0],[3/25, -sqrt(41)/25]]",
+    "evidence_class": "CERTIFIED COMPUTATION, conditional on the Mittag-Leffler integral representation (msbg/kernel_bound.py)",
+    "wall_seconds": 2.899
+  },
+  "artifacts": []
+}
