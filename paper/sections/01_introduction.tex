@@ -1,0 +1,77 @@
+\section{Introduction}
+\label{sec:introduction}
+
+For an ordinary autonomous differential equation, the current phase-space point is a complete dynamical state: two solutions that occupy the same state have the same future.  A Caputo equation is different.  Its point value at time \(t\) does not contain the full information required to continue the trajectory, and an autonomous Caputo equation is naturally represented by a semidynamical system on an infinite-dimensional continuation-state space
+\cite{DoanKloeden2021Semidynamical,DoanKloeden2024Attractors}.  This raises a basin-geometric question that is more specific than generic memory dependence:
+
+\begin{quote}
+Can two physically reachable continuation states of an autonomous Caputo system have exactly the same current physical value while belonging to different asymptotic basins?
+\end{quote}
+
+The distinction matters whenever basins are visualized or interpreted only in physical coordinates.  A physical basin plot implicitly assigns one asymptotic label to a point \(z\in\mathbb{R}^d\), whereas the correct Caputo state is a continuation state lying above \(z\).  If the corresponding present-state fiber contains states with different asymptotic labels, then basin membership does not factor through the physical projection.
+
+Several nearby phenomena are already known and should be distinguished from this question.  The continuation-state representation itself is established
+\cite{DoanKloeden2021Semidynamical,DoanKloeden2024Attractors}.  Fractional trajectories can intersect after projection onto physical coordinates
+\cite{DeshpandeDaftardarGejjiVellaisamy2019}.  In delay systems, histories sharing the same headpoint can generate different subsequent trajectories; this distinction is exploited, for example, in dynamical-integrity algorithms
+\cite{SzakszStepanHabib2024DynamicalIntegrity}.  Fractional ecological models with Allee effects already exhibit extinction/coexistence multistability, bifurcations, and basin structures
+\cite{RameshEtAl2025MemoryDoubleAllee,MondalEtAl2025Consequences,WangHan2025Allee,SahaEtAl2026AlleeBasin,PippalSati2026}.  None of these ingredients individually constitutes the contribution pursued here.
+
+We instead study basin membership on the physically reachable part of the Caputo continuation-state space.  If \(e_0\) denotes evaluation at the current time and \(\mathcal{R}_\alpha\) the set of continuation states reached from standard point initial conditions, we define the reachable present-state fiber
+\[
+  \mathcal{F}_z
+  =
+  e_0^{-1}(z)\cap\mathcal{R}_\alpha.
+\]
+The main result proves that such a fiber can intersect two distinct asymptotic basins.  The proof is realized in a two-dimensional positive strong-Allee predator--prey system whose underlying integer-order vector field is already known
+\cite{YeEtAl2019StrongAlleePredatorPrey}.  The ecological model is therefore a testbed for a state-space theorem, not the source of the novelty claim.
+
+For the exact rational Caputo system
+\[
+  {}^CD^{17/20}x
+  =
+  x(1-x)\left(x-\frac12\right)-\frac12xy,
+\]
+\[
+  {}^CD^{17/20}y
+  =
+  y\left(x-\frac45\right),
+\]
+we validate the standard trajectory from
+\[
+  p=
+  \left(
+  \frac{277}{100},
+  \frac{467}{1000}
+  \right).
+\]
+The exact trajectory is certified to enter the physical region
+\[
+  0<x<\frac12,
+  \qquad y>0,
+\]
+throughout the nondegenerate time interval
+\[
+  [5.8576774143,\ 13.7275388580],
+\]
+while the same original point IVP is proved to converge to the positive coexistence equilibrium
+\[
+  E^*=
+  \left(
+  \frac45,\frac3{25}
+  \right).
+\]
+Every canonical cold start inside that physical region converges instead to extinction.  Consequently, for every certified entry time \(t_*\), the inherited continuation state \(T_{t_*}\iota(p)\) and the canonical cold start at the identical present value \(X(t_*;p)\) belong to different basins.  This yields a nondegenerate interval of certified same-present basin splits.
+
+The proof separates three layers.  First, a structural basin-entry proposition shows that a survival-bound standard orbit that reaches a physical region of extinction-bound cold starts immediately generates a multibasin present-state fiber.  Second, a comparison argument proves that the strip \(0<x<\theta\) is indeed a cold-start extinction region for the strong-Allee system, while a memory-tail theorem certifies convergence of the original inherited trajectory without restarting the Caputo dynamics.  Third, the finite nonlinear excursion is enclosed by a computer-assisted Volterra fixed-point argument that combines an orbit-linearized inverse, cellwise sup/oscillation/interpolation bounds, and a Perron-weighted contraction.  The finite-history certificate is then coupled to a Mittag--Leffler memory-tail estimate to close the infinite-time result.
+
+The contribution hierarchy is therefore:
+\begin{enumerate}[label=(\arabic*)]
+  \item \emph{Principal theorem:} a physically reachable present-state fiber of an autonomous continuous-time Caputo system can intersect distinct asymptotic basins at the identical current physical value.
+  \item \emph{Certified realization:} in the strong-Allee benchmark, this split is extinction versus coexistence for every reached state over a nondegenerate certified time interval.
+  \item \emph{Supporting structure:} scalar threshold fibers are shown to remain basin-pure under standard barrier hypotheses, clarifying that the positive example is genuinely multidimensional.
+  \item \emph{Proof machinery:} the long fractional excursion is validated by a sign-aware orbit-linearized Volterra certificate and an inherited-memory tail inequality.
+\end{enumerate}
+
+A targeted literature audit found no formally published theorem establishing this same-present-value, physically reachable Caputo basin split.  We therefore make only this theorem-specific novelty claim; we do not claim novelty for generic history dependence, fractional trajectory intersections, ecological multistability, or validated fractional numerics.
+
+The remainder of the paper is organized as follows.  \Cref{sec:state-space} introduces the continuation-state geometry and the basin-entry mechanism.  \Cref{sec:scalar-purity} gives the scalar purity contrast.  \Cref{sec:model} develops the cold-start extinction and inherited-memory survival certificates for the strong-Allee model.  \Cref{sec:principal-theorem} states and proves the certified multibasin-fiber theorem.  \Cref{sec:cap} gives the computer-assisted validation.  \Cref{sec:geometry,sec:discussion} discuss the geometric interpretation, scope, and limitations.
