@@ -1,54 +1,60 @@
 # Claim Registry
 
-**Status:** TARGET-A20 OPEN — M1 FEASIBLE, VALIDATED HISTORY REMAINS.
+**Status:** TARGET-A20 OPEN — B215 RIGOROUS CAP IS THE ACTIVE CLOSURE ATTEMPT.
 
-## Closed theory / certification
+## Closed framework
 
 - X1: PROVED.
 - E1–E4: PROVED.
 - O1: PROVED.
-- O2: PROVED for its declared certificate class.
 - M1: PROVED.
-- exact-rational W1 entry: CERTIFIED COMPUTATION.
-- THEOREM-R: PROVED A-POSTERIORI REDUCTION.
+- generic orbit-linearized CAP framework: SUPPORTED BY PUBLISHED BANACH-SPACE RADII THEORY.
+- oscillation-Banach specialization: ANALYTICALLY ESTABLISHED; constants pending.
 
-## TASK-0004
+## TASK-0005 evidence
 
-### NUM-M1-W1
-status: STRONG NUMERICAL CORROBORATION  
+### SIGN-AWARE-A
+status: NUMERICAL EXPLORATION  
 result:
-M1 is feasible for W1 from \(T=500\) in adapted norms; at \(T=1000\) observed \(M_T\) is well below the certified-threshold scale.
+true discrete orbit-linearized amplification is \(O(1)-O(10^2)\), not \(10^6-10^{16}\).
 
-### CERT-KC-W1
-status: CERTIFIED COMPUTATION / SPECIFIC ML-CONTOUR REPRESENTATION STILL TO BE SOURCE-AUDITED  
-values:
+### GOAL-MT-A
+status: NUMERICAL EXPLORATION  
+result:
+history-error amplification into \(M_T\) is \(O(10^{-1})\) for B215/W1.
+
+### B215
+status: PRIMARY BENCHMARK / NOT YET A THEOREM WITNESS.
+
+Exact parameters:
 \[
-K_J\le5.803469,
+\theta=1/2,\ a=1/2,\ b=1,\ m=4/5,\ \alpha=17/20,
 \]
 \[
-C_r\le1.078088+0.706762r,
+p=(277/100,467/1000).
 \]
-and corresponding admissible
+
+Still required:
+- exact-rational certified entry;
+- source-space radii CAP;
+- rigorous goal-oriented \(M_T\);
+- M1 inequality.
+
+## Implementation correction
+
+For source-variable CAP:
 \[
-M_T<0.038078.
+L_h=I-AW.
 \]
 
-### OBSTRUCTION-H1
-status: COMPUTATIONAL OBSTRUCTION, NOT A THEOREM OF IMPOSSIBILITY  
-current normwise history verifier incurs at least \(10^5\)-scale amplification on all M1-feasible witnesses scanned and much larger amplification on W1.
-
-## Active method
-
-### CANDIDATE-V1
-status: OPEN / ROUND-0006 + TASK-0005  
-method:
-validate the entire finite excursion using an approximate inverse of the orbit-linearized Volterra operator instead of absolute-value Gronwall amplification.
+The TASK-0005 state-amplification operator
+\[
+I-WA
+\]
+must not be reused as the source inverse.
 
 ## TARGET-A20
 
 status: OPEN.
 
-Only missing fact:
-rigorous survival classification of one entering continuation orbit.
-
-M1 shows that a sufficiently accurate certified history bound will close it.
+TASK-0006 owns the current rigorous closure attempt.
