@@ -4,28 +4,17 @@
 
 TASK-0001 — discovery.  
 TASK-0002 — validated entry.  
-TASK-0003 — rational recertification + physical-certificate obstruction.
+TASK-0003 — physical-certificate obstruction.  
+TASK-0004 — M1 feasibility + quantified history-enclosure obstruction.
 
 ## Active
 
-### TASK-0004 — memory-tail survival certification
-status: SOLE PRINCIPAL GATE
+### TASK-0005 — orbit-linearized validated history
+request:
+\`research/coordination/chief-to-compute/TASK-0005_orbit-linearized-history_REQUEST.md\`
 
-THEOREM-M1 is now VERIFIED.
+Priority:
+reduce amplification before reducing defect.
 
-Required final certificate:
-\[
-M_T+K_JC_rr^2<r
-\]
-for exact-rational W1, with all quantities rigorously bounded.
-
-Preferred inherited-response formula:
-\[
-v_T(t)
-=
-E_\alpha(Jt^\alpha)u_0
-+
-\int_0^T\Psi_J(t-s)N(u(s))\,ds.
-\]
-
-Do not use a cancellation-heavy \(h_T+(J\Psi_J)*h_T\) implementation as primary evidence.
+Success criterion:
+rigorous history/goal-functional bound strong enough to prove the M1 inequality for one exact-rational entering witness.
