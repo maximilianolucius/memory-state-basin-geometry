@@ -2,25 +2,19 @@
 
 ## Completed
 
-TASK-0001 through TASK-0005 complete.
+TASK-0001 through TASK-0006 complete.
 
-TASK-0005:
-- sign-aware gate passed;
-- B215 selected;
-- no rigorous certificate.
+TASK-0006 closes B215 survival and TARGET-A20 under the declared arithmetic model.
 
-## Active
+## Current posture
 
-### TASK-0006 — rigorous oscillation-Banach CAP for B215
+No active Compute task.
 
-Request:
-\`research/coordination/chief-to-compute/TASK-0006_rigorous-oscillation-cap_REQUEST.md\`
+Do not spend ORION time on end-to-end Arb hardening until the final novelty audit returns.
 
-Required:
-- exact B215 entry certificate;
-- source operator \(I-AW\);
-- rigorous inverse;
-- rigorous \(Y_0,Z_1,Z_2\);
-- strict radii polynomial;
-- rigorous goal-oriented \(M_T\);
-- M1 closure.
+## Conditional next task
+
+If ROUND-0007 is favorable, open a publication-hardening task to:
+- replace the remaining libm/binary64 proof layers by Arb or another directed interval backend where practical;
+- regenerate the compact publication certificate for the preferred \(T=300\) witness;
+- preserve \(T=1000\) as independent redundancy.
