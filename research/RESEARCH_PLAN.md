@@ -8,22 +8,33 @@ TARGET-A20 is proved.
 
 Final hostile audit passed with claim narrowing.
 
-Principal claim is locked to the same-present-value physically reachable Caputo basin split.
+The principal claim is locked to the same-present-value physically reachable Caputo basin split.
 
 ## Current phase
 
-MANUSCRIPT + PUBLICATION HARDENING.
+MANUSCRIPT CONSTRUCTION + PUBLICATION HARDENING.
 
-Parallel tracks:
+### Manuscript track
 
-### A. Manuscript
-- theorem-first drafting;
-- 22–23 page target;
-- exact contribution hierarchy from ROUND-0007;
-- no broad memory/history priority claims.
+Completed:
+- theorem/proof skeleton;
+- Sections 1--8 in modular LaTeX;
+- related-work positioning;
+- certificate table;
+- scientific figure specifications;
+- provisional title/abstract;
+- referee-facing evidence map.
 
-### B. Arithmetic hardening
-TASK-0007 removes the main referee vulnerability in the load-bearing libm layer of the \(T=300\) certificate.
+Next:
+1. generate theorem-level figures;
+2. integrate figures and compact related-work/evidence tables;
+3. run page-budget compression;
+4. incorporate TASK-0007 arithmetic wording;
+5. freeze final title and abstract.
+
+### Arithmetic-hardening track
+
+TASK-0007 removes the main referee vulnerability in the load-bearing libm layer of the primary (T=300) certificate.
 
 ## Optional future strengthening
 
