@@ -2,19 +2,25 @@
 
 ## Completed
 
-TASK-0001 — discovery.  
-TASK-0002 — validated entry.  
-TASK-0003 — physical-certificate obstruction.  
-TASK-0004 — M1 feasibility + quantified history-enclosure obstruction.
+TASK-0001 through TASK-0005 complete.
+
+TASK-0005:
+- sign-aware gate passed;
+- B215 selected;
+- no rigorous certificate.
 
 ## Active
 
-### TASK-0005 — orbit-linearized validated history
-request:
-\`research/coordination/chief-to-compute/TASK-0005_orbit-linearized-history_REQUEST.md\`
+### TASK-0006 — rigorous oscillation-Banach CAP for B215
 
-Priority:
-reduce amplification before reducing defect.
+Request:
+\`research/coordination/chief-to-compute/TASK-0006_rigorous-oscillation-cap_REQUEST.md\`
 
-Success criterion:
-rigorous history/goal-functional bound strong enough to prove the M1 inequality for one exact-rational entering witness.
+Required:
+- exact B215 entry certificate;
+- source operator \(I-AW\);
+- rigorous inverse;
+- rigorous \(Y_0,Z_1,Z_2\);
+- strict radii polynomial;
+- rigorous goal-oriented \(M_T\);
+- M1 closure.
