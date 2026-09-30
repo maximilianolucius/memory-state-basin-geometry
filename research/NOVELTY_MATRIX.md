@@ -1,19 +1,25 @@
 # Novelty Matrix
 
-| Item | Status | Novelty role |
+| Item | Final status | Manuscript role |
 |---|---|---|
-| generic Caputo memory | prior | none |
-| history-state enlargement | prior | none |
-| ecological vector field | integer-order prior | none |
-| X1 extinction theorem | supporting | not principal |
-| M1 memory-tail theorem | supporting / known machinery | not principal |
-| validated Caputo numerics | prior exists | not principal |
-| orbit-linearized CAP | enabling method | secondary at most |
-| same-present reachable extinction/coexistence basin split | PROVED / FINAL AUDIT ACTIVE | principal claim |
-| certified interval of multibasin fibers along one physical excursion | PROVED / FINAL AUDIT ACTIVE | strengthening of principal claim |
+| generic Caputo memory | prior | background |
+| history-state enlargement | prior | background |
+| fractional trajectory intersections | prior | background / boundary |
+| DDE same-headpoint history dependence | close prior | comparison |
+| ecological vector field | prior | application substrate |
+| fractional Allee multistability/basins | prior | comparison |
+| X1/M1/E1 | supporting theory | supporting |
+| generic validated fractional numerics | prior | enabling |
+| orbit-linearized CAP implementation | no direct duplicate found | secondary/enabling only |
+| same-present physically reachable Caputo fiber in two basins | PROVED; novelty survives | PRINCIPAL |
+| nondegenerate reached arc of such fibers | PROVED; novelty survives | STRONG SECONDARY |
 
-## Candidate narrow novelty statement
+## Locked novelty statement
 
-A physically reachable continuation state of an autonomous Caputo system and the canonical cold start at exactly the same present physical state can belong to distinct asymptotic basins; the project realizes this rigorously as extinction versus coexistence over a certified nondegenerate excursion interval in a positive strong-Allee predator–prey system.
+A physically reachable continuation state of an autonomous Caputo system and the canonical cold start at exactly the same present physical state can belong to distinct asymptotic basins; the certified strong-Allee realization gives extinction versus coexistence over a nondegenerate reached arc.
 
-Final wording depends on ROUND-0007.
+## Qualification
+
+No formally published theorem establishing this same-present-value, physically reachable Caputo basin split was identified in the targeted literature audit.
+
+Do not use an unqualified first-ever claim.
