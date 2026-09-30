@@ -67,7 +67,7 @@ Thus for every reached present \(z\) along that interval, the reachable continua
 - exact B215 data;
 - certified entry interval;
 - certified survival;
-- TARGET-A20 theorem and corollary for the reached arc.
+- TARGET-A20 theorem over the certified nondegenerate time interval.
 
 ### 6. Computer-assisted validation — 4.0–4.5 pp
 - Volterra source equation;
@@ -137,4 +137,4 @@ Build theorem/proof sections before introduction prose.
 
 ## Precision lock added 2026-09-30
 
-The manuscript must distinguish a nondegenerate **time interval of certified multibasin fibers** from a topological arc of distinct physical states.  Injectivity of (t\mapsto x(t;p)) on (I_*) is not currently part of the certificate.
+The manuscript must distinguish a nondegenerate **time interval of certified multibasin fibers** from a topological arc of distinct physical states.  Injectivity of \(t\mapsto X(t;p)\) on (I_*) is not currently part of the certificate.
