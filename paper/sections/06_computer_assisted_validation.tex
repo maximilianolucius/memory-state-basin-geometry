@@ -3,6 +3,13 @@
 
 The proof of \cref{thm:principal} requires two finite-time facts about the same exact rational point IVP: the trajectory must be enclosed tightly enough to certify entry into the cold-start extinction strip, and the validated finite history must be accurate enough to certify the inherited memory term in \cref{thm:memory-tail}. A direct normwise fractional Grönwall estimate is too pessimistic for this orbit because it replaces the time-dependent matrix dynamics by absolute-value amplification. We therefore validate the computed trajectory by an orbit-linearized Volterra fixed-point argument.
 
+\begin{figure}[t]
+  \centering
+  \resizebox{\textwidth}{!}{\input{figures/fig05_cap_architecture}}
+  \caption{Logical architecture of the finite-history computer-assisted proof.  The sign-aware inverse is validated before nonnegative cellwise bounds are applied; the resulting exact state tube is then used independently for threshold entry and for the memory-tail constants.}
+  \label{fig:cap-architecture}
+\end{figure}
+
 \subsection{Source correction equation}
 
 Let the numerical center be written as
