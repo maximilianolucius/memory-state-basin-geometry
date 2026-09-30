@@ -105,6 +105,72 @@ so \(B\) is injective. Hence a fixed point of
 \]
 is a zero of \(\mathcal H\), not merely a zero of \(B\mathcal H\).
 
+Let
+\[
+  R(f)
+  =
+  g(\widehat X+I^\alpha f)-g(\widehat X)-A I^\alpha f
+\]
+denote the nonlinear Taylor remainder. Since
+\[
+  L_h=I-\pi K\pi,
+\]
+direct algebra gives the exact inverse-defect identity
+\begin{equation}
+  I-B(I-K)
+  =
+  L_h^{-1}\pi K(I-\pi)
+  +(I-\pi)K.
+  \label{eq:inverse-defect-identity}
+\end{equation}
+Consequently the Newton-like map admits the exact decomposition
+\begin{equation}
+  \mathcal T(f)
+  =
+  -B\rho
+  +
+  L_h^{-1}\pi K(I-\pi)f
+  +
+  (I-\pi)Kf
+  +
+  B R(f).
+  \label{eq:T-decomposition}
+\end{equation}
+
+\begin{proposition}[Cellwise validation criterion]
+\label{prop:cellwise-validation}
+Let \(S_b\subset C([0,T],\mathbb R^2)\) be the closed set determined on every mesh cell by nonnegative bounds on the source sup norm, source oscillation, and interpolation bubble. Suppose:
+\begin{enumerate}[label=(V\arabic*)]
+  \item \(B\) is bounded and injective;
+  \item the four terms in \eqref{eq:T-decomposition} admit a componentwise monotone bound map \(F(b)\) satisfying
+  \[
+    F(b)<b;
+  \]
+  \item there are strictly positive finite-mesh weights \(q\) for which
+  \[
+    \operatorname{Lip}_{\|\cdot\|_q}(\mathcal T|_{S_b})
+    \le\kappa<1.
+  \]
+\end{enumerate}
+Then \(\mathcal H(f)=0\) has a unique solution in \(S_b\), and
+\[
+  X=\widehat X+I^\alpha f
+\]
+is the unique exact Caputo solution represented by that validated tube on \([0,T]\).
+\end{proposition}
+
+\begin{proof}
+Because the mesh is finite and every component of \(q\) is strictly positive, the weighted cellwise norm \(\|\cdot\|_q\) is equivalent to the sup topology on the continuous source space. Hence \(S_b\) is complete. Hypothesis (V2) gives \(\mathcal T(S_b)\subset S_b\), and (V3) makes \(\mathcal T\) a contraction there. Banach's fixed-point theorem yields a unique \(f^*\in S_b\) such that
+\[
+  \mathcal T(f^*)=f^*.
+\]
+Thus
+\[
+  B\mathcal H(f^*)=0.
+\]
+Injectivity of \(B\) gives \(\mathcal H(f^*)=0\), and \eqref{eq:source-equation} is exactly the Volterra form of the original Caputo IVP.
+\end{proof}
+
 The analytic background for weakly singular Volterra resolvents and collocation, together with rigorous approximate-inverse fixed-point methods, is well established
 \cite{Becker2011WeaklySingularResolvents,BrunnerPedasVainikko1999WeaklySingularCollocation,LiangBrunner2019WeaklySingularCollocation,BredenLessard2018PolynomialCAP,ChurchQueirolo2024HopfCAP}. These ingredients are used here as proof machinery rather than as the principal contribution.
 
