@@ -31,6 +31,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--tag", required=True, help="tag of the t6_stageBD run")
+    ap.add_argument("--prefix", default="t6_stageD", help="t6_stageD (closure driver) or t6_stageBD")
     ap.add_argument("--K", type=int, default=32)
     ap.add_argument("--workers", type=int, default=40)
     args = ap.parse_args()
@@ -40,7 +41,7 @@ def main():
     def log(*a):
         print(f"[{time.time() - t0:8.1f}s]", *a, flush=True)
 
-    cert = np.load(os.path.join(ROOT, "data", f"t6_stageBD_{args.tag}_certificate_weights.npz"))
+    cert = np.load(os.path.join(ROOT, "data", f"{args.prefix}_{args.tag}_certificate_weights.npz"))
     tm, omega = cert["tm"], cert["omega"]
     N = len(tm) - 1
     st = Setup("1/2", "1/2", "1", "4/5", "17/20", ("277/100", "467/1000"))
@@ -48,7 +49,7 @@ def main():
     al = fl["alpha"]
     model = AlleePredatorPrey(theta=fl["theta"], a=fl["a"], b=fl["b"], m=fl["m"])
     rec = RunRecorder(f"t6_stageE_{args.tag}", ROOT)
-    rec.add("source_certificate", f"data/t6_stageBD_{args.tag}_certificate_weights.npz")
+    rec.add("source_certificate", f"data/{args.prefix}_{args.tag}_certificate_weights.npz")
 
     X, PHI, M = collocation(model, np.array(pf), al, tm)
     strs = st.str

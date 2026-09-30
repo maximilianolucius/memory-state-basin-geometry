@@ -18,8 +18,8 @@ import numpy as np
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from msbg.aposteriori import collocation, graded_mesh                      # noqa: E402
-from msbg.cap import (Geometry, cap_constants, cap_vectors, iterate_bounds,   # noqa: E402
-                      lipschitz_A, nodal_data, power_iteration, rigorous_hat_weights,
+from msbg.cap import (Geometry, cap_constants, cap_vectors, iterate_bounds, mean_kernel_blocks,   # noqa: E402
+                      lipschitz_A, lipschitz_A_cells, nodal_data, power_iteration, rigorous_hat_weights,
                       rigorous_inverse, up)
 from msbg.models import AlleePredatorPrey                                  # noqa: E402
 from msbg.provenance import RunRecorder                                    # noqa: E402
@@ -42,6 +42,10 @@ def make_mesh(kind, T, N):
         n_tail = N - N1
         tail = np.linspace(T1, T, n_tail + 1)[1:]
         return np.concatenate([head, tail])
+    if kind.startswith("file:"):
+        tm = np.load(kind.split(":", 1)[1])
+        assert tm[0] == 0.0 and abs(tm[-1] - T) < 1e-9 and len(tm) == N + 1 and np.all(np.diff(tm) > 0)
+        return tm
     if kind.startswith("tri:"):
         # graded r=3 on [0, T1] (N1 cells), geometric-ish graded r=2 on [T1, T2] (N2 cells),
         # uniform on [T2, T] with the remaining cells
@@ -107,14 +111,15 @@ def main():
         f"row-sum max {amp_row.max():.4g} at t={tm[int(np.argmax(amp_row))]:.2f}, at T {amp_row[-1]:.4g}")
     rec.add("inverse", dict(normE=normE, delta_max=float(delta.max()),
                            rowsum_max=float(amp_row.max()), rowsum_T=float(amp_row[-1])))
-    del R4
 
     nSi2 = float(up(float(st.normSi) * np.sqrt(2.0)))
     # Lipschitz constant of A on the tube |e|_S <= rmax * Omega_max: Omega_max <= T^a/Gamma(a+1)
     from math import gamma
     tube_phys = args.tube
-    D2 = lipschitz_A(st, cells.x_lo, cells.x_hi, cells.y_lo, cells.y_hi, tube_phys)
-    log(f"D2 (Lipschitz of A on tube, phys radius {tube_phys:.3g}) = {D2:.4g}")
+    D2g = lipschitz_A(st, cells.x_lo, cells.x_hi, cells.y_lo, cells.y_hi, tube_phys)
+    D2 = lipschitz_A_cells(st, cells.x_lo, cells.x_hi, tube_phys)
+    log(f"D2 per cell (adapted, tube {tube_phys:.3g}): max {D2.max():.4g}, at T {D2[-1]:.4g}; "
+        f"global norm-product constant was {D2g:.4g}")
 
     xbox = dict(theta=fl["theta"], a=fl["a"], b=fl["b"], x_lo=float(cells.x_lo.min()),
                 x_hi=float(cells.x_hi.max()))
@@ -123,86 +128,25 @@ def main():
     log(f"geometry: c_alpha={geo.c_alpha:.4f} c_loc={geo.c_loc:.4f} c_prev in "
         f"[{geo.c_prev.min():.4f},{geo.c_prev.max():.4f}] D2p={geo.D2p:.3g} "
         f"EA max(n>=1) {np.nanmax(geo.EA[1:]):.3e} (green {np.max(geo.EA_green[1:]):.3e}) O1 max {np.max(geo.O1[1:]):.3e}")
+    geo.Qn, geo.DQn = mean_kernel_blocks(R4, delta, Am, geo.w)
+    del R4
+    log(f"mean-kernel blocks Q: row-sum max {geo.Qn.sum(1).max():.4g}, at T {geo.Qn[-1].sum():.4g}; "
+        f"rem row-sum max {geo.rem.sum(1).max():.4g}; (compare ||R|| ||A|| w row-sum "
+        f"{(Rn @ (np.concatenate([[normA[0]], np.maximum(normA[:-1], normA[1:]), [normA[-1]]]) * geo.w.sum(1))).max():.4g})")
+    rec.add("Q", dict(rowsum_max=float(geo.Qn.sum(1).max()), rem_rowsum_max=float(geo.rem.sum(1).max())))
     rec.add("geometry", dict(c_alpha=geo.c_alpha, c_loc=geo.c_loc, c_prev_max=float(geo.c_prev.max()),
                              D2p=float(geo.D2p), EA_max=float(np.max(geo.EA[1:]))))
-    results = {}
-    # ---- spectral radius of the linear part (power iteration) -----------------------------
-    log("--- power iteration on the linear bound operator M")
-    om_p, th_p, phist, vp = power_iteration(geo, Rn, Dn, cells.R, cells.drho, normA, oscA, nSi2,
-                                            iters=60, log=log)
-    rhoM = phist[-1]
-    results["spectral_radius"] = dict(cw_lower=rhoM["cw_lower"], cw_upper=rhoM["cw_upper"], n_iter=len(phist))
-    rec.save_json("power_history", phist)
-    rec.save_npz("power_weights", omega=om_p, theta=th_p, tm=tm, T1sup=vp["T1sup"], T2sup=vp["T2sup"],
-                 T1osc=vp["T1osc"], T2osc=vp["T2osc"], S1=vp["_S1"], S2=vp["_S2"], S3=vp["_S3"])
-    for key, den in (("T1sup", om_p), ("T2sup", om_p), ("T1osc", th_p), ("T2osc", th_p)):
-        r_ = vp[key] / den
-        i = int(np.argmax(r_))
-        log(f"   [power weights] {key}/b: max {r_[i]:.4f} at cell {i} (t={tm[i]:.3f}, h={h[i]:.3g})")
-        results[f"power_ratio_{key}"] = dict(max=float(r_[i]), cell=i, t=float(tm[i]))
-    for nm, arr in (("normA*P", vp["_S1"]), ("EA*Omega", vp["_S2"]), ("2oscA*V", vp["_S3"])):
-        r_ = 2 * arr / th_p
-        log(f"   [power weights] 2*{nm}/theta: max {r_.max():.4f} at t={tm[int(np.argmax(r_))]:.3f}")
-        results[f"power_T2osc_part_{nm}"] = float(r_.max())
-    # ---- cell-wise monotone iteration b <- Y + M b + Q(b) --------------------------------
-    log("--- cell-wise bound iteration")
-    omega, theta, hist, v = iterate_bounds(geo, Rn, Dn, rho, cells.R, cells.drho, normA, oscA, D2,
-                                           nSi2, iters=args.iters, log=log)
-    conv = hist[-1]["growth_sup"] < 1 + 1e-6 and hist[-1]["growth_osc"] < 1 + 1e-6
-    results["iteration"] = dict(converged=bool(conv), last=hist[-1], n_iter=len(hist))
-    rec.save_json("iteration_history", hist)
-    # ---- where does the growth come from (current weights) --------------------------------
-    for key, den in (("T1sup", omega), ("T2sup", omega), ("Z2sup", omega),
-                     ("T1osc", theta), ("T2osc", theta), ("Z2osc", theta)):
-        r_ = v[key] / den
-        i = int(np.argmax(r_))
-        log(f"   {key}/b: max {r_[i]:.4f} at cell {i} (t={tm[i]:.3f}, h={h[i]:.3g})")
-        results[f"ratio_{key}"] = dict(max=float(r_[i]), cell=i, t=float(tm[i]))
-    iS = int(np.argmax(v["T2osc"] / theta))
-    log(f"   T2 split at cell {iS}: normA*P={v['_S1'][iS]:.3e} EA*Omega={v['_S2'][iS]:.3e} "
-        f"2oscA*V={v['_S3'][iS]:.3e}  (theta={theta[iS]:.3e}, omega={omega[iS]:.3e})")
-    results["T2_split"] = dict(cell=iS, normA_P=float(v["_S1"][iS]), EA_Omega=float(v["_S2"][iS]),
-                               oscA_V=float(v["_S3"][iS]))
-    # global split of T2osc/theta over cells: which of the three terms dominates where
-    for nm, arr in (("normA*P", v["_S1"]), ("EA*Omega", v["_S2"]), ("2oscA*V", v["_S3"])):
-        r_ = 2 * arr / theta
-        log(f"   2*{nm}/theta: max {r_.max():.4f} at t={tm[int(np.argmax(r_))]:.3f}")
-        results[f"T2osc_part_{nm}"] = float(r_.max())
-    if conv:
-        # ---- certificate: b := (1+eps) b_lim,  check F(b) < b componentwise -----------------
-        eps = 1e-3
-        om_c, th_c = omega * (1 + eps), theta * (1 + eps)
-        tube_phys = float(st.normS) * float((geo.w[1:] @ om_c).max())
-        D2c = lipschitz_A(st, cells.x_lo, cells.x_hi, cells.y_lo, cells.y_hi, tube_phys)
-        vc = cap_vectors(geo, Rn, Dn, rho, cells.R, cells.drho, normA, oscA, om_c, th_c, D2c, nSi2)
-        Fsup = up(vc["Ysup"] + vc["T1sup"] + vc["T2sup"] + vc["Z2sup"])
-        Fosc = up(vc["Yosc"] + vc["T1osc"] + vc["T2osc"] + vc["Z2osc"])
-        ok = bool(np.all(Fsup < om_c) and np.all(Fosc < th_c))
-        contr = float(max(np.max((vc["T1sup"] + vc["T2sup"] + vc["Z2sup"]) / om_c),
-                          np.max((vc["T1osc"] + vc["T2osc"] + vc["Z2osc"]) / th_c)))
-        log(f"CERTIFICATE: F(b) < b componentwise: {ok}; contraction constant {contr:.6f}; "
-            f"D2 on tube {D2c:.4g} (phys radius {tube_phys:.3e}); sup|f| <= {om_c.max():.3e}, "
-            f"state error |I^a f| <= {float((geo.w[1:] @ om_c).max()):.3e}, at T: {float(geo.w[-1] @ om_c):.3e}")
-        results["certificate"] = dict(ok=ok, contraction=contr, D2=D2c, tube_phys=tube_phys,
-                                      omega_max=float(om_c.max()), state_err_max=float((geo.w[1:] @ om_c).max()),
-                                      state_err_T=float(geo.w[-1] @ om_c), eps=eps)
-        rec.save_npz("certificate_weights", omega=om_c, theta=th_c, tm=tm, Fsup=Fsup, Fosc=Fosc)
-    else:
-        results["certificate"] = dict(ok=False, reason="iteration did not converge: rho(M) >= 1")
-    # ---- norm constants with the final weights (for the report) ----------------------------
-    c = cap_constants(geo, Rn, Dn, rho, cells.R, cells.drho, normA, oscA, omega, theta, D2, nSi2)
-    results["norm_constants_final_weights"] = {k: float(val) for k, val in c.items() if not k.startswith("_")}
-    log(f"norm constants in the final weighted norm: Y0={c['Y0']:.4g} Z1={c['Z1']:.4g} "
-        f"[T1 {c['T1_sup']:.3g}/{c['T1_osc']:.3g} T2 {c['T2_sup']:.3g}/{c['T2_osc']:.3g}] Z2a={c['Z2a']:.3g}")
-    rec.save_npz("profile", omega=omega, theta=theta, tm=tm, **{k.strip("_"): val for k, val in v.items()})
+    from scripts.t6_stageD_close import close
+    rec.save_npz("blocks", Rn=Rn, Dn=Dn, rho=rho, normA=normA, oscA=oscA, tm=tm, R=cells.R,
+                 drho=cells.drho, diam=diam, Qn=geo.Qn, DQn=geo.DQn,
+                 x_lo=cells.x_lo, x_hi=cells.x_hi, y_lo=cells.y_lo, y_hi=cells.y_hi)
+    results, bc = close(geo, Rn, Dn, rho, cells.R, cells.drho, normA, oscA, st, cells.x_lo, cells.x_hi,
+                        rec, log, iters=args.iters, tube0=args.tube)
     rec.add("results", results)
     rec.add("mesh", dict(N=N, T=float(tm[-1]), h_min=float(h.min()), h_max=float(h.max())))
-    rec.add("cells", dict(R_max=float(cells.R.max()), drho_max=float(cells.drho.max()),
-                         normA_max=float(normA.max()), oscA_max=float(oscA.max()),
+    rec.add("cells", dict(R_max=float(cells.R.max()), normA_max=float(normA.max()), oscA_max=float(oscA.max()),
                          rho_node_max=float(rho.max())))
-    rec.save_npz("blocks", Rn=Rn, Dn=Dn, rho=rho, normA=normA, oscA=oscA, tm=tm, R=cells.R,
-                 drho=cells.drho, diam=diam, x_lo=cells.x_lo, x_hi=cells.x_hi, y_lo=cells.y_lo, y_hi=cells.y_hi)
-    print(json.dumps(results, indent=1))
+    print(json.dumps(results, indent=1, default=float))
     print("manifest:", rec.finish())
 
 

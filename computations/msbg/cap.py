@@ -105,11 +105,21 @@ def rigorous_hat_weights(tm, alpha_s, workers=None):
 
 
 def cell_weights(tm, t, alpha):
-    """w_j(t) = (1/Gamma(a)) int_{C_j} (t-s)^{a-1} ds, upper bounds, for all cells with t_j < t."""
+    """w_j(t) = (1/Gamma(a)) int_{C_j} (t-s)^{a-1} ds, upper bounds, for all cells with t_j < t.
+
+    hi^a - lo^a is evaluated as -hi^a expm1(a log1p(-(hi-lo)/hi)), which has no cancellation
+    when the cell is tiny compared with its distance to t (relative error a few ulp; the
+    final ``up`` adds 1e-13 relative).  Relies on libm pow/expm1/log1p being accurate to
+    a few ulp (declared, not proved)."""
     a = alpha
     lo = np.maximum(t - tm[1:], 0.0)
     hi = np.maximum(t - tm[:-1], 0.0)
-    w = (hi**a - lo**a) / (a * math.gamma(a))
+    with np.errstate(divide="ignore", invalid="ignore"):
+        width = np.where(lo > 0, np.diff(tm), hi)               # exact cell width (no t - t_j cancellation)
+        frac = np.where(hi > 0, width / np.where(hi > 0, hi, 1.0), 0.0)
+        w = np.where(frac < 1.0, -(hi**a) * np.expm1(a * np.log1p(-np.minimum(frac, 0.999999999))), hi**a)
+        w = np.where(frac >= 0.999999999, hi**a - lo**a, w)
+    w = w / (a * math.gamma(a))
     return up(np.maximum(w, 0.0))
 
 
@@ -260,10 +270,19 @@ def rigorous_inverse(Wm, Wr, Am, Ar):
     # (in _B_source_vectors) against a bound of the nodal difference |z_{n+1} - z_n|.
     Dd = R4[1:] - R4[:-1]                                    # [n, i, k, l], n = 0..N1-2
     idx = np.arange(N1 - 1)
+    # Abel (summation by parts) blocks: S_{nk} = sum_{j<=k} (R_{n+1,j} - R_{n,j}) for k <= n and
+    # S_{n,n+1} = S_{nn} + R_{n+1,n+1}; then for nodal z:
+    #   y_{n+1} - y_n = sum_{k<=n} S_{nk} (z_k - z_{k+1}) + S_{n,n+1} z_{n+1}.
+    Sc = np.cumsum(Dd, axis=2)                               # cumulative over k (includes k = n+1 entry of R_{n+1,n+1})
+    Sn = np.sqrt(np.einsum("nikl->nk", Sc * Sc))
+    del Sc
+    Sn = up(Sn + (np.arange(N1)[None, :] + 1.0) * (delta[1:, None] + delta[:-1, None]))
+    Sn[idx[:, None] < np.arange(N1)[None, :] - 1] = 0.0      # only k <= n+1 are used
     Dd[idx, :, idx, :] += R4[idx + 1, :, idx + 1, :]
     Dd[idx, :, idx + 1, :] = 0.0
     Dn = up(np.sqrt(np.einsum("nikl->nk", Dd * Dd)) + 2.0 * delta[1:, None] + delta[:-1, None])
     del Dd
+    Dn = np.stack([Dn, Sn], axis=0)                          # (2, N1-1, N1): direct and Abel blocks
     return Rn, Dn, normE, delta, R4
 
 
@@ -384,20 +403,58 @@ def xhat_prime_oscillation(tm, phi, alpha):
     return O1, X1
 
 
+def mean_kernel_blocks(R4, delta, Am, w):
+    """Blocks of  Q = L_h^{-1} diag(A) W_c  (W_c = cell weights at nodes), which acts on the
+    cell MEANS of a source g:  (L_h^{-1} pi K g)_n = sum_j Q_nj mean_{C_j}(g) + remainder.
+    Keeps the sign cancellation between L_h^{-1} and A I^a (Q ~ L_h^{-1} - I), which the
+    product of norms ||R|| ||A|| w destroys.
+    Returns Qn[n, j] >= ||Q_nj||_F and DQn[n, j] >= ||Q_{n+1,j} - Q_nj||_F  (rigorous:
+    float product + Higham rounding bound + inverse correction delta + 2e-13 data slack)."""
+    N1 = R4.shape[0]
+    N = w.shape[1]
+    Rt = R4.reshape(2 * N1, 2 * N1)
+    M = (Am[:, :, None, :] * w[:, None, :, None]).reshape(2 * N1, 2 * N)
+    Qf = Rt @ M
+    absM = np.abs(M)
+    err = (np.abs(Rt) @ absM) * (2 * N1 * 2.0 ** -53 / (1 - 2 * N1 * 2.0 ** -53) + 2e-13)
+    cs = absM.sum(axis=0) * (1 + 1e-12)                       # column sums of |M|
+    err += np.repeat(delta, 2)[:, None] * cs[None, :]
+    del M, absM
+    Q4 = Qf.reshape(N1, 2, N, 2)
+    E4 = err.reshape(N1, 2, N, 2)
+    fro = lambda X: np.sqrt(np.einsum("nikl->nk", X * X))
+    eb = fro(E4)
+    Qn = up(fro(Q4) + eb)
+    DQn = up(fro(Q4[1:] - Q4[:-1]) + eb[1:] + eb[:-1])
+    return Qn, DQn
+
+
+def _osc_pl(Rn, Dn, sigma_node, dnode):
+    """|y_{n+1} - y_n| for y = L_h^{-1} z with |z_k| <= sigma_node[k], |z_{k+1} - z_k| <= dnode[k]:
+    minimum of the direct block bound and the Abel (summation by parts) bound."""
+    diag1 = np.diagonal(Rn)[1:]                               # ||R_{n+1,n+1}||
+    if Dn.ndim == 3:                                          # (direct blocks, Abel blocks)
+        Dd, Sn = Dn[0], Dn[1]
+        N1 = Rn.shape[0]
+        Slow = np.tril(Sn[:, :N1 - 1])                        # S_{nk}, k <= n
+        S1 = np.diagonal(Sn[:, 1:])                           # S_{n,n+1}
+        return np.minimum(Dd @ sigma_node + diag1 * dnode, Slow @ dnode + S1 * sigma_node[1:])
+    return Dn @ sigma_node + diag1 * dnode
+
+
 def _B_source_vectors(Rn, Dn, sigma_node, sigma_cell, tau_cell, dnode=None):
     """Cell-wise bounds of B s = L_h^{-1} pi s + (I - pi) s for a source s with
     |s(t_j)| <= sigma_node[j], sup_{C_n}|s| <= sigma_cell[n], osc_n(s) <= tau_cell[n] and
     |s(t_{n+1}) - s(t_n)| <= dnode[n] (default: tau_cell, since both nodes lie in C_n).
-    Returns (sup_cell, osc_cell) arrays of length N."""
+    Returns (sup_cell, osc_cell, bubble_cell) arrays of length N, bubble = sup_{C_n}|(I-pi) B s|."""
     if dnode is None:
         dnode = tau_cell
     y_sup = Rn @ sigma_node                                   # |y_n|
-    diag1 = np.diagonal(Rn)[1:]                               # ||R_{n+1,n+1}||
-    y_osc = Dn @ sigma_node + diag1 * dnode                   # |y_{n+1} - y_n|
+    y_osc = _osc_pl(Rn, Dn, sigma_node, dnode)                # |y_{n+1} - y_n|
     pl_sup = np.maximum(y_sup[:-1], y_sup[1:])                # PL part on C_n
     ip_sup = np.minimum(tau_cell, 2.0 * sigma_cell)           # |(I-pi)s| <= osc_n(s)
     ip_osc = np.minimum(2.0 * tau_cell, 4.0 * sigma_cell)
-    return up(pl_sup + ip_sup), up(y_osc + ip_osc)
+    return up(pl_sup + ip_sup), up(y_osc + ip_osc), up(ip_sup)
 
 
 class Geometry:
@@ -415,7 +472,17 @@ class Geometry:
         for n in range(1, N + 1):
             w[n, :n] = cell_weights(self.tm, self.tm[n], a)[:n]
         self.w = w
-        self.dw = np.maximum(w[:-1] - w[1:], 0.0)          # dw[n, j] = w_nj - w_{n+1,j}, j < n
+        # dw[n, j] = w_nj - w_{n+1,j}, j < n  (+ slack for the rounding of the difference)
+        self.dw = np.maximum(w[:-1] - w[1:], 0.0) + 4e-13 * w[:-1]
+        # rem[k, j] >= (1/G(a)) int_{C_j} |k(t_k - s) - mean_{C_j} k(t_k - .)| ds :
+        #   monotone kernel => <= h_j osc/2 for j <= k-2;  always <= 2 w_kj
+        rem = 2.0 * w
+        for k in range(2, N + 1):
+            j = np.arange(k - 1)
+            osc = ((self.tm[k] - self.tm[j + 1]) ** (a - 1) - (self.tm[k] - self.tm[j]) ** (a - 1)) / self.Ga
+            rem[k, :k - 1] = np.minimum(rem[k, :k - 1], 0.5 * h[j] * osc * (1 + 1e-12))
+        self.rem = up(rem)
+        self.Qn = self.DQn = None
         ratios = np.concatenate([[1.0], h[:-1] / h[1:]])
         self.c_alpha, self.c_loc, self.c_prev = interpolation_constants(a, ratios)
         # E_a[n] >= sup_{C_n} |t^a - chord| / G(a+1)
@@ -441,6 +508,8 @@ class Geometry:
             diam = np.full(N, np.inf)
         self.EA = up(h / 4.0 * (self.D2p * O1 + self.D3p * np.asarray(diam, float) * X1))   # inf on cell 0
         self.O1, self.X1 = O1, X1
+        self.diam = np.asarray(diam, float)
+        self.D3a = up(self.D3p * normS)                        # ||S^-1 D^3g[S u, dx] S|| <= D3a |u| |dx|_phys
         # legacy Green's-function bound (triangle inequality on int|xhat''|), kept for comparison
         I2, X1g = xhat_second_derivative(self.tm, phi, a)
         self.EA_green = up(h / 4.0 * (self.D2p * I2 + self.D3p * h * X1g**2))
@@ -448,8 +517,28 @@ class Geometry:
         self.I2 = I2
 
 
+def z2_vectors(geo, Rn, Dn, D2, Om_b, V_b, Om_p, V_p):
+    """Bounds of  B [ (A(xhat + e) - A(xhat)) I^a h ]  for  |e| <= Om_b, |I^a h| <= Om_p on cells
+    (V_*: sup_{C_n}|u - u(t_n)| for u = e resp. I^a h).  With Om_p = Om_b this bounds B N(e)
+    (N the Taylor remainder, with a spare factor 2); with a different p it bounds the nonlinear
+    part of DT(f) h -- needed for the contraction constant.
+    Delta_A(t) = A(xhat(t) + e(t)) - A(xhat(t)),  |Delta_A| <= D2 |e|, and over a cell
+    osc(Delta_A) <= 2 D2 V_b + D3a diam(xhat(C_n)) Om_b   (D2 g(x) is affine in x)."""
+    N = geo.N
+    D2c = np.broadcast_to(np.asarray(D2, float), (N,))       # scalar or per-cell
+    D2n = np.concatenate([[D2c[0]], np.maximum(D2c[:-1], D2c[1:]), [D2c[-1]]])
+    ObN = np.concatenate([[0.0], Om_b])
+    OpN = np.concatenate([[0.0], Om_p])
+    sig_node = D2n * ObN * OpN
+    sig_cell = D2c * Om_b * Om_p
+    with np.errstate(invalid="ignore"):
+        extra = np.where(Om_b * Om_p > 0, geo.D3a * geo.diam * Om_b * Om_p, 0.0) if np.any(D2c > 0) else 0.0
+    tau_cell = np.fmin(2.0 * D2c * (V_b * Om_p + Om_b * V_p) + extra, 2.0 * sig_cell)
+    return _B_source_vectors(Rn, Dn, sig_node, sig_cell, tau_cell)
+
+
 def cap_vectors(geo: Geometry, Rn, Dn, rho_node, R_cell, drho_cell, normA, oscA, omega, theta,
-                D2, normSi_sqrt2):
+                D2, normSi_sqrt2, beta=None):
     """Cell-wise rigorous bounds for the Newton-like map T f = f - B H(f) on the set
     {f : sup_{C_n}|f| <= omega_n, osc_n f <= theta_n}:
 
@@ -458,26 +547,39 @@ def cap_vectors(geo: Geometry, Rn, Dn, rho_node, R_cell, drho_cell, normA, oscA,
 
     (Y: B rho;  T1: L_h^{-1} pi K (I-pi) f;  T2: (I-pi) K f;  Z2: B (K_f - K) f' with the
     Lipschitz constant D2 of x -> A(x) on the tube |e|_S <= max Omega).  All returned arrays
-    have length N; the dict also carries diagnostics prefixed by '_'."""
+    have length N; the dict also carries diagnostics prefixed by '_'.
+
+    Third component (``beta``): beta_n >= sup_{C_n}|(I - pi) f| (the non-piecewise-linear
+    "bubble" of f).  osc_n f <= theta_n implies the bubble bound theta_n, so beta = theta
+    (default) reproduces the two-component oscillation norm.  Carrying beta separately is
+    sharper: T1 = L_h^{-1} pi K (I - pi) f only sees the bubble, and the bubble of T f is
+    (I - pi)(K f + N - rho) -- second order -- whereas osc_n(T f) also contains the nodal
+    increments of the piecewise-linear part.  Keys *bub give sup_{C_n}|(I - pi) T f|."""
     tm, a, N, h, w, dw = geo.tm, geo.alpha, geo.N, geo.h, geo.w, geo.dw
     Ga1 = geo.Ga1
     omega = np.asarray(omega, float)
     theta = np.asarray(theta, float)
+    beta = theta if beta is None else np.minimum(np.asarray(beta, float), theta)
     om_hat = np.concatenate([[omega[0]], np.minimum(omega[:-1], omega[1:])])      # |f(t_n)| <= om_hat[n]
     # ---- Y: B rho -----------------------------------------------------------------
     Rs_cell = up(normSi_sqrt2 * R_cell)
     tau_rho = up(np.fmin(2.0 * Rs_cell, np.nan_to_num(normSi_sqrt2 * h * drho_cell, nan=np.inf)))
-    Ysup, Yosc = _B_source_vectors(Rn, Dn, rho_node, Rs_cell, tau_rho)
-    # ---- T1: L_h^{-1} pi K (I - pi) f ;  |(I-pi)f| <= theta_j on C_j ----------------
+    Ysup, Yosc, Ybub = _B_source_vectors(Rn, Dn, rho_node, Rs_cell, tau_rho)
+    # ---- T1: L_h^{-1} pi K (I - pi) f ;  |(I-pi)f| <= beta_j on C_j ----------------
     normA_node = np.concatenate([[normA[0]], np.maximum(normA[:-1], normA[1:]), [normA[-1]]])
-    wth = w @ theta                                            # |I^a (I-pi) f| at nodes
+    wth = w @ beta                                             # |I^a (I-pi) f| at nodes
     kappa = up(normA_node * wth)
     # nodal difference of z_n = A_n I^a[(I-pi)f](t_n):
     #   |z_{n+1} - z_n| <= osc_n(A) |u_n| + ||A_{n+1}|| (sum_{j<n} dw_{nj} theta_j + w_{n+1,n} theta_n)
-    du = np.einsum("nj,j->n", dw, theta) + np.diagonal(w[1:]) * theta      # dw[n, j] for j < n, w[n+1, n]
+    du = np.einsum("nj,j->n", dw, beta) + np.diagonal(w[1:]) * beta        # dw[n, j] for j < n, w[n+1, n]
     dkappa = up(oscA * wth[:-1] + normA_node[1:] * du)
     Rk = Rn @ kappa
-    Dk = Dn @ kappa + np.diagonal(Rn)[1:] * dkappa
+    Dk = _osc_pl(Rn, Dn, kappa, dkappa)
+    if geo.Qn is not None:
+        # mean/remainder split: (K g)(t_k) = A_k sum_j [w_kj mean_j(g) + r_kj], |r_kj| <= rem_kj theta_j
+        kr = up(normA_node * (geo.rem @ beta))
+        Rk = np.minimum(Rk, geo.Qn @ beta + Rn @ kr)
+        Dk = np.minimum(Dk, geo.DQn @ beta + _osc_pl(Rn, Dn, kr, kr[:-1] + kr[1:]))
     T1sup = up(np.maximum(Rk[:-1], Rk[1:]))
     T1osc = up(Dk)
     # ---- T2: (I - pi) K f ---------------------------------------------------------------
@@ -501,11 +603,10 @@ def cap_vectors(geo: Geometry, Rn, Dn, rho_node, R_cell, drho_cell, normA, oscA,
     S = up(S1 + S2 + S3)                                      # sup_{C_n} |(I-pi)(A I^a f)|
     T2sup, T2osc = S, up(2.0 * S)
     # ---- Z2: source s = Delta_A I^a f',  |Delta_A| <= D2 |I^a f| ---------------------------
-    sig_node = D2 * OmegaN * OmegaN
-    sig_cell = D2 * Omega * Omega
-    tau_cell = np.minimum(4.0 * D2 * V * Omega, 2.0 * sig_cell)
-    Z2sup, Z2osc = _B_source_vectors(Rn, Dn, sig_node, sig_cell, tau_cell)
-    return {"Ysup": Ysup, "Yosc": Yosc, "T1sup": T1sup, "T1osc": T1osc, "T2sup": T2sup,
+    Z2sup, Z2osc, Z2bub = z2_vectors(geo, Rn, Dn, D2, Omega, V, Omega, V)
+    zero = np.zeros(N)
+    return {"Ybub": Ybub, "T1bub": zero, "T2bub": S, "Z2bub": Z2bub,
+            "Ysup": Ysup, "Yosc": Yosc, "T1sup": T1sup, "T1osc": T1osc, "T2sup": T2sup,
             "T2osc": T2osc, "Z2sup": Z2sup, "Z2osc": Z2osc, "Omega": Omega,
             "_S1": S1, "_S2": S2, "_S3": S3, "_P": P, "_V": V, "_kappa": kappa, "_Rk": Rk, "_Dk": Dk}
 
@@ -530,64 +631,119 @@ def cap_constants(geo, Rn, Dn, rho_node, R_cell, drho_cell, normA, oscA, omega, 
     return out
 
 
-def power_iteration(geo, Rn, Dn, R_cell, drho_cell, normA, oscA, normSi_sqrt2, iters=40, log=None):
+COMPONENTS = ("sup", "osc", "bub")
+
+
+def _apply(v, parts):
+    """Sum the named parts ('Y', 'T1', 'T2', 'Z2') for the three components."""
+    return [up(sum(v[p + c] for p in parts)) for c in COMPONENTS]
+
+
+def power_iteration(geo, Rn, Dn, R_cell, drho_cell, normA, oscA, normSi_sqrt2, iters=40, log=None,
+                    bubble=True):
     """Power iteration for the linear part M (T1 + T2, no Y, no Z2) of the cell-wise bound
-    map: b <- M b / max(M b).  The growth factor max(M b)/max(b) converges to the spectral
-    radius rho(M) (M is a non-negative matrix acting on (omega, theta)).  rho(M) < 1 is
-    necessary for the CAP to close in ANY weighted (omega, theta)-norm with these bounds,
-    and the limiting b is the optimal weight profile."""
+    map acting on b = (omega, theta, beta).  Collatz-Wielandt: min ratio <= rho(M) <= max ratio.
+    rho(M) < 1 is necessary for the CAP to close in ANY weighted norm built from these
+    components with these bounds.  bubble=False ties beta = theta (two-component osc norm)."""
     N = geo.N
-    omega, theta = np.ones(N), np.ones(N)
+    b = [np.ones(N), np.ones(N), np.ones(N)]
     rho0 = np.zeros(N + 1)
     hist = []
     for it in range(iters):
-        v = cap_vectors(geo, Rn, Dn, rho0, R_cell, drho_cell, normA, oscA, omega, theta, 0.0, normSi_sqrt2)
-        om_new = v["T1sup"] + v["T2sup"]
-        th_new = v["T1osc"] + v["T2osc"]
-        ratios = np.concatenate([om_new / omega, th_new / theta])
-        lo, hi = float(np.min(ratios)), float(np.max(ratios))   # Collatz-Wielandt: lo <= rho(M) <= hi
-        scale = max(om_new.max(), th_new.max())
+        v = cap_vectors(geo, Rn, Dn, rho0, R_cell, drho_cell, normA, oscA, b[0], b[1], 0.0, normSi_sqrt2,
+                        beta=b[2] if bubble else None)
+        new = _apply(v, ("T1", "T2"))
+        if not bubble:
+            new[2] = new[1]
+        k = 3 if bubble else 2
+        ratios = np.concatenate([new[i] / b[i] for i in range(k)])
+        lo, hi = float(np.min(ratios)), float(np.max(ratios))
+        scale = max(x.max() for x in new)
         hist.append(dict(it=it, cw_lower=lo, cw_upper=hi))
         if log:
             iw = int(np.argmax(ratios))
             log(f"  power-iter {it:2d}: rho(M) in [{lo:.4f}, {hi:.4f}]  (max ratio at "
-                f"{'osc' if iw >= N else 'sup'} cell {iw % N}, t={geo.tm[iw % N]:.2f})")
-        omega, theta = np.maximum(om_new / scale, 1e-300), np.maximum(th_new / scale, 1e-300)
+                f"{COMPONENTS[iw // N]} cell {iw % N}, t={geo.tm[iw % N]:.2f})")
+        b = [np.maximum(x / scale, 1e-300) for x in new]
         if it > 5 and hi - lo < 1e-4 * hi:
             break
-    return omega, theta, hist, v
+    return b, hist, v
 
 
 def iterate_bounds(geo, Rn, Dn, rho_node, R_cell, drho_cell, normA, oscA, D2, normSi_sqrt2,
-                   iters=200, log=None, tol=1e-9):
-    """Monotone iteration  b <- F(b) = Y + M b + Q(b)  from b = Y for the cell-wise bounds
-    b = (omega, theta).  If it converges, F(b) < b for b := (1+eps) b_lim can be checked and
-    then T maps the b-ball into itself and is a contraction there (Banach) -- the CAP closes.
-    If ratio F(b)/b stays > 1 the linear part has spectral radius >= 1 in every weighted norm:
-    NO choice of oscillation weights can close the CAP with these bounds.
-    Returns (omega, theta, history, vectors)."""
+                   iters=200, log=None, tol=1e-9, bubble=True):
+    """Monotone iteration  b <- F(b) = Y + M b + Q(b)  from b = Y for b = (omega, theta, beta).
+    If it converges, F(b) < b for b := (1+eps) b_lim can be checked; then T maps the b-set
+    into itself and is a contraction there (Banach) -- the CAP closes.
+    Returns (b, history, vectors)."""
     args = (geo, Rn, Dn, rho_node, R_cell, drho_cell, normA, oscA)
-    v = cap_vectors(*args, np.full(geo.N, 1e-300), np.full(geo.N, 1e-300), D2, normSi_sqrt2)
-    omega, theta = v["Ysup"].copy(), v["Yosc"].copy()
-    omega = np.maximum(omega, 1e-300); theta = np.maximum(theta, 1e-300)
+    tiny = np.full(geo.N, 1e-300)
+    v = cap_vectors(*args, tiny, tiny, D2, normSi_sqrt2, beta=tiny)
+    b = [np.maximum(x, 1e-300) for x in _apply(v, ("Y",))]
     hist = []
     for it in range(iters):
-        v = cap_vectors(*args, omega, theta, D2, normSi_sqrt2)
-        om_new = up(v["Ysup"] + v["T1sup"] + v["T2sup"] + v["Z2sup"])
-        th_new = up(v["Yosc"] + v["T1osc"] + v["T2osc"] + v["Z2osc"])
-        g_om, g_th = float(np.max(om_new / omega)), float(np.max(th_new / theta))
-        lin = float(np.max(np.concatenate([(v["T1sup"] + v["T2sup"]) / omega,
-                                           (v["T1osc"] + v["T2osc"]) / theta])))
-        hist.append(dict(it=it, growth_sup=g_om, growth_osc=g_th, Z1_in_current_norm=lin,
-                         omega_max=float(om_new.max()), theta_max=float(th_new.max()),
-                         Omega_max=float(v["Omega"].max())))
+        v = cap_vectors(*args, b[0], b[1], D2, normSi_sqrt2, beta=b[2] if bubble else None)
+        new = _apply(v, ("Y", "T1", "T2", "Z2"))
+        lin = _apply(v, ("T1", "T2"))
+        if not bubble:
+            new[2], lin[2] = new[1], lin[1]
+        g = [float(np.max(new[i] / b[i])) for i in range(3)]
+        hist.append(dict(it=it, growth=g, lin_ratio=float(max(np.max(lin[i] / b[i]) for i in range(3))),
+                         omega_max=float(new[0].max()), theta_max=float(new[1].max()),
+                         beta_max=float(new[2].max()), Omega_max=float(v["Omega"].max())))
         if log:
-            log(f"  b-iter {it:3d}: growth sup {g_om:.6f} osc {g_th:.6f}  Z1(current weights)={lin:.4f}  "
-                f"omega_max={om_new.max():.3e} theta_max={th_new.max():.3e} Omega_max={v['Omega'].max():.3e}")
-        omega, theta = om_new, th_new
-        if max(g_om, g_th) < 1 + tol or not np.isfinite(om_new.max() + th_new.max()) or om_new.max() > 1e6:
+            log(f"  b-iter {it:3d}: growth sup {g[0]:.6f} osc {g[1]:.6f} bub {g[2]:.6f}  omega_max={new[0].max():.3e} "
+                f"theta_max={new[1].max():.3e} beta_max={new[2].max():.3e} Omega_max={v['Omega'].max():.3e}")
+        b = new
+        if max(g) < 1 + tol or not np.isfinite(sum(x.max() for x in new)) or new[0].max() > 1e3:
             break
-    return omega, theta, hist, v
+    return b, hist, v
+
+
+def contraction_constant(geo, Rn, Dn, R_cell, drho_cell, normA, oscA, D2, normSi_sqrt2, b, iters=60,
+                         log=None):
+    """Rigorous Lipschitz constant of T on the b-set in a q-weighted norm
+        ||h||_q = max_c max_n (component c of h on C_n) / q_c[n].
+    |DT(f) h| <= M q + Z2(b; q) componentwise for f in the b-set and h with ||h||_q <= 1
+    (M: T1 + T2;  Z2(b; q): z2_vectors with Om_b from b and Om_p from q).  q is the power
+    iterate of this non-negative map; the returned kappa = max (M q + Z2(b; q)) / q is a valid
+    bound for that particular q whatever the convergence of the iteration."""
+    N = geo.N
+    rho0 = np.zeros(N + 1)
+    vb = cap_vectors(geo, Rn, Dn, rho0, R_cell, drho_cell, normA, oscA, b[0], b[1], 0.0, normSi_sqrt2, beta=b[2])
+    Om_b, V_b = vb["Omega"], vb["_V"]
+    q = [x / max(y.max() for y in b) for x in b]
+    kappa = np.inf
+    for it in range(iters):
+        v = cap_vectors(geo, Rn, Dn, rho0, R_cell, drho_cell, normA, oscA, q[0], q[1], 0.0, normSi_sqrt2, beta=q[2])
+        z = z2_vectors(geo, Rn, Dn, D2, Om_b, V_b, v["Omega"], v["_V"])
+        new = [up(v["T1" + c] + v["T2" + c] + z[i]) for i, c in enumerate(COMPONENTS)]
+        ratios = np.concatenate([new[i] / q[i] for i in range(3)])
+        lo, hi = float(ratios.min()), float(ratios.max())
+        if log:
+            log(f"  contraction power-iter {it:2d}: kappa in [{lo:.4f}, {hi:.4f}]")
+        if hi < kappa:
+            kappa, qbest = hi, [x.copy() for x in q]
+        scale = max(x.max() for x in new)
+        q = [np.maximum(x / scale, 1e-300) for x in new]
+        if it > 5 and hi - lo < 1e-3 * hi:
+            break
+    return kappa, qbest
+
+
+def check_certificate(geo, Rn, Dn, rho_node, R_cell, drho_cell, normA, oscA, D2, normSi_sqrt2, b,
+                      bubble=True):
+    """F(b) < b componentwise (self-mapping of the b-set) and the contraction constant
+    max (M b + Q(b)) / b  (the Lipschitz constant of T on the b-set in the b-weighted norm)."""
+    v = cap_vectors(geo, Rn, Dn, rho_node, R_cell, drho_cell, normA, oscA, b[0], b[1], D2, normSi_sqrt2,
+                    beta=b[2] if bubble else None)
+    F = _apply(v, ("Y", "T1", "T2", "Z2"))
+    L = _apply(v, ("T1", "T2", "Z2"))
+    k = 3 if bubble else 2
+    ok = all(bool(np.all(F[i] < b[i])) for i in range(k))
+    contr = float(max(np.max(L[i] / b[i]) for i in range(k)))
+    slack = float(min(np.min(1.0 - F[i] / b[i]) for i in range(k)))
+    return ok, contr, slack, F, v
 
 
 def radii_polynomial(c):
@@ -613,3 +769,31 @@ def lipschitz_A(st: Setup, x_lo, x_hi, y_lo, y_hi, tube_phys):
     c = max(abs(-6 * xs[0] + 2 * (1 + th)), abs(-6 * xs[1] + 2 * (1 + th)))
     fro = math.sqrt((c + a) ** 2 + a ** 2 + 2 * b ** 2)
     return float(up(float(st.normSi) * float(st.normS) ** 2 * fro))
+
+
+def lipschitz_A_cells(st: Setup, x_lo, x_hi, tube_phys, n_ang=720):
+    """Per-cell Lipschitz constant D2[n] of  x -> A(x) = S^{-1} Dg(x) S  in ADAPTED norms:
+        ||A(x + S u) - A(x)||_F <= D2[n] |u|_2   for x in the cell box widened by tube_phys.
+    D^2 g[e] = [[c e_x - a e_y, -a e_x], [b e_y, b e_x]],  c = -6x + 2(1 + theta), is linear in
+    e and affine in c, so  u -> ||S^{-1} D^2g[S u] S||_F  is convex in c (max at the endpoints
+    of the c-range of the cell) and is sampled on n_ang unit vectors; a unit vector is within
+    angle pi/n_ang of a sample and the map is linear in u, hence sup <= max_sample / (1 - pi/n_ang).
+    S is taken at its Arb midpoint with a 1e-9 relative slack (S is known to ~1e-38)."""
+    th, a, b = (float(st.q[k].p) / float(st.q[k].q) for k in ("theta", "a", "b"))
+    S = np.array([[float(v.mid()) for v in row] for row in st.S_arb])
+    Si = np.linalg.inv(S)
+    ang = np.pi * np.arange(n_ang) / n_ang                   # norm is even in u: half circle suffices
+    U = np.stack([np.cos(ang), np.sin(ang)], axis=1)         # (n_ang, 2)
+    E = U @ S.T                                              # e = S u
+    ex, ey = E[:, 0], E[:, 1]
+    out = np.zeros(len(x_lo))
+    for xs in (np.asarray(x_lo, float) - tube_phys, np.asarray(x_hi, float) + tube_phys):
+        c = -6.0 * xs + 2.0 * (1.0 + th)                     # (N,)
+        H = np.zeros((len(c), n_ang, 2, 2))
+        H[:, :, 0, 0] = c[:, None] * ex[None, :] - a * ey[None, :]
+        H[:, :, 0, 1] = -a * ex[None, :]
+        H[:, :, 1, 0] = b * ey[None, :]
+        H[:, :, 1, 1] = b * ex[None, :]
+        G = np.einsum("ij,nkjl,lm->nkim", Si, H, S)
+        out = np.maximum(out, np.sqrt((G * G).sum(axis=(2, 3))).max(axis=1))
+    return up(out / (1.0 - np.pi / n_ang) * (1 + 1e-9))
