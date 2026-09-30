@@ -2,22 +2,23 @@
 
 ## Completed
 
-TASK-0001 through TASK-0006 complete.
+TASK-0001 through TASK-0007 complete.
 
-TASK-0006 proves B215 survival and closes TARGET-A20 under the declared arithmetic model.
+TASK-0006 closed TARGET-A20 under the declared arithmetic model.
+
+TASK-0007 promoted the principal \(T=300,N=12000\) certificate to:
+\[
+\boxed{\text{END-TO-END VERIFIED ELEMENTARY-FUNCTION ENCLOSURES}}
+\]
+with explicit Higham bounds for remaining load-bearing binary64 reductions.
 
 ## Active
 
-### TASK-0007 — publication arithmetic hardening
+None.
 
-Request:
-\`research/coordination/chief-to-compute/TASK-0007_publication-arithmetic-hardening_REQUEST.md\`
+## Optional only
 
-Goal:
-remove the few-ulp libm assumption from the primary \(T=300,N=12000\) certificate where practical, and audit remaining binary64/BLAS roundoff assumptions.
+- rerun \(T=1000,N=20000\) with the hardened backend if a referee specifically requests identical arithmetic labels for both cuts;
+- compute a parameter-open persistence neighborhood only as a future strengthening, not for the first manuscript.
 
-This is not a novelty gate.
-
-## After TASK-0007
-
-No further compute work is mandatory for the first manuscript unless referee-style internal audit exposes a gap.
+No further computation is mandatory for first submission unless Referee Pass 3 exposes a gap.
