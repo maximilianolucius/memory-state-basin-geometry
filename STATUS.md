@@ -1,49 +1,54 @@
 # Status
 
-**Phase:** ACTIVE — SIGN-AWARE GATE PASSED; RIGOROUS B215 CAP NEXT
+**Phase:** TARGET-A20 PROVED — FINAL HOSTILE NOVELTY AUDIT ACTIVE
 
-## ROUND-0006
+## TASK-0006 complete
 
-Completed and assimilated.
+Branch:
+\`compute/task-0006\`
 
-Verdict:
+HEAD:
+\`0e0905cf968fee852fc4c85ca42f88b8215dbc02\`
+
+Certificate code:
+\`c9bc2f80788e0834ecb74e69e89aab59e50c741d\`.
+
+Main was fast-forwarded to the TASK-0006 HEAD before Chief promotion commits.
+
+## Principal theorem
+
+B215 gives a certified autonomous Caputo trajectory that:
+- crosses deeply into a cold-start extinction region;
+- later converges to the coexistence equilibrium.
+
+Therefore every present state along the certified entry interval has:
+- an inherited reachable continuation state in the survival basin;
+- a canonical cold start in the extinction basin.
+
+Hence the corresponding reachable present-state fibers are multibasin.
+
 \[
-\boxed{\text{BOTH}}
+\boxed{\text{TARGET-A20 PROVED}}
 \]
-with primary emphasis on orbit-linearized approximate inversion and secondary use of high-order residual reduction.
 
-Published Banach-space radii-polynomial theory supports the CAP architecture.
+Evidence class:
+**computer-assisted theorem / certified computation under the declared arithmetic model**.
 
-## TASK-0005
+## Redundancy
 
-Integrated in main at merge commit
-\`7d4171d9d992ae8fcbc69514911067054bba6b40\`.
+Two complete independent cut-time certificates:
+- \(T=300\);
+- \(T=1000\).
 
-Key result:
-absolute-value amplification was pessimistic by 4–14 orders of magnitude.
+## Current gate
 
-B215 has the best current proof profile.
+ROUND-0007:
+final theorem-specific hostile novelty audit.
 
-No rigorous \(M_T\) yet.
+## Manuscript
 
-## New theorem setting
+Still locked until ROUND-0007 returns favorably.
 
-The radii proof will use a mesh-weighted oscillation norm equivalent to the sup norm.
+## Publication hardening
 
-This makes cell-oscillation control part of the Banach norm itself.
-
-The approximate inverse
-\[
-B=L_h^{-1}\pi+(I-\pi)
-\]
-is explicitly bijective when the source-space nodal operator \(L_h=I-AW\) is invertible.
-
-## Active
-
-TASK-0006 — rigorous oscillation-Banach CAP for B215.
-
-No active web round.
-
-## Paper
-
-NOT STARTED.
+End-to-end Arb conversion of the remaining binary64/libm layers is desirable for referee robustness but is not currently a logical blocker under the explicitly declared arithmetic model.
