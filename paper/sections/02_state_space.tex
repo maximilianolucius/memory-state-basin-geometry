@@ -7,7 +7,7 @@ A point value \(X(t)\in\mathbb{R}^d\) is not, by itself, a Markov state for a Ca
   \qquad 0<\alpha<1,
   \label{eq:caputo-general}
 \end{equation}
-on a physical state domain \(X_{\mathrm{phys}}\subset\mathbb{R}^d\). Following the continuation-state construction of Doan and Kloeden
+on a physical state domain \(X_{\mathrm{phys}}\subset\mathbb{R}^d\). For the abstract state-space construction in this section, assume \(g\) is globally Lipschitz.  The polynomial application is localized to this setting by \cref{lem:cutoff-localization} below. Following the continuation-state construction of Doan and Kloeden
 \cite{DoanKloeden2021Semidynamical,DoanKloeden2024Attractors}, let
 \[
   \Cspace=C(\mathbb{R}_+,\mathbb{R}^d).
@@ -38,6 +38,19 @@ Let \(T_t\) denote the induced semidynamical system.  For an invariant compact s
   \right\}.
   \label{eq:basin-definition}
 \end{equation}
+
+\begin{lemma}[Cutoff localization]
+\label{lem:cutoff-localization}
+Let \(g\in C^1(\mathbb R^d,\mathbb R^d)\), and let \(K\subset\mathbb R^d\) be compact.  There exists a globally Lipschitz vector field \(\widetilde g\) that agrees with \(g\) on a neighborhood of \(K\).  If a global standard solution of the original equation remains in \(K\), then its point trajectory and its continuation-state orbit from the canonical embedding are identical to those obtained with \(\widetilde g\).
+\end{lemma}
+
+\begin{proof}
+Choose a smooth compactly supported cutoff \(\chi\) equal to one on a neighborhood of \(K\), and set
+\[
+  \widetilde g=\chi g.
+\]
+Since \(\widetilde g\in C^1_c(\mathbb R^d,\mathbb R^d)\), its derivative is bounded and \(\widetilde g\) is globally Lipschitz.  Any original standard trajectory contained in \(K\) also solves the \(\widetilde g\) equation, so uniqueness gives identical point trajectories.  The continuation-state transfer formula uses only that same point trajectory and the values of the vector field along it; these values also coincide.  Hence the corresponding continuation-state orbit is identical.
+\end{proof}
 
 For a point initial value \(z\in X_{\mathrm{phys}}\), define the canonical cold-start state
 \[
