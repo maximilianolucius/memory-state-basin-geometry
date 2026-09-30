@@ -589,7 +589,7 @@ K_JC_rr\le0.48857<1.
 
 By Theorem 4.4,
 \[
-x(t;p)\to E^*
+X(t;p)\to E^*
 \qquad(t\to\infty).
 \]
 
@@ -621,7 +621,7 @@ t_*\in I_*=
 \]
 the reachable present-state fiber
 \[
-\mathcal F_{z(t_*)}
+\mathcal F_{z_*}
 \]
 intersects both
 \[
@@ -634,7 +634,7 @@ and
 
 More precisely,
 \[
-\iota(z(t_*))
+\iota(z_*)
 \in
 \mathcal B(\iota(0,0)),
 \]
@@ -646,11 +646,11 @@ T_{t_*}\iota(p)
 \]
 and
 \[
-e_0(\iota(z(t_*)))
+e_0(\iota(z_*))
 =
 e_0(T_{t_*}\iota(p))
 =
-z(t_*).
+z_*.
 \]
 
 Hence the present physical value does not determine the asymptotic basin on the physically reachable continuation-state set.
@@ -659,17 +659,17 @@ Hence the present physical value does not determine the asymptotic basin on the 
 
 From Proposition 5.2,
 \[
-z(t_*)\in R_{\rm ext}
+z_*\in R_{\rm ext}
 \]
 for every \(t_*\in I_*\).  Theorem 4.3 gives
 \[
-\iota(z(t_*))
+\iota(z_*)
 \in\mathcal B(\iota(0,0)).
 \]
 
 Proposition 5.3 gives physical convergence of the original standard orbit:
 \[
-x(t;p)\to E^*.
+X(t;p)\to E^*.
 \]
 By Proposition 2.2,
 \[
@@ -686,8 +686,8 @@ T_{t_*}\iota(p)\in\mathcal B(\iota(E^*)).
 
 Finally,
 \[
-e_0(T_{t_*}\iota(p))=x(t_*;p)=z(t_*)
-=e_0(\iota(z(t_*))).
+e_0(T_{t_*}\iota(p))=x(t_*;p)=z_*
+=e_0(\iota(z_*)).
 \]
 Proposition 2.3 completes the proof. \(\square\)
 
@@ -776,13 +776,13 @@ The scalar one-radius Church--Queirolo radii polynomial does **not** close for t
 +
 \text{M1 constants}
 \Longrightarrow
-x(t;p)\to E^*
+X(t;p)\to E^*
 }
 \]
 
 \[
 \boxed{
-x(t;p)\to E^*
+X(t;p)\to E^*
 \overset{E3}{\Longrightarrow}
 \iota(p)\in\mathcal B(\iota(E^*))
 }
@@ -790,9 +790,9 @@ x(t;p)\to E^*
 
 \[
 \boxed{
-z(t_*)\in R_{\rm ext}
+z_*\in R_{\rm ext}
 \overset{X1}{\Longrightarrow}
-\iota(z(t_*))\in\mathcal B(\iota(0,0))
+\iota(z_*)\in\mathcal B(\iota(0,0))
 }
 \]
 
@@ -800,7 +800,7 @@ z(t_*)\in R_{\rm ext}
 \boxed{
 E1
 \Longrightarrow
-\mathcal F_{z(t_*)}\text{ multibasin}
+\mathcal F_{z_*}\text{ multibasin}
 }
 \]
 
