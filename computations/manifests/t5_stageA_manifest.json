@@ -1,0 +1,322 @@
+{
+  "task": "TASK-0001",
+  "environment": {
+    "hostname": "orion",
+    "platform": "Linux-7.0.0-34-generic-x86_64-with-glibc2.39",
+    "processor": "x86_64",
+    "cpu_count": 344,
+    "python": "3.12.3",
+    "python_executable": "/home/ecoventure/msbg/computations/../venv/bin/python",
+    "packages": {
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "mpmath": "1.4.1",
+      "sympy": null,
+      "flint": "0.9.0",
+      "matplotlib": "3.11.2"
+    },
+    "numpy_blas": {
+      "name": "scipy-openblas",
+      "found": true,
+      "version": "0.3.34.106.0",
+      "detection method": "pkgconfig",
+      "include directory": "/opt/_internal/cpython-3.12.13/lib/python3.12/site-packages/scipy_openblas64/include",
+      "lib directory": "/opt/_internal/cpython-3.12.13/lib/python3.12/site-packages/scipy_openblas64/lib",
+      "openblas configuration": "OpenBLAS 0.3.34.106.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64",
+      "pc file directory": "/project/.openblas"
+    },
+    "utc": "2026-09-30T11:04:09Z",
+    "seed": 20260929,
+    "git_commit": "b24b35af486aac85e501daa70dcda26f0035413e",
+    "git_branch": "compute/task-0005",
+    "git_dirty": true,
+    "git_source": "launcher environment (rsync'd tree, not a checkout)"
+  },
+  "payload": {
+    "rows": [
+      {
+        "label": "W1",
+        "T": 1000.0,
+        "N": 6000,
+        "R_max": 7.394044649625489e-05,
+        "R_at": {
+          "t<1": 7.394044649625489e-05,
+          "1<t<60": 1.5253000309170795e-05,
+          "t>60": 1.096765907412524e-06
+        },
+        "adapted": {
+          "sup_amp_state": 132.61298634503828,
+          "t_of_sup": 52.24371716203704,
+          "amp_at_T": 2.758083467699226,
+          "Y_state_linear": 0.00020216736108332497,
+          "sensitivity_cell0": 1.0,
+          "functional_amp_sup": 0.216410499714392,
+          "functional_amp_by_t": [
+            0.216410499714392,
+            0.004893029286520829,
+            0.0007484133907639044,
+            0.00037026586900219794,
+            8.911177540080542e-05
+          ],
+          "Y_MT_linear": 2.7795873861718122e-08,
+          "M1_threshold": null
+        },
+        "maxnorm": {
+          "sup_amp_state": 107.27728367012355,
+          "t_of_sup": 52.24371716203704,
+          "amp_at_T": 4.524967397927462,
+          "Y_state_linear": 0.0001670683183041302,
+          "sensitivity_cell0": 1.0
+        }
+      },
+      {
+        "label": "B54",
+        "T": 1000.0,
+        "N": 6000,
+        "R_max": 3.0882185142038113e-06,
+        "R_at": {
+          "t<1": 3.0882185142038113e-06,
+          "1<t<60": 1.3976183526374624e-06,
+          "t>60": 9.10248941509917e-08
+        },
+        "adapted": {
+          "sup_amp_state": 17.309348563813828,
+          "t_of_sup": 38.90078674537036,
+          "amp_at_T": 2.9153913502180813,
+          "Y_state_linear": 5.174296543227546e-06,
+          "sensitivity_cell0": 1.0,
+          "functional_amp_sup": 0.4446324635312886,
+          "functional_amp_by_t": [
+            0.4446324635312886,
+            0.01000916859610509,
+            0.0003611101949387841,
+            0.0001349276387124631,
+            3.236641899692015e-05
+          ],
+          "Y_MT_linear": 1.5342766435660502e-09,
+          "M1_threshold": null
+        },
+        "maxnorm": {
+          "sup_amp_state": 19.58521907304835,
+          "t_of_sup": 38.90078674537036,
+          "amp_at_T": 5.790120591269808,
+          "Y_state_linear": 5.6913120744040716e-06,
+          "sensitivity_cell0": 1.0
+        }
+      },
+      {
+        "label": "B75",
+        "T": 1000.0,
+        "N": 6000,
+        "R_max": 3.5122229141356425e-06,
+        "R_at": {
+          "t<1": 3.5122229141356425e-06,
+          "1<t<60": 1.4366418467177589e-06,
+          "t>60": 6.83847197375158e-08
+        },
+        "adapted": {
+          "sup_amp_state": 13.141397523551614,
+          "t_of_sup": 38.90078674537036,
+          "amp_at_T": 2.9169250808319003,
+          "Y_state_linear": 4.575136063809674e-06,
+          "sensitivity_cell0": 1.0,
+          "functional_amp_sup": 0.4545047399522499,
+          "functional_amp_by_t": [
+            0.4545047399522499,
+            0.01015195715251543,
+            0.00029633944930392036,
+            9.973825895910798e-05,
+            2.381408313717688e-05
+          ],
+          "Y_MT_linear": 1.8238422431042474e-09,
+          "M1_threshold": null
+        },
+        "maxnorm": {
+          "sup_amp_state": 21.880915888674622,
+          "t_of_sup": 38.90078674537036,
+          "amp_at_T": 9.909019532659299,
+          "Y_state_linear": 6.3839515999438374e-06,
+          "sensitivity_cell0": 1.0
+        }
+      },
+      {
+        "label": "B215",
+        "T": 1000.0,
+        "N": 6000,
+        "R_max": 8.755703743570731e-05,
+        "R_at": {
+          "t<1": 8.755703743570731e-05,
+          "1<t<60": 3.0733481101816946e-06,
+          "t>60": 5.650511868664342e-08
+        },
+        "adapted": {
+          "sup_amp_state": 8.884824549079532,
+          "t_of_sup": 21.562328703703702,
+          "amp_at_T": 3.595118633991743,
+          "Y_state_linear": 0.00012048213758472507,
+          "sensitivity_cell0": 1.0,
+          "functional_amp_sup": 0.0906107750639186,
+          "functional_amp_by_t": [
+            0.0906107750639186,
+            0.01049217251270831,
+            9.058254956279894e-05,
+            3.05718591141784e-05,
+            7.377257395705278e-06
+          ],
+          "Y_MT_linear": 8.465366185575268e-09,
+          "M1_threshold": null
+        },
+        "maxnorm": {
+          "sup_amp_state": 8.155621919221844,
+          "t_of_sup": 21.562328703703702,
+          "amp_at_T": 4.823278782358464,
+          "Y_state_linear": 0.00012084001791285047,
+          "sensitivity_cell0": 1.0
+        }
+      },
+      {
+        "label": "B180",
+        "T": 1000.0,
+        "N": 6000,
+        "R_max": 4.990290494967479e-05,
+        "R_at": {
+          "t<1": 4.990290494967479e-05,
+          "1<t<60": 3.523046449115723e-06,
+          "t>60": 3.588539192882305e-08
+        },
+        "adapted": {
+          "sup_amp_state": 16.19436525005488,
+          "t_of_sup": 28.981593087962956,
+          "amp_at_T": 1.9047439614003097,
+          "Y_state_linear": 6.849462122626097e-05,
+          "sensitivity_cell0": 1.0,
+          "functional_amp_sup": 3.6416165606301125,
+          "functional_amp_by_t": [
+            3.6416165606301125,
+            0.30233603445461293,
+            0.0011272889243869808,
+            0.0001097879523514953,
+            2.0897167930843266e-05
+          ],
+          "Y_MT_linear": 2.829311071395091e-07,
+          "M1_threshold": null
+        },
+        "maxnorm": {
+          "sup_amp_state": 16.10143724242652,
+          "t_of_sup": 28.981593087962956,
+          "amp_at_T": 1.9019678393234059,
+          "Y_state_linear": 6.895123708746699e-05,
+          "sensitivity_cell0": 1.0
+        }
+      },
+      {
+        "label": "B154",
+        "T": 1000.0,
+        "N": 6000,
+        "R_max": 3.512641615393941e-05,
+        "R_at": {
+          "t<1": 3.512641615393941e-05,
+          "1<t<60": 6.370800175203776e-06,
+          "t>60": 2.4520283885679793e-08
+        },
+        "adapted": {
+          "sup_amp_state": 4.013541563252661,
+          "t_of_sup": 2.734211662037037,
+          "amp_at_T": 1.891102886615958,
+          "Y_state_linear": 4.7912053638114246e-05,
+          "sensitivity_cell0": 1.0,
+          "functional_amp_sup": 3.6212516569366557,
+          "functional_amp_by_t": [
+            3.6212516569366557,
+            0.3013704669567485,
+            0.0009937291083426916,
+            4.039416977846261e-05,
+            3.965276098236484e-06
+          ],
+          "Y_MT_linear": 1.6922744603599566e-07,
+          "M1_threshold": null
+        },
+        "maxnorm": {
+          "sup_amp_state": 2.9350087273138366,
+          "t_of_sup": 2.734211662037037,
+          "amp_at_T": 1.888976261069472,
+          "Y_state_linear": 4.84787884220846e-05,
+          "sensitivity_cell0": 1.0
+        }
+      },
+      {
+        "label": "B15",
+        "T": 1000.0,
+        "N": 6000,
+        "R_max": 7.87780029063868e-07,
+        "R_at": {
+          "t<1": 3.531250927548064e-07,
+          "1<t<60": 7.87780029063868e-07,
+          "t>60": 5.446070257996182e-07
+        },
+        "adapted": {
+          "sup_amp_state": 104.0443508904981,
+          "t_of_sup": 52.24371716203704,
+          "amp_at_T": 3.62833464793034,
+          "Y_state_linear": 1.9354690795413115e-05,
+          "sensitivity_cell0": 1.0,
+          "functional_amp_sup": 0.189597876958695,
+          "functional_amp_by_t": [
+            0.189597876958695,
+            0.0057921670658762385,
+            0.0010831756101406858,
+            0.0005537356834202536,
+            0.00013391875752369648
+          ],
+          "Y_MT_linear": 2.689176894745194e-10,
+          "M1_threshold": null
+        },
+        "maxnorm": {
+          "sup_amp_state": 127.2193243678792,
+          "t_of_sup": 52.24371716203704,
+          "amp_at_T": 6.427870433167951,
+          "Y_state_linear": 2.1956978112818805e-05,
+          "sensitivity_cell0": 1.0
+        }
+      },
+      {
+        "label": "B3",
+        "T": 1000.0,
+        "N": 6000,
+        "R_max": 1.0503512384184902e-05,
+        "R_at": {
+          "t<1": 1.3120332132970735e-07,
+          "1<t<60": 8.659196906053653e-07,
+          "t>60": 1.0503512384184902e-05
+        },
+        "adapted": {
+          "sup_amp_state": 184.03306016931265,
+          "t_of_sup": 170.18496817129633,
+          "amp_at_T": 40.55511134665453,
+          "Y_state_linear": 9.224308726752691e-05,
+          "sensitivity_cell0": 1.0,
+          "functional_amp_sup": 8.49158288900228,
+          "functional_amp_by_t": [
+            8.49158288900228,
+            6.268471144486677,
+            4.869468837503025,
+            0.557115019944244,
+            0.004654950919933118
+          ],
+          "Y_MT_linear": 4.674842110925449e-06,
+          "M1_threshold": null
+        },
+        "maxnorm": {
+          "sup_amp_state": 155.88760936379867,
+          "t_of_sup": 170.18496817129633,
+          "amp_at_T": 63.86776475071603,
+          "Y_state_linear": 9.964135362794087e-05,
+          "sensitivity_cell0": 1.0
+        }
+      }
+    ],
+    "evidence_class": "NUMERICAL EXPLORATION (Stage-I amplification surrogate)",
+    "wall_seconds": 32.404
+  },
+  "artifacts": []
+}
