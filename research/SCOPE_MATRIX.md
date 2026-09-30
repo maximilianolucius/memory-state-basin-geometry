@@ -2,11 +2,12 @@
 
 | Claim | Scope | Status |
 |---|---|---|
-| X1 | cold-start extinction | PROVED |
-| M1 | inherited-memory survival tail | PROVED |
-| oscillation-Banach CAP framework | finite mesh, positive cell weights | ANALYTICALLY ESTABLISHED |
-| source-space inverse identity | \(L_h=I-AW\) | ESTABLISHED |
-| B215 entry | exact benchmark | PENDING TASK-0006 |
-| B215 history | exact benchmark | PENDING TASK-0006 |
-| B215 survival | exact benchmark | PENDING TASK-0006 |
-| TARGET-A20 | reachable multibasin fiber | OPEN |
+| X1 | cold-start extinction strip | PROVED |
+| M1 | inherited-memory survival | PROVED |
+| B215 finite orbit | exact rational benchmark | CERTIFIED under declared arithmetic model |
+| B215 threshold excursion | nondegenerate time interval | CERTIFIED |
+| B215 convergence to coexistence | infinite-time tail | CERTIFIED via M1 |
+| multibasin reachable fiber | every time in certified entry interval | PROVED BY CERTIFIED COMPUTATION |
+| TARGET-A20 | exact B215 benchmark | PROVED |
+| open parameter family / E2 instantiation | neighborhood | NOT YET QUANTIFIED |
+| end-to-end interval arithmetic | publication hardening | NOT YET DONE |
