@@ -1,0 +1,20 @@
+\section{Discussion and limitations}
+\label{sec:discussion}
+
+\Cref{thm:principal} shows that basin membership in an autonomous Caputo system need not factor through the present physical coordinates, even when attention is restricted to physically reachable continuation states. The result is deliberately narrower than a generic statement that memory changes the future. History dependence is classical in hereditary dynamics, Caputo continuation-state representations are established, and fractional trajectory intersections are known. The point proved here is the simultaneous occurrence of:
+\begin{enumerate}[label=(\roman*)]
+  \item the identical current physical value;
+  \item two physically reachable continuation states above that value;
+  \item distinct asymptotic basin membership;
+  \item a concrete extinction-versus-coexistence realization.
+\end{enumerate}
+
+A targeted literature audit did not identify a formally published theorem establishing this same-present-value, physically reachable Caputo basin split. We therefore position the contribution at that theorem-specific level rather than as a broad priority claim.
+
+The ecological application should likewise be interpreted narrowly. Fractional predator--prey models with Allee effects, extinction/coexistence multistability, and basin calculations already have a substantial literature
+\cite{RameshEtAl2025MemoryDoubleAllee,MondalEtAl2025Consequences,WangHan2025Allee,SahaEtAl2026AlleeBasin,PippalSati2026}. The vector field used here is also not new
+\cite{YeEtAl2019StrongAlleePredatorPrey}. Its role is to supply a transparent positive system in which the continuation-state theorem can be proved.
+
+Several limitations remain. First, the present result is an exact benchmark theorem, not yet an open-parameter persistence theorem. The strict threshold entry and the certified inequalities strongly suggest robustness, but a parameter-open result requires a separate quantitative persistence argument and is not claimed here. Second, \cref{cor:principal-interval} is indexed by a nondegenerate time interval; injectivity of \(t\mapsto X(t;p)\) on that interval is not part of the current certificate. Third, the computer-assisted proof currently uses a declared IEEE-754/libm arithmetic model in selected large-scale layers. The mathematical fixed-point argument is independent of that implementation choice, and a publication-hardening rerun is designed to replace the remaining load-bearing elementary-function evaluations by verified enclosures.
+
+Finally, the distinction between physical-state basins and continuation-state basins suggests a broader methodological point. For nonlocal systems, a basin diagram drawn only in physical coordinates can conflate states that share the same present value but carry different inherited memory. The correct state space for asymptotic classification is the continuation space; physical coordinates are a projection of that geometry. The example proved here shows that this distinction can be dynamically decisive rather than merely formal.
