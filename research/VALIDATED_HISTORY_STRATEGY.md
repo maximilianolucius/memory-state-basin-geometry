@@ -2,168 +2,84 @@
 
 **Owner:** Chief Researcher  
 **Date:** 2026-09-30  
-**Status:** ACTIVE — ORBIT-LINEARIZED A-POSTERIORI VALIDATION
+**Status:** SOURCE-SPACE OSCILLATION CAP ACTIVE
 
-## 1. Problem
+## 1. TASK-0005 resolved the amplification question
 
-THEOREM-M1 can certify survival once
+The orbit-linearized discrete response is modest:
+- B215 state amplification about \(8.9\);
+- W1 about \(133\);
+- amplification into the final \(M_T\) functional about \(0.09\) for B215.
+
+Thus absolute-value amplification was the wrong metric.
+
+## 2. Primary benchmark
+
+B215:
 \[
-M_T<0.038078
+\theta=1/2,\ a=1/2,\ b=1,\ m=4/5,\ \alpha=17/20,
 \]
-is rigorously available for W1 in the current adapted norm.
-
-Numerically:
 \[
-M_{1000}\approx0.014.
+p=(277/100,467/1000).
 \]
 
-The missing step is a rigorous history enclosure on \([0,T]\).
+## 3. Rigorous formulation
 
-The current normwise verifier fails because it pays a huge amplification during the excursion.
-
-## 2. Nonlinear Volterra operator
-
-Define on \([0,T]\)
+Use the source equation
 \[
-\mathcal F(x)
+\mathcal H(f)=
+f-[g(\hat x+I^\alpha f)-g(\hat x)]+\rho.
+\]
+
+The derivative is
+\[
+I-AI^\alpha.
+\]
+
+On PL nodal variables:
+\[
+\boxed{L_h=I-AW.}
+\]
+
+This corrects the source/state mixing in the TASK-0005 \(Z_1\) pilot.
+
+## 4. Function space
+
+Use
+\[
+\|f\|_\vartheta=
+\max\left(
+\|f\|_\infty,
+\max_n \operatorname{osc}_{C_n}(f)/\vartheta_n
+\right).
+\]
+
+This is an equivalent Banach norm on \(C([0,T])\).
+
+The cell oscillation bounds are therefore not an assumed property of the exact source; they are part of the validated ball.
+
+## 5. Approximate inverse
+
+With \(\pi\) PL interpolation and \(L_h=I-\pi K\pi\),
+
+\[
+B=L_h^{-1}\pi+(I-\pi)
+\]
+
+is bijective with
+\[
+B^{-1}=L_h\pi+(I-\pi).
+\]
+
+The exact inverse-defect identity is
+\[
+I-B(I-K)
 =
-x-p-I^\alpha[g(x)].
+L_h^{-1}\pi K(I-\pi)+(I-\pi)K.
 \]
 
-For a numerical approximation \(\hat x\), set
-\[
-A(t)=Dg(\hat x(t)).
-\]
+## 6. Goal
 
-The Fréchet derivative is
-\[
-D\mathcal F(\hat x)e
-=
-e-I^\alpha[A(\cdot)e].
-\]
+TASK-0006 must turn all resulting operator bounds into outward interval quantities and close a strict radii polynomial.
 
-Write
-\[
-\mathcal L_{\hat x}
-=
-I-I^\alpha A(\cdot).
-\]
-
-For the error
-\[
-e=x-\hat x,
-\]
-\[
-\mathcal L_{\hat x}e
-=
--d+
-I^\alpha R_{\hat x}(e),
-\]
-where
-\[
-d=\mathcal F(\hat x)
-\]
-and
-\[
-R_{\hat x}(e)
-=
-g(\hat x+e)-g(\hat x)-A e
-\]
-is quadratic in \(e\).
-
-## 3. Candidate validation principle V1
-
-Suppose a bounded operator \(B\) approximates
-\[
-\mathcal L_{\hat x}^{-1}.
-\]
-
-Let
-\[
-Y=\|B d\|,
-\]
-and rigorously bound
-\[
-Z_1=\|I-B\mathcal L_{\hat x}\|,
-\]
-and for \(\|e\|\le r\),
-\[
-\|B I^\alpha R_{\hat x}(e)\|
-\le Z_2(r).
-\]
-
-If the associated Newton/radii inequality
-\[
-\boxed{
-Y+Z_1r+Z_2(r)<r
-}
-\]
-holds, then a true solution exists in the radius-\(r\) neighborhood of \(\hat x\).
-
-The exact fixed-point formulation and uniqueness hypotheses are to be audited by ROUND-0006.
-
-## 4. Implementation preference
-
-The Volterra structure makes the discretized derivative block lower triangular.
-
-Preferred implementation:
-1. piecewise polynomial/collocation representation of \(\hat x\);
-2. exact fractional integration of polynomial basis functions;
-3. numerical inversion of the discrete block-lower-triangular linearized operator;
-4. interval enclosure of that inverse/action;
-5. explicit off-grid/interpolation remainder;
-6. radii-polynomial or Newton–Kantorovich closure.
-
-This retains matrix signs/rotations instead of replacing them by \(\|Dg-J\|\).
-
-## 5. Two-stage escalation
-
-### Stage I — amplification test
-Before rigorous implementation, compute the discrete inverse response of
-\[
-\mathcal L_{\hat x}
-\]
-to defects concentrated on each cell.
-
-Measure a true/discrete operator amplification surrogate.
-
-If it remains \(\gg10^4\), this route is unlikely to close.
-
-If it is \(O(1)\)–\(O(10^2)\), proceed.
-
-### Stage II — residual order
-Only then improve the approximation:
-- degree 2/3/5 piecewise polynomial;
-- graded mesh near the initial singular layer;
-- exact \(I^\alpha\) polynomial moments;
-- rigorous residual bounds.
-
-## 6. Goal-oriented alternative
-
-The final theorem only needs \(M_T\), not a publication-quality uniform enclosure of every state value.
-
-If possible, certify directly the functional
-\[
-v_T(t)
-=
-E_\alpha(Jt^\alpha)u_0
-+
-\int_0^T\Psi_J(t-s)N(u(s))\,ds.
-\]
-
-A goal-oriented bound may use the orbit error only through the weighted history functional above and can be substantially tighter than
-\[
-\sup_{[0,T]}\|x-\hat x\|.
-\]
-
-This should be tested in parallel.
-
-## 7. Success criterion
-
-A history-validation method is successful if it rigorously implies
-\[
-M_T<0.038078
-\]
-for W1, or an analogous M1 threshold for another exact-rational entering witness.
-
-Then M1 + X1 + E1 close TARGET-A20.
+Then the validated source ball is propagated directly into the \(M_T\) functional.
