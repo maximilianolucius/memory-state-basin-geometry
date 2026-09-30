@@ -16,7 +16,7 @@ import numpy as np
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from msbg.aposteriori import collocation                                      # noqa: E402
 from msbg.cap import (COMPONENTS, Geometry, check_certificate, contraction_constant,     # noqa: E402
-                      iterate_bounds,
+                      iterate_bounds, state_sup,
                       lipschitz_A_cells, power_iteration, up)
 from msbg.models import AlleePredatorPrey                                     # noqa: E402
 from msbg.provenance import RunRecorder                                       # noqa: E402
@@ -61,7 +61,7 @@ def close(geo, Rn, Dn, rho, R, drho, normA, oscA, st, x_lo, x_hi, rec, log, iter
     best = None
     for eps_try in (0.3, 0.1, 0.03, 0.01, eps):                # inflate the limit: widest strict margin wins
         bc_ = [x * (1 + eps_try) for x in b]
-        Om_ = up(geo.w[1:] @ bc_[0])
+        Om_ = state_sup(geo.w, bc_[0])
         tube_ = float(up(float(st.normS) * float(Om_.max())))
         D2c_ = lipschitz_A_cells(st, x_lo, x_hi, tube_)
         ok_, contr_, slack_, F_, vc_ = check_certificate(*args, D2c_, nSi2, bc_, bubble=bubble)

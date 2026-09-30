@@ -58,9 +58,11 @@ def main():
     log(f"cells recomputed: R_max={cells.R.max():.3e}")
 
     # state-error pad per cell (physical max-norm): |e|_inf <= |e|_2 <= ||S|| * Omega_n
+    # sup_{C_n}|I^a f| <= sum_{j<n} w_j(t_n) omega_j + w_n(t_{n+1}) omega_n   (see cap.state_sup)
     Om = np.zeros(N)
     for n in range(N):
-        Om[n] = float(np.dot(cell_weights(tm, tm[n + 1], al)[: n + 1], omega[: n + 1]))
+        past = float(np.dot(cell_weights(tm, tm[n], al)[:n], omega[:n])) if n else 0.0
+        Om[n] = past + float(cell_weights(tm, tm[n + 1], al)[n]) * omega[n]
     pad = up(float(st.normS) * up(Om))
     log(f"state pad: max {pad.max():.3e} at t={tm[int(np.argmax(pad))]:.2f}; at T {pad[-1]:.3e}; "
         f"adapted Omega max {Om.max():.3e}")

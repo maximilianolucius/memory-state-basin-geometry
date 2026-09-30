@@ -1,0 +1,211 @@
+{
+  "task": "TASK-0001",
+  "environment": {
+    "hostname": "orion",
+    "platform": "Linux-7.0.0-34-generic-x86_64-with-glibc2.39",
+    "processor": "x86_64",
+    "cpu_count": 344,
+    "python": "3.12.3",
+    "python_executable": "/home/ecoventure/msbg/computations/../venv/bin/python",
+    "packages": {
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "mpmath": "1.4.1",
+      "sympy": null,
+      "flint": "0.9.0",
+      "matplotlib": "3.11.2"
+    },
+    "numpy_blas": {
+      "name": "scipy-openblas",
+      "found": true,
+      "version": "0.3.34.106.0",
+      "detection method": "pkgconfig",
+      "include directory": "/opt/_internal/cpython-3.12.13/lib/python3.12/site-packages/scipy_openblas64/include",
+      "lib directory": "/opt/_internal/cpython-3.12.13/lib/python3.12/site-packages/scipy_openblas64/lib",
+      "openblas configuration": "OpenBLAS 0.3.34.106.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64",
+      "pc file directory": "/project/.openblas"
+    },
+    "utc": "2026-09-30T14:51:45Z",
+    "seed": 20260929,
+    "git_commit": "185c2d32c56ddda23b95cd2449f9340419351edc",
+    "git_branch": "compute/task-0006",
+    "git_dirty": true,
+    "git_source": "launcher environment (rsync'd tree, not a checkout)"
+  },
+  "payload": {
+    "args": {
+      "T": 10.0,
+      "N": 6000,
+      "mesh": "graded3",
+      "K": 32,
+      "workers": 40,
+      "iters": 200,
+      "tube": 0.01,
+      "tag": "T10_N6000_graded3"
+    },
+    "inverse": {
+      "normE": 1.0048422592983874e-11,
+      "delta_max": 2.4746505575069847e-11,
+      "rowsum_max": 3.813958859994263,
+      "rowsum_T": 3.3190733335388245
+    },
+    "geometry": {
+      "c_alpha": 0.059971654193756226,
+      "c_loc": 0.6114479684331912,
+      "c_prev_max": 0.050766413790387294,
+      "D2p": 34.27803338020573,
+      "EA_max": 8.249025712863764e-05
+    },
+    "results": {
+      "spectral_radius": {
+        "cw_lower": 0.050736756843841005,
+        "cw_upper": 0.05273798060634519,
+        "n_iter": 60
+      },
+      "power_ratio_T1sup": {
+        "max": 0.05074668201030282,
+        "cell": 0,
+        "t": 0.0
+      },
+      "power_ratio_T2sup": {
+        "max": 0.0006326087236235907,
+        "cell": 274,
+        "t": 0.000952352962962963
+      },
+      "power_ratio_T1osc": {
+        "max": 0.050746682010276566,
+        "cell": 0,
+        "t": 0.0
+      },
+      "power_ratio_T2osc": {
+        "max": 0.021117878570951095,
+        "cell": 5999,
+        "t": 9.995000833287037
+      },
+      "power_T2osc_part_normA*P": 0.015115688017564185,
+      "power_T2osc_part_EA*Omega": 0.00967384815488494,
+      "power_T2osc_part_2oscA*V": 0.00167140521608306,
+      "iteration": {
+        "converged": true,
+        "last": {
+          "it": 17,
+          "growth_sup": 1.0000000001179254,
+          "growth_osc": 1.000000000774781,
+          "Z1_in_current_norm": 0.9767425183330901,
+          "omega_max": 0.000632627959793489,
+          "theta_max": 0.00022765441320786204,
+          "Omega_max": 0.003357136201179179
+        },
+        "n_iter": 18
+      },
+      "ratio_T1sup": {
+        "max": 0.9764016101527235,
+        "cell": 2664,
+        "t": 0.87528384
+      },
+      "ratio_T2sup": {
+        "max": 0.003412367647652741,
+        "cell": 603,
+        "t": 0.010150751250000003
+      },
+      "ratio_Z2sup": {
+        "max": 0.6805378985207461,
+        "cell": 5999,
+        "t": 9.995000833287037
+      },
+      "ratio_T1osc": {
+        "max": 0.28414269047168994,
+        "cell": 4825,
+        "t": 5.200417390046297
+      },
+      "ratio_T2osc": {
+        "max": 0.06676683390461159,
+        "cell": 5677,
+        "t": 8.47038072837963
+      },
+      "ratio_Z2osc": {
+        "max": 0.6667620138658815,
+        "cell": 5999,
+        "t": 9.995000833287037
+      },
+      "T2_split": {
+        "cell": 5677,
+        "normA_P": 3.728018085217943e-08,
+        "EA_Omega": 1.7679771985856126e-07,
+        "oscA_V": 4.1276092630300734e-09
+      },
+      "T2osc_part_normA*P": 0.015923044228270938,
+      "T2osc_part_EA*Omega": 0.054240482823976935,
+      "T2osc_part_2oscA*V": 0.002304159222529976,
+      "certificate": {
+        "ok": true,
+        "contraction": 0.9981023294767439,
+        "D2": 15.643256129842397,
+        "tube_phys": 0.001532620767814901,
+        "omega_max": 0.0006332605877532824,
+        "state_err_max": 0.003360493337421053,
+        "state_err_T": 0.003360493337421056,
+        "eps": 0.001
+      },
+      "norm_constants_final_weights": {
+        "Y0": 0.9999999275216355,
+        "Z1": 0.9798139778005723,
+        "T1_sup": 0.9764016101528212,
+        "T1_osc": 0.2841426904717188,
+        "T2_sup": 0.003412367647653082,
+        "T2_osc": 0.06676683390508473,
+        "Z2a": 0.6805378985327908,
+        "Z2b": 0.0,
+        "rmax": 1.0,
+        "Omega_max": 0.003357136201220173,
+        "kappa_max": 0.0001762217051958951
+      }
+    },
+    "mesh": {
+      "N": 6000,
+      "T": 10.0,
+      "h_min": 4.6296296296296294e-11,
+      "h_max": 0.004999166712963188
+    },
+    "cells": {
+      "R_max": 4.374124360298702e-06,
+      "drho_max": NaN,
+      "normA_max": 15.607421684535664,
+      "oscA_max": 0.016385632733674098,
+      "rho_node_max": 5.163980293167471e-11
+    },
+    "wall_seconds": 197.709
+  },
+  "artifacts": [
+    {
+      "path": "/home/ecoventure/msbg/computations/data/t6_stageBD_T10_N6000_graded3_power_history.json",
+      "sha256": "d7875d3d65b754254f5885fa6f2546bbd91ea327219f171e7224241a0d2a1c00",
+      "bytes": 5781
+    },
+    {
+      "path": "/home/ecoventure/msbg/computations/data/t6_stageBD_T10_N6000_graded3_power_weights.npz",
+      "sha256": "6b1762faf67849d581b552566ffbb3537249a4345889e8b348ddd155bb6d195f",
+      "bytes": 446721
+    },
+    {
+      "path": "/home/ecoventure/msbg/computations/data/t6_stageBD_T10_N6000_graded3_iteration_history.json",
+      "sha256": "e5336b631b8927ecb449af1f4de3438f532bcbd2223770334d9255eee5ca1533",
+      "bytes": 4738
+    },
+    {
+      "path": "/home/ecoventure/msbg/computations/data/t6_stageBD_T10_N6000_graded3_certificate_weights.npz",
+      "sha256": "a81747a545bef4719f2371aff597560507a50c0d7f82a348c59ed36535c179b6",
+      "bytes": 210936
+    },
+    {
+      "path": "/home/ecoventure/msbg/computations/data/t6_stageBD_T10_N6000_graded3_profile.npz",
+      "sha256": "3a81db9f71d894e799b06eeefedb843b2b27352a3ec95d1b28313918404a43fe",
+      "bytes": 883935
+    },
+    {
+      "path": "/home/ecoventure/msbg/computations/data/t6_stageBD_T10_N6000_graded3_blocks.npz",
+      "sha256": "168cc41eff6cffec6cb0a6a9ca77c0a1859fea6b4ca1182a14332a43fe4b65c2",
+      "bytes": 274384727
+    }
+  ]
+}

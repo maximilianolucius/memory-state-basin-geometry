@@ -1,0 +1,140 @@
+{
+  "task": "TASK-0001",
+  "environment": {
+    "hostname": "orion",
+    "platform": "Linux-7.0.0-34-generic-x86_64-with-glibc2.39",
+    "processor": "x86_64",
+    "cpu_count": 344,
+    "python": "3.12.3",
+    "python_executable": "/home/ecoventure/msbg/computations/../venv/bin/python",
+    "packages": {
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "mpmath": "1.4.1",
+      "sympy": null,
+      "flint": "0.9.0",
+      "matplotlib": "3.11.2"
+    },
+    "numpy_blas": {
+      "name": "scipy-openblas",
+      "found": true,
+      "version": "0.3.34.106.0",
+      "detection method": "pkgconfig",
+      "include directory": "/opt/_internal/cpython-3.12.13/lib/python3.12/site-packages/scipy_openblas64/include",
+      "lib directory": "/opt/_internal/cpython-3.12.13/lib/python3.12/site-packages/scipy_openblas64/lib",
+      "openblas configuration": "OpenBLAS 0.3.34.106.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64",
+      "pc file directory": "/project/.openblas"
+    },
+    "utc": "2026-09-30T16:01:06Z",
+    "seed": 20260929,
+    "git_commit": null
+  },
+  "payload": {
+    "result": {
+      "B_norm_sup": 8.745283285307051,
+      "B_norm_osc": 3.7151867134492655,
+      "B_norm_bub": 1.0,
+      "Linv_block_rowsum_max": 9.408297955126164,
+      "Linv_block_rowsum_T": 4.940006212839804,
+      "B_norm": 8.745283285307051,
+      "crosscheck_vs_independent_mesh": {
+        "Nref": 9000,
+        "rows": [
+          {
+            "t": 0.5,
+            "xhat": [
+              1.395622488156178,
+              0.8124877341998405
+            ],
+            "diff_adapted": 9.464610849126487e-07,
+            "certified_radius_adapted": 4.126058304986438e-05,
+            "ratio": 0.022938626043379668
+          },
+          {
+            "t": 2.0,
+            "xhat": [
+              0.8498048425740876,
+              1.0776837794677359
+            ],
+            "diff_adapted": 1.2134920885516486e-06,
+            "certified_radius_adapted": 6.715957463900634e-05,
+            "ratio": 0.01806878758649629
+          },
+          {
+            "t": 5.0,
+            "xhat": [
+              0.528201086475228,
+              0.6241462807628779
+            ],
+            "diff_adapted": 9.208255484179278e-08,
+            "certified_radius_adapted": 0.00011506273526495668,
+            "ratio": 0.0008002812955015618
+          },
+          {
+            "t": 8.99,
+            "xhat": [
+              0.4689987863132785,
+              0.2484696511716118
+            ],
+            "diff_adapted": 1.8190971980928046e-07,
+            "certified_radius_adapted": 0.0001311089779620386,
+            "ratio": 0.0013874695893209596
+          },
+          {
+            "t": 13.0,
+            "xhat": [
+              0.49191081109265156,
+              0.12669070848397013
+            ],
+            "diff_adapted": 1.1934228593286418e-07,
+            "certified_radius_adapted": 0.0001389484250912969,
+            "ratio": 0.0008588962836710789
+          },
+          {
+            "t": 28.3,
+            "xhat": [
+              0.8330171186458699,
+              0.09849875668686892
+            ],
+            "diff_adapted": 2.369185509940479e-07,
+            "certified_radius_adapted": 0.0002137925668572273,
+            "ratio": 0.0011081701972934556
+          },
+          {
+            "t": 60.0,
+            "xhat": [
+              0.7803830664373095,
+              0.14265249070490071
+            ],
+            "diff_adapted": 1.145723242254592e-07,
+            "certified_radius_adapted": 0.0003181382923371334,
+            "ratio": 0.00036013371224123534
+          },
+          {
+            "t": 150.0,
+            "xhat": [
+              0.7926971596559724,
+              0.13230907704027572
+            ],
+            "diff_adapted": 1.2180138948055924e-09,
+            "certified_radius_adapted": 0.0003785954845274247,
+            "ratio": 3.2171907605447466e-06
+          },
+          {
+            "t": 300.0,
+            "xhat": [
+              0.7960892672526825,
+              0.1268885747460189
+            ],
+            "diff_adapted": 5.330774099696493e-09,
+            "certified_radius_adapted": 0.00048660859373878446,
+            "ratio": 1.0954952642201171e-05
+          }
+        ],
+        "note": "NON-rigorous; the reference has its own error"
+      }
+    },
+    "wall_seconds": 0.0
+  },
+  "artifacts": []
+}

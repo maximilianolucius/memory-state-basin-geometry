@@ -29,7 +29,7 @@ import numpy as np
 from .validated import _arb_upper_float, to_arb
 from .validated_res import Setup, _l2_upper
 
-__all__ = ["rigorous_hat_weights", "cell_weights", "nodal_data", "rigorous_inverse",
+__all__ = ["state_sup", "rigorous_hat_weights", "cell_weights", "nodal_data", "rigorous_inverse",
            "cap_constants", "radii_polynomial"]
 
 _UP = 1.0 + 1e-13
@@ -517,6 +517,15 @@ class Geometry:
         self.I2 = I2
 
 
+def state_sup(w, omega):
+    """Omega_n >= sup_{t in C_n} |I^a f(t)| for sup_{C_j}|f| <= omega_j.
+    For t in C_n:  |I^a f(t)| <= sum_{j<n} w_j(t) omega_j + (t - t_n)^a/G(a+1) omega_n, and each
+    w_j(t), j < n, is DEcreasing in t (the kernel is decreasing), so it is bounded by its value
+    at t_n; the own-cell part is increasing and bounded by its value at t_{n+1}.
+    (sum_j w_j(t_{n+1}) omega_j alone is NOT an upper bound for non-constant omega.)"""
+    return up(np.einsum("nj,j->n", w[:-1], omega) + np.diagonal(w[1:]) * omega)
+
+
 def z2_vectors(geo, Rn, Dn, D2, Om_b, V_b, Om_p, V_p):
     """Bounds of  B [ (A(xhat + e) - A(xhat)) I^a h ]  for  |e| <= Om_b, |I^a h| <= Om_p on cells
     (V_*: sup_{C_n}|u - u(t_n)| for u = e resp. I^a h).  With Om_p = Om_b this bounds B N(e)
@@ -583,7 +592,7 @@ def cap_vectors(geo: Geometry, Rn, Dn, rho_node, R_cell, drho_cell, normA, oscA,
     T1sup = up(np.maximum(Rk[:-1], Rk[1:]))
     T1osc = up(Dk)
     # ---- T2: (I - pi) K f ---------------------------------------------------------------
-    Omega = up(w[1:] @ omega)                                 # sup_{C_n} |I^a f|
+    Omega = state_sup(w, omega)                               # sup_{C_n} |I^a f|
     OmegaN = np.concatenate([[0.0], Omega])                   # |I^a f (t_n)|  (Omega_{n-1})
     cum = np.concatenate([[0.0], np.cumsum(theta)])
     P = np.zeros(N)                                           # sup_{C_n} |(I-pi) I^a f|

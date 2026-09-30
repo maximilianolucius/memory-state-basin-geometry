@@ -196,3 +196,107 @@ def test_bubble_component_is_sharper_and_consistent():
     assert np.all(v4["T1sup"] <= v2["T1sup"] * (1 + 1e-12)) and np.all(v4["T1osc"] <= v2["T1osc"] * (1 + 1e-12))
     assert np.allclose(v4["T2sup"], v2["T2sup"])
     assert np.all(v4["T2bub"] == v4["T2sup"]) and np.all(v4["T1bub"] == 0)
+
+
+def test_state_sup_dominates_sampled_integral():
+    """Omega_n must dominate sup_{C_n} sum_j w_j(t) omega_j for a non-constant omega."""
+    from msbg.cap import state_sup
+    tm = _mesh(N=30)
+    N = len(tm) - 1
+    w = np.zeros((N + 1, N))
+    for n in range(1, N + 1):
+        w[n, :n] = cell_weights(tm, tm[n], ALPHA)[:n]
+    omega = np.zeros(N); omega[2] = 1.0; omega[10] = 0.3       # concentrated early: decreasing later
+    Om = state_sup(w, omega)
+    for n in range(N):
+        for t in np.linspace(tm[n], tm[n + 1], 7)[1:]:
+            val = float(np.dot(cell_weights(tm, t, ALPHA), omega))
+            assert Om[n] >= val * (1 - 1e-12)
+    naive = w[1:] @ omega
+    assert np.any(naive < Om * (1 - 1e-6))                      # the naive end-point value is smaller
+
+
+def _frac_int_pl(nodes, vals, t, alpha):
+    """I^a f(t) for f piecewise linear on `nodes` (exact hat weights)."""
+    import sys, os
+    sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    from scripts.t5_stageA_signaware import hat_row_at
+    if t <= 0:
+        return np.zeros(vals.shape[1])
+    k = np.searchsorted(nodes, t, side="left")
+    if nodes[k] == t:
+        tt, vv = nodes[: k + 1], vals[: k + 1]
+    else:
+        lam = (t - nodes[k - 1]) / (nodes[k] - nodes[k - 1])
+        tt = np.concatenate([nodes[:k], [t]])
+        vv = np.vstack([vals[:k], (1 - lam) * vals[k - 1] + lam * vals[k]])
+    return hat_row_at(tt, t, alpha, len(tt) - 1) @ vv
+
+
+@pytest.mark.parametrize("seed", [0, 1, 2])
+def test_cellwise_bounds_dominate_explicit_functions(seed):
+    """Empirical validation of the hand-derived bounds (Omega, V, P, T2 = (I-pi)K f, T1 sup/osc):
+    explicit f = piecewise-linear + tent bubbles, explicit smooth A(t); every bounded quantity
+    is evaluated by exact product integration and must lie below the bound."""
+    from msbg.cap import mean_kernel_blocks
+    rng = np.random.default_rng(seed)
+    a = ALPHA
+    N = 14
+    tm = 2.5 * (np.arange(N + 1) / N) ** 1.7
+    h = np.diff(tm)
+    Afun = lambda t: np.array([[-0.4 + 0.3 * np.sin(1.3 * t), 0.8 * np.cos(0.7 * t)],
+                               [-0.6 + 0.2 * t / 2.5, 0.1 - 0.5 * np.sin(t)]])
+    # f: PL nodal values + tent bubbles
+    Fn = rng.normal(size=(N + 1, 2))
+    bub = rng.normal(size=(N, 2)) * rng.uniform(0.0, 0.4, size=(N, 1))
+    fine = np.sort(np.concatenate([tm, 0.5 * (tm[:-1] + tm[1:])]))
+    fvals = np.zeros((2 * N + 1, 2)); gvals = np.zeros((2 * N + 1, 2))
+    fvals[0::2] = Fn
+    fvals[1::2] = 0.5 * (Fn[:-1] + Fn[1:]) + bub
+    gvals[1::2] = bub
+    pts = [fvals[2 * n: 2 * n + 3] for n in range(N)]
+    omega = np.array([np.linalg.norm(p, axis=1).max() for p in pts])
+    theta = np.array([max(np.linalg.norm(p[i] - p[j]) for i in range(3) for j in range(3)) for p in pts])
+    beta = np.linalg.norm(bub, axis=1)
+    # operator data
+    Am = np.array([Afun(t) for t in tm])
+    samp = lambda n: np.linspace(tm[n], tm[n + 1], 41)
+    normA = np.array([max(np.linalg.norm(Afun(t)) for t in samp(n)) for n in range(N)]) * 1.001
+    oscA = np.array([max(np.linalg.norm(Afun(t) - Afun(s)) for t in samp(n)[::4] for s in samp(n)[::4])
+                     for n in range(N)]) * 1.05 + 1e-6
+    EAt = np.zeros(N)
+    for n in range(N):
+        for t in samp(n):
+            lam = (t - tm[n]) / h[n]
+            EAt[n] = max(EAt[n], np.linalg.norm(Afun(t) - (1 - lam) * Am[n] - lam * Am[n + 1]))
+    Wm, Wr = rigorous_hat_weights(tm, "17/20", workers=2)
+    Rn, Dn, normE, delta, R4 = rigorous_inverse(Wm, Wr, Am, np.zeros_like(Am))
+    geo = Geometry(tm, a, np.zeros((N + 1, 2)), 1.0, 1.0, dict(theta=0.5, a=0.5, b=1.0, x_lo=0.4, x_hi=2.8))
+    geo.EA = EAt * 1.05 + 1e-6
+    geo.Qn, geo.DQn = mean_kernel_blocks(R4, delta, Am, geo.w)
+    v = cap_vectors(geo, Rn, Dn, np.zeros(N + 1), np.zeros(N), np.zeros(N), normA, oscA, omega, theta,
+                    0.0, 1.0, beta=beta)
+    tol = 1 + 1e-9
+    # exact quantities
+    Inode = np.array([_frac_int_pl(fine, fvals, t, a) for t in tm])
+    Knode = np.einsum("nij,nj->ni", Am, Inode)
+    for n in range(N):
+        for t in samp(n)[1:-1]:
+            lam = (t - tm[n]) / h[n]
+            It = _frac_int_pl(fine, fvals, t, a)
+            assert np.linalg.norm(It) <= v["Omega"][n] * tol
+            assert np.linalg.norm(It - Inode[n]) <= v["_V"][n] * tol
+            assert np.linalg.norm(It - (1 - lam) * Inode[n] - lam * Inode[n + 1]) <= v["_P"][n] * tol
+            Kt = Afun(t) @ It
+            assert np.linalg.norm(Kt - (1 - lam) * Knode[n] - lam * Knode[n + 1]) <= v["T2sup"][n] * tol
+    # T1: y = L_h^{-1} z,  z_k = A_k I^a[(I - pi) f](t_k)
+    z = np.einsum("nij,nj->ni", Am, np.array([_frac_int_pl(fine, gvals, t, a) for t in tm]))
+    Abig = np.zeros((2 * (N + 1), 2 * (N + 1)))
+    for n in range(N + 1):
+        Abig[2 * n:2 * n + 2, 2 * n:2 * n + 2] = Am[n]
+    y = np.linalg.solve(np.eye(2 * (N + 1)) - Abig @ np.kron(Wm, np.eye(2)), z.reshape(-1)).reshape(N + 1, 2)
+    yn = np.linalg.norm(y, axis=1)
+    assert np.all(np.maximum(yn[:-1], yn[1:]) <= v["T1sup"] * tol)
+    assert np.all(np.linalg.norm(y[1:] - y[:-1], axis=1) <= v["T1osc"] * tol)
+    # the bounds are not vacuous: within a moderate factor somewhere
+    assert np.max(np.maximum(yn[:-1], yn[1:]) / v["T1sup"]) > 0.02
