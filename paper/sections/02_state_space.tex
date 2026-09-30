@@ -1,0 +1,187 @@
+\section{Continuation states and present-state fibers}
+\label{sec:state-space}
+
+A point value \(X(t)\in\mathbb{R}^d\) is not, by itself, a Markov state for a Caputo equation. We therefore formulate basin membership on the continuation-state space associated with autonomous Caputo semidynamical systems. Consider
+\begin{equation}
+  \CapD X(t)=g(X(t)),
+  \qquad 0<\alpha<1,
+  \label{eq:caputo-general}
+\end{equation}
+on a physical state domain \(X_{\mathrm{phys}}\subset\mathbb{R}^d\). Following the continuation-state construction of Doan and Kloeden
+\cite{DoanKloeden2021Semidynamical,DoanKloeden2024Attractors}, let
+\[
+  \Cspace=C(\mathbb{R}_+,\mathbb{R}^d)
+\]
+carry the compact-open topology, and let \(T_t\) denote the induced semidynamical system.
+
+For a point initial value \(z\in X_{\mathrm{phys}}\), define the canonical cold-start state
+\[
+  \iota(z)(\tau)\equiv z,
+\]
+and define the present evaluation
+\[
+  e_0(f)=f(0),
+  \qquad f\in\Cspace.
+\]
+The physically reachable subset of \(\Cspace\) is
+\begin{equation}
+  \Reach
+  =
+  \{T_t\iota(p):p\in X_{\mathrm{phys}},\ t\ge0\}.
+  \label{eq:reachable-set}
+\end{equation}
+
+\begin{definition}[Reachable present-state fiber]
+\label{def:reachable-fiber}
+For \(z\in X_{\mathrm{phys}}\), the physically reachable present-state fiber above \(z\) is
+\begin{equation}
+  \Fiber{z}
+  =
+  e_0^{-1}(z)\cap\Reach.
+  \label{eq:fiber}
+\end{equation}
+If \(\Fiber{z}\) intersects two distinct asymptotic basins in \(\Cspace\), we call \(\Fiber{z}\) \emph{multibasin}.
+\end{definition}
+
+The definition separates two distinct notions: a present physical value \(z\), and the continuation state that carries the inherited Caputo memory. The central theorem of this paper concerns basin membership inside a single fiber \(\Fiber{z}\), not trajectory intersection by itself.
+
+\begin{proposition}[Physical convergence lifts to continuation-state convergence]
+\label{prop:physical-to-continuation}
+Let \(X(\cdot;p)\) be the standard point-IVP solution of \eqref{eq:caputo-general}. If
+\[
+  X(t;p)\to X^*,
+  \qquad
+  g(X^*)=0,
+\]
+then
+\[
+  T_t\iota(p)\to\iota(X^*)
+\]
+in the compact-open topology of \(\Cspace\).
+\end{proposition}
+
+\begin{proof}
+Fix \(N>0\) and \(0\le\eta\le N\). By the continuation-state formula,
+\[
+  (T_t\iota(p))(\eta)
+  =
+  p+
+  \frac{1}{\Gamma(\alpha)}
+  \int_0^t
+  (t+\eta-s)^{\alpha-1}g(X(s;p))\,ds.
+\]
+On the other hand,
+\[
+  X(t+\eta;p)
+  =
+  p+
+  \frac{1}{\Gamma(\alpha)}
+  \int_0^{t+\eta}
+  (t+\eta-s)^{\alpha-1}g(X(s;p))\,ds.
+\]
+Subtracting gives
+\begin{align*}
+  (T_t\iota(p))(\eta)-X^*
+  &=
+  X(t+\eta;p)-X^* \\
+  &\quad-
+  \frac{1}{\Gamma(\alpha)}
+  \int_t^{t+\eta}
+  (t+\eta-s)^{\alpha-1}g(X(s;p))\,ds.
+\end{align*}
+The first term tends uniformly to zero for \(0\le\eta\le N\). The second satisfies
+\[
+  \sup_{0\le\eta\le N}
+  \left\|
+  \frac{1}{\Gamma(\alpha)}
+  \int_t^{t+\eta}
+  (t+\eta-s)^{\alpha-1}g(X(s;p))\,ds
+  \right\|
+  \le
+  \frac{N^\alpha}{\Gamma(\alpha+1)}
+  \sup_{s\ge t}\|g(X(s;p))\|,
+\]
+which also tends to zero because \(g(X(t;p))\to g(X^*)=0\). Hence
+\[
+  \sup_{0\le\eta\le N}
+  \|(T_t\iota(p))(\eta)-X^*\|\to0
+\]
+for every \(N\), which is compact-open convergence.
+\end{proof}
+
+\begin{proposition}[Basin-entry criterion]
+\label{prop:basin-entry}
+Let \(A_-\neq A_+\) be invariant asymptotic states or attractors in \(\Cspace\). Suppose
+\[
+  \iota(U_-)\subset\Basin(A_-),
+  \qquad
+  \iota(p)\in\Basin(A_+),
+\]
+for a physical set \(U_-\subset X_{\mathrm{phys}}\). If
+\[
+  z=X(t_*;p)\in U_-,
+\]
+then
+\[
+  T_{t_*}\iota(p),\ \iota(z)\in\Fiber{z},
+\]
+with
+\[
+  T_{t_*}\iota(p)\in\Basin(A_+),
+  \qquad
+  \iota(z)\in\Basin(A_-).
+\]
+Consequently \(\Fiber{z}\) is multibasin.
+\end{proposition}
+
+\begin{proof}
+The two states have the same present value:
+\[
+  e_0(T_{t_*}\iota(p))
+  =
+  X(t_*;p)
+  =
+  z
+  =
+  e_0(\iota(z)).
+\]
+Both belong to \(\Reach\), so both lie in \(\Fiber{z}\). Basin positive invariance gives
+\[
+  T_{t_*}\iota(p)\in\Basin(A_+),
+\]
+while the definition of \(U_-\) gives
+\[
+  \iota(z)\in\Basin(A_-).
+\]
+Since \(A_-\neq A_+\), the fiber intersects two distinct basins.
+\end{proof}
+
+\begin{corollary}[Nondegenerate time-interval criterion]
+\label{cor:time-interval}
+Under the hypotheses of \cref{prop:basin-entry}, if
+\[
+  X(t;p)\in U_-
+  \qquad
+  \text{for every }t\in I
+\]
+on a nondegenerate interval \(I\), then
+\[
+  \Fiber{X(t;p)}
+\]
+is multibasin for every \(t\in I\).
+\end{corollary}
+
+\begin{remark}[Why compact-open topology is essential]
+\label{rem:tail-anchoring}
+For any fixed \(T>0\), if \(X(\cdot;p)\) is bounded on \([0,T]\), then
+\[
+  (T_T\iota(p))(\tau)
+  =
+  p+
+  \frac{1}{\Gamma(\alpha)}
+  \int_0^T
+  (T+\tau-s)^{\alpha-1}g(X(s;p))\,ds
+  \to p
+\]
+as \(\tau\to\infty\). Thus a finite-time continuation state need not be globally close to a terminal equilibrium in the unweighted sup norm, even when the underlying physical trajectory converges. The compact-open topology is therefore not a technical convenience but a structural feature of the continuation-state representation.
+\end{remark}
