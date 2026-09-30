@@ -411,3 +411,76 @@ M_T+K_JC_rr^2<r.
 ]
 
 If TASK-0004 succeeds, the memory-tail theorem supplies the missing survival classification needed by TARGET-A20.
+
+
+## ROUND-0006 — orbit-linearized validated-history route
+
+### Primary recommendation: approximate inverse / radii polynomial
+The validated-history bottleneck is an inverse-sensitivity problem, not merely a low-order residual problem.
+
+**Church & Queirolo (2024)**, DOI 10.1007/s10884-023-10279-x, provides the Banach-space Newton/radii-polynomial theorem needed for
+[
+mathcal F(x)=x-p-I^alpha[g(x)].
+]
+With an approximate derivative (A^dagger) and bounded injective approximate inverse (B), rigorous bounds (Y_0,Z_0,Z_1,Z_2(r)) give a radii polynomial whose negativity proves a unique nearby exact zero.
+
+**Important V1 correction:** injectivity of (B), or an equivalent rigorous inverse condition, must be part of the theorem statement. A fixed point of (x-Bmathcal F(x)) alone does not imply (mathcal F(x)=0) if (B) has a nontrivial kernel.
+
+**Breden & Lessard (2018)**, DOI 10.3934/dcdsb.2018164, is the closest practical implementation template: piecewise polynomial interpolation plus a Newton–Kantorovich/radii-polynomial CAP.
+
+### Time-dependent orbit linearization
+For
+[
+Dmathcal F(hat x)e
+=
+e-I^alpha[A(cdot)e],
+qquad
+A(t)=Dg(hat x(t)),
+]
+the kernel
+[
+B(t,s)=rac{(t-s)^{alpha-1}}{Gamma(alpha)}A(s)
+]
+is a nonconvolution weakly singular matrix Volterra kernel.
+
+**Becker (2011)**, DOI 10.1016/j.na.2010.10.060, develops two-variable resolvent and variation-of-parameters theory for precisely this broader weakly singular linear Volterra class.
+
+Thus preserving signs/rotations along the computed orbit has a published analytic foundation; a closed-form resolvent is unnecessary if the discretized lower-triangular inverse plus continuous remainder can be rigorously bounded.
+
+### Secondary recommendation: high-order residual reduction
+**Brunner–Pedas–Vainikko (1999)** and **Liang–Brunner (2019)** establish high-order piecewise-polynomial collocation theory for weakly singular VIEs, including graded meshes that recover convergence despite endpoint singularity.
+
+Current product-integration/spectral literature strengthens this route. Its role here is to reduce
+[
+Y_0=|Bmathcal F(hat x)|,
+]
+not to replace (B) by a global Grönwall amplification constant.
+
+Recommended representation:
+- singular initial panel resolved by grading or a fractional-power/Müntz expansion;
+- degree 2–5 piecewise polynomials thereafter;
+- rigorous fractional moments and interpolation remainder;
+- orbit-linearized approximate inverse for error propagation.
+
+### Validated-numerics prior
+**Yazdani & Hadizadeh (2012)**, DOI 10.1590/S1807-03022012000200005, demonstrates genuine interval enclosure for nonlinear Volterra–Fredholm equations including roundoff/truncation uncertainty.
+
+**Baccouch (2026)**, DOI 10.1007/s42967-026-00617-3, provides a current rigorous residual-based a-posteriori DG estimator for nonlinear VIDEs, but under smooth nonsingular-kernel assumptions and in an asymptotic estimator setting rather than an interval CAP.
+
+**Salas et al. (2026)** remains the closest Caputo-specific certified-error prior, but does not invert a time-dependent orbit-linearized weakly singular operator over a long nonlinear excursion.
+
+### ROUND-0006 verdict
+[
+oxed{	ext{BOTH}}
+]
+with ranking:
+1. orbit-linearized approximate inverse / radii polynomial — **PRIMARY**;
+2. high-order singularity-aware residual — **SECONDARY**.
+
+The recommended implementation sequence is:
+1. first measure the discrete sign-aware inverse amplification along W1;
+2. proceed to interval/radii validation only if it is moderate;
+3. then raise polynomial order / resolve the initial layer enough to make the residual meet the radii inequality;
+4. if uniform-state amplification remains too large, validate the goal functional (M_T) directly.
+
+No direct 2025–2026 published method was identified that already performs this exact Caputo long-excursion interval/radii-polynomial certification.
