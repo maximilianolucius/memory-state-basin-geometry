@@ -1,44 +1,41 @@
 # Claim Registry
 
-**Status:** TARGET-A20 PROVED; NOVELTY AUDIT PASSED WITH CLAIM NARROWING; MANUSCRIPT UNLOCKED.
+**Status:** TARGET-A20 PROVED; TASK-0007 HARDENED BASELINE PROMOTED; MANUSCRIPT ACTIVE.
 
 ## Principal claim — LOCKED
 
-A physically reachable present-state fiber of an autonomous continuous-time Caputo semidynamical system can intersect distinct asymptotic basins.
+A physically reachable present-state fiber of an autonomous continuous-time Caputo semidynamical system can intersect disjoint asymptotic basins.
 
-In the certified B215 strong-Allee realization, every present state on a nondegenerate reached arc has:
-- an inherited continuation state converging to coexistence;
-- the canonical cold start at the identical present value converging to extinction.
+For the exact B215 benchmark, every certified time
+\[
+t\in I_*=[5.8576774143,13.7275388580]
+\]
+gives the same present physical value to:
+- an inherited continuation state converging to coexistence; and
+- the canonical cold start converging to extinction.
 
-**Evidence:** computer-assisted theorem / certified computation under the declared arithmetic model.
+**Evidence:** analytic theorem chain + TASK-0007 hardened certified computation.
 
 ## Novelty status
 
 ROUND-0007:
 \[
-\boxed{\text{NOVELTY SURVIVES WITH CLAIM NARROWING}.}
+\boxed{\text{NOVELTY SURVIVES WITH CLAIM NARROWING}}.
 \]
 
 No direct formally published theorem matching TARGET-A20 was found in the targeted audit.
-
-## Strong secondary claim
-
-A nondegenerate certified physical-time interval of multibasin reachable fibers exists along one exact standard trajectory.
 
 ## Supporting results
 
 - X1: PROVED.
 - E1–E4: PROVED.
 - M1: PROVED.
-- B215 \(T=300\) CAP: CERTIFIED.
-- B215 \(T=1000\) CAP: independent CERTIFIED redundancy.
+- B215 \(T=300\) CAP: CERTIFIED with END-TO-END VERIFIED ELEMENTARY-FUNCTION ENCLOSURES.
+- B215 \(T=1000\) CAP: independent TASK-0006 redundancy under the earlier arithmetic model.
 
 ## Claims not available
 
 - parameter-open family: NOT PROVED;
+- injective physical arc on \(I_*\): NOT PROVED / NOT CLAIMED;
 - generic history/headpoint novelty: NOT CLAIMED;
-- end-to-end interval arithmetic: NOT YET CLAIMED.
-
-## Current work
-
-TASK-0007 publication arithmetic hardening may strengthen the evidence language, but it is not required for the novelty theorem itself.
+- fully interval arithmetic: NOT CLAIMED.
