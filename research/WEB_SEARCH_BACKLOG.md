@@ -2,21 +2,22 @@
 
 ## Completed
 
-ROUND-0001 through ROUND-0005.
+ROUND-0001 through ROUND-0006 COMPLETE.
 
-## Active
+ROUND-0006 supplied:
+- Banach-space radii-polynomial theorem;
+- weakly singular nonautonomous Volterra resolvent support;
+- high-order graded collocation support;
+- validated-numerics novelty boundaries.
 
-### ROUND-0006 — validated orbit-linearization
-request:
-\`research/coordination/chief-to-web/ROUND-0006_validated-orbit-linearization_REQUEST.md\`
+## Current posture
 
-Focus:
-- high-order a-posteriori weakly singular Volterra methods;
-- Newton–Kantorovich / approximate inverse / radii-polynomial validation;
-- two-variable nonautonomous Volterra resolvents;
-- fractional initial-layer handling;
-- 2025–2026 validated-numerics prior.
+No active web task.
 
-## Next
+The exact oscillation-Banach specialization is proved internally from the generic published theorem and elementary projection identities.
 
-No final novelty audit until TARGET-A20 is actually rigorous.
+## Next trigger
+
+Only if TASK-0006 closes TARGET-A20:
+
+launch the final theorem-specific hostile novelty audit before manuscript mode.
