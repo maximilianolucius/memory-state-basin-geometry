@@ -1,25 +1,32 @@
 # Research Plan
 
-## Main theorem
+## Scientific theorem
 
-TARGET-A20 is proved by certified computation under the declared arithmetic model.
+TARGET-A20 is proved.
 
-The exact B215 orbit yields a nondegenerate certified interval of reachable present states whose fibers intersect both extinction and coexistence basins.
+## Novelty
 
-## Immediate gate
+Final hostile audit passed with claim narrowing.
 
-ROUND-0007 final hostile novelty audit.
+Principal claim is locked to the same-present-value physically reachable Caputo basin split.
 
-## If ROUND-0007 is favorable
+## Current phase
 
-1. lock the narrow novelty statement;
-2. optionally harden remaining binary64/libm layers to end-to-end interval arithmetic;
-3. begin manuscript;
-4. keep theorem-first structure;
-5. use \(T=300\) as primary certificate and \(T=1000\) as redundancy;
-6. consider an E2 open-neighborhood strengthening only after the first-submission theorem is secure.
+MANUSCRIPT + PUBLICATION HARDENING.
 
-## If ROUND-0007 finds direct prior
+Parallel tracks:
 
-Do not draft the current novelty claim.
-Reframe around whichever residual theorem remains.
+### A. Manuscript
+- theorem-first drafting;
+- 22–23 page target;
+- exact contribution hierarchy from ROUND-0007;
+- no broad memory/history priority claims.
+
+### B. Arithmetic hardening
+TASK-0007 removes the main referee vulnerability in the load-bearing libm layer of the \(T=300\) certificate.
+
+## Optional future strengthening
+
+A parameter-open persistence theorem may be developed later, but it is not part of the locked principal claim and must receive a new novelty audit before being foregrounded.
+
+Do not delay the current manuscript merely to pursue TARGET-A30.
