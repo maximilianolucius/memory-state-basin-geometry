@@ -214,3 +214,50 @@ M_T+K_JC_rr^2<r
 is sufficient for first-exit invariance and implies (K_JC_rr<1); the Cong et al. 2016 Lyapunov–Perron proof contains the same stable-kernel limsup split used to deduce (u(t)	o0).
 
 The remaining burden is computational: certify (M_T,K_J,C_r,r) for W1.
+
+
+## ROUND-0006 verified additions — orbit-linearized validated numerics
+
+39. Brunner, H.; Pedas, A.; Vainikko, G. (1999). The Piecewise Polynomial Collocation Method for Nonlinear Weakly Singular Volterra Equations. *Mathematics of Computation* 68(227), 1079–1095. DOI 10.1090/S0025-5718-99-01073-X.  
+Role: classical high-order weakly singular Volterra collocation on graded grids. Supports piecewise-polynomial residual reduction without assuming classical smoothness at the initial point; it is a convergence theorem, not by itself a computer-assisted enclosure.
+
+40. Becker, L. C. (2011). Resolvents and Solutions of Weakly Singular Linear Volterra Integral Equations. *Nonlinear Analysis: Theory, Methods & Applications* 74(5), 1892–1912. DOI 10.1016/j.na.2010.10.060.  
+Role: **load-bearing source for the orbit-linearized two-variable resolvent**. Treats weakly singular matrix kernels beyond convolution form and supplies resolvent/variation-of-parameters theory for the time-dependent linearized operator.
+
+41. Yazdani, S.; Hadizadeh, M. (2012). Piecewise Constant Bounds for the Solution of Nonlinear Volterra–Fredholm Integral Equations. *Computational & Applied Mathematics* 31(2), 305–322. DOI 10.1590/S1807-03022012000200005.  
+Role: validated-integral-equation precedent. Constructs interval enclosures guaranteed to contain the exact solution with roundoff and truncation included. Not tailored to the Caputo weakly singular kernel.
+
+42. Breden, M.; Lessard, J.-P. (2018). Polynomial Interpolation and a Priori Bootstrap for Computer-Assisted Proofs in Nonlinear ODEs. *Discrete and Continuous Dynamical Systems - B* 23(7), 2825–2858. DOI 10.3934/dcdsb.2018164.  
+Role: closest practical CAP template for the proposed implementation: piecewise polynomial approximation + Newton–Kantorovich/radii-polynomial validation + rigorous interval computations. ODE rather than fractional Volterra, but methodologically directly reusable.
+
+43. Liang, H.; Brunner, H. (2019). The Convergence of Collocation Solutions in Continuous Piecewise Polynomial Spaces for Weakly Singular Volterra Integral Equations. *SIAM Journal on Numerical Analysis* 57(4), 1875–1896. DOI 10.1137/19M1245062.  
+Role: rigorous uniform convergence theory for continuous piecewise-polynomial collocation on uniform and graded meshes for weakly singular VIEs.
+
+44. Church, K.; Queirolo, E. (2024). Computer-Assisted Proofs of Hopf Bubbles and Degenerate Hopf Bifurcations. *Journal of Dynamics and Differential Equations* 36(4), 3385–3439. DOI 10.1007/s10884-023-10279-x.  
+Role: **load-bearing generic radii-polynomial theorem**. Its Theorem 1 gives the (Y_0,Z_0,Z_1,Z_2(r)) Banach-space approximate-inverse framework and explicitly requires the approximate inverse operator to be injective.
+
+45. Baccouch, M. (2026). A Posteriori Error Estimation for the Discontinuous Galerkin Method Applied to Nonlinear Volterra Integro-differential Equations. *Communications on Applied Mathematics and Computation*. DOI 10.1007/s42967-026-00617-3.  
+Role: current 2026 a-posteriori Volterra pressure. Gives a rigorously analyzed residual-based asymptotically exact DG estimator for nonlinear VIDEs. It is not an interval-arithmetic enclosure of a weakly singular Caputo IVP and therefore does not replace the proposed CAP.
+
+### ROUND-0006 theorem/method consequence
+
+Required recommendation: **BOTH**, with strict ranking:
+
+1. **ORBIT-LINEARIZED APPROXIMATE-INVERSE ROUTE — PRIMARY.**
+2. **HIGH-ORDER RESIDUAL ROUTE — SECONDARY, used to reduce (Y_0).**
+
+The Chief's CANDIDATE-V1 needs one source-discipline correction: a fixed point of
+[
+T(x)=x-Bmathcal F(x)
+]
+implies (mathcal F(x)=0) only when (B) is injective (or an equivalent rigorously verified inverse condition is supplied). The safe formulation is the Church–Queirolo radii-polynomial theorem with (Y_0,Z_0,Z_1,Z_2(r)).
+
+The orbit-linearized derivative
+[
+Dmathcal F(hat x)e=e-I^alpha[Dg(hat x(cdot))e]
+]
+has a weakly singular, nonautonomous matrix Volterra kernel. Becker 2011 supplies the exact two-variable resolvent theory, so preserving sign/rotation along the actual orbit is mathematically supported.
+
+High-order graded/fractional-power collocation is recommended only to make the residual small; it should not replace the inverse-operator bound with a global Grönwall constant.
+
+No 2025–2026 published method was located that already performs the exact proposed interval/radii-polynomial validation of a long nonlinear Caputo excursion using a time-dependent weakly singular orbit linearization.
