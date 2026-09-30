@@ -65,7 +65,11 @@ For \(z\in X_{\mathrm{phys}}\), the physically reachable present-state fiber abo
   e_0^{-1}(z)\cap\Reach.
   \label{eq:fiber}
 \end{equation}
-If \(\Fiber{z}\) intersects two distinct asymptotic basins in \(\Cspace\), we call \(\Fiber{z}\) \emph{multibasin}.
+If there exist compact invariant sets \(A_-\) and \(A_+\) with
+\[
+  \Basin(A_-)\cap\Basin(A_+)=\varnothing
+\]
+such that \(\Fiber{z}\) intersects both basins, we call \(\Fiber{z}\) \emph{multibasin}.
 \end{definition}
 
 The definition separates two distinct notions: a present physical value \(z\), and the continuation state that carries the inherited Caputo memory. The central theorem of this paper concerns basin membership inside a single fiber \(\Fiber{z}\), not trajectory intersection by itself.
@@ -143,7 +147,11 @@ for every \(N\), which is compact-open convergence.
 
 \begin{proposition}[Basin-entry criterion]
 \label{prop:basin-entry}
-Let \(A_-\neq A_+\) be invariant asymptotic states or attractors in \(\Cspace\). Suppose
+Let \(A_-\) and \(A_+\) be compact invariant sets in \(\Cspace\) with disjoint basins,
+\[
+  \Basin(A_-)\cap\Basin(A_+)=\varnothing.
+\]
+Suppose
 \[
   \iota(U_-)\subset\Basin(A_-),
   \qquad
@@ -185,7 +193,7 @@ while the definition of \(U_-\) gives
 \[
   \iota(z)\in\Basin(A_-).
 \]
-Since \(A_-\neq A_+\), the fiber intersects two distinct basins.
+The two states lie in disjoint asymptotic basins, so the fiber is multibasin.
 \end{proof}
 
 \begin{corollary}[Nondegenerate time-interval criterion]
