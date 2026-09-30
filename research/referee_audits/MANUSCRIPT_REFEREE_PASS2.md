@@ -121,3 +121,22 @@ The final TASK-0006 proof does not rely on the failed scalar radii polynomial. I
 \]
 
 No additional literature search is required.
+
+---
+
+## Chief resolution — 2026-09-30
+
+The required cutoff localization has now been inserted into the manuscript:
+
+- the abstract state-space section explicitly assumes globally Lipschitz \(g\);
+- `lem:cutoff-localization` constructs a smooth compactly supported cutoff extension \(\widetilde g\);
+- the B215 theorem section proves that the inherited trajectory and every cold-start trajectory used in TARGET-A20 lie in one compact region on which \(\widetilde g=g\);
+- therefore all witness continuation-state orbits are exactly the same for the polynomial system and the globally Lipschitz extension.
+
+The imported-hypothesis issue is therefore **RESOLVED**.
+
+Updated disposition:
+\[
+\boxed{\text{PASS}}
+\]
+for imported theorem hypotheses.
