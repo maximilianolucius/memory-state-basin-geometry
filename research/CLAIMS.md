@@ -1,50 +1,44 @@
 # Claim Registry
 
-**Status:** TARGET-A20 PROVED; FINAL NOVELTY AUDIT ACTIVE.
+**Status:** TARGET-A20 PROVED; NOVELTY AUDIT PASSED WITH CLAIM NARROWING; MANUSCRIPT UNLOCKED.
 
-## Principal result
+## Principal claim — LOCKED
 
-### TARGET-A20 — multibasin reachable present-state fibers
+A physically reachable present-state fiber of an autonomous continuous-time Caputo semidynamical system can intersect distinct asymptotic basins.
 
-**Status:** PROVED BY CERTIFIED COMPUTATION UNDER THE DECLARED ARITHMETIC MODEL.
+In the certified B215 strong-Allee realization, every present state on a nondegenerate reached arc has:
+- an inherited continuation state converging to coexistence;
+- the canonical cold start at the identical present value converging to extinction.
 
-Exact system:
+**Evidence:** computer-assisted theorem / certified computation under the declared arithmetic model.
+
+## Novelty status
+
+ROUND-0007:
 \[
-{}^CD^{17/20}x
-=
-x(1-x)(x-1/2)-\frac12xy,
-\]
-\[
-{}^CD^{17/20}y=y(x-4/5).
-\]
-
-Initial state:
-\[
-p=(277/100,467/1000).
+\boxed{\text{NOVELTY SURVIVES WITH CLAIM NARROWING}.}
 \]
 
-The exact standard orbit:
-- enters \(R_{\rm ext}=\{0<x<1/2,y>0\}\) on a certified nondegenerate interval;
-- converges to \(E^*=(4/5,3/25)\).
+No direct formally published theorem matching TARGET-A20 was found in the targeted audit.
 
-For every certified entry time \(t_*\), the continuation state \(T_{t_*}\iota(p)\) and the cold start \(\iota(x(t_*;p))\) share the same present value but lie in coexistence and extinction basins respectively.
+## Strong secondary claim
+
+A nondegenerate certified physical-time interval of multibasin reachable fibers exists along one exact standard trajectory.
 
 ## Supporting results
 
-X1, E1–E4, M1: PROVED.
+- X1: PROVED.
+- E1–E4: PROVED.
+- M1: PROVED.
+- B215 \(T=300\) CAP: CERTIFIED.
+- B215 \(T=1000\) CAP: independent CERTIFIED redundancy.
 
-Finite-history B215 CAP: CERTIFIED COMPUTATION under declared arithmetic model.
+## Claims not available
 
-Independent full certificates exist at:
-- \(T=300,N=12000\);
-- \(T=1000,N=20000\).
+- parameter-open family: NOT PROVED;
+- generic history/headpoint novelty: NOT CLAIMED;
+- end-to-end interval arithmetic: NOT YET CLAIMED.
 
-## Evidence boundary
+## Current work
 
-Not end-to-end interval arithmetic.
-
-The theorem promotion is explicitly conditional on the stated IEEE/libm arithmetic model used to prove the binary64 upper bounds.
-
-## Current gate
-
-ROUND-0007 final hostile novelty audit.
+TASK-0007 publication arithmetic hardening may strengthen the evidence language, but it is not required for the novelty theorem itself.
