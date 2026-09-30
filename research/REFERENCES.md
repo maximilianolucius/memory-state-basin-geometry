@@ -261,3 +261,46 @@ has a weakly singular, nonautonomous matrix Volterra kernel. Becker 2011 supplie
 High-order graded/fractional-power collocation is recommended only to make the residual small; it should not replace the inverse-operator bound with a global Grönwall constant.
 
 No 2025–2026 published method was located that already performs the exact proposed interval/radii-polynomial validation of a long nonlinear Caputo excursion using a time-dependent weakly singular orbit linearization.
+
+
+## ROUND-0007 verified additions — final TARGET-A20 novelty boundary
+
+46. Deshpande, A. S.; Daftardar-Gejji, V.; Vellaisamy, P. (2019). Analysis of Intersections of Trajectories of Systems of Linear Fractional Differential Equations. *Chaos* 29(1), 013113. DOI 10.1063/1.5052067.  
+Role: direct prior for physical trajectory intersections/noninjectivity in fractional systems. It closes any broad novelty claim based on trajectory coincidence, but does not prove distinct basin membership in one physically reachable present-state fiber.
+
+47. Saha, A.; Pal, D.; Kesh, D.; Mukherjee, D. (2026). A Fractional-Order Commensurate and Incommensurate Study on Predator-Prey System with Allee in Predator and Fear Effect. *Fractional Calculus and Applied Analysis* 29(3), 1486–1515. DOI 10.1007/s13540-026-00515-8.  
+Role: strongest current ecological basin competitor located. It presents Caputo fractional predator–prey dynamics with multiple attraction basins including extinction/predator-extinction/coexistence. It does not compare an inherited continuation state and a cold start at the same present value.
+
+48. Pippal, S.; Sati, J. (2026). Fractional Predator-Prey System under Allee Effect and Anti-Predator Feedback. *Open Journal of Mathematical Sciences* 10, 1162–1194. DOI 10.30538/oms2026.0339.  
+Role: current strong-Allee Caputo competitor with stable extinction and basin-restricted coexistence certification. No same-present-state inherited/cold-start basin reversal is proved.
+
+49. Szaksz, B.; Habib, G. (2026). An Efficient Algorithm for Estimating Dynamical Integrity in Time-Delay Systems. *International Journal of Non-Linear Mechanics* 185, 105337. DOI 10.1016/j.ijnonlinmec.2026.105337.  
+Role: current hereditary/headpoint integrity prior. Together with Szaksz–Stepan–Habib 2024, it establishes that endpoint/headpoint reductions in infinite-dimensional delay systems are established methodology, but not the exact Caputo reachable-fiber theorem.
+
+50. Baghel, R. S. (2026). Hopf Bifurcation and Stability in a Fractional-Order Age-Structured Predator-Prey Model with Allee Effect and Dual Delays. *Chaos, Solitons & Fractals* 205, 117880. DOI 10.1016/j.chaos.2026.117880.  
+Role: current 2026 Caputo/strong-Allee/delay ecological competitor; no same-present-state mixed-basin theorem.
+
+51. Tucker, W. (2011). *Validated Numerics: A Short Introduction to Rigorous Computations*. Princeton University Press. ISBN 9780691147819.  
+Role: referee-standard reference for rigorous finite-precision/interval validation and accounting for numerical error sources.
+
+52. Mrozek, M. (1996). Rigorous Error Analysis of Numerical Algorithms via Symbolic Computations. *Journal of Symbolic Computation* 22(4), 435–458. DOI 10.1006/jsco.1996.0061.  
+Role: demonstrates that rigorous explicit floating-point error bounds can serve as an alternative to interval arithmetic in computer-assisted proofs. Relevant to the declared TASK-0006 arithmetic model.
+
+### ROUND-0007 final novelty conclusion
+
+Final hostile audit verdict:
+
+**NOVELTY SURVIVES WITH CLAIM NARROWING.**
+
+The narrow defensible principal claim is the proved conjunction:
+
+- autonomous continuous-time Caputo dynamics;
+- physically reachable inherited continuation state;
+- canonical cold start at the **identical present physical value**;
+- distinct asymptotic basin labels;
+- extinction versus coexistence in a positive strong-Allee ecological realization;
+- and a nondegenerate certified time interval of such reached fibers.
+
+The manuscript must not claim novelty for generic history dependence, fractional trajectory intersections, headpoint-projected basins, Caputo ecological multistability/basin plots, the underlying vector field, or generic validated fractional numerics.
+
+The current mixed Arb/binary64 certificate can support a theorem **under the explicitly declared arithmetic model**, but end-to-end Arb/MPFR hardening of the few-ulp libm layer is strongly recommended for referee robustness.
