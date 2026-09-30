@@ -52,9 +52,9 @@ def main():
                              st.str["p"], 0.0, prec=128, workers=args.workers, K=args.K)
         diam = up(np.sqrt((cells.x_hi - cells.x_lo) ** 2 + (cells.y_hi - cells.y_lo) ** 2))
         log("cells recomputed for diam")
-    geo = Geometry(tm, al, PHI, float(st.normS), float(st.normSi), xbox, diam)
+    geo = Geometry(tm, st.str["alpha"], PHI, float(st.normS), float(st.normSi), xbox, diam)
     nSi2 = float(up(float(st.normSi) * np.sqrt(2.0)))
-    log(f"{args.tag}: N={N} T={tm[-1]}  geometry ready; EA(n>=1) max {np.max(geo.EA[1:]):.3e} (green {np.max(geo.EA_green[1:]):.3e}), "
+    log(f"{args.tag}: N={N} T={tm[-1]}  geometry ready; EA(n>=1) max {np.max(geo.EA[1:]):.3e} "
         f"min(EA,2oscA) max {np.max(np.fmin(geo.EA[1:], 2*oscA[1:])):.3e}, oscA max {oscA.max():.3e}")
     rec = RunRecorder(f"t6_offline_{args.tag}_{args.variant}", ROOT)
     om, th, hist, v = power_iteration(geo, Rn, Dn, R, drho, normA, oscA, nSi2, iters=args.iters, log=log)

@@ -34,7 +34,7 @@ def main():
     model = AlleePredatorPrey(theta=fl["theta"], a=fl["a"], b=fl["b"], m=fl["m"])
     X, PHI, M = collocation(model, np.array(pf), al, tm)
     xbox = dict(theta=fl["theta"], a=fl["a"], b=fl["b"], x_lo=float(B["x_lo"].min()), x_hi=float(B["x_hi"].max()))
-    geo = Geometry(tm, al, PHI, float(st.normS), float(st.normSi), xbox, B["diam"])
+    geo = Geometry(tm, st.str["alpha"], PHI, float(st.normS), float(st.normSi), xbox, B["diam"])
     geo.Qn, geo.DQn = B["Qn"], B["DQn"]
     nSi2 = float(up(float(st.normSi) * np.sqrt(2.0)))
     D2 = lipschitz_A_cells(st, B["x_lo"], B["x_hi"], a.tube)

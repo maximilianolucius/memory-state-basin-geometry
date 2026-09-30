@@ -18,7 +18,8 @@ import numpy as np
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from msbg.aposteriori import collocation                                    # noqa: E402
-from msbg.cap import cell_weights, up                                       # noqa: E402
+from msbg.rig import arb_lo, infl                                            # noqa: E402
+from msbg.validated import to_arb                                            # noqa: E402
 from msbg.models import AlleePredatorPrey                                   # noqa: E402
 from msbg.provenance import RunRecorder                                     # noqa: E402
 from msbg.validated import verify_cells                                     # noqa: E402
@@ -57,26 +58,27 @@ def main():
                          strs["p"], 0.0, prec=128, workers=args.workers, K=args.K)
     log(f"cells recomputed: R_max={cells.R.max():.3e}")
 
-    # state-error pad per cell (physical max-norm): |e|_inf <= |e|_2 <= ||S|| * Omega_n
-    # sup_{C_n}|I^a f| <= sum_{j<n} w_j(t_n) omega_j + w_n(t_{n+1}) omega_n   (see cap.state_sup)
-    Om = np.zeros(N)
-    for n in range(N):
-        past = float(np.dot(cell_weights(tm, tm[n], al)[:n], omega[:n])) if n else 0.0
-        Om[n] = past + float(cell_weights(tm, tm[n + 1], al)[n]) * omega[n]
-    pad = up(float(st.normS) * up(Om))
+    # state-error pad per cell (physical max-norm): |e|_inf <= |e|_2 <= ||S|| * Omega_n, where
+    # Omega_n = sup_{C_n}|I^a f| is the certified value saved with the certificate (cap.state_sup,
+    # Arb cell weights, Higham-inflated sums)
+    Om = cert["Omega"]
+    pad = infl(float(st.normS) * Om, 1)
     log(f"state pad: max {pad.max():.3e} at t={tm[int(np.argmax(pad))]:.2f}; at T {pad[-1]:.3e}; "
         f"adapted Omega max {Om.max():.3e}")
     rec.add("pad", dict(max=float(pad.max()), at_T=float(pad[-1]), Omega_max=float(Om.max())))
 
     # ---- entry certificate -----------------------------------------------------------------
-    th_lo = float(np.nextafter(st.theta_f, -np.inf))
-    xlo, xhi, ylo = cells.x_lo - pad, cells.x_hi + pad, cells.y_lo - pad
+    th_lo = arb_lo(to_arb(strs["theta"]))                       # float <= theta (exact rational)
+    xlo = np.nextafter(cells.x_lo - pad, -np.inf)               # outward-rounded widened boxes
+    xhi = np.nextafter(cells.x_hi + pad, np.inf)
+    ylo = np.nextafter(cells.y_lo - pad, -np.inf)
     ok = np.flatnonzero((xlo > 0) & (ylo > 0) & (xhi < th_lo))
     if len(ok):
-        k = int(ok[np.argmax(th_lo - xhi[ok])])
+        eta_all = np.nextafter(th_lo - xhi[ok], -np.inf)          # lower bound of the margin
+        k = int(ok[np.argmax(eta_all)])
         entry = {"verdict": "CERTIFIED", "time_box": [float(tm[k]), float(tm[k + 1])],
                  "x_box": [float(xlo[k]), float(xhi[k])], "y_lower": float(ylo[k]),
-                 "eta": float(th_lo - xhi[k]), "n_cells": int(len(ok)),
+                 "eta": float(np.nextafter(th_lo - xhi[k], -np.inf)), "n_cells": int(len(ok)),
                  "time_span_of_certified_cells": [float(tm[ok[0]]), float(tm[ok[-1] + 1])]}
         log(f"ENTRY CERTIFIED: t in [{tm[k]:.6f},{tm[k+1]:.6f}], x in [{xlo[k]:.6f},{xhi[k]:.6f}], "
             f"y >= {ylo[k]:.6f}, eta = {th_lo - xhi[k]:.6f}; {len(ok)} cells, "
@@ -105,7 +107,7 @@ def main():
           "norm": "adapted |S^-1 u|_2", "M_T_upper": mt["M_T_upper"], "M_T_terms": mt,
           "K_J_upper": K_up, "C0": C0, "c3": c3, "r": r_m1, "margin_lower": margin,
           "K_C_r_upper": KCr,
-          "state_at_T_box": [[float(xlo[-1]), float(xhi[-1])], [float(ylo[-1]), float(cells.y_hi[-1] + pad[-1])]]}
+          "state_at_T_box": [[float(xlo[-1]), float(xhi[-1])], [float(ylo[-1]), float(np.nextafter(cells.y_hi[-1] + pad[-1], np.inf))]]}
     log(f"M_T <= {mt['M_T_upper']:.5e} = linear flow {mt['term_linear_flow']:.3e} + far history "
         f"{mt['term_far_history']:.3e} + near history {mt['term_near_history']:.3e} (sigma1={mt['sigma1']})")
     log(f"M1 at r = {r_m1}: r - K C_r r^2 - M_T >= {margin:+.5e}, K C_r r <= {KCr:.4f} -> {m1['verdict']}")

@@ -120,7 +120,7 @@ def main():
     model = AlleePredatorPrey(theta=fl["theta"], a=fl["a"], b=fl["b"], m=fl["m"])
     X, PHI, M = collocation(model, np.array(pf), fl["alpha"], tm)
     xbox = dict(theta=fl["theta"], a=fl["a"], b=fl["b"], x_lo=float(B["x_lo"].min()), x_hi=float(B["x_hi"].max()))
-    geo = Geometry(tm, fl["alpha"], PHI, float(st.normS), float(st.normSi), xbox, B["diam"])
+    geo = Geometry(tm, st.str["alpha"], PHI, float(st.normS), float(st.normSi), xbox, B["diam"], workers=os.cpu_count())
     geo.Qn, geo.DQn = B["Qn"], B["DQn"]
     sfx = "_nobubble" if a.no_bubble else ""
     rec = RunRecorder(f"t6_stageD_{a.tag}{sfx}", ROOT)

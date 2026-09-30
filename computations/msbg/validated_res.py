@@ -115,18 +115,26 @@ class kernel_integrator:
     """
 
     def __init__(self, setup: Setup, s_max, workers=None):
-        self.al = setup.alpha_f
-        rho0 = float(up(s_max ** self.al)) * 1.0000001
+        from flint import arb, ctx
+        from .rig import arb_hi, defl, infl
+        ctx.prec = 128
+        self.al = setup.alpha_f                                   # float, diagnostics only
+        a = arb(setup.q["alpha"].p) / arb(setup.q["alpha"].q)
+        rho0 = arb_hi(arb(float(s_max)) ** a) * 1.0000001          # >= s_max^a (Arb)
         self.edges, self.env, self.mid = envelope_table(setup.spec, rho0, workers)
         w = np.diff(self.edges)
-        self.G = np.concatenate([[0.0], np.cumsum(up(self.env * w))]) * _UP     # upper cumulative
-        self.G_lo = np.concatenate([[0.0], np.cumsum(self.env * w)]) * (1 - 1e-12)
-        self.inv_a = float(up(1.0 / self.al))
+        n = np.arange(1, len(w) + 1)
+        cs = np.cumsum(infl(self.env * w, 1))
+        # cumulative sums: entry i is a sum of i terms -> Higham factor for length i
+        self.G = np.concatenate([[0.0], infl(cs, n + 1)])          # upper cumulative
+        self.G_lo = np.concatenate([[0.0], defl(np.cumsum(self.env * w), n + 1)])
+        self.inv_a = arb_hi(1 / a)
         self.rho0 = rho0
 
     def _Gup(self, rho):
+        from .rig import infl
         i = np.clip(np.searchsorted(self.edges, rho, side="right") - 1, 0, len(self.env) - 1)
-        return up(self.G[i] + self.env[i] * np.maximum(rho - self.edges[i], 0.0))
+        return infl(self.G[i] + self.env[i] * infl(np.maximum(rho - self.edges[i], 0.0), 1), 2)
 
     def _Glo(self, rho):
         i = np.clip(np.searchsorted(self.edges, rho, side="right") - 1, 0, len(self.env) - 1)
@@ -134,6 +142,8 @@ class kernel_integrator:
         return np.nextafter(v * (1 - 1e-12), -np.inf)
 
     def integral(self, s0, s1):
+        """NOT hardened (float pow): used only by the TASK-0004 resolvent recursion, which is
+        not on the TASK-0006/0007 certificate path."""
         s0 = np.maximum(np.asarray(s0, float), 0.0)
         s1 = np.asarray(s1, float)
         rb = np.minimum(up(s1 ** self.al), self.rho0)
@@ -148,7 +158,8 @@ class kernel_integrator:
         x0 = C["xl"] * arb(self.rho0)
         tail = C["B"] / (C["xl"] ** 2 * arb(self.rho0)) \
             + (-(C["c"] * x0 ** (1 / a))).exp() / (C["c"] * C["xl"])
-        return float(up((self.G[-1] + float(tail.abs_upper())) * self.inv_a))
+        from .rig import arb_hi, infl
+        return float(infl((self.G[-1] + arb_hi(tail)) * self.inv_a, 2))
 
 
 # ---------------------------------------------------------------------------
@@ -285,7 +296,8 @@ def memory_tail_bound(setup: Setup, tm, Nsup, K_up, sigma1_list=(25.0, 50.0, 100
         pole = (1 / a) * xl ** ((1 - a) / a) * (-(c * xl ** (1 / a) * s)).exp()
         return pole + s ** (a - 1) * C["B"] / (x * x)
 
-    term_phi = float(phi_b(T).abs_upper()) * setup.c_norm * _UP
+    from .rig import arb_hi, infl
+    term_phi = float(infl(arb_hi(phi_b(T)) * setup.c_norm, 1))
     h = np.diff(tm)
     best = None
     for s1 in sigma1_list:
@@ -300,10 +312,11 @@ def memory_tail_bound(setup: Setup, tm, Nsup, K_up, sigma1_list=(25.0, 50.0, 100
         ladder = np.geomspace(s1, max(T, s1 * 1.0001), 400)
         vals = np.array([float(psi_dec(float(np.nextafter(v, -np.inf))).abs_upper()) for v in ladder])
         idx = np.clip(np.searchsorted(ladder, dist, side="right") - 1, 0, len(ladder) - 1)
-        far_sum = float(up(np.dot(up(h[far] * vals[idx]), Nsup[far]))) * (1 + 1e-12)
+        from .rig import infl
+        far_sum = float(infl(np.dot(infl(h[far] * vals[idx], 1), Nsup[far]), int(far.sum()) + 1))
         near = float(np.max(Nsup[~far])) if (~far).any() else 0.0
-        near_term = float(up(near * K_up))
-        tot = float(up(term_phi + far_sum + near_term))
+        near_term = float(infl(near * K_up, 1))
+        tot = float(infl(term_phi + far_sum + near_term, 2))
         cand = {"sigma1": s1, "term_linear_flow": term_phi, "term_far_history": far_sum,
                 "term_near_history": near_term, "N_near_sup": near, "M_T_upper": tot}
         if best is None or tot < best["M_T_upper"]:
