@@ -181,7 +181,11 @@ Thus the target phenomenon requires genuinely coupled multidimensional dynamics 
 
 # 4. A strong-Allee predator--prey system
 
-We consider
+Writing the physical vector state as
+\[
+X(t)=(x(t),y(t)),
+\]
+we consider
 \[
 {}^CD^\alpha x
 =
@@ -479,32 +483,32 @@ K_JC_rr\le0.48857<1.
 \]
 Hence Theorem 4.2 yields
 \[
-x(t;p)\to E^*.
+X(t;p)\to E^*.
 \]
 
 We can now state the main result.
 
 ### Theorem 5.1. Multibasin reachable present-state fibers
 
-For the exact Caputo system and initial point above, define
+For the exact Caputo system and initial point above, write
 \[
-z(t)=x(t;p).
+z_*=X(t_*;p).
 \]
 For every
 \[
 t_*\in I_*=
 [5.8576774143,\ 13.7275388580],
 \]
-the physically reachable fiber \(\mathcal F_{z(t_*)}\) intersects both the extinction basin and the coexistence basin:
+the physically reachable fiber \(\mathcal F_{z_*}\) intersects both the extinction basin and the coexistence basin:
 \[
-\mathcal F_{z(t_*)}
+\mathcal F_{z_*}
 \cap
 \mathcal B(\iota(0,0))
 \neq\varnothing,
 \]
 and
 \[
-\mathcal F_{z(t_*)}
+\mathcal F_{z_*}
 \cap
 \mathcal B(\iota(E^*))
 \neq\varnothing.
@@ -512,7 +516,7 @@ and
 
 More explicitly,
 \[
-\iota(z(t_*))
+\iota(z_*)
 \in
 \mathcal B(\iota(0,0)),
 \]
@@ -524,29 +528,29 @@ T_{t_*}\iota(p)
 \]
 although
 \[
-e_0(\iota(z(t_*)))
+e_0(\iota(z_*))
 =
 e_0(T_{t_*}\iota(p))
 =
-z(t_*).
+z_*.
 \]
 
 #### Proof
 
 The certified finite-orbit enclosure gives
 \[
-z(t_*)\in R_{\rm ext}
+z_*\in R_{\rm ext}
 \]
 for every \(t_*\in I_*\).  Theorem 4.1 therefore implies
 \[
-\iota(z(t_*))
+\iota(z_*)
 \in
 \mathcal B(\iota(0,0)).
 \]
 
 The certified memory-tail inequality proves
 \[
-x(t;p)\to E^*.
+X(t;p)\to E^*.
 \]
 By Proposition 2.1,
 \[
@@ -569,9 +573,9 @@ e_0(T_{t_*}\iota(p))
 =
 x(t_*;p)
 =
-z(t_*)
+z_*
 =
-e_0(\iota(z(t_*))).
+e_0(\iota(z_*)).
 \]
 Thus both states lie in the same reachable present-state fiber and in distinct asymptotic basins. \(\square\)
 
