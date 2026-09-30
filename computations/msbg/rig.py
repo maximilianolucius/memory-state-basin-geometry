@@ -44,18 +44,32 @@ def gam(n):
     return np.nextafter(n * U / (1.0 - n * U), np.inf)
 
 
+_TINY = 2.0 ** -960          # results >= _TINY are normal: the relative rounding model applies
+
+
+def _factor_up(n):
+    """Float f with f >= 1 + 2 gamma_n + 3u in exact arithmetic (checked with Fractions for
+    scalar n), so that fl(x f) >= x f (1 - u) >= x (1 + 2 gamma_n) for normal results."""
+    g = gam(n)
+    return np.nextafter(1.0 + 2.0 * g + 4.0 * U, np.inf)
+
+
 def infl(x, n):
     """Upper bound of the exact value of a non-negative float result ``x`` obtained
     through at most ``n`` roundings per term (dot product of length n, sum of n+1 terms,
-    ...): x (1 + 2 gamma_n), rounded outward."""
+    ...).  Returns fl(x f) with f >= 1 + 2 gamma_n + 3u (so fl(x f) >= x (1 + 2 gamma_n)
+    >= exact whenever x f is normal); results below 2^-960 are replaced by 2^-960 (x > 0)."""
     x = np.asarray(x, dtype=np.float64)
-    return np.nextafter(x * (1.0 + 2.0 * gam(n)), np.inf)
+    y = x * _factor_up(n)
+    return np.where((x > 0) & (y < _TINY), _TINY, y)
 
 
 def defl(x, n):
-    """Lower bound counterpart of ``infl`` (x >= 0)."""
+    """Lower bound counterpart of ``infl`` (x >= 0): fl(x g), g <= 1 - 2 gamma_n - 3u; tiny -> 0."""
     x = np.asarray(x, dtype=np.float64)
-    return np.maximum(np.nextafter(x * (1.0 - 2.0 * gam(n)), -np.inf), 0.0)
+    g = np.nextafter(1.0 - 2.0 * gam(n) - 4.0 * U, -np.inf)
+    y = x * g
+    return np.where(y < _TINY, 0.0, np.maximum(y, 0.0))
 
 
 def arb_hi(x):

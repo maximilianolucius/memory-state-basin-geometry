@@ -106,3 +106,20 @@ def test_lipschitz_arb_dominates_sampled_directions():
                 e = S @ u
                 H = np.array([[c * e[0] - a * e[1], -a * e[0]], [b * e[1], b * e[0]]])
                 assert np.linalg.norm(Si @ H @ S) <= D2[n] * (1 + 1e-12)
+
+
+def test_infl_factor_is_valid_and_tiny_handling():
+    from fractions import Fraction
+    from msbg.rig import _factor_up
+    for n in (1, 2, 4, 1000, 24002, 36516):
+        f = Fraction(float(_factor_up(n)))
+        u = Fraction(1, 2**53)
+        g = n * u / (1 - n * u)
+        assert f >= 1 + 2 * g + 3 * u
+        # fl(x f) >= x f (1 - u) >= x (1 + 2 g)
+        assert f * (1 - u) >= 1 + 2 * g
+    x = np.array([0.0, 1e-300, 2.0**-1000, 1.0])
+    y = infl(x, 3)
+    assert y[0] == 0.0 and y[1] >= 1e-300 and y[2] >= 2.0**-1000 and y[3] > 1.0
+    z = defl(x, 3)
+    assert z[0] == 0.0 and z[2] == 0.0 and z[3] < 1.0

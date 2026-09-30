@@ -22,10 +22,11 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ap = argparse.ArgumentParser()
 ap.add_argument("--tag", required=True)
 ap.add_argument("--Nref", type=int, default=9000)
+ap.add_argument("--prefix", default="t6_stageD", help="t6_stageD (closure driver) or t6_stageBD (pipeline)")
 a = ap.parse_args()
 np.seterr(all="ignore")
 B = np.load(os.path.join(ROOT, "data", f"t6_stageBD_{a.tag}_blocks.npz"))
-C = np.load(os.path.join(ROOT, "data", f"t6_stageD_{a.tag}_certificate_weights.npz"))
+C = np.load(os.path.join(ROOT, "data", f"{a.prefix}_{a.tag}_certificate_weights.npz"))
 tm, Rn, Dn = B["tm"], B["Rn"], B["Dn"]
 om, th, be, Om = C["omega"], C["theta"], C["beta"], C["Omega"]
 N = len(tm) - 1
@@ -63,13 +64,13 @@ out["crosscheck_vs_independent_mesh"] = {"Nref": a.Nref, "rows": rows,
 #     ||h||_q = max_c max_n h_c[n]/q_c[n]  (q = contraction weights of the certificate):
 #     p(r) = Y0 + (Z1 + Z2a r - 1) r  with  Y0 >= ||B rho||_q, Z1 >= ||I - B(I-K)||_q,
 #     Z2a r >= sup_{||f||_q <= r} ||B(K_f - K)||_q  (D2 valid on the tube of the largest r used).
-Q = np.load(os.path.join(ROOT, "data", f"t6_stageD_{a.tag}_contraction_weights.npz"))
+Q = np.load(os.path.join(ROOT, "data", f"{a.prefix}_{a.tag}_contraction_weights.npz"))
 q0 = [Q["q_sup"], Q["q_osc"], Q["q_bub"]]
 xbox = dict(theta=fl["theta"], a=fl["a"], b=fl["b"], x_lo=float(B["x_lo"].min()), x_hi=float(B["x_hi"].max()))
 geo = Geometry(tm, st.str["alpha"], PHI, float(st.normS), float(st.normSi), xbox, B["diam"])
 geo.Qn, geo.DQn = B["Qn"], B["DQn"]
 nSi2 = float(up(float(st.normSi) * np.sqrt(2.0)))
-C2 = np.load(os.path.join(ROOT, "data", f"t6_stageD_{a.tag}_certificate_weights.npz"))
+C2 = np.load(os.path.join(ROOT, "data", f"{a.prefix}_{a.tag}_certificate_weights.npz"))
 bvec = [C2["omega"], C2["theta"], C2["beta"]]
 bmax = max(float(x.max()) for x in bvec)
 best = None

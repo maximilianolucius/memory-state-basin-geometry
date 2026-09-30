@@ -216,7 +216,15 @@ def nodal_data(tm, phi, strs, x_lo, x_hi, y_lo, y_hi, workers=None):
 # ---------------------------------------------------------------------------
 # rigorous dense inverse of L_h = I - A W  (source space)
 # ---------------------------------------------------------------------------
-def rigorous_inverse(Wm, Wr, Am, Ar):
+def _tick(log, label, _t=[None]):
+    import time
+    now = time.time()
+    if log is not None and _t[0] is not None:
+        log(f"   inverse stage '{label}': {now - _t[0]:.1f}s")
+    _t[0] = now
+
+
+def rigorous_inverse(Wm, Wr, Am, Ar, log=None):
     """Block bounds  Rn[n,k] >= ||(L_h^{-1})_{nk}||_2  and oscillation blocks (direct and Abel form).
 
     Rt: float inverse by forward substitution (any float matrix would do).  With the EXACT
@@ -233,6 +241,8 @@ def rigorous_inverse(Wm, Wr, Am, Ar):
     N1 = Wm.shape[0]
     m = 2 * N1
     K = N1
+    _tick(None, 'start')
+    _tick.__defaults__[0][0] = __import__('time').time()
     I2 = np.eye(2)
     F = np.zeros((N1, 2, m))
     for n in range(N1):
@@ -243,6 +253,7 @@ def rigorous_inverse(Wm, Wr, Am, Ar):
             rhs += Am[n] @ np.tensordot(Wm[n, :n], F[:n], axes=(0, 0))
         F[n] = np.linalg.solve(I2 - Wm[n, n] * Am[n], rhs)
     R4 = F.reshape(N1, 2, N1, 2)                          # [n, i, k, l]
+    _tick(log, 'substitution')
     absR = np.abs(R4)
     ar = np.arange(N1)
     # ---- float residual -------------------------------------------------------------------
@@ -251,6 +262,7 @@ def rigorous_inverse(Wm, Wr, Am, Ar):
     E0 = AWR - R4
     E0[ar, 0, ar, 0] += 1.0
     E0[ar, 1, ar, 1] += 1.0
+    _tick(log, 'float residual')
     # ---- certified entrywise bound of |E_exact| --------------------------------------------
     absA = np.abs(Am)
     absWR_hi = infl(np.tensordot(np.abs(Wm), absR, axes=(1, 0)), K)          # >= |Wm||Rt|
@@ -261,12 +273,12 @@ def rigorous_inverse(Wm, Wr, Am, Ar):
     WrR = infl(np.tensordot(Wr, absR, axes=(1, 0)), K)                         # Wr |Rt|
     AWrR = infl(np.einsum("nil,nlkm->nikm", infl(absA + Ar, 1), WrR), 2)       # (|A|+Ar) Wr |Rt|
     err_data = infl(ArW + AWrR, 1)
-    Ibig = np.zeros_like(absR)
-    Ibig[ar, 0, ar, 0] = 1.0
-    Ibig[ar, 1, ar, 1] = 1.0
-    err_fin = infl(gam(2) * infl(np.abs(AWR) + absR + Ibig, 2), 1)             # the two final +/-
+    err_fin = infl(gam(2) * infl(np.abs(AWR) + absR, 1), 1)                    # the two final +/- ...
+    err_fin[ar, 0, ar, 0] += 2.0 * gam(2)                                      # ... incl. the +I entries
+    err_fin[ar, 1, ar, 1] += 2.0 * gam(2)
     Eabs = infl(np.abs(E0) + err_prod + err_data + err_fin, 3)
-    del WR, AWR, E0, absWR_hi, A_absWR, A_absfWR, err_prod, ArW, WrR, AWrR, err_data, Ibig, err_fin
+    _tick(log, 'error terms')
+    del WR, AWR, E0, absWR_hi, A_absWR, A_absfWR, err_prod, ArW, WrR, AWrR, err_data, err_fin
     Em = Eabs.reshape(m, m)
     normE = float(infl(np.max(Em.sum(axis=1)), m))
     if normE >= 1.0:
@@ -274,6 +286,7 @@ def rigorous_inverse(Wm, Wr, Am, Ar):
     c = infl(infl(absR.reshape(m, m) @ Em, m).sum(axis=1), m)
     c = infl(c / (1.0 - normE), 1)
     delta = infl(np.sqrt(infl(c[0::2] ** 2 + c[1::2] ** 2, 3)), 1)
+    _tick(log, 'Neumann correction')
     del Em, Eabs
     fro = lambda X: infl(np.sqrt(infl(np.einsum("nikl->nk", X * X), 4)), 1)
     Rn = infl(fro(R4) + delta[:, None], 1)
@@ -290,12 +303,14 @@ def rigorous_inverse(Wm, Wr, Am, Ar):
     del Sabs
     Sn = infl(infl(fro(Sc), 1) + fro(Serr) + (np.arange(N1)[None, :] + 1.0) * infl(delta[1:, None] + delta[:-1, None], 1), 3)
     del Sc, Serr
+    _tick(log, 'Abel blocks')
     Sn[idx[:, None] < np.arange(N1)[None, :] - 1] = 0.0      # only k <= n+1 are used
     Dd[idx, :, idx, :] += R4[idx + 1, :, idx + 1, :]         # one more rounding on the diagonal blocks
     Dd[idx, :, idx + 1, :] = 0.0
     Dn = infl(infl(fro(Dd), 2) + infl(2.0 * delta[1:, None] + delta[:-1, None], 1), 1)
     del Dd
     Dn = np.stack([Dn, Sn], axis=0)                          # (2, N1-1, N1): direct and Abel blocks
+    _tick(log, 'direct blocks')
     return Rn, Dn, normE, delta, R4
 
 

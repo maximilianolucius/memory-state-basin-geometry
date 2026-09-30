@@ -1,0 +1,175 @@
+{
+  "task": "TASK-0001",
+  "environment": {
+    "hostname": "orion",
+    "platform": "Linux-7.0.0-34-generic-x86_64-with-glibc2.39",
+    "processor": "x86_64",
+    "cpu_count": 344,
+    "python": "3.12.3",
+    "python_executable": "/home/ecoventure/msbg/computations/../venv/bin/python",
+    "packages": {
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "mpmath": "1.4.1",
+      "sympy": null,
+      "flint": "0.9.0",
+      "matplotlib": "3.11.2"
+    },
+    "numpy_blas": {
+      "name": "scipy-openblas",
+      "found": true,
+      "version": "0.3.34.106.0",
+      "detection method": "pkgconfig",
+      "include directory": "/opt/_internal/cpython-3.12.13/lib/python3.12/site-packages/scipy_openblas64/include",
+      "lib directory": "/opt/_internal/cpython-3.12.13/lib/python3.12/site-packages/scipy_openblas64/lib",
+      "openblas configuration": "OpenBLAS 0.3.34.106.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64",
+      "pc file directory": "/project/.openblas"
+    },
+    "utc": "2026-09-30T19:29:45Z",
+    "seed": 20260929,
+    "git_commit": "dd5af481494e52bd3b584bdec0b242e9e08bfc8d",
+    "git_branch": "compute/task-0007",
+    "git_dirty": true,
+    "git_source": "launcher environment (rsync'd tree, not a checkout)"
+  },
+  "payload": {
+    "args": {
+      "T": 300.0,
+      "N": 12000,
+      "mesh": "file:data/t6_mesh_T300_N12000.npy",
+      "K": 32,
+      "workers": 48,
+      "iters": 300,
+      "tube": 0.01,
+      "tag": "h7_T300_N12000"
+    },
+    "inverse": {
+      "normE": 2.0909594410199578e-10,
+      "delta_max": 1.1796789520936484e-09,
+      "rowsum_max": 9.408297955178996,
+      "rowsum_T": 4.9400062114246825
+    },
+    "Q": {
+      "rowsum_max": 8.000856420592779,
+      "rem_rowsum_max": 0.2156597112886425
+    },
+    "geometry": {
+      "c_alpha": 0.059971654194778144,
+      "c_loc": 0.6114479684371507,
+      "c_prev_max": 0.12879655670725332,
+      "D2p": 34.278033380203816,
+      "EA_max": 0.0002607506952443698
+    },
+    "results": {
+      "bubble_component": true,
+      "spectral_radius": {
+        "cw_lower": 0.06848210722067118,
+        "cw_upper": 0.08426808985547214,
+        "n_iter": 80
+      },
+      "power_T1sup": {
+        "max": 0.08347084310676539,
+        "t": 0.0
+      },
+      "power_T2sup": {
+        "max": 0.0037754306846752104,
+        "t": 195.05895081865233
+      },
+      "power_T1osc": {
+        "max": 0.06455565769554071,
+        "t": 24.257730521483364
+      },
+      "power_T2osc": {
+        "max": 0.0834705252617573,
+        "t": 0.0
+      },
+      "power_T1bub": {
+        "max": 0.0,
+        "t": 0.0
+      },
+      "power_T2bub": {
+        "max": 0.08347087260735016,
+        "t": 0.0
+      },
+      "iteration": {
+        "converged": true,
+        "n_iter": 14,
+        "last": {
+          "it": 13,
+          "growth": [
+            1.0000000001225684,
+            1.0000000000183982,
+            1.0000000000145732
+          ],
+          "lin_ratio": 0.9371018414436028,
+          "omega_max": 0.0003146257987687215,
+          "theta_max": 0.0010375711415743275,
+          "beta_max": 0.00030431949237653093,
+          "Omega_max": 0.0004825589442632176
+        }
+      },
+      "certificate": {
+        "ok": true,
+        "ratio_nonconstant_part_b_norm": 0.9507624605058981,
+        "min_slack": 0.0006025400844642537,
+        "eps": 0.01,
+        "radii_polynomial_componentwise_max": -0.0006025400844642537,
+        "D2_max": 5.544193798823699,
+        "D2_at_T": 0.8264112511602947,
+        "tube_phys": 0.00022228154716463438,
+        "omega_max": 0.00031777205675640873,
+        "omega_median": 5.724074725551174e-06,
+        "omega_T": 2.0620797336140762e-06,
+        "theta_max": 0.0010479468529900708,
+        "beta_max": 0.00030736268730029625,
+        "state_err_adapted_max": 0.00048738453371174114,
+        "state_err_adapted_T": 0.00048738453371174114,
+        "state_err_phys_max": 0.00022228154716463438,
+        "contraction_q_norm": 0.08619854428250986,
+        "banach": true
+      },
+      "radii_polynomial_weighted_norm": {
+        "Y0": 0.990098201058501,
+        "Z1": 0.9371018414436021,
+        "Z2_at_r1": 0.4567893188308223,
+        "p_at_r1": 1.3839893613329255,
+        "note": "upper bounds; p(1) = Y0 + Z1 + Z2(1) - 1 (componentwise F(b) < b is the sharper statement)"
+      }
+    },
+    "mesh": {
+      "N": 12000,
+      "T": 300.0,
+      "h_min": 1.3888888888889146e-09,
+      "h_max": 0.05793671173853454
+    },
+    "cells": {
+      "R_max": 2.019348422270042e-05,
+      "normA_max": 15.607422799437353,
+      "oscA_max": 0.02558949847835781,
+      "rho_node_max": 9.801402536332913e-09
+    },
+    "wall_seconds": 1507.965
+  },
+  "artifacts": [
+    {
+      "path": "/home/ecoventure/msbg/computations/data/t6_stageBD_h7_T300_N12000_blocks.npz",
+      "sha256": "a99c87449825f1bb6b62aa0a61522407c4c0ee8aaae9dfd8be3ca9cdd04ac750",
+      "bytes": 3657091624
+    },
+    {
+      "path": "/home/ecoventure/msbg/computations/data/t6_stageBD_h7_T300_N12000_iteration_history.json",
+      "sha256": "540b5e3a221de9caf499a48d2081c4c74727e3614cfac31b8ab2179990d1e198",
+      "bytes": 4446
+    },
+    {
+      "path": "/home/ecoventure/msbg/computations/data/t6_stageBD_h7_T300_N12000_contraction_weights.npz",
+      "sha256": "14a3c367b213266d4104b201e2294ec4f179d4cc7e95530bce549b05579e0071",
+      "bytes": 361240
+    },
+    {
+      "path": "/home/ecoventure/msbg/computations/data/t6_stageBD_h7_T300_N12000_certificate_weights.npz",
+      "sha256": "311840d07e36b24f01b86d423ed6c51a9cfa988f3708929069bd0476cfb1e751",
+      "bytes": 697779
+    }
+  ]
+}

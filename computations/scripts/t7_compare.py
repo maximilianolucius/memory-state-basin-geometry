@@ -39,7 +39,7 @@ def main():
     add("c_prev max", bo["geometry"]["c_prev_max"], bn["geometry"]["c_prev_max"])
     add("EA max", bo["geometry"]["EA_max"], bn["geometry"]["EA_max"])
     add("R_max (cell defect)", bo["cells"]["R_max"], bn["cells"]["R_max"])
-    ro = bo["results"] if "results" in bo else P(f"t6_stageD_{old}")["results"]
+    ro = P(f"t6_stageD_{old}")["results"]          # the final TASK-0006 closure (three components)
     rn = bn["results"]
     add("rho(M) upper", ro["spectral_radius"]["cw_upper"], rn["spectral_radius"]["cw_upper"])
     add("rho(M) lower", ro["spectral_radius"]["cw_lower"], rn["spectral_radius"]["cw_lower"])

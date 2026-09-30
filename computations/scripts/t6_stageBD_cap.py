@@ -105,7 +105,7 @@ def main():
     log(f"nodal data: rho_node max {rho.max():.3e}, ||A|| max {normA.max():.4g}, "
         f"osc A max {oscA.max():.3e}, A rad max {Ar.max():.2e}")
 
-    Rn, Dn, normE, delta, R4 = rigorous_inverse(Wm, Wr, Am, Ar)
+    Rn, Dn, normE, delta, R4 = rigorous_inverse(Wm, Wr, Am, Ar, log=log)
     amp_row = Rn.sum(1)
     log(f"inverse: ||E||_inf={normE:.3e}, delta max {delta.max():.3e}, "
         f"row-sum max {amp_row.max():.4g} at t={tm[int(np.argmax(amp_row))]:.2f}, at T {amp_row[-1]:.4g}")
