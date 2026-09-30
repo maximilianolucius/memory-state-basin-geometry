@@ -1,52 +1,49 @@
-\begin{tikzpicture}[x=9.2cm,y=1cm,every node/.style={font=\footnotesize}]
-  % axes
-  \draw[->] (0,0.35) -- (0.125,0.35) node[anchor=west] {\(r\)-budget};
-  \foreach \x/\lab in {0/0,0.02/0.02,0.04/0.04,0.06/0.06,0.08/0.08,0.10/0.10,0.12/0.12}{
+\begin{tikzpicture}[x=0.78cm,y=1cm,every node/.style={font=\footnotesize}]
+  % Horizontal budget axis in units of 0.01
+  \draw[->] (0,0.35) -- (12.7,0.35) node[anchor=west] {\(r\)-budget};
+  \foreach \x/\lab in {0/0,2/0.02,4/0.04,6/0.06,8/0.08,10/0.10,12/0.12}{
     \draw (\x,0.28)--(\x,0.42);
     \node[below] at (\x,0.28) {\lab};
   }
 
-  \node[anchor=east,font=\small\bfseries] at (-0.003,2.70) {\(T=300\)};
-  \node[anchor=east,font=\small\bfseries] at (-0.003,1.25) {\(T=1000\)};
+  \node[anchor=east,font=\small\bfseries] at (-0.18,2.70) {\(T=300\)};
+  \node[anchor=east,font=\small\bfseries] at (-0.18,1.25) {\(T=1000\)};
 
-  % T=300 stacked bar
-  \fill[black!20] (0,2.45) rectangle (0.0432324134,2.95);
-  \fill[black!45] (0.0432324134,2.45) rectangle (0.0974873734,2.95);
-  \fill[black!70] (0.0974873734,2.45) rectangle (0.11105,2.95);
-  \draw (0,2.45) rectangle (0.11105,2.95);
+  % Values below are 100 times the actual radius components.
+  % T=300: M=0.0432324134, nonlinear=0.0542549600, margin=0.0135626266.
+  \fill[black!20] (0,2.45) rectangle (4.32324134,2.95);
+  \fill[black!45] (4.32324134,2.45) rectangle (9.74873734,2.95);
+  \fill[black!70] (9.74873734,2.45) rectangle (11.105,2.95);
+  \draw (0,2.45) rectangle (11.105,2.95);
 
-  % T=1000 stacked bar
-  \fill[black!20] (0,1.00) rectangle (0.0154785828,1.50);
-  \fill[black!45] (0.0154785828,1.00) rectangle (0.0697636399,1.50);
-  \fill[black!70] (0.0697636399,1.00) rectangle (0.11110,1.50);
-  \draw (0,1.00) rectangle (0.11110,1.50);
+  % T=1000: M=0.0154785828, nonlinear=0.0542850571, margin=0.0413363601.
+  \fill[black!20] (0,1.00) rectangle (1.54785828,1.50);
+  \fill[black!45] (1.54785828,1.00) rectangle (6.97636399,1.50);
+  \fill[black!70] (6.97636399,1.00) rectangle (11.110,1.50);
+  \draw (0,1.00) rectangle (11.110,1.50);
 
-  % labels on bars
-  \node[align=center] at (0.0216,2.70) {\(M_T\)};
-  \node[align=center] at (0.07036,2.70) {\(K_JC_rr^2\)};
-  \node[align=center,text=white] at (0.10427,2.70) {margin};
+  \node[align=center] at (2.1616,2.70) {\(M_T\)};
+  \node[align=center] at (7.0360,2.70) {\(K_JC_rr^2\)};
+  \node[align=center,text=white] at (10.4269,2.70) {margin};
 
-  \node[align=center] at (0.00774,1.25) {\(M_T\)};
-  \node[align=center] at (0.04262,1.25) {\(K_JC_rr^2\)};
-  \node[align=center,text=white] at (0.09043,1.25) {margin};
+  \node[align=center] at (0.7739,1.25) {\(M_T\)};
+  \node[align=center] at (4.2621,1.25) {\(K_JC_rr^2\)};
+  \node[align=center,text=white] at (9.0432,1.25) {margin};
 
-  % numeric annotations
-  \node[anchor=west] at (0.1130,2.70)
-    {\(r=0.11105,\ \Delta\ge0.0135626\)};
-  \node[anchor=west] at (0.1130,1.25)
-    {\(r=0.11110,\ \Delta\ge0.0413364\)};
+  \node[anchor=west] at (11.35,2.70)
+    {\(\Delta\ge0.0135626\)};
+  \node[anchor=west] at (11.35,1.25)
+    {\(\Delta\ge0.0413364\)};
 
-  % legend
-  \draw[fill=black!20] (0.002,3.65) rectangle (0.008,3.93);
-  \node[anchor=west] at (0.009,3.79) {inherited linear-memory bound \(M_T\)};
-  \draw[fill=black!45] (0.050,3.65) rectangle (0.056,3.93);
-  \node[anchor=west] at (0.057,3.79) {nonlinear tail allowance};
-  \draw[fill=black!70] (0.091,3.65) rectangle (0.097,3.93);
-  \node[anchor=west] at (0.098,3.79) {strict M1 margin};
-
-  % term decomposition mini panel
-  \node[anchor=west,font=\small\bfseries] at (0,4.65)
+  \node[anchor=west,font=\small\bfseries] at (0,4.55)
     {Primary \(M_T\) decomposition};
-  \node[anchor=west] at (0,4.30)
-    {\(0.0401572\) linear flow \(+\ 0.00127068\) far history \(+\ 0.00180450\) near history};
+  \node[anchor=west] at (0,4.13)
+    {\(0.0401572\) linear \(+\ 0.00127068\) far history \(+\ 0.00180450\) near history};
+
+  \draw[fill=black!20] (0,3.42) rectangle (0.55,3.72);
+  \node[anchor=west] at (0.68,3.57) {\(M_T\)};
+  \draw[fill=black!45] (2.10,3.42) rectangle (2.65,3.72);
+  \node[anchor=west] at (2.78,3.57) {nonlinear tail};
+  \draw[fill=black!70] (6.00,3.42) rectangle (6.55,3.72);
+  \node[anchor=west] at (6.68,3.57) {strict M1 margin};
 \end{tikzpicture}
