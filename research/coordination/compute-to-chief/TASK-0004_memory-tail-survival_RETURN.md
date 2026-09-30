@@ -5,7 +5,7 @@
 **Task:** `research/coordination/chief-to-compute/TASK-0004_memory-tail-survival_REQUEST.md`
 **Date:** 2026-09-29
 **Branch:** `compute/task-0004`
-**Final commit SHA:** see §10
+**Final commit SHA:** `56abcfba43` (§10)
 
 ---
 
@@ -389,7 +389,9 @@ scripts `t4_*`; tests `test_memory_tail.py` (12).
 
 ```
 branch: compute/task-0004
-commit: FINAL_SHA
+commit: 56abcfba436c139297ca5c7540fdd2ac6783f042
+
+That commit carries every artifact cited here; the only later commit writes this SHA.
 ```
 
 ---
