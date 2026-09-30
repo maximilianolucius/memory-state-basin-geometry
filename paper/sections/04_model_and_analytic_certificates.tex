@@ -1,0 +1,245 @@
+\section{Strong-Allee dynamics and analytic basin certificates}
+\label{sec:model}
+
+Writing the physical vector state as
+\[
+  X(t)=(x(t),y(t)),
+\]
+we consider
+\begin{subequations}
+\label{eq:model}
+\begin{align}
+  \CapD x
+  &=
+  x(1-x)(x-\theta)-axy,
+  \label{eq:model-x}\\
+  \CapD y
+  &=
+  y(bx-m),
+  \label{eq:model-y}
+\end{align}
+\end{subequations}
+with
+\[
+  0<\alpha<1,
+  \qquad
+  a,b,m>0,
+  \qquad
+  0<\theta<1.
+\]
+The underlying ecological vector field has been studied previously at integer order
+\cite{YeEtAl2019StrongAlleePredatorPrey}; here it serves as a transparent positive system in which continuation-state basin geometry can be resolved rigorously.
+
+If
+\[
+  \theta<\frac{m}{b}<1,
+\]
+the positive coexistence equilibrium is
+\begin{equation}
+  \Eeq=(x^*,y^*),
+  \qquad
+  x^*=\frac{m}{b},
+  \qquad
+  y^*=\frac{(1-x^*)(x^*-\theta)}{a}.
+  \label{eq:coexistence-equilibrium}
+\end{equation}
+The Jacobian at \(\Eeq\) is
+\begin{equation}
+  J=
+  \begin{pmatrix}
+    x^*(1+\theta-2x^*) & -ax^*\\
+    by^* & 0
+  \end{pmatrix}.
+  \label{eq:coexistence-jacobian}
+\end{equation}
+
+\subsection{Cold-start extinction}
+
+\begin{theorem}[Cold-start extinction strip]
+\label{thm:extinction-strip}
+Assume
+\[
+  \theta<\frac{m}{b}
+\]
+and define
+\begin{equation}
+  \Ext
+  =
+  \{(x,y):0<x<\theta,\ y\ge0\}.
+  \label{eq:extinction-strip}
+\end{equation}
+Then every standard point initial condition in \(\Ext\) generates a global nonnegative solution satisfying
+\[
+  X(t)\to(0,0).
+\]
+Equivalently,
+\[
+  \iota(\Ext)\subset\Basin(\iota(0,0)).
+\]
+\end{theorem}
+
+\begin{proof}
+The vector field is locally Lipschitz and quasi-positive on the coordinate axes. Caputo viability and extremum results
+\cite{GirejkoMozyrskaWyrwas2011Viability,AlRefai2012ExtremePoints}
+therefore preserve the nonnegative cone.
+
+Let \(u\) solve
+\[
+  \CapD u=u(1-u)(u-\theta),
+  \qquad
+  u(0)=x_0.
+\]
+Since \(y(t)\ge0\),
+\[
+  \CapD x
+  \le
+  x(1-x)(x-\theta).
+\]
+The scalar comparison principle \cite{Wu2020Comparison} yields
+\[
+  0\le x(t)\le u(t).
+\]
+For \(0<x_0<\theta\), the scalar strong-Allee solution remains below \(\theta\) and converges to zero, hence
+\[
+  x(t)\to0
+  \qquad\text{and}\qquad
+  x(t)<\theta.
+\]
+
+Set
+\[
+  \delta=m-b\theta>0.
+\]
+Then
+\[
+  \CapD y
+  =
+  y(bx-m)
+  \le
+  -\delta y.
+\]
+Comparison with
+\[
+  \CapD v=-\delta v,
+  \qquad
+  v(0)=y_0,
+\]
+gives
+\[
+  0\le y(t)\le y_0E_\alpha(-\delta t^\alpha)\to0.
+\]
+The resulting bounds exclude finite-time blow-up by the continuation theorem of Wu and Liu
+\cite{WuLiu2020Continuation}. Therefore the solution is global and tends to \((0,0)\).
+\end{proof}
+
+\subsection{Inherited-memory survival}
+
+A late physical near-hit to \(\Eeq\) is not a valid survival proof for a Caputo trajectory because restarting at that physical point discards the inherited memory. We therefore retain the entire prehistory explicitly.
+
+Write
+\[
+  U=X-\Eeq
+\]
+and
+\begin{equation}
+  \CapD U=JU+N(U).
+  \label{eq:linearized-system}
+\end{equation}
+Define
+\[
+  \Psi_J(t)
+  =
+  t^{\alpha-1}E_{\alpha,\alpha}(Jt^\alpha).
+\]
+Under the Matignon sector condition, stable Mittag--Leffler estimates imply
+\[
+  K_J
+  :=
+  \int_0^\infty\|\Psi_J(s)\|\,ds
+  <\infty
+\]
+\cite{CongDoanTuan2017Perron,CongTuanTrinh2020Asymptotic,Becker2011WeaklySingularResolvents}.
+
+\begin{theorem}[Memory-tail survival criterion]
+\label{thm:memory-tail}
+Suppose that, for some \(r>0\),
+\[
+  \|N(U)\|
+  \le
+  C_r\|U\|^2
+  \qquad
+  (\|U\|\le r).
+\]
+For a finite cut \(T\), define
+\begin{equation}
+  v_T(t)
+  =
+  E_\alpha(Jt^\alpha)U_0
+  +
+  \int_0^T
+  \Psi_J(t-s)N(U(s))\,ds,
+  \qquad t\ge T,
+  \label{eq:memory-response}
+\end{equation}
+and
+\[
+  M_T
+  =
+  \sup_{t\ge T}\|v_T(t)\|.
+\]
+If
+\begin{equation}
+  M_T+K_JC_rr^2<r,
+  \label{eq:M1}
+\end{equation}
+then
+\[
+  U(t)\to0.
+\]
+\end{theorem}
+
+\begin{proof}
+Variation of constants gives the exact split
+\begin{equation}
+  U(t)
+  =
+  v_T(t)
+  +
+  \int_T^t
+  \Psi_J(t-s)N(U(s))\,ds.
+  \label{eq:exact-memory-split}
+\end{equation}
+This is a decomposition of the original trajectory, not a restart at time \(T\).
+
+If \(t_e\) were a first exit from the radius-\(r\) ball after \(T\), then
+\[
+  \|U(t_e)\|
+  \le
+  M_T+
+  \int_T^{t_e}
+  \|\Psi_J(t_e-s)\|C_rr^2\,ds
+  \le
+  M_T+K_JC_rr^2<r,
+\]
+a contradiction. Hence the trajectory remains in the ball.
+
+Inside the ball,
+\[
+  \|N(U)\|\le C_rr\|U\|,
+\]
+and \eqref{eq:M1} implies
+\[
+  K_JC_rr<1.
+\]
+The term \(v_T(t)\) tends to zero: the homogeneous term decays by Mittag--Leffler stability, while the finite-history convolution in \eqref{eq:memory-response} tends to zero because \(\Psi_J(t-s)\to0\) for each fixed \(s\in[0,T]\).
+
+Set
+\[
+  L=\limsup_{t\to\infty}\|U(t)\|.
+\]
+Splitting the nonlinear convolution in \eqref{eq:exact-memory-split} at a large fixed time and using \(\Psi_J\in L^1(\mathbb{R}_+)\) gives
+\[
+  L\le K_JC_rr\,L.
+\]
+Since \(K_JC_rr<1\), one obtains \(L=0\).
+\end{proof}
