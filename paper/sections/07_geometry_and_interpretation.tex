@@ -54,4 +54,11 @@ The successful certificate therefore preserves the block-matrix signs in
 \]
 and validates the inverse before applying nonnegative componentwise bounds to the remaining interpolation and nonlinear terms. This separation between a sign-aware linear inverse and a positive nonlinear enclosure is the practical reason the long excursion can be certified.
 
+\begin{figure}[t]
+  \centering
+  \resizebox{\textwidth}{!}{\input{figures/fig06_amplification}}
+  \caption{Diagnostic comparison of pessimistic absolute-value amplification with the orbit-linearized sign-aware response.  Panel (a) shows the reduction in state-error amplification for the original W1 witness and the final B215 benchmark.  Panel (b) shows the substantially smaller amplification into the history functional entering \(M_T\).  These values motivate the validation architecture but are numerical diagnostics, not proof inequalities.}
+  \label{fig:amplification}
+\end{figure}
+
 These diagnostics motivate the proof architecture, but they are not themselves part of the logical content of \cref{thm:principal}. The theorem depends only on the final validated self-map, contraction, threshold entry, and memory-tail inequalities.
