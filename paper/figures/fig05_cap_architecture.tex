@@ -1,37 +1,26 @@
 \begin{tikzpicture}[
-  node distance=7mm and 11mm,
-  box/.style={draw,rounded corners,align=center,minimum height=8mm,minimum width=28mm,font=\footnotesize},
-  cert/.style={draw,rounded corners,align=center,minimum height=8mm,minimum width=28mm,font=\footnotesize,fill=black!8},
+  node distance=8mm and 12mm,
+  box/.style={draw,rounded corners,align=center,minimum height=10mm,minimum width=31mm,font=\small},
+  cert/.style={draw,rounded corners,align=center,minimum height=10mm,minimum width=31mm,font=\small,fill=black!8},
   arr/.style={->,thick}
 ]
-  \node[box] (center) {numerical center\\\(\widehat X=p+I^\alpha\phi\)};
-  \node[box,right=of center] (res) {source residual\\\(\rho=\phi-g(\widehat X)\)};
-  \node[box,right=of res] (lin) {orbit linearization\\\(A(t)=Dg(\widehat X(t))\)};
+  \node[box] (center) {numerical center\\and source residual};
+  \node[box,right=of center] (inv) {orbit-linearized\\verified inverse};
+  \node[cert,right=of inv] (close) {cellwise self-map\\+\ Perron contraction};
 
-  \node[box,below=of center] (disc) {source-space operator\\\(L_h=I-AW\)};
-  \node[cert,right=of disc] (inv) {verified inverse\\\(\|I-L_h\widetilde R\|_\infty\le2.09\times10^{-10}\)};
-  \node[box,right=of inv] (B) {continuous inverse model\\\(B=L_h^{-1}\pi+(I-\pi)\)};
+  \node[cert,below=13mm of inv] (tube) {unique exact\\trajectory tube};
 
-  \node[cert,below=of disc] (self) {cellwise self-map\\\(F(b)<b\)\\slack \(\ge6.036\times10^{-4}\)};
-  \node[cert,right=of self] (contr) {Perron contraction\\\(\kappa\le0.083612\)};
-  \node[cert,right=of contr] (exact) {unique exact source \(f^*\)\\\(\mathcal H(f^*)=0\)};
+  \node[cert,below left=12mm and 19mm of tube] (entry)
+    {threshold entry\\feeds X1};
+  \node[cert,below right=12mm and 19mm of tube] (tail)
+    {validated history\\feeds M1};
 
-  \node[cert,below=of contr] (tube) {exact state tube\\\(\|X-\widehat X\|_2\le2.2193\times10^{-4}\)};
-  \node[cert,left=of tube] (entry) {threshold entry\\\(0<x<1/2,\ y>0\)\\on \(I_*\)};
-  \node[cert,right=of tube] (tail) {memory-tail constants\\\(M_T+K_JC_rr^2<r\)};
-
-  \draw[arr] (center)--(res);
-  \draw[arr] (res)--(lin);
-  \draw[arr] (lin.south) |- (disc.east);
-  \draw[arr] (disc)--(inv);
-  \draw[arr] (inv)--(B);
-  \draw[arr] (B.south) |- (self.east);
-  \draw[arr] (self)--(contr);
-  \draw[arr] (contr)--(exact);
-  \draw[arr] (exact.south) |- (tube.east);
+  \draw[arr] (center)--(inv);
+  \draw[arr] (inv)--(close);
+  \draw[arr] (close.south) |- (tube.east);
   \draw[arr] (tube)--(entry);
   \draw[arr] (tube)--(tail);
 
-  \node[font=\footnotesize,align=center,below=6mm of tube]
-    {finite-history CAP closes the exact trajectory; entry feeds X1, and the same validated history feeds M1};
+  \node[font=\footnotesize,align=center,below=7mm of tube]
+    {\(L_h=I-AW\), \qquad \(F(b)<b\), \qquad \(\kappa<1\)};
 \end{tikzpicture}
