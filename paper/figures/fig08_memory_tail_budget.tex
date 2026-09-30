@@ -1,0 +1,52 @@
+\begin{tikzpicture}[x=9.2cm,y=1cm,every node/.style={font=\footnotesize}]
+  % axes
+  \draw[->] (0,0.35) -- (0.125,0.35) node[anchor=west] {\(r\)-budget};
+  \foreach \x/\lab in {0/0,0.02/0.02,0.04/0.04,0.06/0.06,0.08/0.08,0.10/0.10,0.12/0.12}{
+    \draw (\x,0.28)--(\x,0.42);
+    \node[below] at (\x,0.28) {\lab};
+  }
+
+  \node[anchor=east,font=\small\bfseries] at (-0.003,2.70) {\(T=300\)};
+  \node[anchor=east,font=\small\bfseries] at (-0.003,1.25) {\(T=1000\)};
+
+  % T=300 stacked bar
+  \fill[black!20] (0,2.45) rectangle (0.0432324134,2.95);
+  \fill[black!45] (0.0432324134,2.45) rectangle (0.0974873734,2.95);
+  \fill[black!70] (0.0974873734,2.45) rectangle (0.11105,2.95);
+  \draw (0,2.45) rectangle (0.11105,2.95);
+
+  % T=1000 stacked bar
+  \fill[black!20] (0,1.00) rectangle (0.0154785828,1.50);
+  \fill[black!45] (0.0154785828,1.00) rectangle (0.0697636399,1.50);
+  \fill[black!70] (0.0697636399,1.00) rectangle (0.11110,1.50);
+  \draw (0,1.00) rectangle (0.11110,1.50);
+
+  % labels on bars
+  \node[align=center] at (0.0216,2.70) {\(M_T\)};
+  \node[align=center] at (0.07036,2.70) {\(K_JC_rr^2\)};
+  \node[align=center,text=white] at (0.10427,2.70) {margin};
+
+  \node[align=center] at (0.00774,1.25) {\(M_T\)};
+  \node[align=center] at (0.04262,1.25) {\(K_JC_rr^2\)};
+  \node[align=center,text=white] at (0.09043,1.25) {margin};
+
+  % numeric annotations
+  \node[anchor=west] at (0.1130,2.70)
+    {\(r=0.11105,\ \Delta\ge0.0135626\)};
+  \node[anchor=west] at (0.1130,1.25)
+    {\(r=0.11110,\ \Delta\ge0.0413364\)};
+
+  % legend
+  \draw[fill=black!20] (0.002,3.65) rectangle (0.008,3.93);
+  \node[anchor=west] at (0.009,3.79) {inherited linear-memory bound \(M_T\)};
+  \draw[fill=black!45] (0.050,3.65) rectangle (0.056,3.93);
+  \node[anchor=west] at (0.057,3.79) {nonlinear tail allowance};
+  \draw[fill=black!70] (0.091,3.65) rectangle (0.097,3.93);
+  \node[anchor=west] at (0.098,3.79) {strict M1 margin};
+
+  % term decomposition mini panel
+  \node[anchor=west,font=\small\bfseries] at (0,4.65)
+    {Primary \(M_T\) decomposition};
+  \node[anchor=west] at (0,4.30)
+    {\(0.0401572\) linear flow \(+\ 0.00127068\) far history \(+\ 0.00180450\) near history};
+\end{tikzpicture}
