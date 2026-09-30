@@ -2,22 +2,13 @@
 
 ## Completed
 
-ROUND-0001 through ROUND-0006 COMPLETE.
+ROUND-0001 through ROUND-0006 complete.
 
-ROUND-0006 supplied:
-- Banach-space radii-polynomial theorem;
-- weakly singular nonautonomous Volterra resolvent support;
-- high-order graded collocation support;
-- validated-numerics novelty boundaries.
+## Active
 
-## Current posture
+### ROUND-0007 — final TARGET-A20 hostile novelty audit
 
-No active web task.
+Request:
+\`research/coordination/chief-to-web/ROUND-0007_final-target-a20-novelty_REQUEST.md\`
 
-The exact oscillation-Banach specialization is proved internally from the generic published theorem and elementary projection identities.
-
-## Next trigger
-
-Only if TASK-0006 closes TARGET-A20:
-
-launch the final theorem-specific hostile novelty audit before manuscript mode.
+This is the final novelty gate before manuscript mode.
