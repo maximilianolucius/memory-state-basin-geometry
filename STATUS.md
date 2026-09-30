@@ -1,76 +1,56 @@
 # Status
 
-**Phase:** MANUSCRIPT CORE BUILT — TASK-0007 PUBLICATION HARDENING ACTIVE
+**Phase:** MANUSCRIPT FINALIZATION — ALL THREE INTERNAL REFEREE PASSES CLOSED
 
 ## Scientific theorem
 
-TARGET-A20 is proved by certified computation under the currently declared arithmetic model.
+TARGET-A20 is proved.
 
 Final novelty verdict:
 \[
-\boxed{\text{NOVELTY SURVIVES WITH CLAIM NARROWING}.}
+\boxed{\text{NOVELTY SURVIVES WITH CLAIM NARROWING}}.
 \]
 
-## Locked principal contribution
+## Principal computational evidence
 
-For every
+TASK-0007 is complete and promoted to the principal baseline:
 \[
-t\in I_*=[5.8576774143,13.7275388580],
+\boxed{\text{END-TO-END VERIFIED ELEMENTARY-FUNCTION ENCLOSURES}}.
 \]
-the reached physical value \(X(t;p)\) has a physically reachable present-state fiber that intersects both extinction and coexistence basins.
 
-This is a nondegenerate time-interval statement. Injectivity of
-\[
-t\mapsto X(t;p)
-\]
-is not claimed.
+This is not a claim of fully interval arithmetic. Remaining load-bearing binary64 algebra is covered by explicit Higham roundoff bounds.
 
-## Manuscript state
+Principal hardened certificate:
+- \(T=300,N=12000\);
+- \(\|E\|_\infty\le2.09096\times10^{-10}\);
+- self-map slack \(\ge6.0254\times10^{-4}\);
+- \(\kappa\le0.0861986\);
+- physical tube \(\le2.22282\times10^{-4}\);
+- 836 certified entry cells on \(I_*=[5.8576774143,13.7275388580]\);
+- \(M_T\le0.0432327049\);
+- M1 margin \(\ge0.0135623350\).
 
-The theorem-first manuscript now has:
-- title/abstract/keywords draft;
-- Sections 1--9 in modular LaTeX;
-- explicit compact-open basin definition;
-- cutoff localization putting the polynomial B215 witnesses inside the published Doan--Kloeden global-Lipschitz framework;
-- X1, M1, principal theorem, and self-contained CAP criterion;
-- certified-entry, same-present, CAP-architecture, amplification, and memory-tail figures;
-- prior-art and certificate tables;
-- reproducibility statement.
+## Manuscript
 
-A successful GitHub Actions LaTeX/BibTeX build at manuscript commit
-`0d96a99c5ac5d9a75ef1aa4431150b981cf460fc`
-produced **23 pages**.
+- Sections 1--9 complete in modular LaTeX;
+- title/abstract/keywords drafted;
+- compact-open basin architecture and cutoff localization explicit;
+- X1, M1, principal theorem, CAP criterion self-contained;
+- theorem-level figures and tables integrated;
+- reproducibility statement updated to TASK-0007;
+- 24 unique cited references, formally published only.
 
-The post-cutoff / visual-cleanup build is the current CI target and must remain \(\le25\) pages.
+Last confirmed successful build before TASK-0007 promotion: 23 pages.
 
-## Referee passes
+## Internal referee passes
 
-- Pass 1 — theorem chain: **PASS WITH MINOR FIXES**, all fixes incorporated.
-- Pass 2 — imported theorem hypotheses: cutoff issue identified and now **RESOLVED / PASS**.
-- Pass 3 — deferred until TASK-0007 and final data-dependent figures.
+- Pass 1 — theorem chain: PASS after minor fixes.
+- Pass 2 — imported theorem hypotheses: PASS after cutoff localization.
+- Pass 3 — hardened arithmetic/evidence boundary: PASS.
 
-## Bibliography
+## Remaining before submission
 
-Current manuscript citation set:
-- 24 unique references;
-- formally published only;
-- no arXiv/preprints/unpublished citations.
-
-## Active compute
-
-TASK-0007 hardens the arithmetic of the primary
-\[
-T=300,\quad N=12000
-\]
-certificate.
-
-This is submission robustness, not a theorem or novelty gate.
-
-## Chief next steps
-
-1. verify post-cutoff LaTeX build and page count;
-2. visually inspect cleaned manuscript PDF;
-3. generate committed-data figures after TASK-0007;
-4. incorporate hardened arithmetic wording;
-5. run Referee Pass 3;
-6. freeze final title/abstract and journal template.
+1. confirm final post-TASK-0007 CI build and page count \(\le25\);
+2. refresh data-dependent optional figures from hardened certificate artifacts;
+3. freeze title/abstract and target-journal template;
+4. prepare submission package.
