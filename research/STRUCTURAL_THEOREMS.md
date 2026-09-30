@@ -1,8 +1,8 @@
 # Structural Theorems — Basin Entry Geometry
 
 **Owner:** Chief Researcher  
-**Date:** 2026-09-29  
-**Status:** E1/E2/E3/E4 PROVED; MODEL-SPECIFIC SURVIVAL BASIN OPEN
+**Date:** 2026-09-30  
+**Status:** E1/E2/E3/E4 PROVED / E1 REALIZED BY B215
 
 ## E1 — basin-entry criterion
 
@@ -11,11 +11,12 @@ If
 \iota(U_-)\subseteq\mathcal B(A_-),
 \quad
 \iota(p)\in\mathcal B(A_+),
-\quad A_-\ne A_+,
+\quad
+A_-\ne A_+,
 \]
 and
 \[
-z=P(p,t_*)\in U_-,
+z=X(t_*;p)\in U_-,
 \]
 then
 \[
@@ -25,94 +26,80 @@ belong to different basins.
 
 Hence \(\mathcal F_z\) is multibasin.
 
-## E1-A — arc criterion
+## E1-A — time-interval criterion
 
-If the same orbit remains in \(U_-\) over a nondegenerate time interval, every reached present state along that interval has a multibasin reachable fiber.
+If the same orbit remains in \(U_-\) for every \(t\) in a nondegenerate time interval \(I\), then
+\[
+\mathcal F_{X(t;p)}
+\]
+is multibasin for every \(t\in I\).
+
+No injectivity of \(t\mapsto X(t;p)\) is assumed or claimed.
 
 ## E2 — open persistence
 
-Strict entry persists by continuity. Open-family persistence of the full phenomenon additionally requires persistence of both basin memberships.
+Strict physical entry persists by continuity.  Open-parameter persistence of the full basin-splitting phenomenon additionally requires persistence of the two basin memberships.
 
-No transversality/IFT is required for basic existence.
+This has not been quantified for the final B215 theorem and is not a current manuscript claim.
 
 ## E3 — physical convergence lifts to compact-open continuation convergence
 
-If a standard physical IVP satisfies
+If
 \[
-x(t;p)\to x^*,\qquad g(x^*)=0,
+X(t;p)\to X^*,\qquad g(X^*)=0,
 \]
 then
 \[
-T_t\iota(p)\to\iota(x^*)
+T_t\iota(p)\to\iota(X^*)
 \]
 in the compact-open topology.
 
-For each fixed \(N\),
+For every fixed \(N\),
 \[
 \sup_{0\le\eta\le N}
-\|(T_t\iota(p))(\eta)-x^*\|\to0.
+\|(T_t\iota(p))(\eta)-X^*\|\to0.
 \]
 
-## E4 — tail anchoring of finite-time continuation states
+## E4 — tail anchoring
 
-Assume the physical orbit is bounded on \([0,T]\). For fixed \(T>0\),
+For fixed \(T>0\),
 \[
 (T_T\iota(p))(\tau)
 =
 p+
 \frac1{\Gamma(\alpha)}
-\int_0^T
-(T+\tau-s)^{\alpha-1}g(x(s))\,ds.
+\int_0^T(T+\tau-s)^{\alpha-1}g(X(s;p))\,ds.
 \]
 
-Thus
-\[
-\|(T_T\iota(p))(\tau)-p\|
-\le
-\frac{M}{\Gamma(\alpha+1)}
-\left[(T+\tau)^\alpha-\tau^\alpha\right],
-\]
-where
-\[
-M=\sup_{0\le s\le T}\|g(x(s))\|.
-\]
-
-Since \(0<\alpha<1\),
-\[
-(T+\tau)^\alpha-\tau^\alpha\to0
-\qquad(\tau\to\infty).
-\]
-
-Therefore
+If the physical orbit is bounded on \([0,T]\), then
 \[
 (T_T\iota(p))(\tau)\to p
 \qquad(\tau\to\infty).
 \]
 
-### Consequence
+Thus compact-open topology is essential; finite-time continuation states need not be globally close to the equilibrium in the unweighted sup norm.
 
-If \(p\ne x^*\),
+## Final B215 realization
+
+TASK-0006 certifies:
 \[
-\sup_{\tau\ge0}
-\|(T_T\iota(p))(\tau)-x^*\|
-\ge
-\|p-x^*\|.
+X(t;p)\in R_{\rm ext}
+\]
+for every
+\[
+t\in[5.8576774143,13.7275388580],
+\]
+while
+\[
+X(t;p)\to E^*=(4/5,3/25).
 \]
 
-Hence convergence in E3 cannot generally be strengthened to the unweighted global sup norm on \(C(\mathbb R_+,\mathbb R^d)\).
+X1 classifies the canonical cold start from every reached point in that interval as extinction-bound.
 
-The compact-open topology is structurally essential.
-
-## Current model-specific route
-
-X1 already proves
+Hence E1-A is realized:
 \[
-\iota(R_{\rm ext})\subseteq\mathcal B(0).
+\mathcal F_{X(t;p)}
 \]
+is multibasin for every certified entry time.
 
-TASK-0002 certifies that several standard orbits enter \(R_{\rm ext}\).
-
-The remaining problem is to certify one such initial state as belonging to the survival basin.
-
-The preferred route is now CANDIDATE-L1 in
-\`research/LOCAL_SURVIVAL_BASIN.md\`.
+This is TARGET-A20.
