@@ -1,60 +1,50 @@
 # Claim Registry
 
-**Status:** TARGET-A20 OPEN — B215 RIGOROUS CAP IS THE ACTIVE CLOSURE ATTEMPT.
+**Status:** TARGET-A20 PROVED; FINAL NOVELTY AUDIT ACTIVE.
 
-## Closed framework
+## Principal result
 
-- X1: PROVED.
-- E1–E4: PROVED.
-- O1: PROVED.
-- M1: PROVED.
-- generic orbit-linearized CAP framework: SUPPORTED BY PUBLISHED BANACH-SPACE RADII THEORY.
-- oscillation-Banach specialization: ANALYTICALLY ESTABLISHED; constants pending.
+### TARGET-A20 — multibasin reachable present-state fibers
 
-## TASK-0005 evidence
+**Status:** PROVED BY CERTIFIED COMPUTATION UNDER THE DECLARED ARITHMETIC MODEL.
 
-### SIGN-AWARE-A
-status: NUMERICAL EXPLORATION  
-result:
-true discrete orbit-linearized amplification is \(O(1)-O(10^2)\), not \(10^6-10^{16}\).
-
-### GOAL-MT-A
-status: NUMERICAL EXPLORATION  
-result:
-history-error amplification into \(M_T\) is \(O(10^{-1})\) for B215/W1.
-
-### B215
-status: PRIMARY BENCHMARK / NOT YET A THEOREM WITNESS.
-
-Exact parameters:
+Exact system:
 \[
-\theta=1/2,\ a=1/2,\ b=1,\ m=4/5,\ \alpha=17/20,
+{}^CD^{17/20}x
+=
+x(1-x)(x-1/2)-\frac12xy,
 \]
+\[
+{}^CD^{17/20}y=y(x-4/5).
+\]
+
+Initial state:
 \[
 p=(277/100,467/1000).
 \]
 
-Still required:
-- exact-rational certified entry;
-- source-space radii CAP;
-- rigorous goal-oriented \(M_T\);
-- M1 inequality.
+The exact standard orbit:
+- enters \(R_{\rm ext}=\{0<x<1/2,y>0\}\) on a certified nondegenerate interval;
+- converges to \(E^*=(4/5,3/25)\).
 
-## Implementation correction
+For every certified entry time \(t_*\), the continuation state \(T_{t_*}\iota(p)\) and the cold start \(\iota(x(t_*;p))\) share the same present value but lie in coexistence and extinction basins respectively.
 
-For source-variable CAP:
-\[
-L_h=I-AW.
-\]
+## Supporting results
 
-The TASK-0005 state-amplification operator
-\[
-I-WA
-\]
-must not be reused as the source inverse.
+X1, E1–E4, M1: PROVED.
 
-## TARGET-A20
+Finite-history B215 CAP: CERTIFIED COMPUTATION under declared arithmetic model.
 
-status: OPEN.
+Independent full certificates exist at:
+- \(T=300,N=12000\);
+- \(T=1000,N=20000\).
 
-TASK-0006 owns the current rigorous closure attempt.
+## Evidence boundary
+
+Not end-to-end interval arithmetic.
+
+The theorem promotion is explicitly conditional on the stated IEEE/libm arithmetic model used to prove the binary64 upper bounds.
+
+## Current gate
+
+ROUND-0007 final hostile novelty audit.
