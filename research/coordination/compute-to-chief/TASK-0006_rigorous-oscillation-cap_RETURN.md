@@ -12,19 +12,23 @@
 ## 0. Executive answer
 
 **B215 survival is CERTIFIED (evidence class: CERTIFIED COMPUTATION under the
-floating-point model declared in §7), at the cut T = 300, not T = 1000.**
+floating-point model declared in §7), independently at the two cuts T = 300 and
+T = 1000.** Each cut is a complete proof on its own; the second is redundancy.
 
-All four Stage-F requirements hold with the constants below:
+All four Stage-F requirements hold with the constants below (T = 300 first,
+T = 1000 in brackets where it differs):
 
 | Requirement | Result |
 |---|---|
-| 1. exact-rational entry into `R_ext` | **CERTIFIED**: `0 < x(t) < 1/2`, `y(t) > 0` on 836 consecutive cells covering `t ∈ [5.857677, 13.727539]`; best cell `t ∈ [8.983920, 8.992793]`, `x ∈ [0.468939, 0.469059]`, `y ≥ 0.248262`, margin `η = θ − x_max = 0.030941` |
-| 2. rigorous validation of the history on `[0, T]` | **CLOSED on `[0, 300]`**: a unique exact solution of the Volterra/Caputo equation lies in a certified tube around the collocation orbit; adapted state error `≤ 4.866e-4` for all `t ∈ [0, 300]` (physical Euclidean `≤ 2.219e-4`) |
-| 3. rigorous M1 constants | `K_J ≤ 11.34990`, `C_r ≤ 0.36955 + 0.16274 r`, `M_T ≤ 4.32324e-2` (`T = 300`, sup over `t ≥ T`, infinite post-cut) |
-| 4. `M_T + K_J C_r r² < r` | **SEPARATED** at `r = 2221/20000 = 0.11105`: `r − K_J C_r r² − M_T ≥ +1.35626e-2`, `K_J C_r r ≤ 0.48856 < 1` |
+| 1. exact-rational entry into `R_ext` | **CERTIFIED**: `0 < x(t) < 1/2`, `y(t) > 0` on 836 consecutive cells covering `t ∈ [5.857677, 13.727539]`; best cell `t ∈ [8.983920, 8.992793]`, `x ∈ [0.468939, 0.469059]`, `y ≥ 0.248262`, margin `η = θ − x_max = 0.030941` [T=1000 tube: 789 cells on `[5.859523, 13.728889]`, `η = 0.030934`] |
+| 2. rigorous validation of the history on `[0, T]` | **CLOSED on `[0, 300]` and on `[0, 1000]`**: a unique exact solution of the Volterra/Caputo equation lies in a certified tube around the collocation orbit; adapted state error `≤ 4.866e-4` on `[0, 300]` (physical `≤ 2.219e-4`) [`≤ 4.335e-3` on `[0, 1000]`, physical `≤ 1.977e-3`] |
+| 3. rigorous M1 constants | `K_J ≤ 11.34990`, `C_r ≤ 0.36955 + 0.16274 r`, `M_T ≤ 4.32324e-2` at `T = 300` [`K_J ≤ 11.34574`, `M_T ≤ 1.54786e-2` at `T = 1000`]; `M_T` is the sup over `t ≥ T` (infinite post-cut) |
+| 4. `M_T + K_J C_r r² < r` | **SEPARATED** at `r = 2221/20000 = 0.11105`: `r − K_J C_r r² − M_T ≥ +1.35626e-2`, `K_J C_r r ≤ 0.48856 < 1` [T=1000: `r = 2222/20000`, margin `≥ +4.13364e-2`, `K_J C_r r ≤ 0.48861`] |
 
 Hence, by THEOREM M1 applied at `T = 300` to the certified state `u(300) = x(300) − E*`
-(`x(300) ∈ [0.795867, 0.796311] × [0.126667, 0.127111]`), `x(t; p) → E* = (4/5, 3/25)`.
+(`x(300) ∈ [0.795867, 0.796311] × [0.126667, 0.127111]`), `x(t; p) → E* = (4/5, 3/25)`;
+the same conclusion follows independently at `T = 1000`
+(`x(1000) ∈ [0.796673, 0.800627] × [0.120511, 0.124466]`, margin three times larger).
 Together with the entry certificate (item 1), X1 + E3 + E1 give TARGET-A20 for
 B215 — that promotion is Chief's, not mine.
 
@@ -38,11 +42,10 @@ B215 — that promotion is Chief's, not mine.
    `Y0 + Z1 r + Z2(r) r < r` **fails in every weighted norm I tried**
    (`p(1) = +1.385` in the certificate's own norm); §5.3 explains why this is
    structural, not a lack of effort.
-2. **`T = 1000` did not close.** The linear part is fine there (`ρ(M) ≈ 0.19–0.20`
-   with `N = 14000`), the quadratic term is not: the collocation defect, integrated
-   over `‖I^α‖ ≈ 355`, is still too large. A `N = 20000` defect-equidistributed run
-   is in progress at the time of writing (§6). Since M1 separates at `T = 300`,
-   `T = 1000` is no longer needed for the theorem.
+2. **`T = 1000` needed `N = 20000`** on a defect-equidistributed mesh; every coarser
+   mesh (`N ≤ 14000`) fails in the quadratic term even when the linear part is
+   contracting (§6). The `T = 1000` certificate is a second, independent proof
+   with a larger M1 margin (`4.1e-2` vs `1.4e-2`) and a larger (looser) tube.
 
 Evidence labels used below: **THEOREM** (proved on paper), **CERTIFIED**
 (rigorous computation under §7's model), **NUMERICAL** (float, corroboration
@@ -180,6 +183,7 @@ power iteration gives Collatz–Wielandt brackets.
 | 300 | tri (early refined) | 8000 | + bubble component | [0.125, 0.133] | diagnostic (pre-final `state_sup`) |
 | **300** | **adaptive** | **12000** | **final (`c9bc2f8`)** | **[0.0707, 0.0813]** | **certified constants** |
 | 1000 | tri (early refined) | 14000 | + bubble component | [0.191, 0.200] | diagnostic; nonlinear iteration diverges |
+| **1000** | **adaptive** | **20000** | **final (`c9bc2f8`)** | **[0.1213, 0.1376]** | **certified constants** |
 
 Linear couplings in the Perron weights of the final run: `T1 sup 0.081`,
 `T1 osc 0.063`, `T2 osc 0.081` (all others `≤ 0.004`).
@@ -216,6 +220,14 @@ Certificate numbers (manifest `t6_stageD_adaptT300_N12000`, weights in
 | per-cell Lipschitz constant `D2` of `x ↦ A(x)` on the tube (max / at `T`) | 5.568 / 0.830 |
 | iterations / inflation | 13 / 1 % |
 
+The same closure at **`T = 1000`, `N = 20000`** (manifest `t6_stageD_adaptT1000_N20000`,
+mesh `data/t6_mesh_T1000_N20000.npy`, `h_max = 0.0981`, `R_max = 2.53e-5`,
+`‖E‖_∞ = 9.15e-10`): b-iteration converges in 29 steps; `F(b) < b` at 1 % inflation
+with `max_n (F(b) − b)/b = −5.651e-4` (3 % fails); **`κ ≤ 0.187495`**; source error
+`sup|f*|_S ≤ 3.967e-4` (median 5.7e-6, at `T` 7.1e-5); adapted state error
+`≤ 4.335e-3` (attained at `T`), physical `≤ 1.977e-3`; `‖B‖` components
+8.71 / 8.40 / 1.00; linear couplings `T1 sup 0.137`, `T1 osc 0.104`, `T2 osc 0.137`.
+
 Where the sup/osc-only ("two-component", `β = θ`) formulation stands on the same
 blocks: `ρ(M) = [0.174, 0.204]`, and the b-iteration **also closed** there with
 `Ω ≤ 3.66e-3` — 7.5× worse and at the pre-final code; the certified numbers above
@@ -224,7 +236,7 @@ are the three-component ones.
 ### 3.5 Scalar radii polynomial (the request's item) — does NOT hold
 
 In the certificate's own norm (`r = 1` is `S_b`): `Y0 = 0.990`, `Z1 = 0.937`,
-`Z2(1) = 0.458`, so `p(1) = Y0 + Z1 + Z2(1) − 1 = +1.385 > 0`. Mixing the Perron
+`Z2(1) = 0.458`, so `p(1) = Y0 + Z1 + Z2(1) − 1 = +1.385 > 0` (`+1.891` at `T = 1000`). Mixing the Perron
 weights with the certificate weights (six mixtures, `scripts/t6_summary.py`)
 gives `Z1 = 0.937` throughout and `Z2a r ≫ 1 − Z1` at the useful radius; in the
 pure Perron norm `Y0 = ∞` (the Perron vector vanishes on early cells where the
@@ -240,15 +252,16 @@ one and cannot be recovered here by choosing weights.
 envelope for `K_J`, `memory_tail_bound` with `sup_{t ≥ T}` taken analytically from
 the decreasing Mittag-Leffler envelopes, `adapted_C`, `m1_radius`).
 
-| constant | value |
-|---|---|
-| `K_J` (`∫₀^∞ ‖Ψ_J‖`, upper) | **11.34990** |
-| `C_r` | `C0 + c3 r`, `C0 = 0.36955`, `c3 = 0.16274` |
-| `M_T` (sup over `t ≥ 300`) | **4.32324e-2** = linear flow 4.0157e-2 + far history 1.2707e-3 (`σ₁ = 25`) + near history 1.8045e-3 |
-| `r` | `2221/20000 = 0.11105` |
-| `r − K_J C_r r² − M_T` | **`≥ +1.35626e-2`** |
-| `K_J C_r r` | `≤ 0.48856 < 1` |
-| verdict | **SEPARATED** |
+| constant | `T = 300` (`N = 12000`) | `T = 1000` (`N = 20000`) |
+|---|---|---|
+| state pad (physical max-norm) | 2.219e-4 | 1.977e-3 |
+| `K_J` (`∫₀^∞ ‖Ψ_J‖`, upper) | **11.34990** | 11.34574 |
+| `C_r` | `C0 + c3 r`, `C0 = 0.36955`, `c3 = 0.16274` | same (independent of `T`) |
+| `M_T` (sup over `t ≥ T`) | **4.32324e-2** = linear flow 4.0157e-2 + far history 1.2707e-3 (`σ₁ = 25`) + near history 1.8045e-3 | **1.54786e-2** = 1.4432e-2 + 1.007e-4 (`σ₁ = 400`) + 9.462e-4 |
+| `r` | `2221/20000 = 0.11105` | `2222/20000 = 0.1111` |
+| `r − K_J C_r r² − M_T` | **`≥ +1.35626e-2`** | **`≥ +4.13364e-2`** |
+| `K_J C_r r` | `≤ 0.48856 < 1` | `≤ 0.48861 < 1` |
+| verdict | **SEPARATED** | **SEPARATED** |
 
 The request said "do not derive `M_T` solely from a worst-case uniform state
 tube". I did use the tube — but the tube is the sign-aware CAP tube
@@ -257,9 +270,9 @@ linear flow of `p − E*`, which does not depend on the history at all. The
 goal-oriented dual bound of TASK-0005 would improve only the 7 % history part;
 it is not needed.
 
-`M_T` is far larger than at `T = 1000` would be (the linear-flow term decays like
-`t^{−α}`), which is why the T=300 margin is `1.4e-2` rather than the `~4e-2` the
-`T = 1000` pilot suggested. It is still strictly positive with rigorous constants.
+The linear-flow term decays like `t^{−α}`, so the T = 300 margin (`1.4e-2`) is
+three times smaller than the T = 1000 one (`4.1e-2`); both are strictly positive
+with rigorous constants.
 
 ---
 
@@ -271,7 +284,7 @@ Chief asked which of five candidates obstructs. Measured answer:
 |---|---|---|
 | source-space inverse conditioning | **not an obstruction** | amplification 9.4, `‖E‖ ≤ 2e-10`, row sums certified |
 | oscillation `Z1` | **an artifact of the bounds, not of the operator** | `ρ(M)` fell 29 → 3.8 → 1.1 → 0.13 → 0.08 by sharpening bounds on the *same* operator (§3.3); the true linear part is strongly contracting at `T = 300` |
-| nonlinear `Z2` | **the binding term** | with `ρ(M) = 0.35` the linear fixed point exists but `Z2/b = 78` at `t ≈ T` (graded N=6000); scales as `(‖I^α‖ · defect)²`; fixed at T=300 by halving the early defect and using the per-cell adapted Lipschitz constant (0.83 at `T` instead of the norm-product 15.7); **still binding at T = 1000** |
+| nonlinear `Z2` | **the binding term** | with `ρ(M) = 0.35` the linear fixed point exists but `Z2/b = 78` at `t ≈ T` (graded N=6000); scales as `(‖I^α‖ · defect)²`; fixed by halving the early defect (adaptive mesh) and using the per-cell adapted Lipschitz constant (0.83 at `T` instead of the norm-product 15.7); at T = 1000 it needs `N = 20000` (`N = 14000` still diverges) |
 | residual `Y0` | **indirectly binding** | the cell defect near `t ≈ 0.02` (`x̂` has the `t^α` singularity) is what drives `Z2`; late-mesh refinement does not touch it |
 | goal functional `M_T` | not an obstruction | separates at T = 300 with margin `1.36e-2` |
 
@@ -291,22 +304,22 @@ vector one is strictly stronger.
 
 ---
 
-## 6. `T = 1000` (OPEN)
+## 6. `T = 1000` (CERTIFIED at `N = 20000`; mesh dependence)
 
-| mesh | `N` | `ρ(M)` | nonlinear iteration | status |
-|---|---|---|---|---|
-| graded r=3 | 6000 | [0.99, 1.25] | — | linear part fails |
-| graded r=3 | 12000 | [2.41, 2.41] (two-comp.) | — | |
-| hybrid (graded to 30, `h = 0.108`) | 12000 | [1.91, 1.91] (two-comp.) | — | |
-| tri (refined to 1, `h_tail = 0.121`) | 14000 | [0.191, 0.200] | **diverges** in 5 steps | quadratic term |
-| adaptive (`h_tail = 0.098`) | 20000 | running at time of writing | | |
+| mesh | `N` | `h_max` | `R_max` | `ρ(M)` | nonlinear iteration | status |
+|---|---|---|---|---|---|---|
+| graded r=3 | 6000 | 0.50 | 9.2e-5 | [0.99, 1.25] | — | linear part fails |
+| graded r=3 | 12000 | 0.25 | — | [2.41, 2.41] (two-comp.) | — | |
+| hybrid (graded to 30, `h = 0.108`) | 12000 | 0.108 | — | [1.91, 1.91] (two-comp.) | — | |
+| tri (refined to 1, `h_tail = 0.121`) | 14000 | 0.121 | — | [0.191, 0.200] | **diverges** in 5 steps | quadratic term |
+| **adaptive (`scripts/t6_make_mesh.py`)** | **20000** | **0.098** | **2.53e-5** | **[0.1213, 0.1376]** | **converges (29 steps), `F(b) < b`, `κ ≤ 0.1875`** | **CERTIFIED** (§3.4, §4) |
 
-Inferred: closing `T = 1000` needs the early defect another ~5–10× smaller
-(`‖I^α‖ = 355` vs 135, squared), i.e. `N ≳ 30000–40000` on an adaptive mesh
-(dense inverse `≈ 50 GB`, feasible on ORION) or degree-2 collocation near `t = 0`.
-It is not needed for the theorem.
-
----
+The pattern is the one of §5: the linear part is contracting from `N = 14000` on;
+what decides closure is the early collocation defect against the quadratic term,
+and only the defect-equidistributed mesh brings it down enough
+(`(‖I^α‖ · defect)²` with `‖I^α‖ ≈ 355` at `T = 1000` vs 135 at `T = 300`).
+The dense certified inverse at `N = 20000` (`40002 × 40002`) took 33 min on ORION
+(`≈ 60 GB`).
 
 ## 7. What is rigorous, and under which model (read before promoting)
 
@@ -332,8 +345,8 @@ Known rigour traps found and fixed during this task (both would have produced
 non-upper bounds): the cell weight `hi^α − lo^α` for tiny far cells (cancellation,
 `1e-5` relative error) and the cell sup of `I^α f` for non-constant `ω` (the
 end-point weight sum is not an upper bound). Tests cover both. Results quoted
-as **certified** were all produced after both fixes (code `c9bc2f8`); earlier
-runs appear only in §3.3's diagnostic rows.
+as **certified** (both cuts) were all produced after both fixes (code `c9bc2f8`);
+earlier runs appear only in §3.3's and §6's diagnostic rows.
 
 ---
 
@@ -350,7 +363,10 @@ certified centre `x̂`, adapted norm, against the certified radius `Ω_n`:
 | 150 | 1.2e-9 | 3.8e-4 | 3e-6 |
 | 300 | 5.3e-9 | 4.9e-4 | 1e-5 |
 
-The tube is 40–10⁵× wider than the disagreement between two independent
+At `T = 1000` (`N = 20000` vs graded `N = 9000`): ratios 6.0e-2 (`t = 0.5`),
+8.0e-3 (`t = 8.99`), 4.9e-3 (`t = 28.3`), 1.6e-5 (`t = 150`), 5.4e-6 (`t = 1000`).
+
+The tube is 17–10⁵× wider than the disagreement between two independent
 discretisations: consistent, and it says the certified tube is loose by
 those factors, mostly through `Y` (the defect sup on early cells) and the
 `Σ_j w_{kj}` accumulation.
@@ -371,16 +387,19 @@ python scripts/t6_summary.py     --tag adaptT300_N12000        # ||B||, radii-po
 python -m pytest tests/test_cap.py -q                            # 14 tests
 ```
 
+For `T = 1000` replace `300 → 1000`, `12000 → 20000`, `--hcap 0.12`, tag `adaptT1000_N20000`
+(the pipeline run takes ≈ 45 min and ≈ 60 GB; `t6_stageD_close` on its blocks ≈ 20 min).
+
 Manifests (committed): `computations/manifests/t6_stageBD_adaptT300_N12000_manifest.json`,
 `t6_stageD_adaptT300_N12000_manifest.json`, `t6_stageE_adaptT300_N12000_manifest.json`,
-`t6_summary_adaptT300_N12000_manifest.json`; diagnostics `t6_stageBD_T{10,300,1000}_N6000_graded3`,
+`t6_summary_adaptT300_N12000_manifest.json` and the four `*_adaptT1000_N20000_*` counterparts; diagnostics `t6_stageBD_T{10,300,1000}_N6000_graded3`,
 `t6_stageD_T1000_N14000_tri_1_4000_30_2000`, `t6_stageA`; TASK-0002 attempts
-`t2_stageA_certify_Q_B215_{N12000,T10,T12,T10_r08}`. The 2.6 GB block file
-(`data/t6_stageBD_adaptT300_N12000_blocks.npz`) stays on ORION
-(`~/msbg/computations/data/`), regenerable by the first pipeline command.
+`t2_stageA_certify_Q_B215_{N12000,T10,T12,T10_r08}`. The block files (2.6 GB and 6.7 GB,
+`data/t6_stageBD_adapt{T300_N12000,T1000_N20000}_blocks.npz`) stay on ORION
+(`~/msbg/computations/data/`), regenerable by the pipeline command.
 
 Compute: ORION only (172 cores, `nice 15`, ≤ 48 workers per run); AUREUS unused.
-No orphan processes left except the `T = 1000, N = 20000` run reported in §6.
+No orphan processes left on ORION.
 
 ---
 
@@ -389,7 +408,8 @@ No orphan processes left except the `T = 1000, N = 20000` run reported in §6.
 1. Promote TARGET-A20 for B215 on the basis of §§1, 3.4, 4 — with the evidence
    class "CERTIFIED COMPUTATION under the declared floating-point model", and
    state the vector-radii/Perron form of the Banach argument in the write-up
-   rather than the scalar radii polynomial.
+   rather than the scalar radii polynomial. Two independent cuts (`T = 300`,
+   `T = 1000`) are available; the `T = 300` one has the tighter tube, the
+   `T = 1000` one the larger M1 margin.
 2. If an end-to-end Arb certificate is wanted for publication: re-run the
    `O(N²)` float layers of `cap.py` in Arb (mechanical; the formulas are fixed).
-3. `T = 1000` only if a second cut is wanted as redundancy; expect `N ≳ 30000`.
