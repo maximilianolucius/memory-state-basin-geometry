@@ -1,0 +1,40 @@
+# Provisional Title / Abstract / Keywords
+
+**Status:** v1 — scientifically locked, arithmetic wording pending TASK-0007  
+**Date:** 2026-09-30
+
+## Recommended title
+
+**Multibasin Reachable Present-State Fibers in an Autonomous Caputo System**
+
+This is currently preferred because it foregrounds the new mathematical object/result and avoids making the ecological realization look like the novelty source.
+
+## Strong alternative
+
+**Same Present, Different Basins in an Autonomous Caputo System: A Certified Extinction--Coexistence Split**
+
+More memorable, but less formal. Suitable only if the target journal tolerates a less conventional title.
+
+## Descriptive alternative
+
+**Reachable Present-State Fibers Crossing Extinction and Coexistence Basins in an Autonomous Caputo System**
+
+Accurate but longer.
+
+## Provisional abstract
+
+Autonomous Caputo equations are non-Markovian in their physical coordinates, so asymptotic basin membership is naturally defined on a continuation-state space rather than at a current point alone. We ask whether two physically reachable continuation states with exactly the same current physical value can belong to different asymptotic basins. Using the Caputo semidynamical-system framework, we define reachable present-state fibers and prove a basin-entry criterion together with a scalar fiber-purity contrast. We then give a computer-assisted realization in a two-dimensional strong-Allee predator--prey system of order \(\alpha=17/20\). For an exact rational initial point, the validated trajectory enters the cold-start extinction strip \(0<x<1/2\), \(y>0\) throughout a nondegenerate time interval, while the original inherited trajectory is proved to converge to the positive coexistence equilibrium. Hence, at every certified entry time, the inherited continuation state and the canonical cold start at the identical present value lie respectively in the coexistence and extinction basins. The finite-history proof uses an orbit-linearized weakly singular Volterra inverse, a cellwise positive self-map, and a Perron-weighted contraction, coupled to a Mittag--Leffler memory-tail certificate for infinite-time convergence. Thus physically reachable Caputo present-state fibers can be genuinely multibasin.
+
+## Arithmetic sentence if TASK-0007 does not change the evidence class
+
+Add before the final sentence if required by the target journal:
+
+> The computer-assisted bounds are rigorous under the explicitly stated IEEE-754/libm arithmetic model.
+
+## Arithmetic sentence if TASK-0007 succeeds
+
+Replace the previous sentence by the exact evidence wording authorized by the hardening report; do not use “fully interval” unless TASK-0007 explicitly supports it.
+
+## Keywords
+
+Caputo fractional differential equation; continuation-state semidynamical system; basin of attraction; memory state; Allee effect; predator--prey system; computer-assisted proof; weakly singular Volterra equation; Mittag--Leffler stability.
