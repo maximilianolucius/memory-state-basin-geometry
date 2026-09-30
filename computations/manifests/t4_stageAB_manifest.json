@@ -1,0 +1,77 @@
+{
+  "task": "TASK-0001",
+  "environment": {
+    "hostname": "orion",
+    "platform": "Linux-7.0.0-34-generic-x86_64-with-glibc2.39",
+    "processor": "x86_64",
+    "cpu_count": 344,
+    "python": "3.12.3",
+    "python_executable": "/home/ecoventure/msbg/computations/../venv/bin/python",
+    "packages": {
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "mpmath": "1.4.1",
+      "sympy": null,
+      "flint": "0.9.0",
+      "matplotlib": "3.11.2"
+    },
+    "numpy_blas": {
+      "name": "scipy-openblas",
+      "found": true,
+      "version": "0.3.34.106.0",
+      "detection method": "pkgconfig",
+      "include directory": "/opt/_internal/cpython-3.12.13/lib/python3.12/site-packages/scipy_openblas64/include",
+      "lib directory": "/opt/_internal/cpython-3.12.13/lib/python3.12/site-packages/scipy_openblas64/lib",
+      "openblas configuration": "OpenBLAS 0.3.34.106.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64",
+      "pc file directory": "/project/.openblas"
+    },
+    "utc": "2026-09-29T23:43:36Z",
+    "seed": 20260929,
+    "git_commit": "9b8c4598aae496ce6bed1c2e625c13bc31c94ce6",
+    "git_branch": "compute/task-0004",
+    "git_dirty": true,
+    "git_source": "launcher environment (rsync'd tree, not a checkout)"
+  },
+  "payload": {
+    "K_J": {
+      "adapted": 5.794589682144385,
+      "euclid": 13.105763386360055,
+      "wmax_min": 9.306217136285444,
+      "adapted_parts_body_head_tail": [
+        5.792363399982486,
+        1.6760516321091375e-07,
+        0.002226114556735215
+      ]
+    },
+    "C_r": {
+      "adapted": [
+        1.2703022699413526,
+        0.981613565109747
+      ],
+      "euclid": [
+        1.3423707943292125,
+        1.0
+      ]
+    },
+    "T_end": 6000.0,
+    "evidence_class": "NUMERICAL EXPLORATION",
+    "wall_seconds": 848.377
+  },
+  "artifacts": [
+    {
+      "path": "/home/ecoventure/msbg/computations/data/t4_stageAB_tails.json",
+      "sha256": "b741fc2a3588fdcd8f269c207f21c7eadf8725723ba01ebf093a31ad2b47f7ea",
+      "bytes": 919752
+    },
+    {
+      "path": "/home/ecoventure/msbg/computations/data/t4_stageAB_feasibility.json",
+      "sha256": "22504f0e7f54c456fb8b172e27dfb32750d40bc184cf544d0357720cbdea55b5",
+      "bytes": 5501
+    },
+    {
+      "path": "/home/ecoventure/msbg/computations/data/t4_stageAB_kernel.npz",
+      "sha256": "1343304e37348f47fecc9b8269e550be6e432ab7a4cd720b61c8aa5b4fb0eb2a",
+      "bytes": 12793
+    }
+  ]
+}

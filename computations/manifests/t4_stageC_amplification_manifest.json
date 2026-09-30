@@ -1,0 +1,60 @@
+{
+  "task": "TASK-0001",
+  "environment": {
+    "hostname": "aur007",
+    "platform": "Linux-6.8.0-139-generic-x86_64-with-glibc2.39",
+    "processor": "x86_64",
+    "cpu_count": 32,
+    "python": "3.12.3",
+    "python_executable": "/home/aureus/msbg/computations/../venv/bin/python",
+    "packages": {
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "mpmath": "1.3.0",
+      "sympy": "1.14.0",
+      "flint": "0.9.0",
+      "matplotlib": "3.11.2"
+    },
+    "numpy_blas": {
+      "name": "scipy-openblas",
+      "found": true,
+      "version": "0.3.34.106.0",
+      "detection method": "pkgconfig",
+      "include directory": "/opt/_internal/cpython-3.12.13/lib/python3.12/site-packages/scipy_openblas64/include",
+      "lib directory": "/opt/_internal/cpython-3.12.13/lib/python3.12/site-packages/scipy_openblas64/lib",
+      "openblas configuration": "OpenBLAS 0.3.34.106.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64",
+      "pc file directory": "/project/.openblas"
+    },
+    "utc": "2026-09-29T23:28:32Z",
+    "seed": 20260929,
+    "git_commit": null
+  },
+  "payload": {
+    "log10_amplification_power_kernel": {
+      "4": 4.3514871065593965,
+      "10": 6.492070875140843,
+      "20": 9.071650422528087,
+      "36": 12.621749569184528,
+      "60": 19.06022319927507,
+      "100": 34.62366143373853,
+      "200": 74.17098968813495,
+      "500": 200.3067861680807,
+      "1000": 417.2677312000528
+    },
+    "log10_amplification_J_resolvent_kernel": {
+      "4": 4.71744848135894,
+      "10": 7.561574053105787,
+      "20": 12.613090394159066,
+      "36": 21.136140250765497,
+      "60": 30.86943202321966,
+      "100": 32.60066515775605,
+      "200": 35.90484154529992,
+      "500": 34.22182174474553,
+      "1000": 32.93666002746348
+    },
+    "note": "TASK-0002 certified W1 at T=4 (A ~ 10^3.6) and B2 at T=36 with L ~ 1.1",
+    "evidence_class": "NUMERICAL EXPLORATION",
+    "wall_seconds": 0.0
+  },
+  "artifacts": []
+}
