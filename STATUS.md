@@ -1,48 +1,48 @@
 # Status
 
-**Phase:** ACTIVE — M1 FEASIBLE; VALIDATED-HISTORY METHOD IS THE BOTTLENECK
+**Phase:** ACTIVE — SIGN-AWARE GATE PASSED; RIGOROUS B215 CAP NEXT
 
-## TASK-0004 assimilated — 2026-09-30
+## ROUND-0006
 
-Branch:
-\`compute/task-0004\`
+Completed and assimilated.
 
-Verified HEAD:
-\`b57774734379640861f4cb48ae2620ee0abe4100\`
-
-Merged:
-PR #4 -> main at \`37258073f91a177882d615381fd67e576fd59a86\`.
-
-## What TASK-0004 established
-
-For W1, the memory-tail theorem M1 is numerically feasible from late cut times.
-
-The adapted norm gives substantially better kernel constants than Euclidean norm.
-
-The failure is the finite-history validation:
-the current normwise a-posteriori recursion loses huge cancellation during the nonlinear excursion.
-
-No rigorous \(M_T\) was obtained.
-
-Therefore:
+Verdict:
 \[
-\boxed{\text{TARGET-A20 remains OPEN}.}
+\boxed{\text{BOTH}}
 \]
+with primary emphasis on orbit-linearized approximate inversion and secondary use of high-order residual reduction.
 
-## Methodological change
+Published Banach-space radii-polynomial theory supports the CAP architecture.
 
-Do not push the existing second-order verifier to vastly larger \(N\).
+## TASK-0005
 
-Next:
-- preserve the time-dependent matrix linearization along the orbit;
-- construct/approximate the inverse Volterra operator;
-- measure sign-aware amplification;
-- add higher-order polynomial residuals only if amplification is manageable.
+Integrated in main at merge commit
+\`7d4171d9d992ae8fcbc69514911067054bba6b40\`.
+
+Key result:
+absolute-value amplification was pessimistic by 4–14 orders of magnitude.
+
+B215 has the best current proof profile.
+
+No rigorous \(M_T\) yet.
+
+## New theorem setting
+
+The radii proof will use a mesh-weighted oscillation norm equivalent to the sup norm.
+
+This makes cell-oscillation control part of the Banach norm itself.
+
+The approximate inverse
+\[
+B=L_h^{-1}\pi+(I-\pi)
+\]
+is explicitly bijective when the source-space nodal operator \(L_h=I-AW\) is invertible.
 
 ## Active
 
-- ROUND-0006 — rigorous orbit-linearized Volterra validation audit.
-- TASK-0005 — sign-aware approximate-inverse feasibility/certification.
+TASK-0006 — rigorous oscillation-Banach CAP for B215.
+
+No active web round.
 
 ## Paper
 
