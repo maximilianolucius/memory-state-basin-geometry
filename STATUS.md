@@ -1,49 +1,86 @@
 # Status
 
-**Phase:** MANUSCRIPT UNLOCKED — TARGET-A20 PROVED; FINAL NOVELTY AUDIT PASSED
+**Phase:** MANUSCRIPT CORE WRITTEN — TARGET-A20 PROVED; NOVELTY AUDIT PASSED; TASK-0007 HARDENING ACTIVE
 
-## Final novelty gate
+## Scientific theorem
 
-ROUND-0007 verdict:
+TARGET-A20 is proved by certified computation under the currently declared arithmetic model.
 
-\[
+Final novelty verdict:
+[
 \boxed{\text{NOVELTY SURVIVES WITH CLAIM NARROWING}.}
-\]
-
-No direct published theorem matching the same-present-value, physically reachable Caputo basin split was found in the targeted corpus.
+]
 
 ## Locked principal contribution
 
-A physically reachable current-state fiber of an autonomous Caputo system intersects distinct asymptotic basins.
+For every certified entry time
+[
+t\in I_*=[5.8576774143,13.7275388580],
+]
+the reachable present-state fiber
+[
+\mathcal F_{X(t;p)}
+]
+intersects both extinction and coexistence basins.
 
-Certified B215 realization:
-- inherited continuation -> coexistence;
-- cold start at identical present value -> extinction.
+The statement is indexed by a nondegenerate time interval. Injectivity of
+[
+t\mapsto X(t;p)
+]
+is not claimed.
 
-A nondegenerate reached time interval of such fibers is certified.
+## Manuscript progress
 
-## Manuscript
+The theorem-first body now exists in modular LaTeX:
 
-\[
-\boxed{\text{UNLOCKED}}
-\]
+- `paper/sections/01_introduction.tex`
+- `paper/sections/02_state_space.tex`
+- `paper/sections/03_scalar_purity.tex`
+- `paper/sections/04_model_and_analytic_certificates.tex`
+- `paper/sections/05_principal_theorem.tex`
+- `paper/sections/06_computer_assisted_validation.tex`
+- `paper/sections/07_geometry_and_interpretation.tex`
+- `paper/sections/08_discussion_limitations.tex`
+- `paper/manuscript_core.tex`
 
-Follow:
-- \`research/MANUSCRIPT_GATE.md\`;
-- \`paper/MANUSCRIPT_PLAN.md\`;
-- \`agent_directives_publishable_first_submission.md\`.
+Static manuscript audit:
+- 55 labels;
+- 29 internal references;
+- 38 citations;
+- no missing refs;
+- no missing BibTeX keys;
+- no missing inputs;
+- no unbalanced LaTeX environments.
 
-Target 22–23 pages; hard maximum 25.
+The exact B215 Jacobian/eigenvalues/remainder were independently rechecked symbolically.
+
+## Editorial state
+
+Provisional title/abstract:
+`paper/PROVISIONAL_TITLE_ABSTRACT.md`.
+
+Scientific figure plan:
+`paper/FIGURE_SPECIFICATIONS.md`.
+
+Referee-facing novelty/evidence boundary:
+`paper/REFEREE_POSITIONING.md`.
+
+Target 22--23 pages; hard maximum 25.
 
 ## Active compute
 
 TASK-0007:
-publication arithmetic hardening of the primary \(T=300,N=12000\) certificate.
+publication arithmetic hardening of the primary
+[
+T=300,quad N=12000
+]
+certificate.
 
-This is a referee-robustness task, not a theorem/novelty gate.
+This is a submission-robustness task, not a theorem or novelty gate.
 
-## Web search
+## Next Chief work
 
-No further generic novelty round planned.
-
-Only reopen literature search if manuscript claims materially broaden beyond TARGET-A20.
+- theorem-level figure production;
+- final LaTeX integration/page-budget pass;
+- incorporate TASK-0007 evidence wording;
+- only then freeze title/abstract.
