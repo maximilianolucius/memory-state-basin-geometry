@@ -1,35 +1,25 @@
 # Research Plan
 
-## Current state
+## Main theorem
 
-The mathematical architecture and proof technology are now sufficiently specified.
+TARGET-A20 is proved by certified computation under the declared arithmetic model.
 
-TASK-0005 showed that the true sign-aware inverse is well conditioned enough for a CAP.
+The exact B215 orbit yields a nondegenerate certified interval of reachable present states whose fibers intersect both extinction and coexistence basins.
 
-## Active closure attempt
+## Immediate gate
 
-Use B215 and a source-space radii-polynomial proof on a mesh-weighted oscillation Banach norm.
+ROUND-0007 final hostile novelty audit.
 
-Steps:
-1. exact-rational threshold entry;
-2. rigorous source-space inverse \(I-AW\);
-3. rigorous oscillation-aware \(Z_1\);
-4. nonlinear \(Z_2\);
-5. strict radii polynomial;
-6. direct goal-oriented \(M_T\);
-7. M1.
+## If ROUND-0007 is favorable
 
-If successful:
-\[
-\text{M1 + entry + X1 + E1}
-\Longrightarrow
-\text{TARGET-A20 PROVED}.
-\]
+1. lock the narrow novelty statement;
+2. optionally harden remaining binary64/libm layers to end-to-end interval arithmetic;
+3. begin manuscript;
+4. keep theorem-first structure;
+5. use \(T=300\) as primary certificate and \(T=1000\) as redundancy;
+6. consider an E2 open-neighborhood strengthening only after the first-submission theorem is secure.
 
-## High order
+## If ROUND-0007 finds direct prior
 
-Deferred unless \(Y_0\) or interpolation error becomes binding after the corrected source-space CAP.
-
-## Final novelty audit
-
-Only after TARGET-A20 closes.
+Do not draft the current novelty claim.
+Reframe around whichever residual theorem remains.
