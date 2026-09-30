@@ -40,7 +40,7 @@ Principal hardened certificate:
 - reproducibility statement updated to TASK-0007;
 - 24 unique cited references, formally published only.
 
-Last confirmed successful build before TASK-0007 promotion: 23 pages.
+Final post-TASK-0007 GitHub Actions build: **SUCCESS, 23 pages** (run #26, manuscript commit `b06d4bc1af1fdc096fa173ba7136d25929d3a329`).
 
 ## Internal referee passes
 
@@ -50,7 +50,6 @@ Last confirmed successful build before TASK-0007 promotion: 23 pages.
 
 ## Remaining before submission
 
-1. confirm final post-TASK-0007 CI build and page count \(\le25\);
-2. refresh data-dependent optional figures from hardened certificate artifacts;
-3. freeze title/abstract and target-journal template;
-4. prepare submission package.
+1. refresh data-dependent optional figures from hardened certificate artifacts;
+2. freeze title/abstract and target-journal template;
+3. prepare submission package.
