@@ -1,24 +1,35 @@
 # Research Plan
 
-## Theory
+## Current state
 
-The basin geometry, extinction theorem, memory-tail survival theorem, and structural obstructions are closed.
+The mathematical architecture and proof technology are now sufficiently specified.
 
-## Current bottleneck
+TASK-0005 showed that the true sign-aware inverse is well conditioned enough for a CAP.
 
-M1 is feasible but a rigorous finite-history enclosure is not.
+## Active closure attempt
 
-The current verifier fails through cancellation loss, not because the candidate orbit is near a known instability.
+Use B215 and a source-space radii-polynomial proof on a mesh-weighted oscillation Banach norm.
 
-## Phase 4B — orbit-linearized validation
+Steps:
+1. exact-rational threshold entry;
+2. rigorous source-space inverse \(I-AW\);
+3. rigorous oscillation-aware \(Z_1\);
+4. nonlinear \(Z_2\);
+5. strict radii polynomial;
+6. direct goal-oriented \(M_T\);
+7. M1.
 
-1. measure the discrete inverse of the time-dependent linearized Volterra operator;
-2. preserve matrix sign/rotation structure;
-3. choose the best witness by M1 margin versus true amplification;
-4. add high-order polynomial residuals only after the amplification gate;
-5. use Newton/radii or equivalent a-posteriori validation if supported;
-6. certify \(M_T\) directly if goal-oriented bounds are tighter.
+If successful:
+\[
+\text{M1 + entry + X1 + E1}
+\Longrightarrow
+\text{TARGET-A20 PROVED}.
+\]
 
-## Manuscript gate
+## High order
 
-Blocked until TARGET-A20 is rigorous and a final theorem-specific novelty audit passes.
+Deferred unless \(Y_0\) or interpolation error becomes binding after the corrected source-space CAP.
+
+## Final novelty audit
+
+Only after TARGET-A20 closes.
