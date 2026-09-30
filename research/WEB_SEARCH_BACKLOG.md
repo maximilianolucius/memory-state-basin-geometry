@@ -2,13 +2,22 @@
 
 ## Completed
 
-ROUND-0001 through ROUND-0006 complete.
+ROUND-0001 through ROUND-0007 COMPLETE.
 
-## Active
+Final verdict:
+\[
+\boxed{\text{NOVELTY SURVIVES WITH CLAIM NARROWING}.}
+\]
 
-### ROUND-0007 — final TARGET-A20 hostile novelty audit
+## Current posture
 
-Request:
-\`research/coordination/chief-to-web/ROUND-0007_final-target-a20-novelty_REQUEST.md\`
+No active web-search task.
 
-This is the final novelty gate before manuscript mode.
+The manuscript may proceed using the locked TARGET-A20 claim.
+
+## Reopen search only if
+
+- a broader parameter-family theorem is added;
+- numerical-method novelty is promoted to a manuscript contribution;
+- a materially stronger priority claim is proposed;
+- a new journal-specific literature requirement appears.
