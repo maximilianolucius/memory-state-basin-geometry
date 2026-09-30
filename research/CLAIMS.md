@@ -1,56 +1,54 @@
 # Claim Registry
 
-**Status:** TARGET-A20 — ONE RIGOROUS NUMERICAL MEMORY-TAIL INEQUALITY REMAINS.
+**Status:** TARGET-A20 OPEN — M1 FEASIBLE, VALIDATED HISTORY REMAINS.
 
-## Closed analytic/certified components
+## Closed theory / certification
 
-### X1 — cold-start extinction strip
-PROVED.
+- X1: PROVED.
+- E1–E4: PROVED.
+- O1: PROVED.
+- O2: PROVED for its declared certificate class.
+- M1: PROVED.
+- exact-rational W1 entry: CERTIFIED COMPUTATION.
+- THEOREM-R: PROVED A-POSTERIORI REDUCTION.
 
-### E1 / E2 / E3 / E4
-PROVED.
+## TASK-0004
 
-### O1
-PROVED:
-a forward-invariant physical-state survival region cannot generate the target entry.
+### NUM-M1-W1
+status: STRONG NUMERICAL CORROBORATION  
+result:
+M1 is feasible for W1 from \(T=500\) in adapted norms; at \(T=1000\) observed \(M_T\) is well below the certified-threshold scale.
 
-### O2
-PROVED for the declared global diagonal weighted-max certificate in the Hurwitz regime.
-
-### CERT-W1-RATIONAL
-CERTIFIED COMPUTATION:
-the exact-rational W1 trajectory enters \(R_{\rm ext}\).
-
-### THEOREM-M1 — memory-tail survival
-PROVED FROM PUBLISHED RESOLVENT THEORY.
-
-Let
+### CERT-KC-W1
+status: CERTIFIED COMPUTATION / SPECIFIC ML-CONTOUR REPRESENTATION STILL TO BE SOURCE-AUDITED  
+values:
 \[
-v_T(t)
-=
-E_\alpha(Jt^\alpha)u_0+
-\int_0^T\Psi_J(t-s)N(u(s))\,ds.
+K_J\le5.803469,
 \]
-If
 \[
-M_T=\sup_{t\ge T}\|v_T(t)\|,
-\quad
-K_J=\int_0^\infty\|\Psi_J(s)\|\,ds,
+C_r\le1.078088+0.706762r,
 \]
-and
+and corresponding admissible
 \[
-M_T+K_JC_rr^2<r,
+M_T<0.038078.
 \]
-then the inherited continuation state converges to \(E^*\).
+
+### OBSTRUCTION-H1
+status: COMPUTATIONAL OBSTRUCTION, NOT A THEOREM OF IMPOSSIBILITY  
+current normwise history verifier incurs at least \(10^5\)-scale amplification on all M1-feasible witnesses scanned and much larger amplification on W1.
+
+## Active method
+
+### CANDIDATE-V1
+status: OPEN / ROUND-0006 + TASK-0005  
+method:
+validate the entire finite excursion using an approximate inverse of the orbit-linearized Volterra operator instead of absolute-value Gronwall amplification.
 
 ## TARGET-A20
 
-status: OPEN ONLY ON COMPUTATIONAL INSTANTIATION OF M1.
+status: OPEN.
 
-TASK-0004 must certify one strict inequality
-\[
-M_T+K_JC_rr^2<r
-\]
-for exact-rational W1.
+Only missing fact:
+rigorous survival classification of one entering continuation orbit.
 
-If it succeeds, TARGET-A20 is PROVED.
+M1 shows that a sufficiently accurate certified history bound will close it.
