@@ -217,7 +217,7 @@ The primary certificate verifies
 \end{equation}
 on all \(3N=36000\) component inequalities, with minimum relative slack
 \begin{equation}
-  6.036\times10^{-4}.
+  6.025\times10^{-4}.
   \label{eq:self-map-slack}
 \end{equation}
 Thus the closed cellwise set determined by the sup, oscillation, and interpolation-bubble bounds is mapped strictly into itself.
@@ -249,7 +249,7 @@ The derivative bounds verify
   \le
   \kappa,
   \qquad
-  \kappa\le0.083612<1.
+  \kappa\le0.086199<1.
   \label{eq:Perron-contraction}
 \end{equation}
 Banach's fixed-point theorem yields a unique correction source \(f^*\), and injectivity of \(B\) gives
@@ -269,14 +269,14 @@ Propagating the source enclosure through \(I^\alpha\) gives
   \sup_{0\le t\le300}
   \|X(t)-\widehat X(t)\|_S
   \le
-  4.8661\times10^{-4},
+  4.8739\times10^{-4},
 \]
 and
 \begin{equation}
   \sup_{0\le t\le300}
   \|X(t)-\widehat X(t)\|_2
   \le
-  2.2193\times10^{-4}.
+  2.2229\times10^{-4}.
   \label{eq:physical-tube}
 \end{equation}
 Adding this certified pad to the cellwise state enclosure proves \eqref{eq:entry-whole-interval}. A representative interior cell is
@@ -285,15 +285,15 @@ Adding this certified pad to the cellwise state enclosure proves \eqref{eq:entry
 \]
 where
 \[
-  x\in[0.468938793,\ 0.469058899],
+  x\in[0.468938709,\ 0.469058984],
   \qquad
-  y\ge0.248262346.
+  y\ge0.248262261.
 \]
 Thus the prey threshold is crossed with certified margin
 \[
   \frac12-x_{\max}
   \ge
-  0.0309411007.
+  0.0309410164.
 \]
 
 \subsection{Memory-tail quantities and redundant cut}
@@ -309,22 +309,22 @@ The same validated finite history is inserted into the exact memory-tail represe
 Quantity & \(T=300,\ N=12000\) & \(T=1000,\ N=20000\)\\
 \midrule
 self-map min. relative slack
-& \(6.036\times10^{-4}\)
+& \(6.025\times10^{-4}\)
 & \(5.651\times10^{-4}\)\\
 Perron contraction \(\kappa\)
-& \(\le0.083612\)
+& \(\le0.086199\)
 & \(\le0.187495\)\\
 physical state tube
-& \(\le2.2193\times10^{-4}\)
+& \(\le2.2229\times10^{-4}\)
 & \(\le1.9773\times10^{-3}\)\\
 \(K_J\)
 & \(\le11.3499043\)
 & \(\le11.3457429\)\\
 \(M_T\)
-& \(\le0.043232414\)
+& \(\le0.043232705\)
 & \(\le0.015478583\)\\
 M1 margin
-& \(\ge0.0135626\)
+& \(\ge0.0135623\)
 & \(\ge0.0413364\)\\
 \bottomrule
 \end{tabular}
@@ -346,6 +346,8 @@ and the certified values yield \eqref{eq:B215-M1-margin}. The independent cut at
 \subsection{Arithmetic model}
 \label{subsec:arithmetic-model}
 
-The current certificate combines exact-rational model data and Arb ball arithmetic with selected binary64 layers for the large \(O(N^2)\) matrix and positive-sum computations. The latter carry explicit operation-count and roundoff allowances. The TASK-0006 certificate additionally assumes a few-ulp model for selected elementary \texttt{libm} calls used in the large-kernel layer.
+The primary \(T=300,N=12000\) certificate has been rerun with the publication-hardened arithmetic layer. Every load-bearing elementary-function evaluation entering a certified constant is enclosed in Arb ball arithmetic and converted outward; no few-ulp \texttt{libm} accuracy assumption remains in the principal proof. The remaining large dense inverse and positive bound-operator computations use binary64 algebra together with explicit a-posteriori Higham roundoff bounds at the actual reduction lengths.
 
-Accordingly, until the publication-hardening rerun is complete, the result is described as a \emph{computer-assisted theorem under the stated IEEE-754/libm arithmetic model}, rather than as an end-to-end interval-arithmetic proof. The arithmetic-hardening computation replaces the remaining load-bearing elementary-function evaluations by verified enclosures without changing the mathematical fixed-point argument.
+We therefore label the principal computation as having \emph{end-to-end verified elementary-function enclosures}. This phrase is intentionally narrower than ``fully interval arithmetic'': the approximate inverse and several nonnegative algebraic reductions are evaluated in binary64, with their rounding errors bounded rigorously rather than represented by set-valued arithmetic throughout. The trust assumptions are standard IEEE-754 round-to-nearest arithmetic for basic operations, exact \texttt{nextafter}, binary64 accumulation without reduced precision or flush-to-zero, and correctness of the Arb implementation.
+
+The independent \(T=1000,N=20000\) run was not repeated under the hardened layer because the primary hardening reproduced all theorem verdicts. It is retained solely as a secondary redundancy certificate under the earlier TASK-0006 arithmetic model.
